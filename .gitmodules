@@ -16,3 +16,6 @@
 [submodule "libs/nave"]
 	path = libs/nave
 	url = git://github.com/isaacs/nave.git
+[submodule "libs/oh-my-zsh"]
+	path = libs/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
