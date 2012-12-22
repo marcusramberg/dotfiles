@@ -5,11 +5,11 @@
 # http://benalman.com/about/license/
 #
 # Example:
-# [master:!?][cowboy@CowBook:~/.dotfiles]
+# [master:!?][marcusramberg@mbook:~/.dotfiles]
 # [11:14:45] $
 #
 # Read more (and see a screenshot) in the "Prompt" section of
-# https://github.com/cowboy/dotfiles
+# https://github.com/marcusramberg/dotfiles
 
 # ANSI CODES - SEPARATE MULTIPLE VALUES WITH ;
 #

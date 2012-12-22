@@ -1,5 +1,5 @@
-# Ubuntu-only stuff. Abort if not Ubuntu.
-[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
+# Debian-only stuff. Abort if not Debian.
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || return 1
 
 # If the old files isn't removed, the duplicate APT alias will break sudo!
 sudoers_old="/etc/sudoers.d/sudoers-marcus"; [[ -e "$sudoers_old" ]] && sudo rm "$sudoers_old"

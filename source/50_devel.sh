@@ -56,7 +56,7 @@ alias npm_owner_list='eachdir "npm owner ls 2>/dev/null | sort"'
 function npm_owner_add() {
   local users=
   local root="$(basename $(pwd))"
-  [[ $root == "gruntjs" ]] && users="cowboy tkellen"
+  [[ $root == "gruntjs" ]] && users="marcus tkellen"
   if [[ -n "$users" ]]; then
     eachdir "__npm_owner_add_each $users"
   fi
