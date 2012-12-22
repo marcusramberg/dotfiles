@@ -1,3 +1,4 @@
+export PATH=~/.dotfiles/bin:$PATH
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.dotfiles/libs/oh-my-zsh
 
@@ -41,8 +42,6 @@ if [ -f "${SSH_ENV}" ]; then
 else
      start_agent;
 fi
-# Perl brew 
-source ~/perl5/perlbrew/etc/bashrc
 
 # Hook up dotfiles
 PATH=~/.files/bin:$PATH
