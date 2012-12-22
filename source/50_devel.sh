@@ -1,7 +1,7 @@
 export PATH
 
 # nave init.
-if [[ "$(type -P nave)" ]]; then
+if [[ -f "$(type -P nave)" ]]; then
   nave_default="$(nave ls | awk '/^default/ {print $2}')"
   if [[ "$nave_default" && "$(node --version 2>/dev/null)" != "v$nave_default" ]]; then
     node_path=~/.nave/installed/$nave_default/bin
