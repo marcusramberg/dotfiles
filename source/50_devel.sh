@@ -97,3 +97,6 @@ PATH=$(path_remove ~/.dotfiles/libs/ruby-build/bin):~/.dotfiles/libs/ruby-build/
 if [[ -x "$(which rbenv)" && ! -n "$(which  _rbenv)" ]]; then
   eval "$(rbenv init -)"
 fi
+
+# Perl brew 
+source ~/perl5/perlbrew/etc/bashrc
