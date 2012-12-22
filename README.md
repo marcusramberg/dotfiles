@@ -4,7 +4,7 @@ My OS X / Ubuntu / Debian dotfiles.
 
 ## What's this?
 
-This is a fork of of [github.com/cowboy/dotfiles](Cowboy's dotfiles], adopted to 
+This is a fork of of [github.com/cowboy/dotfiles](Cowboy's dotfiles), adopted to 
 zsh, and debian, as well as my config files.
 
 That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
@@ -105,7 +105,7 @@ Any file in the `copy` subdirectory will be copied into `~/`. Any file that _nee
 Any file in the `link` subdirectory gets symbolically linked with `ln -s` into `~/`. Edit these, and you change the file in the repo. Don't link files containing sensitive data, or you might accidentally commit that data!
 
 ## Aliases and Functions
-To keep things easy, the `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into one of the files in the `source` subdirectory, or add a new file. They're all automatically sourced when a new shell is opened. Take a look, I have [a lot of aliases and functions](https://github.com/marcusramberg/dotfiles/tree/master/source). I even have a [fancy prompt](https://github.com/marcusramberg/dotfiles/blob/master/source/50_prompt.sh) that shows the current directory, time and current git/svn repo status.
+To keep things easy, the `~/.zshrc` file is extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into one of the files in the `source` subdirectory, or add a new file. They're all automatically sourced when a new shell is opened. Take a look, I have [a lot of aliases and functions](https://github.com/marcusramberg/dotfiles/tree/master/source). I even have a [fancy prompt](https://github.com/marcusramberg/dotfiles/blob/master/source/50_prompt.sh) that shows the current directory, time and current git/svn repo status.
 
 ## Scripts
 In addition to the aforementioned [dotfiles][dotfiles] script, there are a few other [scripts][bin]. This includes [ack](https://github.com/petdance/ack), which is a [git submodule](https://github.com/marcusramberg/dotfiles/tree/master/libs).
