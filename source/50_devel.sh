@@ -1,7 +1,7 @@
 export PATH
 
 # nave init.
-if [[ -f "$(whence -f nave)" ]]; then
+if [[ -f "$(which nave)" ]]; then
   nave_default="$(nave ls | awk '/^default/ {print $2}')"
   if [[ -n "$nave_default" && "$(node --version 2>/dev/null)" != "v$nave_default" ]]; then
     node_path=~/.nave/installed/$nave_default/bin
@@ -94,6 +94,6 @@ function npm_latest() {
 PATH=$(path_remove ~/.dotfiles/libs/rbenv/bin):~/.dotfiles/libs/rbenv/bin
 PATH=$(path_remove ~/.dotfiles/libs/ruby-build/bin):~/.dotfiles/libs/ruby-build/bin
 
-if [[ -x "$(whence -f rbenv)" && ! -n "$(type -f _rbenv)" ]]; then
+if [[ -x "$(which rbenv)" && ! -n "$(which  _rbenv)" ]]; then
   eval "$(rbenv init -)"
 fi
