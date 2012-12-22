@@ -22,7 +22,7 @@ function vm_template() {
   local dest="$dest_dir/$basename"
   local src_dir="$dest_dir/Templates"
   local src="$src_dir/$name"
-  if [[ ! "$name" || ! -e "$src" ]]; then
+  if [[ ! -n "$name" || ! -e "$src" ]]; then
     echo "You must specify a valid VM template from this list:";
     for f in "$src_dir"/*.pvm "$src_dir"/*.pvm.zip; do
       echo " * $(basename "$f")"
