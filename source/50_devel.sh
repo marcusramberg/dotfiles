@@ -3,7 +3,7 @@ export PATH
 # nave init.
 if [[ -f "$(type -P nave)" ]]; then
   nave_default="$(nave ls | awk '/^default/ {print $2}')"
-  if [[ "$nave_default" && "$(node --version 2>/dev/null)" != "v$nave_default" ]]; then
+  if [[ -n "$nave_default" && "$(node --version 2>/dev/null)" != "v$nave_default" ]]; then
     node_path=~/.nave/installed/$nave_default/bin
     if [[ -d "$node_path" ]]; then
       PATH=$node_path:$(path_remove ~/.nave/installed/*/bin)
