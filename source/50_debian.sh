@@ -20,9 +20,9 @@ function node_ver() {
       shopt -s nullglob
       cd "/usr/local/src"
       eval 'for n in node-v*+([0-9]).+([0-9]).+([0-9]); do nodes=("${nodes[@]}" "${n#node-}"); done'
-      [[ "$1" ]] && echo "Node.js version \"$1\" not found."
+      [[ -n "$1" ]] && echo "Node.js version \"$1\" not found."
       echo "Valid versions are: ${nodes[*]}"
-      [[ "$(type -P node)" ]] && echo "Current version is: $(node --version)"
+      [[ -x "$(which  node)" ]] && echo "Current version is: $(node --version)"
       exit 1
     fi
     cd "/usr/local/src/node-v$ver"
