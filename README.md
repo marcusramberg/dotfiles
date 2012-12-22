@@ -4,7 +4,7 @@ My OS X / Ubuntu / Debian dotfiles.
 
 ## What's this?
 
-This is a fork of of [github.com/cowboy/dotfiles](Cowboy's dotfiles), adopted to 
+This is a fork of of (github.com/cowboy/dotfiles)[Cowboy's dotfiles], adopted to 
 zsh, and debian, as well as my config files.
 
 That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
