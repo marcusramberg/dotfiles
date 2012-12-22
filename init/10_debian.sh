@@ -19,7 +19,7 @@ EOF
   read -N 1 -t 15 -p "Update sudoers file? [y/N] " update_sudoers; echo
   if [[ "$update_sudoers" =~ [Yy] ]]; then
     e_header "Updating sudoers"
-    visudo -cf "$sudoers_src" >/dev/null && {
+    sudo visudo -cf "$sudoers_src" >/dev/null && {
       sudo cp "$sudoers_src" "$sudoers_dest" &&
       sudo chmod 0440 "$sudoers_dest"
     } >/dev/null 2>&1 &&
