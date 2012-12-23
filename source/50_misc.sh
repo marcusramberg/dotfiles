@@ -8,3 +8,6 @@ function titlebar() {
   echo -n $'\e]0;'"$*"$'\a'
 }
 
+# sites
+
+alias datafart='curl --data-binary @- datafart.com'
