@@ -10,4 +10,3 @@ function titlebar() {
 
 # sites
 
-alias datafart='curl --data-binary @- datafart.com'
