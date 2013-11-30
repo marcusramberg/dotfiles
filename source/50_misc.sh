@@ -8,5 +8,7 @@ function titlebar() {
   echo -n $'\e]0;'"$*"$'\a'
 }
 
+export LC_CTYPE=en_US.UTF-8
+
 # sites
 

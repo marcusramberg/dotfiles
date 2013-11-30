@@ -3,10 +3,15 @@
 
 # APPLE, Y U PUT /usr/bin B4 /usr/local/bin?!
 PATH=/usr/local/bin:$(path_remove /usr/local/bin)
+PATH=/usr/local/sbin:$(path_remove /usr/local/sbin)
 export PATH
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
+
+# Fix open with
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
 
 # Make 'less' more.
 eval "$(lesspipe.sh)"

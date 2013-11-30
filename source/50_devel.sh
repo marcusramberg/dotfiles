@@ -100,3 +100,6 @@ fi
 
 # Perl brew 
 source ~/perl5/perlbrew/etc/bashrc
+
+eval "$(hub alias -s)"
+

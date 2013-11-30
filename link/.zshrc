@@ -43,9 +43,6 @@ else
      start_agent;
 fi
 
-# Hook up dotfiles
-PATH=~/.files/bin:$PATH
-export PATH
 # Source all files in ~/.dotfiles/source/
 function src() {
   local file
@@ -58,9 +55,14 @@ function src() {
   fi
 }
 
+#[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
+
 # Run dotfiles script, then source.
 function dotfiles() {
   ~/.dotfiles/bin/dotfiles "$@" && src
 }
 
 src
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
