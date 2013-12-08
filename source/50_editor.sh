@@ -1,9 +1,9 @@
 # Editing
 
 if [[ ! -n "$SSH_TTY" && "$OSTYPE" =~ ^darwin ]]; then
-  export EDITOR='mate -w'
-  export LESSEDIT='mate %f'
-  alias q='mate'
+  export EDITOR='vim'
+  export LESSEDIT='vim %f'
+  alias q='vim'
 else
   export EDITOR=$(type vim vi nano pico 2>/dev/null | sed 's/ .*$//;q')
   alias q="$EDITOR -w -z"
