@@ -14,11 +14,13 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git tmuxinator rails4 osx git-hubflow github gem bundler brew cpanm nvm postgres rake rvm tmux ssh-agent vundle)
 
 source $ZSH/oh-my-zsh.sh
 
 # ssh agent config
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 SSH_ENV="$HOME/.ssh/environment"
 
