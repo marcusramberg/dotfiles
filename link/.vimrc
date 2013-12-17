@@ -24,6 +24,8 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set clipboard=unnamed
+set directory=/tmp
+
 let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang'
 
 let g:tagbar_left = 1
@@ -49,6 +51,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails.git'
+Bundle 'spllr/vim-padrino'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sensible'
 Bundle 'msanders/cocoa.vim'
@@ -64,4 +67,5 @@ Bundle 'Rip-Rip/clang_complete'
 Bundle 'scrooloose/syntastic'
 Bundle 'yko/mojo.vim'
 Bundle 'majutsushi/tagbar'
-
+Bundle 'vim-perl/vim-perl'
+Bundle 'jkramer/vim-perltidy'
