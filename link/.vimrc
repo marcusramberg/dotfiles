@@ -40,6 +40,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
+:nmap <silent> <leader>a :Ack 
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
 
@@ -69,3 +70,5 @@ Bundle 'yko/mojo.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-perl/vim-perl'
 Bundle 'jkramer/vim-perltidy'
+Bundle 'ngmy/vim-rubocop'
+Bundle 'mileszs/ack.vim'
