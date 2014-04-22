@@ -1,5 +1,7 @@
 export PATH
 
+export ACK_PAGER='less'
+
 # nave init.
 if [[ -f "$(which nave)" ]]; then
   nave_default="$(nave ls | awk '/^default/ {print $2}')"
