@@ -55,7 +55,7 @@ endif
 :nmap <silent> <leader>p :TagbarToggle<cr>
 
 
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright
 
 call vundle#rc()
 
@@ -78,7 +78,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'yko/mojo.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-perl/vim-perl'
-Bundle 'jkramer/vim-perltidy'
+Bundle 'rdunklau/vim-perltidy'
 Bundle 'ngmy/vim-rubocop'
 Bundle 'rking/ag.vim'
 Bundle 'jnwhiteh/vim-golang'
@@ -93,3 +93,5 @@ Bundle 'tomtom/vimtlib'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'kien/ctrlp.vim'
