@@ -23,7 +23,7 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-"set clipboard=unnamed
+set clipboard=unnamed
 set directory=/tmp
 
 let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang'
@@ -60,6 +60,7 @@ colorscheme Tomorrow-Night-Bright
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails.git'
 Bundle 'spllr/vim-padrino'
@@ -94,4 +95,3 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
 Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'kien/ctrlp.vim'

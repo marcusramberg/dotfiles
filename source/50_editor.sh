@@ -4,6 +4,7 @@ if [[ ! -n "$SSH_TTY" && "$OSTYPE" =~ ^darwin ]]; then
   export EDITOR='vim'
   export LESSEDIT='vim %f'
   alias q='vim'
+  alias vi='vim'
 else
   export EDITOR=$(type vim vi nano pico 2>/dev/null | sed 's/ .*$//;q')
   alias q="$EDITOR -w -z"
