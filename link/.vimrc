@@ -3,43 +3,48 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'JazzCore/ctrlp-cmatcher'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails.git'
-Bundle 'spllr/vim-padrino'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sensible'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
+Plugin 'gmarik/vundle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'JazzCore/ctrlp-cmatcher'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails.git'
+Plugin 'spllr/vim-padrino'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
+Plugin 'rizzatti/funcoo.vim'
+Plugin 'rizzatti/dash.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle 'garbas/vim-snipmate'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rake'
-Bundle 'Rip-Rip/clang_complete'
-Bundle 'scrooloose/syntastic'
-Bundle 'yko/mojo.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-perl/vim-perl'
-Bundle 'rdunklau/vim-perltidy'
-Bundle 'ngmy/vim-rubocop'
-Bundle 'rking/ag.vim'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'othree/html5.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'godlygeek/tabular'
-Bundle 'tomtom/vimtlib'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-airline'
-Bundle 'ervandew/supertab'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'csexton/jekyll.vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-rake'
+Plugin 'Rip-Rip/clang_complete' 
+Plugin 'eraserhd/vim-ios' 
+Plugin 'scrooloose/syntastic'
+Plugin 'yko/mojo.vim' 
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-perl/vim-perl'
+Plugin 'rdunklau/vim-perltidy'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'rking/ag.vim'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'godlygeek/tabular'
+Plugin 'tomtom/vimtlib'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'ervandew/supertab'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'csexton/jekyll.vim'
+Plugin 'wting/rust.vim'
+Plugin 'tonchis/vim-to-github'
  
 filetype on
  
@@ -64,7 +69,15 @@ set directory=/tmp
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang'
+
+" Obj-c Autocomplete
+let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+let g:clang_complete_auto=1
+
+" Airline
+let g:airline#extensions#tabline#enabled = 0
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'tomorrow'
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
@@ -76,6 +89,7 @@ let g:tagbar_foldlevel = 2
 let g:vim_markdown_folding_disabled=1
 let g:SuperTabDefaultCompletionType = "context"
 let g:jekyll_path = "/Users/marcus/Source/blog"
+let g:syntastic_javascript_checkers = ['jsxhint']
 
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
@@ -86,6 +100,8 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=79 wrap linebreak nolist
 
 
+
+
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 endif 
@@ -94,5 +110,6 @@ endif
 :nmap <silent> <leader>a :Ag
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
+:nmap <silent> <leader>o :CtrlPMRU<cr>
 
 colorscheme Tomorrow-Night-Bright

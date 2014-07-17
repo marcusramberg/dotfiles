@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/marcus/Source/Input/views'
-let g:netrw_dirhist_2='/Users/marcus/.rvm/gems/ruby-2.0.0-p247/gems/sequel-4.3.0/lib/sequel'
-let g:netrw_dirhist_3='/Users/marcus/Source/clients/startsiden_weather/t'
-let g:netrw_dirhist_4='/Users/marcus/Source/clients/startsiden_weather/lib/Startsiden/Weather'
-let g:netrw_dirhist_5='/Users/marcus/Source/clients/startsiden_weather/share'
-let g:netrw_dirhist_6='/Users/marcus/Source/clients/startsiden_weather/lib/Startsiden/Weather'
-let g:netrw_dirhist_7='/Users/marcus/Source/clients/startsiden_weather/lib/Startsiden'
-let g:netrw_dirhist_8='/Users/marcus/Source/clients/startsiden_weather/lib/Startsiden/Weather'
-let g:netrw_dirhist_9='/Users/marcus/Source/devops/Ansible/roles/input/handlers'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/marcus/Source/clients/startsiden_weather/share/templates'
+let g:netrw_dirhist_2='/Users/marcus/Source/clients/startsiden_weather/share/templates/root'
+let g:netrw_dirhist_3='/Users/marcus/Source/devops/Ansible/roles/docker-registry'
+let g:netrw_dirhist_4='/Users/marcus/Source/devops/Ansible/roles/docker-registry/tasks'
