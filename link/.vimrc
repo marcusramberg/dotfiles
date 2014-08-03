@@ -20,8 +20,10 @@ Plugin 'honza/vim-snippets'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rake'
-Plugin 'Rip-Rip/clang_complete' 
-Plugin 'eraserhd/vim-ios' 
+if has('osx')
+  Plugin 'Rip-Rip/clang_complete' 
+  Plugin 'eraserhd/vim-ios' 
+endif
 Plugin 'scrooloose/syntastic'
 Plugin 'yko/mojo.vim' 
 Plugin 'majutsushi/tagbar'
@@ -45,6 +47,9 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'csexton/jekyll.vim'
 Plugin 'wting/rust.vim'
 Plugin 'tonchis/vim-to-github'
+
+set t_Co=256
+colorscheme Tomorrow-Night-Bright
  
 filetype on
  
@@ -76,7 +81,7 @@ let g:clang_complete_auto=1
 
 " Airline
 let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fons = 1
 let g:airline_theme = 'tomorrow'
 
 let g:tagbar_left = 1
@@ -88,7 +93,7 @@ let g:tagbar_width = 30
 let g:tagbar_foldlevel = 2
 let g:vim_markdown_folding_disabled=1
 let g:SuperTabDefaultCompletionType = "context"
-let g:jekyll_path = "/Users/marcus/Source/blog"
+let g:jekyll_path = "~/Source/blog"
 let g:syntastic_javascript_checkers = ['jsxhint']
 
 
@@ -112,4 +117,3 @@ endif
 :nmap <silent> <leader>p :TagbarToggle<cr>
 :nmap <silent> <leader>o :CtrlPMRU<cr>
 
-colorscheme Tomorrow-Night-Bright

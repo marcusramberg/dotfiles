@@ -6,6 +6,11 @@ PATH=/usr/local/bin:$(path_remove /usr/local/bin)
 PATH=/usr/local/sbin:$(path_remove /usr/local/sbin)
 export PATH
 
+export DOCKER_HOST=tcp://192.168.59.103:2375
+export GOPATH=/Users/marcus/gocode
+export GOROOT=/usr/local/Cellar/go/1.2.1/libexec
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
@@ -71,3 +76,4 @@ function txt_sub_restore() {
   )
   for cmd in "${cmds[@]}"; do /usr/libexec/PlistBuddy -c "$cmd" "$prefs"; done
 }
+
