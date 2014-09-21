@@ -17,7 +17,7 @@ DISABLE_UPDATE_PROMPT="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmuxinator rails osx git-hubflow github gem bundler brew cpanm nvm postgres rake rvm tmux ssh-agent vundle)
+plugins=(git tmuxinator rails osx git-hubflow github gem bundler brew cpanm nvm postgres rake rvm tmux ssh-agent vundle vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,6 +31,9 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
 
 
 # Source all files in ~/.dotfiles/source/
@@ -61,6 +64,6 @@ alias dokku="ssh stagolee dokku"
 #export DOCKER_HOST=tcp://localhost:4243
 export DOCKER_HOST=tcp://192.168.59.103:2375
 export GOPATH=/Users/marcus/gocode
-export GOROOT=/usr/local/Cellar/go/1.2.1/libexec
+export GOROOT=/usr/local/Cellar/go/1.3.1/libexec
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
