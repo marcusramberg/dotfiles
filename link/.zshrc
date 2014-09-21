@@ -31,6 +31,9 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
 
 
 # Source all files in ~/.dotfiles/source/
@@ -55,4 +58,9 @@ src
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 alias mate=vim
 alias dokku="ssh stagolee dokku"
+#export DOCKER_HOST=tcp://localhost:4243
+export DOCKER_HOST=tcp://192.168.59.103:2375
+export GOPATH=/Users/marcus/gocode
+export GOROOT=/usr/local/Cellar/go/1.3.1/libexec
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 

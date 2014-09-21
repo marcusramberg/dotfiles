@@ -15,15 +15,11 @@ Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rake'
-if has('osx')
-  Plugin 'Rip-Rip/clang_complete' 
-  Plugin 'eraserhd/vim-ios' 
-endif
 Plugin 'scrooloose/syntastic'
 Plugin 'yko/mojo.vim' 
 Plugin 'majutsushi/tagbar'
@@ -31,27 +27,27 @@ Plugin 'vim-perl/vim-perl'
 Plugin 'rdunklau/vim-perltidy'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'rking/ag.vim'
-Plugin 'jnwhiteh/vim-golang'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'fatih/vim-go'
+Plugin 'godlygeek/tabular'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'godlygeek/tabular'
 Plugin 'tomtom/vimtlib'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'csexton/jekyll.vim'
 Plugin 'wting/rust.vim'
 Plugin 'tonchis/vim-to-github'
+Plugin 'hsanson/vim-android'
 
 set t_Co=256
 colorscheme Tomorrow-Night-Bright
  
-filetype on
+filetype plugin indent on
  
 syntax on
 set number
@@ -74,11 +70,6 @@ set directory=/tmp
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
-
-" Obj-c Autocomplete
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-let g:clang_complete_auto=1
-
 " Airline
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fons = 1
@@ -92,7 +83,6 @@ let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_width = 30 
 let g:tagbar_foldlevel = 2
 let g:vim_markdown_folding_disabled=1
-let g:SuperTabDefaultCompletionType = "context"
 let g:jekyll_path = "~/Source/blog"
 let g:syntastic_javascript_checkers = ['jsxhint']
 
@@ -100,6 +90,7 @@ let g:syntastic_javascript_checkers = ['jsxhint']
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd FileType go compiler go
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=79 wrap linebreak nolist
@@ -116,4 +107,35 @@ endif
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
 :nmap <silent> <leader>o :CtrlPMRU<cr>
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
 
+colorscheme Tomorrow-Night-Bright
+
+if $TERM_PROGRAM =~ "iTerm"
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+endif
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+let g:UltiSnipsExpandTrigger ="<Leader><Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<Leader><s-Tab>"
+
+" Tab navigation
+nnoremap tn :tabnew<CR>
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
