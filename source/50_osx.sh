@@ -10,6 +10,7 @@ export DOCKER_HOST=tcp://192.168.59.103:2375
 export GOPATH=/Users/marcus/gocode
 export GOROOT=/usr/local/Cellar/go/1.2.1/libexec
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
