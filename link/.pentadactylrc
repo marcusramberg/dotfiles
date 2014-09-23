@@ -80,8 +80,8 @@ map -builtin J <C-f>
 map -builtin K <C-b>
 
 " Go to the next/previous tab
-map -builtin <C-h> <C-p>
-map -builtin <C-l> <C-n>
+map -builtin <H> <C-p>
+map -builtin <L> <C-n>
 map -builtin <M-[> <C-p>
 map -builtin <M-]> <C-n>
 
@@ -90,8 +90,8 @@ map -builtin <C-;> <C-S-~>
 map -builtin <C-''> <C-`>
 
 " Move the current tab
-map -builtin H <Esc>:tabmove! -1<CR>
-map -builtin L <Esc>:tabmove! +1<CR>
+map -builtin <C-h> <Esc>:tabmove! -1<CR>
+map -builtin <C-l> <Esc>:tabmove! +1<CR>
 
 " Edit shit with less strain
 imap -builtin <C-e> <C-i>
