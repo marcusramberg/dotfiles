@@ -4,5 +4,6 @@ link/.ssh/authorized_keys
 link/.ssh/id_*
 link/.ssh/known_hosts
 link/.ssh/environment*
+link/.mutt/cache/
 link/.vim/bundle
 *LOCAL*
