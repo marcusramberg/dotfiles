@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/marcus/Source/devops/Ansible/roles/base-nginx'
-let g:netrw_dirhist_2='/Users/marcus/Source/devops/Ansible/roles/base-nginx/tasks'
-let g:netrw_dirhist_3='/Users/marcus/Source/devops/Ansible/spec/cloudia'
-let g:netrw_dirhist_4='/Users/marcus/.pentadactyl'
-let g:netrw_dirhist_5='/Users/marcus/Source/Input-Android'
-let g:netrw_dirhist_6='/Users/marcus/Source/Input/config'
-let g:netrw_dirhist_7='/Users/marcus/Source/devops/Ansible/roles/input/vars'
-let g:netrw_dirhist_8='/Users/marcus/Source/Input/lib/input'
-let g:netrw_dirhist_9='/Users/marcus/Source/convos/lib/Convos/Command'
+let g:netrw_dirhist_cnt =0
