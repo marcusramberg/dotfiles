@@ -2,6 +2,7 @@ caches/
 backups/
 link/.ssh/authorized_keys
 link/.ssh/id_*
+link/.ssh/github*
 link/.ssh/known_hosts
 link/.ssh/environment*
 link/.mutt/cache/
