@@ -98,10 +98,21 @@ imap -builtin <C-e> <C-i>
 
 " The auto number incrementing is kind of annoying
 nmap -builtin <C-a> <nop>
+nmap -builtin <left> <nop>
+nmap -builtin <right> <nop>
+nmap -builtin <up> <nop>
+nmap -builtin <down> <nop>
 
 " Go into pass through mode when invoking group tabs
 nmap -builtin <M-S-E> <C-z><M-S-E>
 
+" Passkeys
+" ------------------------------------
+ set passkeys+='mail.google.com':c/kjnp<Return>uemxs+-!raflvIU[]zNqy?<CR>,gi,gs,gt,gd,ga,gc,gb,gk,gl
+ set passkeys+='www.google.com/calendar':dwmxajkcnqep?<Del>s12345<Return>
+ set passkeys+='www.google.com/search':jk
+ set passkeys+='duckduckgo.com':jkhvrsm!/<C-Enter>
+ set passkeys+='facebook.com':<CR>
 " Appearance
 " ------------------------------------
 

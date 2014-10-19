@@ -22,3 +22,5 @@ function dotfiles() {
 src
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PERLBREW_ROOT=~/perl5/perlbrew
+source ~/perl5/perlbrew/etc/bashrc

@@ -10,3 +10,5 @@ function path_remove() {
   # output the new array
   echo "${t[*]}"
 }
+
+ source "`brew --prefix`/etc/grc.bashrc"

@@ -1,6 +1,9 @@
 export PATH
 
-export ACK_PAGER='less'
+export ACK_PAGER='vimpager'
+export PAGER='vimpager'
+alias less=vimpager
+alias more=vimpager
 
 # nave init.
 if [[ -f "$(which nave)" ]]; then

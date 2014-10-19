@@ -6,5 +6,5 @@ link/.ssh/github*
 link/.ssh/known_hosts
 link/.ssh/environment*
 link/.mutt/cache/
-link/.vim/bundle
+link/.vim/bundle/
 *LOCAL*

@@ -47,6 +47,9 @@ Bundle 'hsanson/vim-android'
 Bundle 'whatyouhide/vim-gotham'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax' 
+Bundle 'vitalk/vim-simple-todo'
+Bundle 'Glench/Vim-Jinja2-Syntax'
+
 
 set t_Co=256
 colorscheme Tomorrow-Night-Bright
@@ -91,6 +94,8 @@ let g:vim_markdown_folding_disabled=1
 let g:jekyll_path = "~/Source/blog"
 let g:syntastic_javascript_checkers = ['jsxhint']
 let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#formatting#mode = 'ha'
+let g:pandoc#formatting#textwidth = 79
 
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
@@ -113,6 +118,7 @@ endif
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
 :nmap <silent> <leader>o :CtrlPMRU<cr>
+nnore <esc><esc> :let @/ = ""<cr>
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
 
 colorscheme gotham
