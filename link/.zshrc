@@ -33,8 +33,19 @@ bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+bindkey '^k' kill-line
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey '^G' what-cursor-position
 
 
+
+
+# zsh shared history must die
+
+setopt no_share_history
 
 # Source all files in ~/.dotfiles/source/
 function src() {
@@ -57,4 +68,4 @@ src
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 alias mate=vim
-alias dokku="ssh stagolee dokku"
+
