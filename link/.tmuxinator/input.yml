@@ -27,3 +27,4 @@ windows:
   - server: nordaaker-run input
   - console : padrino console
   - shell:
+  - eclim: /Application/eclipse/eclimd

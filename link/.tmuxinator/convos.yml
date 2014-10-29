@@ -6,9 +6,6 @@ root: ~/Source/convos
 # Optional tmux socket
 socket_name: convos
 
-# Runs before everything. Use it to start daemons etc.
-pre: 'pg_ctl -D /usr/local/var/postgres start 2> /dev/null'
-
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
 
@@ -20,10 +17,7 @@ pre: 'pg_ctl -D /usr/local/var/postgres start 2> /dev/null'
 
 windows:
   - editor: vim
-#      layout: dbd9,143x42,0,0{95x42,0,0,0,47x42,96,0,4}
-#      panes:
-#        - vim
-#        - REDIS_TEST_DATABASE=default guard
-  - server: script/test-convos-frontend.sh
-  - backend: script/test-convos-backend.sh
+  - server: CONVOS_REDIS_URL=localhost script/convos daemon
+  - backend: CONVOS_REDIS_URL=localhost morbo script/convos
   - logs: tail -f log/development.log
+  - ansible: cd ~/Source/convos-ansible/

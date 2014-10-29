@@ -21,4 +21,5 @@ windows:
       panes:
         - vim
         - autoprove -l
+  - irc: irssi
   - console:  zsh
