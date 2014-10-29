@@ -14,6 +14,9 @@ export GOROOT=/usr/local/Cellar/go/1.2.1/libexec
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
+# Load Ansible from git.
+source /Users/marcus/Source/external/ansible/hacking/env-setup -q
+
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
