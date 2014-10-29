@@ -4,7 +4,7 @@ ZSH=$HOME/.dotfiles/libs/oh-my-zsh
 
 # Set name of the theme to load.
 DEFAULT_USER='marcus'
-ZSH_THEME="agnoster"
+ZSH_THEME="pure"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -17,7 +17,7 @@ DISABLE_UPDATE_PROMPT="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmuxinator rails osx git-hubflow github gem bundler brew cpanm nvm postgres rake rvm tmux ssh-agent vundle vi-mode)
+plugins=(z brew cpanm docker git git-extras git-hubflow github gem bundler nvm osx postgres rake rails rvm tmux ssh-agent tmuxinator vundle vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
