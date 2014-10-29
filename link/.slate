@@ -3,6 +3,10 @@ config windowHintsShowIcons true
 config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread  true
 
+config switchBackgroundColor "30;33;58;0.7"
+config switchSelectedBackgroundColor "30;33;58;0.9"
+
+
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
 
@@ -74,5 +78,7 @@ bind v:${hyper} focus ${editor}
 bind x:${hyper} focus 'Xcode'
 bind g:${hyper} focus 'GitHub'
 bind i:${hyper} focus 'iTerm'
+bind t:${hyper} focus 'Tweetbot'
 bind f:${hyper} focus 'Path Finder'
 
+bind tab:${hyper} switch
