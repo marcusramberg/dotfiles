@@ -1,6 +1,6 @@
 export PATH
 
-export ACK_PAGER='vimpager'
+#export ACK_PAGER='vimpager'
 export PAGER='vimpager'
 alias less=vimpager
 alias more=vimpager
