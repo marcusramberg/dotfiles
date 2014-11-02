@@ -22,3 +22,6 @@
 [submodule "link/.pentadactyl/plugins/firebug-pentadactyl"]
 	path = link/.pentadactyl/plugins/firebug-pentadactyl
 	url = git@github.com:maksimr/firebug-pentadactyl.git
+[submodule "libs/ansible"]
+	path = libs/ansible
+	url = https://github.com/ansible/ansible.git
