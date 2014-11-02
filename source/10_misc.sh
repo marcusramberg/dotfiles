@@ -11,4 +11,3 @@ function path_remove() {
   echo "${t[*]}"
 }
 
- source "`brew --prefix`/etc/grc.bashrc"
