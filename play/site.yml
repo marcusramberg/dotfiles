@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+    - { role: geerlingguy.homebrew, when: ansible_system == 'Darwin' }
+    - { role: hnakamur.homebrew-cask-packages , when: ansible_system == 'Darwin' }
+    - { role: dotfiles, tags: debug }
+      

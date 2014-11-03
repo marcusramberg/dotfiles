@@ -1,0 +1,11 @@
+---
+- file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link
+  with_anyglob: 
+    - link/*
+- copy:  src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
+  with_anyglob: 
+    - copy/*
+- shell: . ~/.dotfiles/init/{{ item | basename }}
+  with_fileglob:
+    - init/*
+    

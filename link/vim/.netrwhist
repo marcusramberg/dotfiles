@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/marcus/.dotfiles/link/.vim/bundle'
+let g:netrw_dirhist_2='/Users/marcus/Source/convos/lib/Convos/Core'
+let g:netrw_dirhist_3='/Users/marcus/Source/Input/config'
+let g:netrw_dirhist_4='/Users/marcus/Source/Catalyst-Model-Xapian/lib/Catalyst/Model/Xapian'
+let g:netrw_dirhist_5='/Users/marcus/.dotfiles/play/roles/geerlingguy.homebrew'
+let g:netrw_dirhist_6='/Users/marcus/.dotfiles/play/roles/geerlingguy.homebrew/tasks'

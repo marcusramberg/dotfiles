@@ -1,0 +1,84 @@
+config defaultToCurrentScreen true
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread  true
+
+config switchBackgroundColor "30;33;58;0.7"
+config switchSelectedBackgroundColor "30;33;58;0.9"
+
+
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Resize Bindings
+bind right:alt       resize +10% +0
+bind left:alt        resize -10% +0
+bind up:alt          resize +0   -10%
+bind down:alt        resize +0   +10%
+bind right:ctrl;alt  resize -10% +0 bottom-right
+bind left:ctrl;alt   resize +10% +0 bottom-right
+bind up:ctrl;alt     resize +0   +10% bottom-right
+bind down:ctrl;alt   resize +0   -10% bottom-right
+
+# Push Bindings
+bind right:ctrl;cmd  push right bar-resize:screenSizeX/3
+bind left:ctrl;cmd   push left  bar-resize:screenSizeX/3
+bind up:ctrl;cmd     push up    bar-resize:screenSizeY/2
+bind down:ctrl;cmd   push down  bar-resize:screenSizeY/2
+
+# Nudge Bindings
+bind right:shift;alt nudge +10% +0
+bind left:shift;alt  nudge -10% +0
+bind up:shift;alt    nudge +0   -10%
+bind down:shift;alt  nudge +0   +10%
+
+# Throw Bindings
+bind 1:ctrl;alt         throw 0 resize
+bind 2:ctrl;alt         throw 1 resize
+bind 3:ctrl;alt         throw 2 resize
+bind right:ctrl;alt;cmd throw right resize
+bind left:ctrl;alt;cmd  throw left  resize
+bind up:ctrl;alt;cmd    throw up    resize
+bind down:ctrl;alt;cmd  throw down  resize
+
+# alias (to create alias variables)
+ 
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+ 
+# Hyper bindings
+alias hyper ctrl;shift;alt;cmd
+alias browser 'Google Chrome'
+alias editor 'MacVim'
+
+
+bind l:${hyper}    focus right
+bind h:${hyper}     focus left
+bind k:${hyper}       focus up
+bind j:${hyper}     focus down
+
+bind 1:${hyper} ${topleft}
+bind 2:${hyper} ${topright}
+bind q:${hyper} ${lefthalf}
+bind w:${hyper} ${righthalf}
+bind 0:${hyper} ${full}
+bind a:${hyper} ${bottomleft}
+bind s:${hyper} ${bottomright}
+
+bind e:${hyper} hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
+
+bind r:${hyper} relaunch
+bind b:${hyper} focus ${browser}
+bind v:${hyper} focus ${editor}
+bind x:${hyper} focus 'Xcode'
+bind g:${hyper} focus 'GitHub'
+bind i:${hyper} focus 'iTerm'
+bind t:${hyper} focus 'Tweetbot'
+bind f:${hyper} focus 'Path Finder'
+
+bind tab:${hyper} switch

@@ -1,0 +1,30 @@
+# ~/.tmuxinator/input.yml
+
+name: input
+root: ~/Source/input
+
+# Optional tmux socket
+socket_name: input
+
+# Runs before everything. Use it to start daemons etc.
+pre: 'pg_ctl -D /usr/local/var/postgres start 2> /dev/null'
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - editor:
+      layout: dbd9,143x42,0,0{95x42,0,0,0,47x42,96,0,4}
+      panes:
+        - vim
+        - bundle exec guard
+  - server: nordaaker-run input
+  - console : padrino console
+  - shell:
+  - eclim: /Application/eclipse/eclimd

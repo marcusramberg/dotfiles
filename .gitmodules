@@ -19,8 +19,8 @@
 [submodule "libs/oh-my-zsh"]
 	path = libs/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "link/.pentadactyl/plugins/firebug-pentadactyl"]
-	path = link/.pentadactyl/plugins/firebug-pentadactyl
+[submodule "link/pentadactyl/plugins/firebug-pentadactyl"]
+	path = link/pentadactyl/plugins/firebug-pentadactyl
 	url = git@github.com:maksimr/firebug-pentadactyl.git
 [submodule "libs/ansible"]
 	path = libs/ansible
