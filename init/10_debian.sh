@@ -72,3 +72,4 @@ if [[ ! "$(type -P git-extras)" ]]; then
     sudo make install
   )
 fi
+exit 0

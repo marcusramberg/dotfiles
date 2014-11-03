@@ -65,3 +65,4 @@ fi
 if [[ ! -f  ~/perl5/perlbrew/etc/bashrc ]]; then
   ~/.dotfiles/bin/perlbrew
 fi
+exit 0
