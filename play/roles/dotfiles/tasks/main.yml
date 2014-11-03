@@ -1,11 +1,27 @@
 ---
-- file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
-  with_anyglob: 
-    - link/*
-- copy:  src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
-  with_anyglob: 
-    - copy/*
-- shell: bash ~/.dotfiles/init/{{ item | basename }}
+- name: Setup dev scripts
+  shell: bash ~/.dotfiles/init/{{ item | basename }}
   with_fileglob:
     - init/*
+
+- name: remove existing files.
+  stat: path=~/.{{ item|basename }}
+  register: result
+  with_anyglob: 
+    - link/*
+
+- debug: var=results
+
+- shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/.{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
+  when: item.stat.exists is defined and item.stat.exists ==true and item.stat.islnk is not defined or item.stat.islnk==false
+  with_items: result.results
+
+- name: Copy files
+  copy:  src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
+  with_anyglob: 
+    - copy/*
     
+- name: Link files
+  file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
+  with_anyglob: 
+    - link/*
