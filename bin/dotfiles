@@ -53,7 +53,7 @@ if [[ ! "$(type -P git)" ]]; then
   # redhat
   elif [[ -f /etc/redhat-release ]]; then
     e_header "Installing Git"
-    sudo yum -qy git
+    sudo yum -q -y install git
   fi
 fi
 
