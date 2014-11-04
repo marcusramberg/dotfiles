@@ -78,7 +78,7 @@
 [url "git@github.com:"]
   insteadOf = gh:
 [credential]
-  helper = osxkeychain
+	helper = cache --timeout=3600000
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path = 

@@ -102,6 +102,11 @@ Host z2
 
 Host demo.convos.by
   User root
+
 Host dogfood.convos.by
   User root
   Hostname 178.62.240.239
+
+Host jamis
+  User marcusr
+  HostName jamis.uio.no
