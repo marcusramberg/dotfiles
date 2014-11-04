@@ -18,43 +18,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such6 as:
- font pango:DejaVu Sans Mono 20
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
- bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
-
- bindsym $mod+G exec --no-startup-id chromium
- 
- bindsym XF86MonBrightnessDown exec --no-startup-id "cd /sys/class/backlight/gmux_backlight/; cur=$(cat brightness); cur=$((cur-20)) ; if [ $cur -lt 1 ]; then cur=5; fi; echo $cur | sudo tee brightness "
- bindsym XF86MonBrightnessUp exec --no-startup-id "cd /sys/class/backlight/gmux_backlight/; cur=$(cat brightness); cur=$((cur+20)) ; if [ $cur -gt 1023 ]; then cur=1023; fi; echo $cur | sudo tee brightness " 
-
-bindsym XF86KbdBrightnessDown exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur-5)); if [ $cur -lt 0 ]; then cur=0; fi; echo $cur | sudo tee brightness "
-bindsym XF86KbdBrightnessUp exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur+5)); if [ $cur -gt 255 ]; then cur=255; fi; echo $cur | sudo tee brightness "
-
-#volume adjustment
-
-
-set $sink alsa_output.pci-0000_00_1b.0.analog-stereo
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink +2% "
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink -- -2% "
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $sink toggle "
-
-
-# change focus
-bindsym $mod+h focus left
+font pango:DejaVu Sans Mono 10
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
@@ -178,7 +142,7 @@ bar {
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
 
-exec --no-startup-id xrandr --dpi 192
+#exec --no-startup-id xrandr --dpi 192
 exec --no-startup-id nm-applet
 exec --no-startup-id /usr/lib/unity-settings-daemon/unity-settings-daemon
 client.focused #888888 #dddddd #222222 #2e9ef4
