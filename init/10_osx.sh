@@ -1,5 +1,5 @@
 # OSX-only stuff. Abort if not OSX.
-[[ "$OSTYPE" =~ ^darwin ]] || return 1
+[[ "$OSTYPE" =~ ^darwin ]] || exit 0
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }

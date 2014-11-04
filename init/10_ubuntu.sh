@@ -1,5 +1,5 @@
 # Ubuntu-only stuff. Abort if not Ubuntu.
-[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || exit 0
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }

@@ -1,5 +1,5 @@
 # Debian-only stuff. Abort if not Debian.
-[[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || return 1
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || exit 0
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
