@@ -78,7 +78,7 @@ if [[ ! -d ~/.dotfiles ]]; then
   new_dotfiles_install=1
   # ~/.dotfiles doesn't exist? Clone it!
   e_header "Downloading dotfiles"
-  git clone --recursive git://github.com/marcusramberg/dotfiles.git ~/.dotfiles
+  git clone --recursive https://github.com/marcusramberg/dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
 else
   # Make sure we have the latest files.
