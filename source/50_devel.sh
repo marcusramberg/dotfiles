@@ -99,13 +99,13 @@ function npm_latest() {
 PATH=$(path_remove ~/.dotfiles/libs/rbenv/bin):~/.dotfiles/libs/rbenv/bin
 PATH=$(path_remove ~/.dotfiles/libs/ruby-build/bin):~/.dotfiles/libs/ruby-build/bin
 
-if [[ -x "$(which rbenv)" && ! -n "$(which  _rbenv)" ]]; then
+if [[ -x "$(which rbenv)" ]]; then
   eval "$(rbenv init -)"
 fi
 
 # Perl brew 
-source ~/perl5/perlbrew/etc/bashrc
+PATH=$(path_remove ~/.plenv/bin):~/.plenv/bin
+eval "$(plenv init -)"
 
-#eval "$(hub alias -s)"
 function git(){hub $@}
 

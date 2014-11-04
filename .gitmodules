@@ -28,3 +28,6 @@
 [submodule "libs/pure"]
 	path = libs/pure
 	url = https://github.com/sindresorhus/pure
+[submodule "link/plenv"]
+	path = link/plenv
+	url = git://github.com/marcusramberg/plenv.git

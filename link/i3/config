@@ -18,13 +18,13 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such6 as:
- font pango:DejaVu Sans Mono 20
+font pango:DejaVu Sans Mono 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -178,7 +178,7 @@ bar {
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
 
-exec --no-startup-id xrandr --dpi 192
+#exec --no-startup-id xrandr --dpi 192
 exec --no-startup-id nm-applet
 exec --no-startup-id /usr/lib/unity-settings-daemon/unity-settings-daemon
 client.focused #888888 #dddddd #222222 #2e9ef4

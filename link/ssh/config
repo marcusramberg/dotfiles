@@ -36,14 +36,14 @@ Host beauty
 Host cloudio
     ProxyCommand ssh direct.nordaaker.com -W %h:%p
     User marcus
-    RequestTTY yes
+    #RequestTTY yes
 Host cloudia 
     ProxyCommand ssh direct.nordaaker.com -W %h:%p
     User marcus
-    RequestTTY yes
+    #RequestTTY yes
 Host stagolee
     ProxyCommand ssh direct.nordaaker.com -W %h:%p
-    RequestTTY yes
+    #RequestTTY yes
     User root
 Host fastie
     ProxyCommand ssh direct.nordaaker.com -W %h:%p
@@ -102,6 +102,11 @@ Host z2
 
 Host demo.convos.by
   User root
+
 Host dogfood.convos.by
   User root
   Hostname 178.62.240.239
+
+Host jamis
+  User marcusr
+  HostName jamis.uio.no
