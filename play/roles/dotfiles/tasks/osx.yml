@@ -1,0 +1,8 @@
+---
+- command: xcode-select -print-path
+  register: xcode_path
+  run_always: true
+  changed_when: false
+#  - command: xcode-select -switch /Applications/XCode.app/Contents/Developer
+#   when: changed_when.stdout
+
