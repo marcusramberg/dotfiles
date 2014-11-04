@@ -25,3 +25,6 @@
 [submodule "libs/ansible"]
 	path = libs/ansible
 	url = https://github.com/ansible/ansible.git
+[submodule "libs/pure"]
+	path = libs/pure
+	url = https://github.com/sindresorhus/pure

@@ -1,0 +1,8 @@
+---
+- homebrew: name={{ item }} state=present
+  with_items:
+    - openssl
+    - libyaml
+# required for building Ruby <= 1.9.3-p0
+- homebrew_tap: tap=homebrew/dupes state=present
+  #- homebrew: name=apple-gcc42 state=present

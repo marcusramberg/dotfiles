@@ -1,3 +1,8 @@
+---
+rbenv: 
+  env: user
+  version: 0.4.0
+  ruby_version: 2.1.2
 homebrew_installed_packages:
   - ack
   - android-sdk
