@@ -29,6 +29,8 @@ bindsym $mod+Return exec lilyterm
 # kill focused window
 bindsym $mod+Shift+q kill
 
+bindsym $mod+shift+x exec xautolock -locknow
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -178,9 +180,9 @@ bar {
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
 
-#exec --no-startup-id xrandr --dpi 192
-exec --no-startup-id nm-applet
-#exec --no-startup-id /usr/lib/unity-settings-daemon/unity-settings-daemon
+exec --no-startup-id ~/.dotfiles/bin/startup-x11
+exec --no-startup-id feh --background-fill ~/.dotfiles/background.jpg
+
 client.focused #888888 #dddddd #222222 #2e9ef4
 client.focused_inactive #333333 #555555 #bbbbbb #484e50
 client.unfocused #333333 #333333 #888888 #292d2e
