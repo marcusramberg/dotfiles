@@ -9,3 +9,4 @@ link/mutt/cache/
 link/vim/bundle/
 *LOCAL*
 *.py[cod]
+*.bak
