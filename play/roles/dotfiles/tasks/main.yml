@@ -32,3 +32,10 @@
   file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
   with_anyglob: 
     - link/*
+- name: Set correct mode for ssh keys
+  file: path={{item}} mode=0700
+  with_items:
+    - ~/.dotfiles/link/ssh
+    - ~/.dotfiles/link
+    - ~/.dotfiles
+
