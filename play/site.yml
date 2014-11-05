@@ -1,5 +1,11 @@
 ---
 - hosts: all
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_first_found:
+        - "vars/{{ ansible_distribution }}.yml"
+        - "vars/{{ ansible_os_family }}.yml"
+        - "vars/default.yml"
   roles:
     - { role: geerlingguy.homebrew, when: ansible_system == 'Darwin' }
     - { role: hnakamur.homebrew-cask-packages , when: ansible_system == 'Darwin' }

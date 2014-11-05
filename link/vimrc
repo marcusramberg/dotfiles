@@ -45,7 +45,7 @@ Bundle 'csexton/jekyll.vim'
 Bundle 'wting/rust.vim'
 Bundle 'tonchis/vim-to-github'
 Bundle 'hsanson/vim-android'
-Bundle 'whatyouhide/vim-gotham'
+Bundle 'benmills/vimux'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax' 
 Bundle 'vitalk/vim-simple-todo'
@@ -82,7 +82,7 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 " Airline
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gotham'
+let g:airline_theme = 'tomorrow'
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
@@ -125,7 +125,7 @@ nnore <esc><esc> :let @/ = ""<cr>
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_switch_buffer = 0
 
-colorscheme gotham
+"colorscheme gotham
 
 if $TERM_PROGRAM =~ "iTerm"
   if exists('$TMUX')

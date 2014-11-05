@@ -1,0 +1,6 @@
+[admiralnemo-i3wm-el7]
+name=Copr repo for i3wm-el7 owned by admiralnemo
+baseurl=http://copr-be.cloud.fedoraproject.org/results/admiralnemo/i3wm-el7/epel-7-$basearch/
+skip_if_unavailable=True
+gpgcheck=0
+enabled=1

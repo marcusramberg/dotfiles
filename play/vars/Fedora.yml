@@ -1,0 +1,20 @@
+---
+yum_repos:
+  - i3.repo
+  - google-chrome.repo
+yum_modules:
+  - i3
+  - i3status
+  - py3status
+  - feh
+  - google-chrome-unstable
+  - tmux
+  - gcc
+  - cmake
+  - python-devel
+  - openssl-devel
+  - gcc-c++
+  - sharutils
+  - terminator
+  - tig
+  - tmuxinator

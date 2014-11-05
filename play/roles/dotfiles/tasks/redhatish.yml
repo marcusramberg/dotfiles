@@ -1,2 +1,11 @@
 ---
+- name: Install repos
+  copy: src=repos/{{ item }} dest=/etc/yum.repos.d/{{ item }}
+  sudo: yes
+  with_items:  yum_repos
+- name: install modules
+  yum: name={{item}} state=present
+  sudo: yes
+  with_items: yum_modules
+
 
