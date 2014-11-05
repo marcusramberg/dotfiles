@@ -1,4 +1,11 @@
 ---
+- include: debianish.yml
+  when: ansible_pkg_mgr == 'apt'
+- include: redhatish.yml
+  when: ansible_pkg_mgr == 'yum'
+- include: osx.yml
+  when: ansible_os_family == 'Darwin'
+
 - name: Setup dev scripts
   shell: bash ~/.dotfiles/init/{{ item | basename }}
   with_fileglob:
