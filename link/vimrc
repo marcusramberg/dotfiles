@@ -53,7 +53,7 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 
 
 set t_Co=256
-colorscheme Tomorrow-Night-Bright
+colorscheme Tomorrow-Night
  
 filetype plugin indent on
  
