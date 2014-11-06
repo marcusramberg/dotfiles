@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Ensure cursor doesn't go away
+dconf write /org/gnome/settings-daemon/plugins/cursor/active false
+# capslock as esc
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+# Desktop environment
+gnome-settings-daemon &
+gnome-keyring-daemon
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+gnome-screensaver &
+nm-applet &
+xautolock -time 30 -locker "gnome-screensaver-command --lock" &
+i3-battery-indicator &
+xset dpms 1800 3600 3630
+
