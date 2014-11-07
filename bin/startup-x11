@@ -3,7 +3,8 @@
 # Ensure cursor doesn't go away
 dconf write /org/gnome/settings-daemon/plugins/cursor/active false
 # capslock as esc
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Super_L'
+xcape -e 'Super_L=Escape'
 
 # Desktop environment
 gnome-settings-daemon &
