@@ -6,8 +6,8 @@
 [hub]
   protocol = https
 [user]
-  name = Marcus
-  email = marcus@nordaaker.com
+  name = Marcus Ramberg
+  email = marcus.ramberg@usit.uio.no
   helper = osxkeychain
   name = Marcus
   name = Marcus
