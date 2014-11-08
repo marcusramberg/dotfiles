@@ -8,7 +8,7 @@
 [user]
   name = Marcus Ramberg
   email = marcus.ramberg@gmail.com
-  helper = ~/.dotfiles/bin/git-credential-crossplatform
+  helper = crossplatform
 [alias]
   promote = !$ZSH/bin/git-promote
   wtf     = !$ZSH/bin/git-wtf
