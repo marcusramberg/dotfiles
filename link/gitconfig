@@ -1,3 +1,4 @@
+; vim: set ft=gitconfig:
 # Sample gitconfig
 #
 # You probably want to change the [user] section here since you are not me.
@@ -8,7 +9,6 @@
 [user]
   name = Marcus Ramberg
   email = marcus.ramberg@gmail.com
-  helper = crossplatform
 [alias]
   promote = !$ZSH/bin/git-promote
   wtf     = !$ZSH/bin/git-wtf
@@ -73,7 +73,7 @@
 [url "git@github.com:"]
   insteadOf = gh:
 [credential]
-	helper = cache --timeout=3600000
+  helper =  crossplatform
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path = 
