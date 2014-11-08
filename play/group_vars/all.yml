@@ -24,12 +24,10 @@ homebrew_installed_packages:
   - bwm-ng
   - cairo
   - cloc
-  - clojure
   - cloog
   - cmake
   - coreutils
   - cscope
-  - csstidy
   - ctags
   - dialog
   - direnv
@@ -40,7 +38,6 @@ homebrew_installed_packages:
   - elasticsearch
   - erlang
   - etcd
-  - ext4fuse
   - faac
   - fasd
   - fdk-aac
@@ -57,7 +54,6 @@ homebrew_installed_packages:
   - gdk-pixbuf
   - geoip
   - gettext
-  - ghc
   - giflib
   - gist
   - git
@@ -112,7 +108,6 @@ homebrew_installed_packages:
   - libffi
   - libgcrypt
   - libgpg-error
-  - libiconv
   - libimobiledevice
   - libksba
   - libmagic
@@ -259,6 +254,7 @@ homebrew_installed_packages:
   - wxmac
   - x264
   - xapian
+  - xquartz
   - xvid
   - xz
   - yasm
@@ -272,7 +268,9 @@ homebrew_args:
   imagemagick: '--with-little-cms'
 
 homebrew_taps:
+    - homebrew/games
     - caskroom/cask
+    - homebrew/dupes
 homebrew_cask_packages_packages:
   - alfred
   - amethyst
@@ -280,6 +278,7 @@ homebrew_cask_packages_packages:
   - bittorrent-sync
   - colorpicker-hex
   - dash
+  - dropbox
   - firefox
   - gitx
   - google-chrome
