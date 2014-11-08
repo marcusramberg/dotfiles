@@ -17,7 +17,6 @@
   with_anyglob: 
     - link/*
 
-- debug: var=results
 
 - shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/.{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
   when: item.stat.exists is defined and item.stat.exists ==true and item.stat.islnk is not defined or item.stat.islnk==false

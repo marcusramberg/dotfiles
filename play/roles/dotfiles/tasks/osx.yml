@@ -6,3 +6,20 @@
 #  - command: xcode-select -switch /Applications/XCode.app/Contents/Developer
 #   when: changed_when.stdout
 
+- name: Check for existing files
+  stat: path="~/Library/Preferences/{{item|basename }}"
+  changed_when: false
+  always_run: true
+  register: result
+  with_anyglob: 
+    - prefs/*
+
+- name: Remove found files
+  shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/Library/Preferences/{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
+  when: item.stat.exists is defined and item.stat.exists ==true and item.stat.islnk is not defined or item.stat.islnk==false
+  with_items: result.results
+
+- name: Link files
+  file:  src=~/.dotfiles/prefs/{{ item|basename }} path=~/Library/Preferences/{{ item|basename }} state=link force=yes
+  with_anyglob: 
+    - prefs/*
