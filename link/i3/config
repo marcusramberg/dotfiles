@@ -29,14 +29,17 @@ bindsym $mod+Return exec lilyterm
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+shift+x exec xautolock -locknow
+bindsym $mod+shift+x exec --no-startup-id "i3lock"
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
- bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
+ #bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
+ bindsym $mod+d exec dmenu_run -nb '#383a3b' -nf '#babdb6' -sb '#000000' -sf '#eeeeec'
+ bindsym $mod+p exec kupfer
+
 
  bindsym $mod+G exec --no-startup-id chromium
  
@@ -49,10 +52,10 @@ bindsym XF86KbdBrightnessUp exec --no-startup-id "cd /sys/class/leds/smc::kbd_ba
 #volume adjustment
 
 
-set $sink alsa_output.pci-0000_00_1b.0.analog-stereo
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink +2% "
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink -- -2% "
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $sink toggle "
+#set $sink alsa_output.pci-0000_00_1b.0.analog-stereo
+#bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink +2% "
+#bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink -- -2% "
+#bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $sink toggle "
 
 
 # change focus
@@ -144,8 +147,11 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
+        bindsym $mod+h resize shrink width 10 px or 10 ppt
+        bindsym $mod+j resize grow height 10 px or 10 ppt
+        bindsym $mod+k resize shrink height 10 px or 10 ppt
+        bindsym $mod+l resize grow width 10 px or 10 ppt
+
         
         bindsym semicolon resize grow width 10 px or 10 ppt
 
@@ -166,21 +172,35 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   status_command i3status
-  colors {
-    separator #666666
-    background #333333
-    statusline #bbbbbb
-    focused_workspace #888888 #dddddd #222222
-    active_workspace #333333 #555555 #bbbbbb
-    inactive_workspace #333333 #555555 #bbbbbb
-    urgent_workspace #2f343a #900000 #ffffff
-  }
+font pango:DejaVu Sans Mono, Icons 9
+
+        colors {
+               background               #000000
+               statusline               #888888
+               focused_workspace        #000000 #000000 #ececec
+        }
+#  colors {
+#    separator #666666
+#    background #333333
+#    statusline #bbbbbb
+#    focused_workspace #888888 #dddddd #222222
+#    active_workspace #333333 #555555 #bbbbbb
+#    inactive_workspace #333333 #555555 #bbbbbb
+#    urgent_workspace #2f343a #900000 #ffffff
+#  }
 }
 
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
 
 exec --no-startup-id ~/.dotfiles/bin/startup-x11
+for_window [class="Kupfer"] floating enable border none
+for_window [title="https://pinboard.in - Pinboard - Save a Bookmark"] floating enable border none
+for_window [window_role="pop-up"] floating enable
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ unmute
+bindsym XF86AudioLowerVolume  exec amixer -q sset Master 5%- unmute
+bindsym XF86AudioMute exec amixer -q sset Master toggle
+
 exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
 
 client.focused #888888 #dddddd #222222 #2e9ef4
