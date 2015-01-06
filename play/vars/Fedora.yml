@@ -1,4 +1,5 @@
 ---
+is_workstation: true
 yum_repos:
   - i3.repo
   - google-chrome.repo
