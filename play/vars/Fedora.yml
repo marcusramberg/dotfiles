@@ -19,3 +19,4 @@ yum_modules:
   - terminator
   - tig
   - tmuxinator
+  - vim-enhanced
