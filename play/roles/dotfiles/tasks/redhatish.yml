@@ -1,11 +1,20 @@
 ---
+- name: Trust google
+  rpm_key: state=present key=https://dl-ssl.google.com/linux/linux_signing_key.pub
+  sudo: yes
+
 - name: Install repos
   copy: src=repos/{{ item }} dest=/etc/yum.repos.d/{{ item }}
   sudo: yes
   with_items:  yum_repos
+
 - name: install modules
   yum: name={{item}} state=present
   sudo: yes
   with_items: yum_modules
 
-
+- name: install keyboard settings
+  copy: src=00-keyboard.conf dest=/etc/X11/xorg.conf.d/00-keyboard.conf force=true
+  sudo: true
+  tags: debug
+  when: is_workstation
