@@ -12,7 +12,8 @@ xcape -e 'Control_L=Escape'
 #/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #mate-screensaver &
 #nm-applet &
-xautolock -time 30 -locker "mate-screensaver-command --lock" &
+xautolock -time 30 -locker "i3lock" &
+wicd-gtk &
 #i3-battery-indicator &
 #xset dpms 1800 3600 3630
 

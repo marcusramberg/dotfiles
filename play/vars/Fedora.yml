@@ -4,19 +4,22 @@ yum_repos:
   - i3.repo
   - google-chrome.repo
 yum_modules:
+  - cmake
+  - feh
+  - gcc
+  - gcc-c++
+  - google-chrome-unstable
   - i3
   - i3status
-  - py3status
-  - feh
-  - google-chrome-unstable
-  - tmux
-  - gcc
-  - cmake
-  - python-devel
+  - kupfer
+  - mosh
   - openssl-devel
-  - gcc-c++
+  - py3status
+  - python-devel
   - sharutils
   - terminator
   - tig
+  - tmux
   - tmuxinator
   - vim-enhanced
+  - xautolock
