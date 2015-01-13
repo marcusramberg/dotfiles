@@ -8,7 +8,7 @@ yum_modules:
   - feh
   - gcc
   - gcc-c++
-  - google-chrome-unstable
+  - google-chrome-stable
   - i3
   - i3lock
   - i3status
