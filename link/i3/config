@@ -24,7 +24,7 @@ font pango:DejaVu Sans Mono 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec lilyterm
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -43,8 +43,8 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock"
 
  bindsym $mod+G exec --no-startup-id google-chrome
  
- bindsym XF86MonBrightnessDown exec --no-startup-id "cd /sys/class/backlight/gmux_backlight/; cur=$(cat brightness); cur=$((cur-20)) ; if [ $cur -lt 1 ]; then cur=5; fi; echo $cur | sudo tee brightness "
- bindsym XF86MonBrightnessUp exec --no-startup-id "cd /sys/class/backlight/gmux_backlight/; cur=$(cat brightness); cur=$((cur+20)) ; if [ $cur -gt 1023 ]; then cur=1023; fi; echo $cur | sudo tee brightness " 
+ bindsym XF86MonBrightnessDown exec --no-startup-id "cd /sys/class/backlight/intel_backlight/; cur=$(cat brightness); cur=$((cur-20)) ; if [ $cur -lt 1 ]; then cur=5; fi; echo $cur | sudo tee brightness "
+ bindsym XF86MonBrightnessUp exec --no-startup-id "cd /sys/class/backlight/intel_backlight/; cur=$(cat brightness); cur=$((cur+20)) ; if [ $cur -gt 1023 ]; then cur=1023; fi; echo $cur | sudo tee brightness " 
 
 bindsym XF86KbdBrightnessDown exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur-5)); if [ $cur -lt 0 ]; then cur=0; fi; echo $cur | sudo tee brightness "
 bindsym XF86KbdBrightnessUp exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur+5)); if [ $cur -gt 255 ]; then cur=255; fi; echo $cur | sudo tee brightness "
