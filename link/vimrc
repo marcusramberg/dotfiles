@@ -30,6 +30,8 @@ Bundle 'rdunklau/vim-perltidy'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rking/ag.vim'
+Bundle 'Rykka/riv.vim'
+Bundle 'Rykka/clickable.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sirVer/ultisnips'
 Bundle 'spllr/vim-padrino'
@@ -55,7 +57,7 @@ Bundle 'yko/mojo.vim'
 
 
 set t_Co=256
-colorscheme Tomorrow-Night
+colorscheme atom-dark-256
  
 filetype plugin indent on
  
@@ -127,7 +129,6 @@ nnore <esc><esc> :let @/ = ""<cr>
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_switch_buffer = 0
 
-"colorscheme gotham
 
 if $TERM_PROGRAM =~ "iTerm"
   if exists('$TMUX')
@@ -178,3 +179,7 @@ nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
 
+" RST for uio
+let w3d = { 'path': '~/Source/uio/w3d-doc',}
+let g:riv_projects = [w3d]
+let g:riv_disable_folding=1
