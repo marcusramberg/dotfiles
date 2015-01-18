@@ -173,6 +173,7 @@ homebrew_installed_packages:
   - osxfuse
   - p11-kit
   - packer
+  - pandoc
   - pango
   - parallel
   - pass
@@ -254,7 +255,6 @@ homebrew_installed_packages:
   - wxmac
   - x264
   - xapian
-  - xquartz
   - xvid
   - xz
   - yasm
@@ -276,6 +276,7 @@ homebrew_cask_packages_packages:
   - amethyst
   - betterzipql
   - bittorrent-sync
+  - calibre
   - colorpicker-hex
   - dash
   - dropbox
@@ -295,8 +296,11 @@ homebrew_cask_packages_packages:
   - quicklook-csv
   - quicklook-json
   - skitch
+  - simple-comic
   - slate
   - the-unarchiver
+    totalspaces
   - transmission
   - vagrant
   - vlc
+  - xquartz

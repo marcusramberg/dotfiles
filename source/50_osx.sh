@@ -4,6 +4,7 @@
 # APPLE, Y U PUT /usr/bin B4 /usr/local/bin?!
 PATH=/usr/local/bin:$(path_remove /usr/local/bin)
 PATH=/usr/local/sbin:$(path_remove /usr/local/sbin)
+PATH=~/.dotfiles/bin/osx:$(path_remove ~/.dotfiles/bin/osx)
 export PATH
 
 export DOCKER_TLS_VERIFY=1

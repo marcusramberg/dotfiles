@@ -71,6 +71,9 @@ Host input02
 Host input-stage
     ProxyCommand ssh direct.nordaaker.com -W %h:%p
     User root
+Host nadmin
+    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    User marcus
 Host md-xen1
     ProxyCommand ssh direct.nordaaker.com -W %h:%p
     User marcus 
@@ -107,6 +110,28 @@ Host dogfood.convos.by
   User root
   Hostname 178.62.240.239
 
+# UIO
+
+Host ulrik
+  User marcusr
+  HostName ulrik.uio.no
+
+Host foobar 
+  User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
+  HostName foobar.uio.no
+
+Host foobar2
+  User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
+  HostName foobar2.uio.no
+
 Host jamis
   User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
   HostName jamis.uio.no
+
+Host cfengine-scm
+  User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
+  HostName cfengine-scm.uio.no
