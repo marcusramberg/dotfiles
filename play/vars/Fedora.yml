@@ -10,6 +10,7 @@ yum_modules:
   - gcc-c++
   - google-chrome-stable
   - i3
+  - i3lock
   - i3status
   - kupfer
   - mosh
@@ -23,3 +24,4 @@ yum_modules:
   - tmuxinator
   - vim-enhanced
   - xautolock
+  - wicd-gtk
