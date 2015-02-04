@@ -38,3 +38,14 @@
     - ~/.dotfiles/link
     - ~/.dotfiles
 
+- name: do the vundle
+  shell: eval vundle
+  args: 
+    creates: ~/.dotfiles/link/vim/bundle/vundle
+
+- name: Build YouCompleteMe
+  shell: ./install.sh
+  args:
+    chdir: ~/.dotfiles/link/vim/bundle/YouCompleteMe
+    creates: ~/.dotfiles/link/vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+

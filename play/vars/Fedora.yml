@@ -1,20 +1,27 @@
 ---
+is_workstation: true
 yum_repos:
   - i3.repo
   - google-chrome.repo
 yum_modules:
-  - i3
-  - i3status
-  - py3status
-  - feh
-  - google-chrome-unstable
-  - tmux
-  - gcc
   - cmake
-  - python-devel
-  - openssl-devel
+  - feh
+  - gcc
   - gcc-c++
+  - google-chrome-stable
+  - i3
+  - i3lock
+  - i3status
+  - kupfer
+  - mosh
+  - openssl-devel
+  - py3status
+  - python-devel
   - sharutils
   - terminator
   - tig
+  - tmux
   - tmuxinator
+  - vim-enhanced
+  - xautolock
+  - wicd-gtk
