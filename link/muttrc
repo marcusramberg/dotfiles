@@ -1,8 +1,8 @@
 set from = "marcusramberg@gmail.com"
 set realname = "Marcus Ramberg"
 
-set imap_user = "marcusramberg@gmail.com"
- set imap_pass = mjutfhlsfciumtqm 
+set imap_user = "marcusr"
+ set imap_pass = m00fB0at
 
 
 set sort="threads"
@@ -12,11 +12,11 @@ set imap_check_subscribed
 source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
 
 # REMOTE GMAIL FOLDERS
-set folder = "imaps://imap.gmail.com:993"
+set folder = "imaps://mail.uio.no:993"
 set spoolfile = "+INBOX"
-set postponed ="+[Google Mail]/Drafts"
-set trash = "+[Google Mail]/Trash"
-set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
+#"set postponed ="+[Google Mail]/Drafts"
+#set trash = "+[Google Mail]/Trash"
+#set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
 #set any_label = "+[Google Mail]/any_label"
 
 # LOCAL FOLDERS FOR CACHED HEADERS AND CERTIFICATES

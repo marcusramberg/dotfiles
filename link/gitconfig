@@ -8,7 +8,7 @@
   protocol = https
 [user]
   name = Marcus Ramberg
-  email = marcus.ramberg@gmail.com
+  email = marcus.ramberg@usit.uio.no
 [alias]
   promote = !$ZSH/bin/git-promote
   wtf     = !$ZSH/bin/git-wtf

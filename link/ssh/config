@@ -2,7 +2,6 @@ Host *
 
 # Forward ssh agent to the remote machine.
 ControlMaster auto
-ControlPersist yes
 
 Host debook
   ForwardX11Trusted yes
