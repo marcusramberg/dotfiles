@@ -13,7 +13,7 @@ xcape -e 'Control_L=Escape'
 #mate-screensaver &
 #nm-applet &
 xautolock -time 30 -locker "i3lock" &
-wicd-gtk &
+#wicd-gtk &
 #i3-battery-indicator &
 #xset dpms 1800 3600 3630
 . ~/.dotfiles/bin/trackpad

@@ -38,16 +38,16 @@ set $white       #f1edfb
 set $darkwhite   #f1edfb
 set $background  #133B47
 
-set $ws1  "1:"
-set $ws2  "2:"
-set $ws3  "3:"
-set $ws4  "4:"
-set $ws5 "5:"
-set $ws6  "6: 6"
-set $ws7  "7: 7"
-set $ws8  "8: 8"
-set $ws9  "9:"
-set $ws10 "10:"
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
 
 
 #BORDER     BACKGROUND TEXT   INDICATOR
@@ -145,31 +145,30 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 0
 
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+# # move focused container to workspace
+bindsym $mod+Shift+1  move container to workspace 1
+bindsym $mod+Shift+2  move container to workspace 2
+bindsym $mod+Shift+3  move container to workspace 3
+bindsym $mod+Shift+4  move container to workspace 4
+bindsym $mod+Shift+5  move container to workspace 5
+bindsym $mod+Shift+6  move container to workspace 6
+bindsym $mod+Shift+7  move container to workspace 7
+bindsym $mod+Shift+8  move container to workspace 8
+bindsym $mod+Shift+9  move container to workspace 9
+bindsym $mod+Shift+0  move container to workspace 0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -250,6 +249,7 @@ bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume  exec amixer -q sset Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q sset Master toggle
 
+exec --no-startup-id gnome-session --session=i3-gnome 
 exec --no-startup-id ~/.dotfiles/bin/startup-x11
 exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
 exec --no-startup-id zeal
@@ -258,3 +258,5 @@ client.focused #888888 #dddddd #222222 #2e9ef4
 client.focused_inactive #333333 #555555 #bbbbbb #484e50
 client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
+
+exec echo “.i3/config: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager”  
