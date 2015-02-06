@@ -2,7 +2,6 @@ Host *
 
 # Forward ssh agent to the remote machine.
 ControlMaster auto
-ControlPersist yes
 
 Host debook
   ForwardX11Trusted yes
@@ -22,60 +21,63 @@ Host labs
   HostName labs.nordaaker.com
 
 Host beast
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    HostName adm.output.digital
     User root
 Host teacup 
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User root
   ForwardX11Trusted yes
   ForwardX11 yes
   ForwardAgent yes
 Host beauty 
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus
 Host cloudio
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus
     #RequestTTY yes
 Host cloudia 
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus
     #RequestTTY yes
 Host stagolee
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     #RequestTTY yes
     User root
 Host fastie
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus
 Host fatsie
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus 
 Host nadmin
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
 Host raker
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User root
 Host mongol
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus
 Host wirc 
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User root
 Host input01
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User root
 Host input02
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User root
 Host input-stage
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User root
+Host nadmin
+    ProxyCommand ssh adm.output.digital -W %h:%p
+    User marcus
 Host md-xen1
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
     User marcus 
 Host varnish01
-    ProxyCommand ssh direct.nordaaker.com -W %h:%p
+    ProxyCommand ssh adm.output.digital -W %h:%p
 Host 127.0.0.1
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
@@ -107,6 +109,28 @@ Host dogfood.convos.by
   User root
   Hostname 178.62.240.239
 
+# UIO
+
+Host ulrik
+  User marcusr
+  HostName ulrik.uio.no
+
+Host foobar 
+  User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
+  HostName foobar.uio.no
+
+Host foobar2
+  User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
+  HostName foobar2.uio.no
+
 Host jamis
   User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
   HostName jamis.uio.no
+
+Host cfengine-scm
+  User marcusr
+  ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
+  HostName cfengine-scm.uio.no
