@@ -8,15 +8,15 @@ Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'christoomey/vim-tmux-navigator'
+"Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'fatih/vim-go'
+"Bundle 'edkolev/tmuxline.vim'
+"Bundle 'fatih/vim-go'
 Bundle 'glench/Vim-Jinja2-Syntax'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'honza/vim-snippets'
-Bundle 'hsanson/vim-android'
+"Bundle 'hsanson/vim-android'
 Bundle 'jazzCore/ctrlp-cmatcher'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
@@ -27,9 +27,11 @@ Bundle 'ngmy/vim-rubocop'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'rdunklau/vim-perltidy'
-Bundle 'rizzatti/dash.vim'
+"Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rking/ag.vim'
+Bundle 'Rykka/riv.vim'
+Bundle 'Rykka/clickable.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sirVer/ultisnips'
 Bundle 'spllr/vim-padrino'
@@ -40,22 +42,23 @@ Bundle 'tonchis/vim-to-github'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails.git'
+"Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-sensible'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'vim-pandoc/vim-pandoc-syntax' 
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'vim-pandoc/vim-pandoc'
+"Bundle 'vim-pandoc/vim-pandoc-syntax' 
 Bundle 'vim-perl/vim-perl'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/rcs.vim'
-Bundle 'vitalk/vim-simple-todo'
-Bundle 'wting/rust.vim'
+"Bundle 'vitalk/vim-simple-todo'
+"Bundle 'wting/rust.vim'
 Bundle 'yko/mojo.vim' 
+Bundle 'mivok/vimtodo'
 
 
 set t_Co=256
-colorscheme Tomorrow-Night
+colorscheme atom-dark-256
  
 filetype plugin indent on
  
@@ -127,7 +130,6 @@ nnore <esc><esc> :let @/ = ""<cr>
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_switch_buffer = 0
 
-"colorscheme gotham
 
 if $TERM_PROGRAM =~ "iTerm"
   if exists('$TMUX')
@@ -178,3 +180,7 @@ nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
 
+" RST for uio
+let w3d = { 'path': '~/Source/uio/w3d-doc',}
+let g:riv_projects = [w3d]
+let g:riv_disable_folding=1
