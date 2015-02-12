@@ -24,60 +24,60 @@ Host beast
     HostName adm.output.digital
     User root
 Host teacup 
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
   ForwardX11Trusted yes
   ForwardX11 yes
   ForwardAgent yes
 Host beauty 
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus
 Host cloudio
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus
     #RequestTTY yes
 Host cloudia 
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus
     #RequestTTY yes
 Host stagolee
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     #RequestTTY yes
     User root
 Host fastie
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus
 Host fatsie
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus 
 Host nadmin
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
 Host raker
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
 Host mongol
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus
 Host wirc 
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
 Host input01
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
 Host input02
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
 Host input-stage
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
 Host nadmin
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus
 Host md-xen1
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus 
 Host varnish01
-    ProxyCommand ssh adm.output.digital -W %h:%p
+    ProxyCommand ssh marcus@adm.output.digital -W %h:%p
 Host 127.0.0.1
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
