@@ -8,6 +8,7 @@ link/ssh/environment*
 link/mutt/cache/
 link/vim/bundle/
 link/vim-mini/bundle/
+link/vim/.netrwhist
 *LOCAL*
 *.py[cod]
 *.bak
