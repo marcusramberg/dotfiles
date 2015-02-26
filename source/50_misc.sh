@@ -9,5 +9,8 @@ function titlebar() {
 
 export LC_CTYPE=en_US.UTF-8
 
-# sites
 
+# re-enable alt-. for last argument
+ bindkey '\e.' insert-last-word
+ # Allow aliases in sudo.
+ alias sudo='sudo '

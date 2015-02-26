@@ -8,7 +8,7 @@
         - "vars/default.yml"
   roles:
     - { role: dotfiles }
-    - { role: hnakamur.homebrew-cask-packages , when: ansible_system == 'Darwin' }
     - { role: geerlingguy.homebrew, when: ansible_system == 'Darwin' }
+    - { role: hnakamur.homebrew-cask-packages , when: ansible_system == 'Darwin' }
 #    - { role: rbenv, tags: debug }
       
