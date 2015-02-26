@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/uio/kant/usit-gap-u1/marcusr/Source/tools/playbooks/roles/so_wiki'
 let g:netrw_dirhist_2='/uio/kant/usit-gap-u1/marcusr/Source/tools/playbooks/roles/so_wiki/tasks'
 let g:netrw_dirhist_3='/www/home/marcusr/tools/playbooks/roles/so_wiki/defaults'
 let g:netrw_dirhist_4='/www/home/marcusr/w3d-ansible/roles/request_tracker/tasks'
+let g:netrw_dirhist_5='/home/marcusr/.dotfiles/play/roles/geerlingguy.homebrew'
+let g:netrw_dirhist_6='/home/marcusr/.dotfiles/play/roles/geerlingguy.homebrew/tasks'

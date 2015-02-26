@@ -60,10 +60,7 @@ homebrew_installed_packages:
   - git-extras
   - git-flow
   - git-flow-clone
-  - git-subtree
-  - gitsh
   - glib
-  - glpk
   - gmp
   - gnu-getopt
   - gnu-sed
@@ -76,7 +73,6 @@ homebrew_installed_packages:
   - gpg-agent
   - graphicsmagick
   - grc
-  - gremlin
   - gsl
   - gtk+
   - harfbuzz
@@ -141,7 +137,6 @@ homebrew_installed_packages:
   - maven
   - md5sha1sum
   - mercurial
-  - metis
   - midnight-commander
   - mitmproxy
   - mobile-shell
@@ -170,19 +165,14 @@ homebrew_installed_packages:
   - opus
   - orc
   - ossp-uuid
-  - osxfuse
   - p11-kit
-  - packer
   - pandoc
   - pango
   - parallel
   - pass
   - pcre
-  - pdf2svg
   - phantomjs
   - pidof
-  - pil
-  - pillow
   - pinentry
   - pixman
   - pkg-config
@@ -211,7 +201,6 @@ homebrew_installed_packages:
   - schroedinger
   - scons
   - sdl
-  - serf
   - siege
   - sl
   - sloccount
@@ -221,7 +210,6 @@ homebrew_installed_packages:
   - sqlite
   - sshuttle
   - subversion
-  - suite-sparse
   - swftools
   - swig
   - tbb
@@ -235,13 +223,11 @@ homebrew_installed_packages:
   - tomcat
   - tree
   - ttfautohint
-  - tuntap
   - unixodbc
   - unrar
   - usbmuxd
   - v
   - v8
-  - vagrant-completion
   - varnish
   - vifm
   - vim
@@ -269,6 +255,7 @@ homebrew_args:
 
 homebrew_taps:
     - homebrew/games
+      homebrew/binary
     - caskroom/cask
     - homebrew/dupes
 homebrew_cask_packages_packages:
@@ -289,18 +276,21 @@ homebrew_cask_packages_packages:
   - karabiner
   - macvim
   - osxfuse
+  - packer
   - plex-media-server
   - qlcolorcode
   - qlmarkdown
   - qlstephen
   - quicklook-csv
   - quicklook-json
+  - serf
   - skitch
   - simple-comic
   - slate
   - the-unarchiver
-    totalspaces
+  - totalspaces
   - transmission
+  - tuntap
   - vagrant
   - vlc
   - xquartz
