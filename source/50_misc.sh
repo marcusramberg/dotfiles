@@ -11,6 +11,8 @@ export LC_CTYPE=en_US.UTF-8
 
 
 # re-enable alt-. for last argument
- bindkey '\e.' insert-last-word
- # Allow aliases in sudo.
- alias sudo='sudo '
+bindkey '\e.' insert-last-word
+# Allow aliases in sudo.
+alias sudo='sudo '
+# Fix up last command
+alias fuck='sudo $(fc -ln -1)'
