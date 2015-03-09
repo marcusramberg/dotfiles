@@ -129,6 +129,7 @@ nnore <esc><esc> :let @/ = ""<cr>
 :nmap ; :CtrlPBuffer<cr>
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_switch_buffer = 0
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 
 if $TERM_PROGRAM =~ "iTerm"
