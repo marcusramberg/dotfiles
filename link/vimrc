@@ -7,7 +7,8 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
 Bundle 'chase/vim-ansible-yaml'
-Bundle 'chriskempson/vim-tomorrow-theme'
+"Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'altercation/vim-colors-solarized'
 "Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
 "Bundle 'edkolev/tmuxline.vim'
@@ -57,8 +58,8 @@ Bundle 'yko/mojo.vim'
 Bundle 'mivok/vimtodo'
 
 
-set t_Co=256
-colorscheme atom-dark-256
+"set t_Co=256
+colorscheme solarized
  
 filetype plugin indent on
  
@@ -87,7 +88,8 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 " Airline
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tomorrow'
+set background=dark
+let g:airline_theme = 'solarized'
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
