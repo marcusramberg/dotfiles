@@ -4,7 +4,7 @@ ZSH=$HOME/.dotfiles/libs/oh-my-zsh
 
 # Set name of the theme to load.
 DEFAULT_USER='marcus'
-ZSH_THEME="pure"
+ZSH_THEME="agnoster"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
