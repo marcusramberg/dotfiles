@@ -75,6 +75,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias gdkc='gdk --cached'
   alias gt='gittower -s'
   if [[ ! -n "$SSH_TTY" ]]; then
-    alias gd='gdk'
+  #  alias gd='gdk'
   fi
 fi
