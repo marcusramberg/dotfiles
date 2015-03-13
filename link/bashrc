@@ -27,3 +27,4 @@ source ~/perl5/perlbrew/etc/bashrc
 alias vi="vim -u ~/.vimrc.mini"
 export PS1="\\u@\h \\W]\\$"
 eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+alias fuck='sudo $(fc -ln -1)'
