@@ -112,6 +112,9 @@ Host dogfood.convos.by
   User root
   Hostname 178.62.240.239
 
+Host mct.mojoconf.com
+  User root
+
 # UIO
 
 Host ulrik
