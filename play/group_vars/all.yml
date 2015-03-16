@@ -186,6 +186,7 @@ homebrew_installed_packages:
   - pwgen
   - python
   - python3
+  - rainbarf
   - ragel
   - rbenv
   - readline
