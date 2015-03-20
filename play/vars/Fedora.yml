@@ -25,3 +25,5 @@ yum_modules:
   - vim-enhanced
   - xautolock
   - wicd-gtk
+  - bofh
+  - fontawesome-fonts
