@@ -187,3 +187,5 @@ nnoremap <space>gpl :Dispatch! git pull<CR>
 let w3d = { 'path': '~/Source/uio/w3d-doc',}
 let g:riv_projects = [w3d]
 let g:riv_disable_folding=1
+
+command! Fuck w !sudo tee % >/dev/null
