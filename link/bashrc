@@ -28,3 +28,4 @@ alias vi="vim -u ~/.vimrc.mini"
 export PS1="\\u@\h \\W]\\$"
 eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 alias fuck='sudo $(fc -ln -1)'
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH

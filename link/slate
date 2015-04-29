@@ -90,4 +90,4 @@ bind i:${hyper} focus 'iTerm'
 bind t:${hyper} focus 'Tweetbot'
 bind f:${hyper} focus 'Path Finder'
 
-bind tab:cmd switch
+#bind tab:cmd switch

@@ -136,6 +136,10 @@ Host jamis
   ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
   HostName jamis.uio.no
 
+Host mct.mojoconf.com
+  User root
+  HostName 178.62.44.109
+
 Host cfengine-scm
   User marcusr
   ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
