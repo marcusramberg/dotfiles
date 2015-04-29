@@ -72,7 +72,7 @@ Host input-stage
     User root
 Host fatsie-stage 
     ProxyCommand ssh marcus@adm.output.digital -W %h:%p
-    User ubuntu
+    User marcus 
 Host nadmin
     ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User marcus

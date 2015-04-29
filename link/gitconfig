@@ -90,3 +90,5 @@
   required = true
 	clean = git media clean %f
 	smudge = git media smudge %f
+[ghi]
+	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
