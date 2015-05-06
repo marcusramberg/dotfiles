@@ -1,6 +1,6 @@
 config defaultToCurrentScreen true
 config windowHintsShowIcons true
-config windowHintsIgnoreHiddenWindows true
+config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread  true
 
 config switchBackgroundColor "30;33;58;0.7"
@@ -54,6 +54,9 @@ alias righttwothirds move screenOriginX+screenSizeX/3;screenOriginY 2*screenSize
 alias lefttwothirds move screenOriginX;screenOriginY 2*screenSizeX/3;screenSizeY
 alias leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
 alias leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
+alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY
+
  
 # Hyper bindings
 alias hyper ctrl;shift;alt;cmd
@@ -73,13 +76,17 @@ bind w:${hyper} ${righthalf}
 bind 0:${hyper} ${full}
 bind a:${hyper} ${bottomleft}
 bind s:${hyper} ${bottomright}
+bind e:${hyper} ${tophalf}
+bind d:${hyper} ${bottomhalf}
+
+
 
 
 bind 3:${hyper} ${lefttwothirds}
 bind 4:${hyper} ${righttwothirds}
  
 
-bind e:${hyper} hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
+bind f:${hyper} hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
 
 bind r:${hyper} relaunch
 bind b:${hyper} focus ${browser}
@@ -88,6 +95,5 @@ bind x:${hyper} focus 'Xcode'
 bind g:${hyper} focus 'GitHub'
 bind i:${hyper} focus 'iTerm'
 bind t:${hyper} focus 'Tweetbot'
-bind f:${hyper} focus 'Path Finder'
 
 #bind tab:cmd switch
