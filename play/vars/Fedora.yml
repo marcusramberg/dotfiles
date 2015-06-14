@@ -24,3 +24,4 @@ yum_modules:
   - tmuxinator
   - vim-enhanced
   - xautolock
+  - fontawesome-fonts
