@@ -24,4 +24,3 @@ yum_modules:
   - tmuxinator
   - vim-enhanced
   - xautolock
-  - wicd-gtk
