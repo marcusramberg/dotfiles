@@ -28,7 +28,7 @@ set complete=lS
 set maxitems=35
 
 " use a different color scheme
-colorscheme gruvbox-dark
+colorscheme solarized-dark
 
 " set a stupid title
 set titlestring="penta - "
@@ -72,9 +72,13 @@ map -builtin <silent> coT :set showtabline=never<CR>
 set scrollsteps=20
 set scrolltime=200
 
+nmap x :tabclose<CR>
+vmap x :tabclose<CR>
+map x :tabclose<CR>
+
 " Scroll settings
-map -builtin w 10h
-map -builtin e 10l
+map -builtin d <C-d>
+map -builtin e <C-u>
 " go forward and back
 map -builtin J <C-f>
 map -builtin K <C-b>
