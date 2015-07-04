@@ -55,6 +55,7 @@ Bundle 'vim-scripts/rcs.vim'
 "Bundle 'wting/rust.vim'
 Bundle 'yko/mojo.vim' 
 Bundle 'mivok/vimtodo'
+Bundle 'zah/nimrod.vim'
 
 
 "set t_Co=256
@@ -101,7 +102,7 @@ let g:vim_markdown_folding_disabled=1
 let g:jekyll_path = "~/Source/blog"
 let g:syntastic_javascript_checkers = ['jsxhint']
 let g:pandoc#modules#disabled = ["folding"]
-let g:pandoc#formatting#mode = 'ha'
+"let g:pandoc#formatting#mode = 'ha'
 let g:pandoc#formatting#textwidth = 79
 
 

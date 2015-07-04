@@ -98,3 +98,7 @@
 	required = true
 [ghi]
 	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
