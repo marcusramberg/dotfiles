@@ -7,4 +7,4 @@ then
   git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
   echo "\n\tRead about vim configuration for vundle at https://github.com/gmarik/vundle\n"  
 fi
-vim -c "execute \"PluginInstall\" | q | q"
+vim -c "execute \"PluginInstall\" | q | q" > /dev/null
