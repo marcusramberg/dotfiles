@@ -39,7 +39,7 @@
     - ~/.dotfiles
 
 - name: do the vundle
-  shell: eval vundle
+  shell: ~/.dotfiles/bin/vundle.sh
   args: 
     creates: ~/.dotfiles/link/vim/bundle/vundle
 

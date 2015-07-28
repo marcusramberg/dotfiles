@@ -66,8 +66,8 @@ fi
 # Ansible is going to need some modules
 if [[ ! "$(type -P pip)" ]]; then
   sudo easy_install pip
-  sudo pip install -q paramiko PyYAML jinja2 httplib2
 fi
+sudo pip install -q paramiko PyYAML jinja2 httplib2
 
 
 # Update existing sudo time stamp if set, otherwise do nothing.
