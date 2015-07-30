@@ -130,6 +130,9 @@ Host foobar2
   User marcusr
   ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
   HostName foobar2.uio.no
+  ForwardX11Trusted yes
+  ForwardX11 yes
+  ForwardAgent yes
 
 Host jamis
   User marcusr
