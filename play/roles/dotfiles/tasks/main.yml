@@ -38,11 +38,6 @@
     - ~/.dotfiles/link
     - ~/.dotfiles
 
-- name: do the vundle
-  shell: ~/.dotfiles/bin/vundle.sh
-  args: 
-    creates: ~/.dotfiles/link/vim/bundle/vundle
-
 - name: Build YouCompleteMe
   shell: ./install.sh
   args:
