@@ -66,8 +66,8 @@ fi
 # Ansible is going to need some modules
 if [[ ! "$(type -P pip)" ]]; then
   sudo easy_install pip
-  sudo pip install -q paramiko PyYAML jinja2 httplib2
 fi
+sudo pip install -q paramiko PyYAML jinja2 httplib2
 
 
 # Update existing sudo time stamp if set, otherwise do nothing.
@@ -101,6 +101,11 @@ shopt -s nullglob
 
 # Create caches directory, if it doesn't already exist.
 mkdir -p "$HOME/.dotfiles/caches"
+
+if [[ ! -d ~/.dotfiles/link/vim/bundle/vundle ]]; then
+  ~/.dotfiles/bin/vundle.sh
+fi
+
 
 ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
 

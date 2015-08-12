@@ -5,19 +5,19 @@
 
 " Settings --------------------------------------------------------------
 " show completions automatically
-set wildoptions=auto
+"set wildoptions=auto
 
 " need <CR> anytime in hints mode
 set followhints=1
 
 " show folder pane and right, bottom scroll bar
-set guioptions=frb
+"set guioptions=frb
 
 " scroll height of <C-d> / <C-u>
 set scroll=3
 
 " always display tab-bar
-set showtabline=2
+"set showtabline=2
 
 " don't focus any "input" elements automatically when open pages.
 set focuscontent
