@@ -4,13 +4,13 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'airblade/vim-gitgutter'
+Bundle 'whatyouhide/vim-gotham'
 Bundle 'benmills/vimux'
-"Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline'
 Bundle 'chase/vim-ansible-yaml'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
-"Bundle 'edkolev/tmuxline.vim'
+Bundle 'edkolev/tmuxline.vim'
 "Bundle 'fatih/vim-go'
 Bundle 'glench/Vim-Jinja2-Syntax'
 Bundle 'gmarik/vundle'
@@ -59,14 +59,14 @@ Bundle 'mivok/vimtodo'
 Bundle 'zah/nimrod.vim'
 
 
-"set t_Co=256
-colorscheme solarized
+set t_Co=256
+colorscheme gotham
  
 filetype plugin indent on
  
 syntax on
 set number
-set mouse=a
+set mouse=
 set mousehide
 
 set hlsearch
@@ -90,7 +90,7 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
 set background=dark
-let g:airline_theme = 'solarized'
+"let g:airline_theme = 'solarized'
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0

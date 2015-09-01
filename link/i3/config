@@ -20,22 +20,22 @@ set $mod Mod4
 # chose a FreeType font, such6 as:
 font pango:Inconsolata for Powerline Medium 9
 
-set $black       #2c2836
-set $darkblack   #73707e
-set $red         #bb7473
-set $darkred     #cf9fa4
-set $green       #68b782
-set $darkgreen   #9acbad
-set $yellow      #abb773
-set $darkyellow  #c5cba4
-set $blue        #7865c5
-set $darkblue    #a396d9
-set $magenta     #bb65b6
-set $darkmagenta #cf96cf
-set $cyan        #68a8c5
-set $darkcyan    #9ac1d9
-set $white       #f1edfb
-set $darkwhite   #f1edfb
+set $black       #11151c
+set $darkblack   #0c1014
+set $red         #d26937
+set $darkred     #c23127
+set $green       #091f2e
+set $darkgreen   #2aa889
+set $yellow      #245361
+set $darkyellow  #edb443
+set $blue        #0a3749
+set $darkblue    #195466
+set $magenta     #888ca6
+set $darkmagenta #4e5166
+set $cyan        #599cab
+set $darkcyan    #33859e
+set $white       #d3ebe9
+set $darkwhite   #99d1ce
 set $background  #133B47
 
 set $ws1  "1"
@@ -57,7 +57,7 @@ set $ws10 "10"
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -70,11 +70,14 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock"
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
  #bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
- bindsym $mod+d exec dmenu_run -nb '#383a3b' -nf '#babdb6' -sb '#000000' -sf '#eeeeec'
+ # bindsym $mod+d exec dmenu_run -nb '#383a3b' -nf '#babdb6' -sb '#000000' -sf '#eeeeec'
+ #
+ bindsym                 $mod+d exec rofi -show run -terminal xterm -font 'Fira Mono Medium 16' -lines 3 -eh 2 -width 100 -padding 800 -opacity "95" -bw 0 -bc "$black" -bg "$black" -fg "$darkgreen" -hlbg "$black" -hlfg "$white"
+
  bindsym $mod+p exec kupfer
 
 
- bindsym $mod+G exec --no-startup-id dwb
+ bindsym $mod+G exec --no-startup-id firefox
  
  bindsym XF86MonBrightnessDown exec --no-startup-id "cd /sys/class/backlight/intel_backlight/; cur=$(cat brightness); cur=$((cur-50)) ; if [ $cur -lt 1 ]; then cur=5; fi; echo $cur | sudo tee brightness "
  bindsym XF86MonBrightnessUp exec --no-startup-id "cd /sys/class/backlight/intel_backlight/; cur=$(cat brightness); cur=$((cur+50)) ; if [ $cur -gt 1023 ]; then cur=1023; fi; echo $cur | sudo tee brightness " 
@@ -221,15 +224,15 @@ bar {
     font pango:Inconsolata for Powerline Medium, FontAwesome 9
 
     colors {
-         background #2d2d2d
-         statusline #dedede
-         separator #2d2d2d
+         background $darkblack
+         statusline $darkwhite
+         separator $yellow
 
                             #border backgr. text
-         focused_workspace  #d64937 #d64937 #dedede
-         active_workspace   #2d2d2d #5f676a #dedede
-         inactive_workspace #2d2d2d #2d2d2d #888888
-         urgent_workspace   #333333 #900000 #ffffff
+         focused_workspace  $cyan $cyan $yellow
+         active_workspace   $blue $blue $darkyellow
+         inactive_workspace $darkblue $darkblue $white
+         urgent_workspace   $red    $darkred $darkwhite
     }
 }
 
@@ -247,17 +250,17 @@ bindsym XF86AudioLowerVolume  exec amixer -q sset Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q sset Master toggle
 
 exec --no-startup-id gnome-session --session=i3-gnome 
-exec --no-startup-id ~/.dotfiles/bin/startup-x11
 exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
 exec --no-startup-id zeal
 
 
 exec echo “.i3/config: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager”  
+exec ~/.dotfiles/bin/startup-x11
 
-client.focused #859900 #859900 #fdf6e3 #859900
-client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-client.unfocused #073642 #073642 #93a1a1 #586e75
-client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+client.focused $darkblue $darkblue $white $darkwhite
+client.focused_inactive $blue $blue $white $darkwhite
+client.unfocused $green $green $white $darkwhite
+client.urgent $darkred $red $white $darkwhite
 
 
 # Make the currently focused window a scratchpad
