@@ -21,7 +21,7 @@ function flip() {
   perl -C3 -Mutf8 -lpe '$_=reverse;y/a-zA-Z.['\'',({?!\"<_;‿⁅∴\r/ɐqɔpǝɟƃɥıɾʞ|ɯuodbɹsʇnʌʍxʎzɐqɔpǝɟƃɥıɾʞ|ɯuodbɹsʇnʌʍxʎz˙],'\'')}¿¡,>‾؛⁀⁆∵\n/' <<< "$1"
 }
 
-function fuck() {
+function fuckup() {
   CMD="pkill"
   which $CMD >/dev/null || CMD="killall"
   echo
