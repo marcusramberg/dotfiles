@@ -31,3 +31,6 @@
 [submodule "link/plenv"]
 	path = link/plenv
 	url = git://github.com/marcusramberg/plenv.git
+[submodule "libs/ansible-venv"]
+	path = libs/ansible-venv
+	url = https://github.com/configuresystems/ansible-venv-bootstrapper.git
