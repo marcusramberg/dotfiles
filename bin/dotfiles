@@ -102,12 +102,13 @@ shopt -s nullglob
 # Create caches directory, if it doesn't already exist.
 mkdir -p "$HOME/.dotfiles/caches"
 
+
+ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
+
 if [[ ! -d ~/.dotfiles/link/vim/bundle/vundle ]]; then
   ~/.dotfiles/bin/vundle.sh
 fi
 
-
-ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
 
 # All done!
 e_header "All done!"
