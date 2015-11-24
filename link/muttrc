@@ -1,33 +1,33 @@
-set from = "marcusramberg@gmail.com"
+set from = "marcus.ramberg@usit.uio.no"
 set realname = "Marcus Ramberg"
-
-set imap_user = "marcusr"
- set imap_pass = m00fB0at
-
-
 set sort="threads"
 set sort_aux = 'last-date-received'
-set imap_check_subscribed
 
-source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+#source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+source ~/.mutt/keybindings
 
 # REMOTE GMAIL FOLDERS
-set folder = "imaps://mail.uio.no:993"
+set folder = "~/Uio"
+source ~/.mutt/mailboxes
 set spoolfile = "+INBOX"
-#"set postponed ="+[Google Mail]/Drafts"
-#set trash = "+[Google Mail]/Trash"
-#set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
-#set any_label = "+[Google Mail]/any_label"
+set record = "+INBOX.Sent"
+set postponed= "+INBOX.Drafts"
+
 
 # LOCAL FOLDERS FOR CACHED HEADERS AND CERTIFICATES
 set header_cache =~/.mutt/cache/headers
 set message_cachedir =~/.mutt/cache/bodies
 set certificate_file =~/.mutt/certificates
 
+set editor = "/usr/bin/vim +/^$"
+
 set fast_reply
 set include=yes
 set allow_8bit
 set attribution="%n(%a)@%d:"
+set wait_key=no
+set menu_scroll
+set smart_wrap
 
 auto_view text/html image/gif image/png image/jpeg
 
@@ -39,32 +39,10 @@ unignore mail-followup-to user-agent x-mailer
 unignore x-spammer x-bogosity x-spam-status
 unignore message-id
 
-# notmuch
-    set nm_default_uri="notmuch:///home/marcusr/Uio" # path to the maildir
-    set virtual_spoolfile=yes                          # enable virtual folders
-#    set sendmail="//bin/nm_sendmail"            # enables parsing of outgoing mail
-    virtual-mailboxes \
-        "INBOX"     "notmuch://?query=tag:INBOX and NOT tag:archive"\
-        "Unread"    "notmuch://?query=tag:unread"\
-        "Starred"   "notmuch://?query=tag:*"\
-        "Sent"      "notmuch://?query=tag:sent"        # sets up queries for virtual folders
-    # notmuch bindings
-    macro index \\\\ "<vfolder-from-query>"              # looks up a hand made query
-    macro index A "<modify-labels>+archive -unread -inbox\\n"        # tag as Archived
-    macro index I "<modify-labels>-inbox -unread\\n"                 # removed from inbox
-    macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n" # tag as Junk mail
-    macro index + "<modify-labels>+*\\n<sync-mailbox>"               # tag as starred
-    macro index - "<modify-labels>-*\\n<sync-mailbox>"               # tag as unstarred
-    # sidebar
-    set sidebar_width   = 20
-    set sidebar_visible = yes               # set to "no" to disable sidebar view at startup
-    color sidebar_new yellow default
-    # sidebar bindings
-    bind index <left> sidebar-prev          # got to previous folder in sidebar
-    bind index <right> sidebar-next         # got to next folder in sidebar
-    bind index <space> sidebar-open         # open selected folder from sidebar
-    # sidebar toggle
-    macro index ,@) "<enter-command> set sidebar_visible=no; macro index ~ ,@( 'Toggle sidebar'<Enter>"
-    macro index ,@( "<enter-command> set sidebar_visible=yes; macro index ~ ,@) 'Toggle sidebar'<Enter>"
-    macro index ~ ,@( 'Toggle sidebar'      # toggle the sidebar
 
+# sidebar
+set sidebar_width   = 30
+set sidebar_visible = yes               # set to "no" to disable sidebar view at startup
+color sidebar_new yellow default
+
+set query_command = "~/.dotfiles/bin/mutt-ldap.pl '%s'"

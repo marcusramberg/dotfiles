@@ -30,6 +30,7 @@
   publish = !legit publish \"$@\"
   graft = !legit graft \"$@\"
   ca = commit --amend --reuse-message=HEAD
+  edit = "!vim `git ls-files -m ` -p "
 [color]
   diff = auto
   status = auto
