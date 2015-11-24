@@ -72,8 +72,8 @@
   insteadOf = n:
 [url "git@github.com:"]
   insteadOf = gh:
-[credential]
-  helper =  crossplatform
+#[credential]
+#  helper =  crossplatform
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path = 

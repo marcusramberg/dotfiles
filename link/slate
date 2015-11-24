@@ -93,7 +93,7 @@ bind b:${hyper} focus ${browser}
 bind v:${hyper} focus ${editor}
 bind x:${hyper} focus 'Xcode'
 bind g:${hyper} focus 'GitHub'
-bind i:${hyper} focus 'iTerm'
+bind i:${hyper} focus 'iTerm2'
 bind t:${hyper} focus 'Tweetbot'
 
 #bind tab:cmd switch

@@ -61,7 +61,7 @@ Host mongol
 Host wirc 
     ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
-Host input01
+Host input03
     ProxyCommand ssh marcus@adm.output.digital -W %h:%p
     User root
 Host input02
