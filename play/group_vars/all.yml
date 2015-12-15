@@ -59,7 +59,6 @@ homebrew_installed_packages:
   - git
   - git-extras
   - git-flow
-  - git-flow-clone
   - glib
   - gmp
   - gnu-getopt
@@ -131,7 +130,6 @@ homebrew_installed_packages:
   - little-cms2
   - llvm
   - lua
-  - luarocks
   - lynx
   - man2html
   - maven
@@ -171,7 +169,6 @@ homebrew_installed_packages:
   - parallel
   - pass
   - pcre
-  - phantomjs
   - pidof
   - pinentry
   - pixman
@@ -256,10 +253,11 @@ homebrew_args:
 
 homebrew_taps:
     - homebrew/games
-      homebrew/binary
+    - homebrew/binary
     - caskroom/cask
     - homebrew/dupes
 homebrew_cask_packages_packages:
+  - xquartz
   - alfred
   - amethyst
   - betterzipql
@@ -286,7 +284,7 @@ homebrew_cask_packages_packages:
   - quicklook-json
   - serf
   - skitch
-  - simple-comic
+  - techstoreclub-simple-comic
   - slate
   - the-unarchiver
   - totalspaces
@@ -294,4 +292,3 @@ homebrew_cask_packages_packages:
   - tuntap
   - vagrant
   - vlc
-  - xquartz
