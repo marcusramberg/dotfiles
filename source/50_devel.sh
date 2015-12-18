@@ -109,4 +109,5 @@ function git(){hub $@}
 # prove slow/fast
 alias ts="prove --state=slow,save -j3 -r"
 alias tf="prove --state=failed,save -v -r"
-
+alias sa="sudo ansible-playbook"
+alias ag='pt --nocolor'
