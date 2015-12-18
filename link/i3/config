@@ -18,7 +18,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such6 as:
-font pango:Inconsolata for Powerline Medium 9
+font pango:Hack 8
 
 set $black       #11151c
 set $darkblack   #0c1014
@@ -72,7 +72,7 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock"
  #bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
  # bindsym $mod+d exec dmenu_run -nb '#383a3b' -nf '#babdb6' -sb '#000000' -sf '#eeeeec'
  #
- bindsym                 $mod+d exec rofi -show run -terminal xterm -font 'Fira Mono Medium 16' -lines 3 -eh 2 -width 100 -padding 800 -opacity "95" -bw 0 -bc "$black" -bg "$black" -fg "$darkgreen" -hlbg "$black" -hlfg "$white"
+ bindsym                 $mod+d exec rofi -show run -terminal xterm -font 'Hack 16' -lines 3 -eh 2 -width 100 -padding 800 -opacity "95" -bw 0 -bc "$black" -bg "$black" -fg "$darkgreen" -hlbg "$black" -hlfg "$white"
 
  bindsym $mod+p exec kupfer
 
@@ -221,7 +221,7 @@ bar {
     # status_command i3status -c ~/.i3/i3status.conf
     status_command ~/.i3/i3status_wrapper.sh
     position top
-    font pango:Inconsolata for Powerline Medium, FontAwesome 9
+    font pango:Hack Bold, FontAwesome 8
 
     colors {
          background $darkblack
@@ -229,9 +229,9 @@ bar {
          separator $yellow
 
                             #border backgr. text
-         focused_workspace  $cyan $cyan $yellow
-         active_workspace   $blue $blue $darkyellow
-         inactive_workspace $darkblue $darkblue $white
+         focused_workspace  $darkgreen $darkgreen $darkblack
+         active_workspace   $darkblue $darkblue $darkyellow
+         inactive_workspace $blue $blue $white
          urgent_workspace   $red    $darkred $darkwhite
     }
 }
@@ -249,6 +249,7 @@ bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume  exec amixer -q sset Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q sset Master toggle
 
+exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh
 exec --no-startup-id gnome-session --session=i3-gnome 
 exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
 exec --no-startup-id zeal
@@ -257,7 +258,7 @@ exec --no-startup-id zeal
 exec echo “.i3/config: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager”  
 exec ~/.dotfiles/bin/startup-x11
 
-client.focused $darkblue $darkblue $white $darkwhite
+client.focused $darkgreen $darkgreen $darkblack $darkblack
 client.focused_inactive $blue $blue $white $darkwhite
 client.unfocused $green $green $white $darkwhite
 client.urgent $darkred $red $white $darkwhite
@@ -271,3 +272,16 @@ bindsym $mod+minus scratchpad show
 
 # Show the sup-mail scratchpad window, if any.
 bindsym $mod+m [title="^mthink ::"] scratchpad show
+
+
+# Assign window changes
+for_window [class="feh|Keepassx|mpv|Mumble|Pavucontrol|Steam"] floating enable
+for_window [class="mpv|URxvt"] border 1pixel
+for_window [title="Preferences$"] floating enable
+for_window [title="Steam - Update News"] kill
+for_window [title="^Minecraft .*"] floating enable
+for_window [window_role="^conversation$"] floating enable
+for_window [window_role="messages"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+

@@ -1,0 +1,19 @@
+#!/bin/bash
+disable_proxy()
+{
+        sudo networksetup -setsocksfirewallproxystate Wi-Fi off
+        echo "SOCKS proxy disabled."
+}
+trap disable_proxy INT
+ 
+
+if [ $# -eq 0 ]
+  then
+    echo "usage: ssh-proxy <hostname>"
+    exit 1
+fi
+
+sudo networksetup -setsocksfirewallproxy Wi-Fi 127.0.0.1 19999
+echo "SOCKS proxy enabled."
+echo "Tunneling..."
+ssh -CND 19999 $1
