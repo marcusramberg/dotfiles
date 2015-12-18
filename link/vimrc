@@ -4,13 +4,13 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'airblade/vim-gitgutter'
-Bundle 'whatyouhide/vim-gotham'
+Bundle 'gosukiwi/vim-atom-dark'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
-Bundle 'edkolev/tmuxline.vim'
+"Bundle 'edkolev/tmuxline.vim'
 "Bundle 'fatih/vim-go'
 Bundle 'glench/Vim-Jinja2-Syntax'
 Bundle 'gmarik/vundle'
@@ -60,7 +60,7 @@ Bundle 'zah/nimrod.vim'
 
 
 set t_Co=256
-colorscheme gotham
+colorscheme atom-dark-256
  
 filetype plugin indent on
  
