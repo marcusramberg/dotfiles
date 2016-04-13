@@ -1,10 +1,9 @@
-# ~/.tmuxinator/ops.yml
 
-name: ops
-root: ~/Source/devops/Ansible
+name: curlcheck
+root: ~/
 
-# Optional tmux socket
-socket_name: ops
+# Optional tmux socket  t t t 
+socket_name: curlcheck
 
 # Runs before everything. Use it to start daemons etc.
 # pre: sudo /etc/rc.d/mysqld start
