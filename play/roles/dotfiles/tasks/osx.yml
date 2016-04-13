@@ -11,8 +11,7 @@
   changed_when: false
   always_run: true
   register: result
-  with_anyglob: 
-    - prefs/*
+  with_lines: ls ~/.dotfiles/prefs
 
 - name: Remove found files
   shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/Library/Preferences/{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
@@ -21,5 +20,4 @@
 
 - name: Link files
   file:  src=~/.dotfiles/prefs/{{ item|basename }} path=~/Library/Preferences/{{ item|basename }} state=link force=yes
-  with_anyglob: 
-    - prefs/*
+  with_lines: ls ~/.dotfiles/prefs

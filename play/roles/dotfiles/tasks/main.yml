@@ -14,8 +14,7 @@
 - name: remove existing files.
   stat: path=~/.{{ item|basename }}
   register: result
-  with_anyglob: 
-    - link/*
+  with_lines: ls ~/.dotfiles/link 
 
 
 - shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/.{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
@@ -24,13 +23,12 @@
 
 - name: Copy files
   copy:  src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
-  with_anyglob: 
-    - copy/*
+  with_lines: ls ~/.dotfiles/copy
     
 - name: Link files
   file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
-  with_anyglob: 
-    - link/*
+  with_lines: ls ~/.dotfiles/link
+
 - name: Set correct mode for ssh keys
   file: path={{item}} mode=0700
   with_items:
