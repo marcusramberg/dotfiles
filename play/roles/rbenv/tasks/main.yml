@@ -44,7 +44,7 @@
     accept_hostkey=true
   with_items: rbenv_users
   sudo: true
-  sudo_user: "{{ item.name }}"
+  become_user: "{{ item.name }}"
   when: not "system" == "{{ rbenv.env }}"
   ignore_errors: true
   tags:
@@ -54,7 +54,7 @@
   file: state=directory path={{ rbenv_root }}/plugins
   with_items: rbenv_users
   sudo: true
-  sudo_user: "{{ item.name }}"
+  become_user: "{{ item.name }}"
   when: not "system" == "{{ rbenv.env }}"
   ignore_errors: true
   tags:
@@ -70,7 +70,7 @@
     - rbenv_users
     - rbenv_plugins
   sudo: true
-  sudo_user: "{{ item[0].name }}"
+  become_user: "{{ item[0].name }}"
   when: not "system" == "{{ rbenv.env }}"
   ignore_errors: true
   tags:
@@ -86,7 +86,7 @@
   copy: src=default-gems dest={{ item.home }}/.rbenv/default-gems
   with_items: rbenv_users
   sudo: true
-  sudo_user: "{{ item.name }}"
+  become_user: "{{ item.name }}"
   when: not "system" == "{{ rbenv.env }}"
   ignore_errors: true
   tags:
@@ -96,7 +96,7 @@
   copy: src=gemrc dest={{ item.home }}/.gemrc
   with_items: rbenv_users
   sudo: true
-  sudo_user: "{{ item.name }}"
+  become_user: "{{ item.name }}"
   when: not "system" == "{{ rbenv.env }}"
   ignore_errors: true
   tags:
@@ -106,7 +106,7 @@
   copy: src=vars dest={{ item.home }}/.rbenv/vars
   with_items: rbenv_users
   sudo: true
-  sudo_user: "{{ item.name }}"
+  become_user: "{{ item.name }}"
   when: not "system" == "{{ rbenv.env }}"
   ignore_errors: true
   tags:
@@ -135,7 +135,7 @@
 - name: check ruby {{ rbenv.ruby_version }} installed
   shell: bash -lc "rbenv versions | grep {{ rbenv.ruby_version }}"
   sudo: true
-  sudo_user: "{{ item.name }}"
+  become_user: "{{ item.name }}"
   with_items: rbenv_users
   when: not "system" == "{{ rbenv.env }}"
   register: ruby_installed
@@ -157,7 +157,7 @@
 - name: install ruby {{ rbenv.ruby_version }}
   shell: bash -lc "rbenv install {{ rbenv.ruby_version }}"
   sudo: true
-  sudo_user: "{{ item[1].name }}"
+  become_user: "{{ item[1].name }}"
   with_together:
     - ruby_installed.results
     - rbenv_users
@@ -169,7 +169,7 @@
 - name: install ruby {{ rbenv.ruby_version }}
   shell: bash -lc "rbenv global {{ rbenv.ruby_version }} && rbenv rehash"
   sudo: true
-  sudo_user: "{{ item[1].name }}"
+  become_user: "{{ item[1].name }}"
   with_together:
     - ruby_installed.results
     - rbenv_users
