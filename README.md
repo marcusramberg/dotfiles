@@ -48,7 +48,7 @@ Notes:
 * If APT hasn't been updated or upgraded recently, it will probably be a few minutes before you see anything.
 
 ```sh
-sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl && echo &&
+sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl ansible && echo &&
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/marcusramberg/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
 ```
 
