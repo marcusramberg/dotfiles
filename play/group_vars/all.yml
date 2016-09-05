@@ -20,7 +20,6 @@ homebrew_installed_packages:
   - beanstalk
   - boost
   - boot2docker
-  - brew-cask
   - bwm-ng
   - cairo
   - cloc
@@ -163,7 +162,6 @@ homebrew_installed_packages:
   - opus
   - orc
   - ossp-uuid
-  - p11-kit
   - pandoc
   - pango
   - parallel
@@ -275,17 +273,16 @@ homebrew_cask_packages_packages:
   - karabiner
   - macvim
   - osxfuse
-  - packer
   - plex-media-server
   - qlcolorcode
   - qlmarkdown
   - qlstephen
   - quicklook-csv
   - quicklook-json
-  - serf
   - skitch
   - techstoreclub-simple-comic
   - slate
+  - steam
   - the-unarchiver
   - totalspaces
   - transmission
