@@ -3,6 +3,8 @@ Host *
 # Forward ssh agent to the remote machine.
 ControlMaster auto
 
+PubkeyAcceptedKeyTypes=+ssh-dss
+
 Host debook
   ForwardX11Trusted yes
   ForwardX11 yes
