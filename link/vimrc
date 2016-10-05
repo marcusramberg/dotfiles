@@ -4,14 +4,13 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'airblade/vim-gitgutter'
-Bundle 'gosukiwi/vim-atom-dark'
+Bundle 'joshdick/onedark.vim'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
 Bundle 'pearofducks/ansible-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
 "Bundle 'edkolev/tmuxline.vim'
-"Bundle 'fatih/vim-go'
 Bundle 'glench/Vim-Jinja2-Syntax'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
@@ -52,16 +51,15 @@ Bundle 'hokaccha/vim-prove'
 Bundle 'vim-pandoc/vim-pandoc-syntax' 
 Bundle 'vim-perl/vim-perl'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/rcs.vim'
-"Bundle 'vitalk/vim-simple-todo'
-"Bundle 'wting/rust.vim'
 Bundle 'yko/mojo.vim' 
 Bundle 'mivok/vimtodo'
 Bundle 'zah/nimrod.vim'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'janko-m/vim-test'
 
 
-set t_Co=256
-colorscheme atom-dark-256
+
+colorscheme onedark
  
 filetype plugin indent on
  
@@ -91,7 +89,7 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
 set background=dark
-"let g:airline_theme = 'solarized'
+let g:airline_theme = 'onedark'
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
@@ -173,23 +171,6 @@ nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 map <space> viw
 
-" Fugitive bindings
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
-nnoremap <space>gd :Gdiff<CR>
-nnoremap <space>ge :Gedit<CR>
-nnoremap <space>gr :Gread<CR>
-nnoremap <space>gw :Gwrite<CR><CR>
-nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <space>gp :Ggrep<Space>
-nnoremap <space>gm :Gmove<Space>
-nnoremap <space>gb :Git branch<Space>
-nnoremap <space>go :Git checkout<Space>
-nnoremap <space>gps :Dispatch! git push<CR>
-nnoremap <space>gpl :Dispatch! git pull<CR>
-
 
 command! Fuck w !sudo tee % >/dev/null
 
@@ -216,7 +197,40 @@ endif
 
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
-:autocmd BufRead,BufNewFile /Users/marcus/Source/_rg/* setlocal tabstop=4 shiftwidth=4
+:autocmd BufRead,BufNewFile /Users/marcus/Source/_rg/* call SetRgOptions()
+function SetRgOptions()
+  let g:syntastic_enable_perl_checker = 1
+  setlocal tabstop=4 shiftwidth=4
+  let g:syntastic_perl_lib_path = [ "./lib", "./lib/auto", "/Users/marcus/Source/_rg/libraries/lib" ]
+  let g:syntastic_perl_args_after = '--quiet --nocolor --verbose "\%s:\%f:\%l:\%c:(\%s) \%m (\%e)\n" -p ~/Source/_rg/libraries/.perlcriticrc'
+  let g:syntastic_perl_checkers = ['perlcritic','perl']
+
+endfunction
 
 command -range=% -nargs=* Tidy <line1>,<line2>!
   \perltidy <args>
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>A :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+let test#strategy="neovim"

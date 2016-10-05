@@ -105,7 +105,7 @@ eval "$(plenv init -)"
 
 function git(){hub $@}
 
-export RG_CHECKOUT=~/Source
+export RG_CHECKOUT=~/Source/_rg
 
 # prove slow/fast
 alias ts="prove --state=slow,save -j3 -r"

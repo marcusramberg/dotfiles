@@ -7,9 +7,6 @@ PATH=/usr/local/sbin:$(path_remove /usr/local/sbin)
 PATH=~/.dotfiles/bin/osx:$(path_remove ~/.dotfiles/bin/osx)
 export PATH
 
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/marcus/.boot2docker/certs/boot2docker-vm
 export GOPATH=/Users/marcus/gocode
 export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
@@ -100,4 +97,3 @@ eval $(gdircolors ~/.dircolors)
 
 source "`brew --prefix`/etc/grc.bashrc"
 
-eval $(docker-machine env)
