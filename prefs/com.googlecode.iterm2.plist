@@ -360,12 +360,10 @@
 	<string>9FE087BB-C401-4C0B-BF1E-0F4DC0EBAC75</string>
 	<key>EnableRendezvous</key>
 	<true/>
-	<key>HideTab</key>
-	<false/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/.dotfiles/conf/osx/iterm</string>
+	<string>~/.dotfiles/prefs</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -1222,7 +1220,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/marcus/.dotfiles/conf/osx/iterm</string>
+	<string>/Users/marcus/.dotfiles/prefs</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
@@ -1236,7 +1234,7 @@
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>TabStyle</key>
-	<integer>3</integer>
+	<integer>1</integer>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
