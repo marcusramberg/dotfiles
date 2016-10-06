@@ -1,10 +1,12 @@
 export PATH=~/.dotfiles/bin:$PATH
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.dotfiles/libs/oh-my-zsh
+ZSH_CUSTOM=$HOME/.dotfiles/conf/zsh
 
 # Set name of the theme to load.
 DEFAULT_USER='marcus'
-  ZSH_THEME="dieter"
+
+ZSH_THEME="TheOne"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -47,9 +49,6 @@ bindkey '^G' what-cursor-position
 
 
 
-# zsh shared history must die
-
-setopt no_share_history
 
 # Source all files in ~/.dotfiles/source/
 function src() {
