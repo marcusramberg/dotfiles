@@ -289,3 +289,9 @@ homebrew_cask_packages_packages:
   - tuntap
   - vagrant
   - vlc
+
+installed_debs:
+  - zsh
+  - cmake
+  - python-dev
+  - tmux
