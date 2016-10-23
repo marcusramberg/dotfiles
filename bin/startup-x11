@@ -4,7 +4,7 @@
 dconf write /org/gnome/settings-daemon/plugins/cursor/active false
 # capslock as esc
 xmodmap  -e 'keycode 66 = Control_L' -e 'clear Lock' -e 'add Control = Control_L'
-xcape -e 'Control_L=Escape'
+sleep 5 && xcape
 
 # Desktop environment
 #mate-settings-daemon &
@@ -17,3 +17,5 @@ xautolock -time 30 -locker "i3lock" &
 #i3-battery-indicator &
 #xset dpms 1800 3600 3630
 . ~/.dotfiles/bin/trackpad
+xset dpms
+unclutter -idle 1 -noevents

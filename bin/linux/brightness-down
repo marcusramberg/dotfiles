@@ -1,0 +1,8 @@
+#!/bin/bash
+cur=$(xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | head -n1)
+cur=$(bc <<< "$cur-0.05")
+if [ $(echo "$cur < 0.1" | bc) -eq 1 ]
+then 
+  cur=0.1
+fi
+xrandr --output eDP --brightness $cur

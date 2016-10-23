@@ -295,3 +295,4 @@ installed_debs:
   - cmake
   - python-dev
   - tmux
+  - vim

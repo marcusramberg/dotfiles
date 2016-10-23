@@ -18,7 +18,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such6 as:
-font pango:Hack 8
+font pango:Hack 12
 
 set $black       #11151c
 set $darkblack   #0c1014
@@ -77,21 +77,20 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock"
  bindsym $mod+p exec kupfer
 
 
- bindsym $mod+G exec --no-startup-id firefox
+ bindsym $mod+G exec --no-startup-id chromium-browser
  
- bindsym XF86MonBrightnessDown exec --no-startup-id "cd /sys/class/backlight/intel_backlight/; cur=$(cat brightness); cur=$((cur-50)) ; if [ $cur -lt 1 ]; then cur=5; fi; echo $cur | sudo tee brightness "
- bindsym XF86MonBrightnessUp exec --no-startup-id "cd /sys/class/backlight/intel_backlight/; cur=$(cat brightness); cur=$((cur+50)) ; if [ $cur -gt 1023 ]; then cur=1023; fi; echo $cur | sudo tee brightness " 
-
+ bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
+ bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"
 bindsym XF86KbdBrightnessDown exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur-5)); if [ $cur -lt 0 ]; then cur=0; fi; echo $cur | sudo tee brightness "
 bindsym XF86KbdBrightnessUp exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur+5)); if [ $cur -gt 255 ]; then cur=255; fi; echo $cur | sudo tee brightness "
 
 #volume adjustment
 
 
-#set $sink alsa_output.pci-0000_00_1b.0.analog-stereo
-#bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink +2% "
-#bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute $sink 0; pactl set-sink-volume $sink -- -2% "
-#bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $sink toggle "
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 
 
 # change focus
@@ -221,7 +220,7 @@ bar {
     # status_command i3status -c ~/.i3/i3status.conf
     status_command ~/.i3/i3status_wrapper.sh
     position top
-    font pango:Hack Bold, FontAwesome 8
+    font pango:Hack Bold, FontAwesome 12
 
     colors {
          background $darkblack
@@ -245,18 +244,14 @@ for_window [window_role="task_dialog"] floating enable
 
 for_window [title="https://pinboard.in - Pinboard - Save a Bookmark"] floating enable border none
 for_window [window_role="pop-up"] floating enable
-bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ unmute
-bindsym XF86AudioLowerVolume  exec amixer -q sset Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q sset Master toggle
 
 exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh
-exec --no-startup-id gnome-session --session=i3-gnome 
+exec --no-startup-id unity-settings-deamon
 exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
 exec --no-startup-id zeal
+exec --no-startup-id nm-applet
 
-
-exec echo “.i3/config: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager”  
-exec ~/.dotfiles/bin/startup-x11
+exec --no-startup-id ~/.dotfiles/bin/startup-x11
 
 client.focused $darkgreen $darkgreen $darkblack $darkblack
 client.focused_inactive $blue $blue $white $darkwhite

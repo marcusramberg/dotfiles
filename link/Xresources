@@ -27,3 +27,10 @@
 *.color15:      #d3ebe9
 URxvt.urgentOnBell: True
 Xft.lcdfilter: lcddefault
+
+Xft.dpi: 180
+Xft.autohint: 0
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
