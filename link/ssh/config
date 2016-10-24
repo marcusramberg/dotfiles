@@ -4,19 +4,18 @@ Host *
 ControlMaster auto
 
 PubkeyAcceptedKeyTypes=+ssh-dss
-
-Host debook
-  ForwardX11Trusted yes
-  ForwardX11 yes
-  ForwardAgent yes
+SendEnv TERM_PROGRAM
 
 Host tv
   HostName home.means.no
   User tv
   
-Host mtv
+Host mhome
   ForwardAgent yes
   HostName home.means.no
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  ForwardAgent yes
 
 Host labs
   ForwardAgent yes
