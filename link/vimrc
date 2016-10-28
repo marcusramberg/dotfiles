@@ -115,6 +115,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd FileType go compiler go
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd BufNewFile,BufRead *.tt setf tt2
 au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=79 wrap linebreak nolist
 
 
@@ -225,6 +226,10 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+
+" OS X-like space bar to scroll.
+nnoremap <Space> <C-F>
 
 
 nmap <silent> <leader>t :TestNearest<CR>

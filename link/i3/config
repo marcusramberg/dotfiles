@@ -18,7 +18,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such6 as:
-font pango:Hack 12
+font pango:Hack 14
 
 set $black       #11151c
 set $darkblack   #0c1014
@@ -220,7 +220,7 @@ bar {
   # status_command i3status -c ~/.i3/i3status.conf
     status_command ~/.i3/i3status_wrapper.sh
     position top
-    font pango:Hack Bold, FontAwesome 12
+    font pango:Hack Bold, FontAwesome 14
   colors {
     separator #586e75
     background #002b36

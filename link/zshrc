@@ -6,7 +6,7 @@ ZSH_CUSTOM=$HOME/.dotfiles/conf/zsh
 # Set name of the theme to load.
 DEFAULT_USER='marcus'
 
-ZSH_THEME="TheOne"
+ZSH_THEME="agnoster"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -15,6 +15,8 @@ CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 DISABLE_UPDATE_PROMPT="true"
+
+KEYTIMEOUT=1
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
