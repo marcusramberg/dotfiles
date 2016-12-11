@@ -53,6 +53,7 @@ set $ws10 "10"
 #BORDER     BACKGROUND TEXT   INDICATOR
 
 
+exec mate-panel
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -77,7 +78,7 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
  bindsym $mod+p exec kupfer
 
 
- bindsym $mod+G exec --no-startup-id chromium-browser
+ bindsym $mod+G exec --no-startup-id "chromium-browser --force-device-scale-factor=1.6"
  
  bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
  bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"
@@ -214,22 +215,25 @@ bindsym --release Shift+Print exec scrot -s $HOME/Pictures/screenshot-$(date +%Y
 bindsym $mod+n exec --no-startup-id nautilus --browser --no-desktop
 
 
+#exec "yabar"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  # status_command i3status -c ~/.i3/i3status.conf
-    status_command ~/.i3/i3status_wrapper.sh
-    position top
-    font pango:Hack Bold, FontAwesome 14
-  colors {
-    separator #586e75
-    background #002b36
-    statusline #aea79f
-    focused_workspace #586e75 #586e75 #ffffff
-    active_workspace #073642 #073642 #ffffff
-    inactive_workspace #002b36 #002b36 #aea79f
-    urgent_workspace #77216f #77216f #ffffff
-  }
+   mode hide
+   tray_output none
+   # status_command i3status -c ~/.i3/i3status.conf
+   #  status_command ~/.i3/i3status_wrapper.sh
+   #  position top
+   #  font pango:Hack Bold, FontAwesome 14
+  # colors {
+   #  separator #586e75
+   #  background #002b36
+   #  statusline #aea79f
+   #  focused_workspace #586e75 #586e75 #ffffff
+   #  active_workspace #073642 #073642 #ffffff
+   #  inactive_workspace #002b36 #002b36 #aea79f
+   #  urgent_workspace #77216f #77216f #ffffff
+  # }
 }
 
 focus_follows_mouse yes
@@ -242,11 +246,11 @@ for_window [window_role="task_dialog"] floating enable
 for_window [title="https://pinboard.in - Pinboard - Save a Bookmark"] floating enable border none
 for_window [window_role="pop-up"] floating enable
 
-exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh
-exec --no-startup-id unity-settings-deamon
+exec --no-startup-id mate-settings-daemon
 exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
 exec --no-startup-id zeal
 exec --no-startup-id nm-applet
+exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh
 
 exec --no-startup-id ~/.dotfiles/bin/startup-x11
 

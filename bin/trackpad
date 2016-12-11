@@ -2,8 +2,8 @@
  synclient VertScrollDelta=-157
  synclient HorizScrollDelta=-157
  synclient TapButton1=1
- synclient TapButton2=2
- synclient TapButton3=3
+ synclient TapButton2=1
+ synclient TapButton3=1
  synclient TapAndDragGesture=0
  synclient RTCornerButton=0
  synclient RBCornerButton=0

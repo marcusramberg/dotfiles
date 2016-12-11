@@ -72,10 +72,16 @@ function dotfiles() {
 src
 
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-alias mate=vim
 
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 if [ "$TERM_PROGRAM" = "iTerm" ]; then
   test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 fi
+
+if [ "$0" = "/usr/sbin/lightdm-session" -a "$DESKTOP_SESSION" = "i3" ]; then
+    export $(gnome-keyring-daemon -s)
+fi
+#keychain id_rsa id_dsa
+#. ~/.keychain/`uname -n`-sh
+
