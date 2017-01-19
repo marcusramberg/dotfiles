@@ -78,7 +78,7 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
  bindsym $mod+p exec kupfer
 
 
- bindsym $mod+G exec --no-startup-id "chromium-browser --force-device-scale-factor=1.6"
+ bindsym $mod+G exec --no-startup-id "google-chrome" # --force-device-scale-factor=1.6"
  
  bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
  bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"
@@ -218,9 +218,9 @@ bindsym $mod+n exec --no-startup-id nautilus --browser --no-desktop
 #exec "yabar"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-   mode hide
-   tray_output none
+#bar {
+#   mode hide
+#   tray_output none
    # status_command i3status -c ~/.i3/i3status.conf
    #  status_command ~/.i3/i3status_wrapper.sh
    #  position top
@@ -234,7 +234,7 @@ bar {
    #  inactive_workspace #002b36 #002b36 #aea79f
    #  urgent_workspace #77216f #77216f #ffffff
   # }
-}
+#}
 
 focus_follows_mouse yes
 workspace_auto_back_and_forth yes

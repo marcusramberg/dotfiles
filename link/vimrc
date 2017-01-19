@@ -5,6 +5,8 @@ call vundle#rc()
 
 Bundle 'elzr/vim-json'
 Bundle 'airblade/vim-gitgutter'
+"Bundle 'othree/eregex.vim'
+Bundle 'lepht/perlomni.vim'
 Bundle 'fatih/vim-go'
 Bundle 'joshdick/onedark.vim'
 Bundle 'benmills/vimux'
@@ -47,7 +49,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Shougo/neocomplete.vim'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'hokaccha/vim-prove'
 Bundle 'vim-pandoc/vim-pandoc-syntax' 
@@ -58,8 +61,6 @@ Bundle 'mivok/vimtodo'
 Bundle 'zah/nimrod.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'janko-m/vim-test'
-
-
 
 colorscheme onedark
  
@@ -242,3 +243,16 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
 let test#strategy="neovim"
+
+set magic
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+noremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
