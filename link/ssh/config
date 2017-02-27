@@ -168,15 +168,15 @@ Host gke-rg-dev-default-pool-06ef9988-cejs.europe-west1-d.graphic-iridium-144308
     HostName 104.155.104.208
     IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
     UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
-    HostKeyAlias=compute.4544162872735288576
+    HostKeyAlias=compute.8340640063745429637
     IdentitiesOnly=yes
     CheckHostIP=no
 
 Host gke-rg-dev-default-pool-06ef9988-dsdg.europe-west1-d.graphic-iridium-144308
-    HostName 104.199.73.144
+    HostName 35.187.7.182
     IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
     UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
-    HostKeyAlias=compute.2895384395918068263
+    HostKeyAlias=compute.1207868123000082853
     IdentitiesOnly=yes
     CheckHostIP=no
 
@@ -184,15 +184,7 @@ Host gke-rg-dev-default-pool-06ef9988-h704.europe-west1-d.graphic-iridium-144308
     HostName 104.199.36.222
     IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
     UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
-    HostKeyAlias=compute.7129695999100439411
-    IdentitiesOnly=yes
-    CheckHostIP=no
-
-Host dev-dhed.europe-west1-b.graphic-iridium-144308
-    HostName 104.199.81.247
-    IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
-    UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
-    HostKeyAlias=compute.5869652482502093464
+    HostKeyAlias=compute.4017793443537358554
     IdentitiesOnly=yes
     CheckHostIP=no
 
