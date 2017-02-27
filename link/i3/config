@@ -77,8 +77,8 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
 
  bindsym $mod+p exec kupfer
 
-
- bindsym $mod+G exec --no-startup-id "google-chrome" # --force-device-scale-factor=1.6"
+ # --force-device-scale-factor=1.6"
+ bindsym $mod+G exec --no-startup-id "google-chrome"
  
  bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
  bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"
