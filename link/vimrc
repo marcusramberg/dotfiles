@@ -81,6 +81,7 @@ set autoindent
 set history=1000
 set cursorline
 set expandtab
+set noshowmode
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
