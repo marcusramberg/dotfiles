@@ -3,37 +3,38 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'marcusramberg/codi.vim'
+Bundle 'sheerun/vim-polyglot'
+Bundle 'maralla/completor.vim'
 Bundle 'elzr/vim-json'
 Bundle 'airblade/vim-gitgutter'
 "Bundle 'othree/eregex.vim'
-Bundle 'lepht/perlomni.vim'
-Bundle 'fatih/vim-go'
-Bundle 'joshdick/onedark.vim'
+Bundle 'c9s/perlomni.vim'
+Bundle 'madzak/vim-proselint'
+Bundle 'arcticicestudio/nord-vim'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
-Bundle 'pearofducks/ansible-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
-"Bundle 'edkolev/tmuxline.vim'
 Bundle 'glench/Vim-Jinja2-Syntax'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'honza/vim-snippets'
 Bundle 'jazzCore/ctrlp-cmatcher'
 Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
+"Bundle 'majutsushi/tagbar'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'mattn/gist-vim'
+Bundle 'fgsch/vim-varnish'
 Bundle 'mattn/webapi-vim'
 Bundle 'ngmy/vim-rubocop'
-Bundle 'othree/html5.vim'
 Bundle 'klen/python-mode'
-Bundle 'pangloss/vim-javascript'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sirVer/ultisnips'
+Bundle 'alexbyk/vim-ultisnips-perl'
 Bundle 'spllr/vim-padrino'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tomtom/tlib_vim'
@@ -43,59 +44,60 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
 Bundle 'lambdalisue/vim-gita'
 Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'ludovicchabant/vim-gutentags'
-Bundle 'ajh17/VimCompletesMe'
-"Bundle 'Shougo/neocomplete.vim'
+Bundle 'ervandew/supertab'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'hokaccha/vim-prove'
-Bundle 'vim-pandoc/vim-pandoc-syntax' 
-Bundle 'vim-perl/vim-perl'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'yko/mojo.vim' 
+Bundle 'vim-pandoc/vim-pandoc-syntax'
+Bundle 'yko/mojo.vim'
 Bundle 'mivok/vimtodo'
 Bundle 'zah/nimrod.vim'
 Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'janko-m/vim-test'
 
-colorscheme onedark
+colorscheme nord
  
 filetype plugin indent on
  
 syntax on
-set number
-set mouse=
-set mousehide
 
-set hlsearch
-set showmatch
-set incsearch
-set ignorecase
 set autoindent
-set history=1000
+set autoread
+set background=dark
+set clipboard=unnamed
 set cursorline
+set directory=/tmp
 set expandtab
 set noshowmode
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set clipboard=unnamed
-set directory=/tmp
+set gdefault
+set hidden
+set history=1000
+set hlsearch
+set incsearch
+set infercase
+set magic
+set mouse=
+set mousehide
+set number
 set pastetoggle=<leader>v
-
+set relativenumber
+set synmaxcol=250
+set shiftwidth=2
+set showmatch
+set softtabstop=2
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+set tabstop=2
+set wildmenu
+set wildmode=full
+
 
 " Airline
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
-set background=dark
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'nord'
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
@@ -113,8 +115,19 @@ let g:syntastic_javascript_checkers = ['jsxhint']
 let g:pandoc#modules#disabled = ["folding"]
 "let g:pandoc#formatting#mode = 'ha'
 let g:pandoc#formatting#textwidth = 79
+let g:deoplete#enable_at_startup = 1
+let g:SuperTabDefaultCompletionType = "context"
+let mojo_highlight_data = 1
 
 
+
+augroup autoSaveAndRead
+    autocmd!
+    autocmd TextChanged,InsertLeave,FocusLost * silent! wall
+    autocmd CursorHold * silent! checktime
+augroup END
+
+autocmd VimResized * wincmd =
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -122,6 +135,8 @@ autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd FileType go compiler go
 autocmd FileType go autocmd BufWritePre <buffer> GoFmt
 autocmd BufNewFile,BufRead *.tt setf tt2
+autocmd BufEnter,TabEnter,WinEnter * syn match ErrorMsg /[^\x00-\x7F]/
+autocmd BufEnter,TabEnter,WinEnter * syn match ErrorMsg /\s\+$/
 au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=79 wrap linebreak nolist
 
 
@@ -138,13 +153,16 @@ endif
 :nmap <silent> <leader>n :cnext<cr>
 nnore <esc><esc> :let @/ = ""<cr>
 
-:nmap <silent> <leader>; :CtrlP<cr>
+" Ctrl-p settings
+:nmap <silent> <leader>; :CtrlPMRUFile<cr>
 :nmap ; :CtrlPBuffer<cr>
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_switch_buffer = 0
 "let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_working_path_mode = 2
-let g:ctrlp_cmd = 'CtrlPMRUFile'
+"let g:ctrlp_cmd = 'CtrlPMRUFile'
+  let g:ctrlp_mruf_relative = 1
+
 
 
 if $TERM_PROGRAM =~ "iTerm"
@@ -209,7 +227,7 @@ let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
 function SetRgOptions()
   let g:syntastic_enable_perl_checker = 1
-  setlocal tabstop=4 shiftwidth=4
+  setlocal tabstop=2 shiftwidth=2
   let g:syntastic_perl_lib_path = [ "./lib", "./lib/auto", "/home/marcus/Source/_rg/libraries/lib" ]
   let g:syntastic_perl_args_after = '--quiet --nocolor --verbose "\%s:\%f:\%l:\%c:(\%s) \%m (\%e)\n" -p ~/Source/_rg/libraries/.perlcriticrc'
   let g:syntastic_perl_checkers = ['perl','perlcritic']
@@ -239,23 +257,29 @@ endif
 nnoremap <Space> <C-F>
 
 
-nmap <silent> <leader>t :TestNearest<CR>
+"#nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>A :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-let test#strategy="neovim"
+"let test#strategy="neovim"
 
-set magic
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-noremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+"noremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"noremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"noremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+
+let g:deoplete#sources#rust#racer_binary="/home/marcus/.cargo/bin/racer"
+let g:deoplete#sources#rust#rust_source_path="/home/marcus/Source/rust/src"
+let g:rustfmt_autosave = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+"let g:deoplete#sources = {}
+"let g:deoplete#sources.gitcommit=['github']
 

@@ -26,3 +26,7 @@ alias vi="vim -u ~/.vimrc.mini"
 export PS1="\\u@\h \\W]\\$"
 alias fuck='sudo $(fc -ln -1)'
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/marcus/.sdkman"
+[[ -s "/home/marcus/.sdkman/bin/sdkman-init.sh" ]] && source "/home/marcus/.sdkman/bin/sdkman-init.sh"

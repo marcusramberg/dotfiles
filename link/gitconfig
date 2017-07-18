@@ -66,7 +66,7 @@
 [help]
   autocorrect = 1
 [push]
-  default = matching
+  default = simple
 [rerere]
   enabled = true
 [url "git@git.nordaaker.com:"]
