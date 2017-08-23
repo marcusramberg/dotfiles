@@ -26,12 +26,15 @@ floating_modifier $mod
 workspace_layout tabbed
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec termite -d $(xcwd)
+#bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
+bindsym $mod+shift+v exec --no-startup-id "xfce4-popup-clipman"
+
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -41,7 +44,7 @@ bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
  #bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
  # bindsym $mod+d exec dmenu_run -nb '#383a3b' -nf '#babdb6' -sb '#000000' -sf '#eeeeec'
  #
- bindsym                 $mod+d exec rofi -show run -terminal xterm -font 'Hack 16' -lines 4 -eh 2 -width 100 -padding 800 -opacity "65" -bw 0 
+ bindsym                 $mod+d exec rofi -show drun -terminal xterm -font 'Hack 16' -lines 6 -eh 2 -width 100 -padding 800 -opacity "65" -bw 0 
 
  bindsym $mod+p exec kupfer
 
@@ -251,6 +254,7 @@ assign [class="^Slack$"] 3
 assign [class="Telegram"] 3
 assign [class="chrome"] 2
 assign [title="^Inbox "] 4
+assign [class="Code"] 5
 
 
 client.focused #434C5E #434C5E #E5E9F0 #fdf6e3 #5E81AC

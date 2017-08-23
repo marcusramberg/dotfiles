@@ -34,3 +34,6 @@
 [submodule "libs/ansible-venv"]
 	path = libs/ansible-venv
 	url = https://github.com/configuresystems/ansible-venv-bootstrapper.git
+[submodule "conf/zsh/plugins/zsh-autosuggestions"]
+	path = conf/zsh/plugins/zsh-autosuggestions
+	url = git://github.com/zsh-users/zsh-autosuggestions

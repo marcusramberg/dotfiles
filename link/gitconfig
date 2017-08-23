@@ -51,7 +51,7 @@
   untracked = cyan
 [core]
   whitespace = trailing-space,space-before-tab
-  excludesfile = /Users/marcus/.gitignore_global
+  excludesfile = /home/marcus/.gitignore_global
   pager = /usr/bin/less
 [apply]
   whitespace = nowarn

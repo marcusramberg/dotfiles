@@ -4,8 +4,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'marcusramberg/codi.vim'
+Bundle 'joshukraine/yankmatches'
 Bundle 'sheerun/vim-polyglot'
 Bundle 'maralla/completor.vim'
+Bundle 'junegunn/goyo.vim'
 Bundle 'elzr/vim-json'
 Bundle 'airblade/vim-gitgutter'
 "Bundle 'othree/eregex.vim'
@@ -22,7 +24,8 @@ Bundle 'godlygeek/tabular'
 Bundle 'honza/vim-snippets'
 Bundle 'jazzCore/ctrlp-cmatcher'
 Bundle 'ctrlpvim/ctrlp.vim'
-"Bundle 'majutsushi/tagbar'
+Bundle 'majutsushi/tagbar'
+Bundle 'w0rp/ale'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'mattn/gist-vim'
 Bundle 'fgsch/vim-varnish'
@@ -32,7 +35,6 @@ Bundle 'klen/python-mode'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/syntastic'
 Bundle 'sirVer/ultisnips'
 Bundle 'alexbyk/vim-ultisnips-perl'
 Bundle 'spllr/vim-padrino'
@@ -50,18 +52,19 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'ervandew/supertab'
-Bundle 'vim-pandoc/vim-pandoc'
+"Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'hokaccha/vim-prove'
-Bundle 'vim-pandoc/vim-pandoc-syntax'
+"Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'yko/mojo.vim'
 Bundle 'mivok/vimtodo'
 Bundle 'zah/nimrod.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 
+let g:nord_italic_comments = 1
 colorscheme nord
- 
+
 filetype plugin indent on
- 
+
 syntax on
 
 set autoindent
@@ -72,7 +75,8 @@ set cursorline
 set directory=/tmp
 set expandtab
 set noshowmode
-set gdefault
+set ignorecase
+set smartcase
 set hidden
 set history=1000
 set hlsearch
@@ -98,6 +102,8 @@ set wildmode=full
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'nord'
+let g:airline#extensions#tagbar#enabled = 0
+
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
@@ -112,13 +118,16 @@ let g:pymode_folding = 0
 
 let g:jekyll_path = "~/Source/blog"
 let g:syntastic_javascript_checkers = ['jsxhint']
-let g:pandoc#modules#disabled = ["folding"]
+"let g:pandoc#modules#disabled = ["folding"]
 "let g:pandoc#formatting#mode = 'ha'
-let g:pandoc#formatting#textwidth = 79
+"let g:pandoc#formatting#textwidth = 79
 let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "context"
 let mojo_highlight_data = 1
-
+let g:ale_linters = { 'perl': ['perl'], }
+let g:ale_sign_warning = '⊙'
+let g:ale_sign_error = '⊘'
+let g:ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation: { indent-sequences: whatever}}}"'
 
 
 augroup autoSaveAndRead
@@ -128,7 +137,7 @@ augroup autoSaveAndRead
 augroup END
 
 autocmd VimResized * wincmd =
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd BufNewFile,BufReadPost *.go set filetype=go
@@ -282,4 +291,6 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 "let g:deoplete#sources = {}
 "let g:deoplete#sources.gitcommit=['github']
+let g:completor_perl_omni_trigger       = '->'
+
 
