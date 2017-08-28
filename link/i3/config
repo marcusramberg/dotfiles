@@ -26,14 +26,14 @@ floating_modifier $mod
 workspace_layout tabbed
 
 # start a terminal
-bindsym $mod+Return exec termite -d $(xcwd)
-#bindsym $mod+Return exec gnome-terminal
+#bindsym $mod+Return exec termite -d $(xcwd)
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+shift+q kill
 
 bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
-bindsym $mod+shift+v exec --no-startup-id "xfce4-popup-clipman"
+bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
 
 
 # start dmenu (a program launcher)
@@ -127,7 +127,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 0
-bindsym $mod+tab workspace back_and_forth
+#bindsym $mod+Tab workspace back_and_forth
 
 # # move focused container to workspace
 bindsym $mod+Shift+1  move container to workspace 1
