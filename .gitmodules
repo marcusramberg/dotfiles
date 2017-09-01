@@ -37,3 +37,6 @@
 [submodule "conf/zsh/plugins/zsh-autosuggestions"]
 	path = conf/zsh/plugins/zsh-autosuggestions
 	url = git://github.com/zsh-users/zsh-autosuggestions
+[submodule "conf/zsh/themes/powerlevel9k"]
+	path = conf/zsh/themes/powerlevel9k
+	url = https://github.com/bhilburn/powerlevel9k.git
