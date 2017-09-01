@@ -3,10 +3,11 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+
+Bundle 'Shougo/neocomplete.vim'
 Bundle 'marcusramberg/codi.vim'
 Bundle 'joshukraine/yankmatches'
 Bundle 'sheerun/vim-polyglot'
-Bundle 'maralla/completor.vim'
 Bundle 'junegunn/goyo.vim'
 Bundle 'elzr/vim-json'
 Bundle 'airblade/vim-gitgutter'
@@ -36,7 +37,6 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'sirVer/ultisnips'
-Bundle 'alexbyk/vim-ultisnips-perl'
 Bundle 'spllr/vim-padrino'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tomtom/tlib_vim'
@@ -83,7 +83,8 @@ set hlsearch
 set incsearch
 set infercase
 set magic
-set mouse=
+set mouse=a
+set clipboard=unnamed
 set mousehide
 set number
 set pastetoggle=<leader>v
@@ -167,7 +168,7 @@ nnore <esc><esc> :let @/ = ""<cr>
 :nmap ; :CtrlPBuffer<cr>
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_switch_buffer = 0
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_working_path_mode = 2
 "let g:ctrlp_cmd = 'CtrlPMRUFile'
   let g:ctrlp_mruf_relative = 1
@@ -242,8 +243,22 @@ function SetRgOptions()
   let g:syntastic_perl_checkers = ['perl','perlcritic']
 endfunction
 
-command -range=% -nargs=* Tidy <line1>,<line2>!
-  \perltidy <args>
+"define :Tidy command to run perltidy on visual selection || entire buffer"
+command -range=% -nargs=* Tidy <line1>,<line2>!perltidy
+
+"run :Tidy on entire buffer and return cursor to (approximate) original position"
+fun DoTidy()
+    let l = line(".")
+    let c = col(".")
+    :Tidy
+    call cursor(l, c)
+endfun
+
+"shortcut for normal mode to run on entire buffer then return to current line"
+au Filetype perl nmap <Leader>t :call DoTidy()<CR>
+
+"shortcut for visual mode to run on the the current visual selection"
+au Filetype perl vmap <Leader>t :Tidy<CR>
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -276,21 +291,47 @@ nmap <silent> <leader>g :TestVisit<CR>
 
 let g:acp_enableAtStartup = 0
 
-"noremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"noremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-"noremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
-
-let g:deoplete#sources#rust#racer_binary="/home/marcus/.cargo/bin/racer"
-let g:deoplete#sources#rust#rust_source_path="/home/marcus/Source/rust/src"
 let g:rustfmt_autosave = 1
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-"let g:deoplete#sources = {}
-"let g:deoplete#sources.gitcommit=['github']
-let g:completor_perl_omni_trigger       = '->'
 
+"
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"let g:UltiSnipsExpandTrigger="<tab>"
