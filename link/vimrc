@@ -104,6 +104,8 @@ let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'nord'
 let g:airline#extensions#tagbar#enabled = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 
 let g:tagbar_left = 1
@@ -111,7 +113,7 @@ let g:tagbar_sort = 0
 let g:tagbar_autoshowtag = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-let g:tagbar_width = 30 
+let g:tagbar_width = 30
 let g:tagbar_foldlevel = 2
 
 let g:vim_markdown_folding_disabled=1
