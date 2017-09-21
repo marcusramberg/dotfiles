@@ -4,64 +4,66 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'marcusramberg/codi.vim'
-Bundle 'joshukraine/yankmatches'
-Bundle 'sheerun/vim-polyglot'
-Bundle 'junegunn/goyo.vim'
-Bundle 'elzr/vim-json'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'Shougo/deoplete.nvim'
 Bundle 'airblade/vim-gitgutter'
-"Bundle 'othree/eregex.vim'
-Bundle 'c9s/perlomni.vim'
-Bundle 'madzak/vim-proselint'
 Bundle 'arcticicestudio/nord-vim'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'c9s/perlomni.vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'csexton/jekyll.vim'
+Bundle 'elzr/vim-json'
+Bundle 'ervandew/supertab'
+Bundle 'fgsch/vim-varnish'
 Bundle 'glench/Vim-Jinja2-Syntax'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
+Bundle 'hokaccha/vim-prove'
 Bundle 'honza/vim-snippets'
-Bundle 'jazzCore/ctrlp-cmatcher'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'w0rp/ale'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'mattn/gist-vim'
-Bundle 'fgsch/vim-varnish'
-Bundle 'mattn/webapi-vim'
-Bundle 'ngmy/vim-rubocop'
+Bundle 'hotchpotch/perldoc-vim'
+Bundle 'janko-m/vim-test'
+Bundle 'joshukraine/yankmatches'
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
+Bundle 'junegunn/goyo.vim'
 Bundle 'klen/python-mode'
-Bundle 'rizzatti/dash.vim'
-Bundle 'rizzatti/funcoo.vim'
+Bundle 'lambdalisue/gina.vim'
+Bundle 'madzak/vim-proselint'
+Bundle 'majutsushi/tagbar'
+Bundle 'marcusramberg/codi.vim'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'mivok/vimtodo'
+Bundle 'ngmy/vim-rubocop'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'sheerun/vim-polyglot'
 Bundle 'sirVer/ultisnips'
 Bundle 'spllr/vim-padrino'
+Bundle 'sunaku/vim-dasht'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tlib_vim'
 Bundle 'tomtom/vimtlib'
 Bundle 'tonchis/vim-to-github'
+Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
-Bundle 'lambdalisue/vim-gita'
-Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-commentary'
-Bundle 'ervandew/supertab'
-"Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'hokaccha/vim-prove'
-"Bundle 'vim-pandoc/vim-pandoc-syntax'
+Bundle 'tpope/vim-surround'
+Bundle 'w0rp/ale'
 Bundle 'yko/mojo.vim'
-Bundle 'mivok/vimtodo'
 Bundle 'zah/nimrod.vim'
-Bundle 'bronson/vim-trailing-whitespace'
 
 let g:nord_italic_comments = 1
 colorscheme nord
+
+
 
 filetype plugin indent on
 
@@ -91,7 +93,7 @@ set pastetoggle=<leader>v
 set relativenumber
 set synmaxcol=250
 set shiftwidth=2
-set showmatch
+"set showmatch
 set softtabstop=2
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set tabstop=2
@@ -100,7 +102,7 @@ set wildmode=full
 
 
 " Airline
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'nord'
 let g:airline#extensions#tagbar#enabled = 0
@@ -162,18 +164,18 @@ endif
 :nmap <leader>a :Ack 
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
-:nmap <silent> <leader>n :cnext<cr>
+:nmap <silent> <leader>n :<Plug>(ale_next_wrap)
 nnore <esc><esc> :let @/ = ""<cr>
 
 " Ctrl-p settings
-:nmap <silent> <leader>; :CtrlPMRUFile<cr>
-:nmap ; :CtrlPBuffer<cr>
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_working_path_mode = 2
+":nmap <silent> <leader>; :CtrlPMRUFile<cr>
+":nmap ; :CtrlPBuffer<cr>
+"let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
+"let g:ctrlp_switch_buffer = 0
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"let g:ctrlp_working_path_mode = 2
 "let g:ctrlp_cmd = 'CtrlPMRUFile'
-  let g:ctrlp_mruf_relative = 1
+"  let g:ctrlp_mruf_relative = 1
 
 
 
@@ -229,9 +231,9 @@ function! AckSearch()
   call ack#Ack("grep!", a:query . " " . a:top_level[0])
 endfunction
 
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-endif
+"if executable('ag')
+"    let g:ackprg = 'ag --vimgrep'
+"endif
 
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
@@ -304,29 +306,29 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 "
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+"let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+"let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
+"let g:neocomplete#sources#dictionary#dictionaries = {
+"    \ 'default' : '',
+"    \ 'vimshell' : $HOME.'/.vimshell_hist',
+"    \ 'scheme' : $HOME.'/.gosh_completions'
+"        \ }
+"noremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"  " For no inserting <CR> key.
+"  "return pumvisible() ? "\<C-y>" : "\<CR>"
+"endfunction
+"" <TAB>: completion.
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
 
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 " Enable omni completion.
@@ -337,3 +339,26 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "let g:UltiSnipsExpandTrigger="<tab>"
+"
+nnoremap <silent> <Leader>d :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+nnoremap <Leader>D :Dasht<Space>
+
+
+noremap <C-p> :FZF<cr>
+noremap <C-P> :FZF<cr>
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#5e5855 guifg=NONE
