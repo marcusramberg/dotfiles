@@ -69,31 +69,29 @@ bind h:${hyper}     focus left
 bind k:${hyper}       focus up
 bind j:${hyper}     focus down
 
-bind 1:${hyper} ${topleft}
-bind 2:${hyper} ${topright}
-bind q:${hyper} ${lefthalf}
-bind w:${hyper} ${righthalf}
+bind q:${hyper} ${topleft}
+bind w:${hyper} ${topright}
+bind a:${hyper} ${lefthalf}
+bind s:${hyper} ${righthalf}
 bind 0:${hyper} ${full}
-bind a:${hyper} ${bottomleft}
-bind s:${hyper} ${bottomright}
-bind e:${hyper} ${tophalf}
-bind d:${hyper} ${bottomhalf}
+bind z:${hyper} ${bottomleft}
+bind x:${hyper} ${bottomright}
+bind d:${hyper} ${tophalf}
+bind c:${hyper} ${bottomhalf}
 
 
 
 
-bind 3:${hyper} ${lefttwothirds}
-bind 4:${hyper} ${righttwothirds}
+bind e:${hyper} ${lefttwothirds}
+bind d:${hyper} ${righttwothirds}
  
 
 bind f:${hyper} hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
 
 bind r:${hyper} relaunch
-bind b:${hyper} focus ${browser}
-bind v:${hyper} focus ${editor}
-bind x:${hyper} focus 'Xcode'
-bind g:${hyper} focus 'GitHub'
-bind i:${hyper} focus 'iTerm2'
-bind t:${hyper} focus 'Tweetbot'
+bind 1:${hyper} focus 'iTerm2'
+bind 2:${hyper} focus ${browser}
+bind 3:${hyper} focus 'Slack'
+bind 4:${hyper} focus 'Finder'
 
 bind tab:cmd switch
