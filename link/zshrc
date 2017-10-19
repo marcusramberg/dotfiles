@@ -52,7 +52,7 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='magenta'
 POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='clear'
 POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
 POWERLEVEL9K_HOST_LOCAL_BACKGROUND='clear'
-POWERLEVEL9K_HOST_LOCAL_FOREGROUND='236'
+POWERLEVEL9K_HOST_LOCAL_FOREGROUND='2'
 POWERLEVEL9K_HOST_REMOTE_BACKGROUND='clear'
 POWERLEVEL9K_HOST_REMOTE_FOREGROUND='6'
 
@@ -152,6 +152,7 @@ fi
 
 # And kubectl command completion.
 source <(kubectl completion zsh)
+source <(gopass completion zsh)
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -159,3 +160,8 @@ export SDKMAN_DIR="/home/marcus/.sdkman"
 [[ -s "/home/marcus/.sdkman/bin/sdkman-init.sh" ]] && source "/home/marcus/.sdkman/bin/sdkman-init.sh"
 
 export TERM="xterm-256color"
+
+#source /usr/share/fzf/key-bindings.zsh
+#source /usr/share/fzf/completion.zsh
+#export FZF_DEFAULT_COMMAND="pt -g=."
+export DRONE_HOST="https://drone.r12.no"

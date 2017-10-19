@@ -4,9 +4,12 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
+Bundle 'kien/ctrlp.vim'
+Bundle 'JazzCore/ctrlp-cmatcher'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Shougo/deoplete.nvim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'othree/eregex.vim'
 Bundle 'arcticicestudio/nord-vim'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
@@ -62,7 +65,6 @@ Bundle 'zah/nimrod.vim'
 
 let g:nord_italic_comments = 1
 colorscheme nord
-
 
 
 filetype plugin indent on
@@ -168,14 +170,19 @@ endif
 nnore <esc><esc> :let @/ = ""<cr>
 
 " Ctrl-p settings
-":nmap <silent> <leader>; :CtrlPMRUFile<cr>
-":nmap ; :CtrlPBuffer<cr>
-"let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
-"let g:ctrlp_switch_buffer = 0
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"let g:ctrlp_working_path_mode = 2
+:nmap <silent> <leader>; :CtrlPMRUFile<cr>
+:nmap ; :CtrlPBuffer<cr>
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
+let g:ctrlp_open_multiple_files = 'tj'
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_working_path_mode = 2
 "let g:ctrlp_cmd = 'CtrlPMRUFile'
-"  let g:ctrlp_mruf_relative = 1
+  let g:ctrlp_mruf_relative = 1
 
 
 
@@ -231,9 +238,9 @@ function! AckSearch()
   call ack#Ack("grep!", a:query . " " . a:top_level[0])
 endfunction
 
-"if executable('ag')
-"    let g:ackprg = 'ag --vimgrep'
-"endif
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep --no-heading'
+endif
 
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
@@ -344,8 +351,8 @@ nnoremap <silent> <Leader>d :call Dasht([expand('<cword>'), expand('<cWORD>')])<
 nnoremap <Leader>D :Dasht<Space>
 
 
-noremap <C-p> :FZF<cr>
-noremap <C-P> :FZF<cr>
+"noremap <C-p> :FZF<cr>
+"noremap <C-P> :FZF<cr>
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -362,3 +369,5 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#5e5855 guifg=NONE
+let perl_sub_signatures = 1
+

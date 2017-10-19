@@ -27,7 +27,7 @@ workspace_layout tabbed
 
 # start a terminal
 #bindsym $mod+Return exec termite -d $(xcwd)
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec konsole
 
 # kill focused window
 bindsym $mod+shift+q kill
@@ -46,7 +46,7 @@ bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
  #
  bindsym                 $mod+d exec rofi -show drun -terminal xterm -font 'Hack 16' -lines 6 -eh 2 -width 100 -padding 800 -opacity "65" -bw 0 
 
- bindsym $mod+p exec kupfer
+ bindsym $mod+space exec kupfer
 
  # --force-device-scale-factor=1.6"
 bindsym $mod+G exec --no-startup-id "google-chrome"
@@ -107,7 +107,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+ctrl+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
