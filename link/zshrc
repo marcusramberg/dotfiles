@@ -145,9 +145,6 @@ if [ -f /home/marcus/Source/_rg/google-cloud-sdk/completion.zsh.inc ]; then
   source '/home/marcus/Source/_rg/google-cloud-sdk/completion.zsh.inc'
 fi
 
-# And kubectl command completion.
-source <(kubectl completion zsh)
-source <(gopass completion zsh)
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -165,3 +162,4 @@ if [ -f '/Users/marcus/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then so
 
 # And kubectl command completion.
 source <(kubectl completion zsh)
+source <(gopass completion zsh)

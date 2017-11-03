@@ -164,7 +164,6 @@ Host cfengine-scm
 #
 # You should not hand-edit this section, unless you are deleting it.
 #
-<<<<<<< HEAD
 Host gke-rg-dev-new-pool-091b296b-kgwn.europe-west1-d.graphic-iridium-144308
     HostName 35.187.93.171
     IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
@@ -373,7 +372,6 @@ Host gke-rg-dev-new-pool-091b296b-18j2.europe-west1-d.graphic-iridium-144308
     IdentitiesOnly=yes
     CheckHostIP=no
 
-<<<<<<< HEAD
 Host gke-rg-dev-ssd-pool-0e6ba7b3-1pkm.europe-west1-d.graphic-iridium-144308
     HostName 35.195.163.95
     IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
