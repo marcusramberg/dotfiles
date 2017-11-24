@@ -160,6 +160,10 @@ export DRONE_HOST="https://drone.r12.no"
 if [ -f '/Users/marcus/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/marcus/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/marcus/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/marcus/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
+export DRONE_SERVER="https://drone.r12.no"
+
 # And kubectl command completion.
 source <(kubectl completion zsh)
 source <(gopass completion zsh)
+
+[[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose

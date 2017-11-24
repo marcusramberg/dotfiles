@@ -4,15 +4,14 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
-Bundle 'kien/ctrlp.vim'
 Bundle 'JazzCore/ctrlp-cmatcher'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Shougo/deoplete.nvim'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'othree/eregex.vim'
 Bundle 'arcticicestudio/nord-vim'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
+Bundle 'bogado/file-line'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'c9s/perlomni.vim'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -28,9 +27,8 @@ Bundle 'honza/vim-snippets'
 Bundle 'hotchpotch/perldoc-vim'
 Bundle 'janko-m/vim-test'
 Bundle 'joshukraine/yankmatches'
-Bundle 'junegunn/fzf'
-Bundle 'junegunn/fzf.vim'
 Bundle 'junegunn/goyo.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'klen/python-mode'
 Bundle 'lambdalisue/gina.vim'
 Bundle 'madzak/vim-proselint'
@@ -40,7 +38,9 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'mivok/vimtodo'
+Bundle 'mvgrimes/vim-trackperlvars'
 Bundle 'ngmy/vim-rubocop'
+Bundle 'othree/eregex.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'sheerun/vim-polyglot'
 Bundle 'sirVer/ultisnips'
@@ -59,11 +59,14 @@ Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'w0rp/ale'
 Bundle 'yko/mojo.vim'
 Bundle 'zah/nimrod.vim'
 
 let g:nord_italic_comments = 1
+let g:nord_comment_brightness = 15
+
 colorscheme nord
 
 
@@ -131,7 +134,7 @@ let g:syntastic_javascript_checkers = ['jsxhint']
 let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "context"
 let mojo_highlight_data = 1
-let g:ale_linters = { 'perl': ['perl'], }
+let g:ale_linters = { 'perl': ['perl'], 'javascript': ['eslint'] }
 let g:ale_sign_warning = '⊙'
 let g:ale_sign_error = '⊘'
 let g:ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation: { indent-sequences: whatever}}}"'
@@ -164,9 +167,12 @@ endif
 
 
 :nmap <leader>a :Ack 
+:nmap <leader>c :Gina commit<cr>
+:nmap <leader>s :Gina status<cr>
+:nmap <leader>b :Gina branch<cr>
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
-:nmap <silent> <leader>n :<Plug>(ale_next_wrap)
+nmap <leader>n <Plug>(ale_next_wrap)
 nnore <esc><esc> :let @/ = ""<cr>
 
 " Ctrl-p settings
@@ -221,20 +227,20 @@ map <space> viw
 
 command! Fuck w !sudo tee % >/dev/null
 
-noremap <C-_> :call AckSearch()<CR>
- 
+noremap <C-a> :call AckSearch()<CR>
+
 function! AckSearch()
   let a:top_level = split(expand("%"), "/")
   let a:query = getline("'<")
   let a:start = getpos("'<")[2]
   let a:stop = getpos("'>")[2]
- 
+
   if a:start == a:stop
     let a:query = expand("<cword>")
   else
     let a:query = a:query[a:start - 1: a:stop - 1]
   endif
- 
+
   call ack#Ack("grep!", a:query . " " . a:top_level[0])
 endfunction
 
@@ -246,7 +252,7 @@ let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
 :autocmd BufRead,BufNewFile /home/marcus/Source/_rg/* call SetRgOptions()
 
-function SetRgOptions()
+function! SetRgOptions()
   let g:syntastic_enable_perl_checker = 1
   setlocal tabstop=2 shiftwidth=2
   let g:syntastic_perl_lib_path = [ "./lib", "./lib/auto", "/home/marcus/Source/_rg/libraries/lib" ]
@@ -255,10 +261,10 @@ function SetRgOptions()
 endfunction
 
 "define :Tidy command to run perltidy on visual selection || entire buffer"
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy
+command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
 
 "run :Tidy on entire buffer and return cursor to (approximate) original position"
-fun DoTidy()
+function! DoTidy()
     let l = line(".")
     let c = col(".")
     :Tidy
@@ -309,36 +315,6 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-
-"
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-"let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-"noremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"  " For no inserting <CR> key.
-"  "return pumvisible() ? "\<C-y>" : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
-
-" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -368,6 +344,15 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+
+" Fix parens match to look correctly.
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#5e5855 guifg=NONE
+
+" Highlight signatures correctly
 let perl_sub_signatures = 1
 
+" Make mouse clicks a NOOP;
+nnoremap <LeftMouse> ma<LeftMouse>`
+tnoremap <Leader><Esc> <C-\><C-n>
+
+auto BufEnter * :set title

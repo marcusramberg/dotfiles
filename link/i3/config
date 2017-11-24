@@ -15,9 +15,6 @@ set $ws8  "8"
 set $ws9  "9"
 set $ws10 "10"
 
-
-
-
 exec ~/.config/polybar/launch.sh
 #exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 
@@ -27,14 +24,13 @@ workspace_layout tabbed
 
 # start a terminal
 #bindsym $mod+Return exec termite -d $(xcwd)
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec kitty -d $(xcwd)
 
 # kill focused window
 bindsym $mod+shift+q kill
 
 bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
 bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
-
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -44,7 +40,7 @@ bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
  #bindsym $mod+d exec --no-startup-id dmenu_run -fn  "Inconsolata"
  # bindsym $mod+d exec dmenu_run -nb '#383a3b' -nf '#babdb6' -sb '#000000' -sf '#eeeeec'
  #
- bindsym                 $mod+d exec rofi -show drun -terminal xterm -font 'Hack 16' -lines 6 -eh 2 -width 100 -padding 800 -opacity "65" -bw 0 
+ bindsym $mod+d exec rofi -show drun -terminal xterm  -theme ~/.i3/rofi.theme -opacity "65" -bw 0 
 
  bindsym $mod+space exec kupfer
 
@@ -57,13 +53,9 @@ bindsym XF86KbdBrightnessDown exec --no-startup-id "cd /sys/class/leds/smc::kbd_
 bindsym XF86KbdBrightnessUp exec --no-startup-id "cd /sys/class/leds/smc::kbd_backlight; cur=$(cat brightness); cur=$((cur+5)); if [ $cur -gt 255 ]; then cur=255; fi; echo $cur | sudo tee brightness "
 
 #volume adjustment
-
-
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-
 
 # change focus
 bindsym $mod+h focus left
@@ -163,7 +155,7 @@ mode "resize" {
         bindsym $mod+k resize shrink height 10 px or 10 ppt
         bindsym $mod+l resize grow width 10 px or 10 ppt
 
-        
+
         bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
@@ -182,6 +174,7 @@ bindsym $mod+r mode "resize"
 # screenshot
 bindsym --release Print exec scrot $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
 bindsym --release Shift+Print exec scrot -s $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
+bindsym $mod+p exec gnome-screenshot -i
 
 # nautilus
 bindsym $mod+n exec --no-startup-id nautilus --browser --no-desktop
@@ -221,7 +214,7 @@ for_window [window_role="pop-up"] floating enable
 exec --no-startup-id mate-settings-daemon
 exec --no-startup-id xfce4-clipman
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id feh -z --bg-fill ~/.dotfiles/wallpaper
+exec --no-startup-id feh --bg-fill ~/.dotfiles/wallpaper/wallpaper.png
 exec --no-startup-id zeal
 exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh

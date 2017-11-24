@@ -47,21 +47,21 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 
-rofi.color-enabled: true
-rofi.color-window: #1e1e1e, #a4dfff, #151515
-rofi.color-normal: argb:0000000, #a4dfff, argb:0000000, #a4dfff, #1b2b34
-rofi.color-active: argb:0000000, #6699cc, argb:0000000, #6699cc, #1b2b34
-rofi.color-urgent: argb:0000000, #e12a36, argb:0000000, #dd2a4b, #1b2b34
-rofi.font: xos4 Terminus 13
-rofi.separator-style: none
-rofi.hide-scrollbar: true
-rofi.location:0
-rofi.width: 500
-rofi.lines: 5
-rofi.bw:3
-rofi.yoffset: 26
-rofi.padding: 32
-ied4 rofi.color-urgent: #002b37, #A6AFB8, #002b37, #003642, #da4281
+!rofi.color-enabled: true
+!rofi.color-window: #1e1e1e, #a4dfff, #151515
+!rofi.color-normal: argb:0000000, #a4dfff, argb:0000000, #a4dfff, #1b2b34
+!rofi.color-active: argb:0000000, #6699cc, argb:0000000, #6699cc, #1b2b34
+!rofi.color-urgent: argb:0000000, #e12a36, argb:0000000, #dd2a4b, #1b2b34
+!rofi.font: xos4 Terminus 13
+!rofi.separator-style: none
+!rofi.hide-scrollbar: true
+!rofi.location:0
+!rofi.width: 500
+!rofi.lines: 5
+!rofi.bw:3
+!rofi.yoffset: 26
+!rofi.padding: 32
+!ied4 rofi.color-urgent: #002b37, #A6AFB8, #002b37, #003642, #da4281
 
 ! History {{{1
 ! size matters
