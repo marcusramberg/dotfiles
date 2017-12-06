@@ -1,4 +1,4 @@
-export PATH=~/.dotfiles/bin:$PATH
+export PATH=~/.dotfiles/bin:~/.local/bin:$PATH
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.dotfiles/libs/oh-my-zsh
 ZSH_CUSTOM=$HOME/.dotfiles/conf/zsh
@@ -167,3 +167,4 @@ source <(kubectl completion zsh)
 source <(gopass completion zsh)
 
 [[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose
+export PATH=/usr/share/perl6/vendor/bin/:$PATH

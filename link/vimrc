@@ -1,9 +1,16 @@
 set nocompatible
+
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
+Bundle 'tbabej/taskwiki'
+Bundle 'idanarye/vim-merginal'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rhubarb'
+Bundle 'int3/vim-extradite'
+Bundle 'DavidEGx/ctrlp-smarttabs'
 Bundle 'JazzCore/ctrlp-cmatcher'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Shougo/deoplete.nvim'
@@ -30,7 +37,7 @@ Bundle 'joshukraine/yankmatches'
 Bundle 'junegunn/goyo.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'klen/python-mode'
-Bundle 'lambdalisue/gina.vim'
+"Bundle 'lambdalisue/gina.vim'
 Bundle 'madzak/vim-proselint'
 Bundle 'majutsushi/tagbar'
 Bundle 'marcusramberg/codi.vim'
@@ -38,7 +45,6 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'mivok/vimtodo'
-Bundle 'mvgrimes/vim-trackperlvars'
 Bundle 'ngmy/vim-rubocop'
 Bundle 'othree/eregex.vim'
 Bundle 'rizzatti/funcoo.vim'
@@ -78,7 +84,6 @@ set autoindent
 set autoread
 set background=dark
 set clipboard=unnamed
-set cursorline
 set directory=/tmp
 set expandtab
 set noshowmode
@@ -95,12 +100,14 @@ set clipboard=unnamed
 set mousehide
 set number
 set pastetoggle=<leader>v
-set relativenumber
+" These cause extreme slowness
+"set relativenumber
+"set cursorline
 set synmaxcol=250
 set shiftwidth=2
 "set showmatch
 set softtabstop=2
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set tabstop=2
 set wildmenu
 set wildmode=full
@@ -113,6 +120,7 @@ let g:airline_theme = 'nord'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+let g:airline#extensions#tabline#show_buffers = 0
 
 
 let g:tagbar_left = 1
@@ -123,14 +131,9 @@ let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_width = 30
 let g:tagbar_foldlevel = 2
 
-let g:vim_markdown_folding_disabled=1
 let g:pymode_folding = 0
 
 let g:jekyll_path = "~/Source/blog"
-let g:syntastic_javascript_checkers = ['jsxhint']
-"let g:pandoc#modules#disabled = ["folding"]
-"let g:pandoc#formatting#mode = 'ha'
-"let g:pandoc#formatting#textwidth = 79
 let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "context"
 let mojo_highlight_data = 1
@@ -156,20 +159,20 @@ autocmd FileType go autocmd BufWritePre <buffer> GoFmt
 autocmd BufNewFile,BufRead *.tt setf tt2
 autocmd BufEnter,TabEnter,WinEnter * syn match ErrorMsg /[^\x00-\x7F]/
 autocmd BufEnter,TabEnter,WinEnter * syn match ErrorMsg /\s\+$/
-au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=79 wrap linebreak nolist
+au BufRead,BufNewFile *.md,*.markdown setlocal tw=79 fo+=tv
 
 
 
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-endif 
+endif
 
 
-:nmap <leader>a :Ack 
-:nmap <leader>c :Gina commit<cr>
-:nmap <leader>s :Gina status<cr>
-:nmap <leader>b :Gina branch<cr>
+:nmap <leader>a :Ack
+:nmap <leader>c :GCommit<cr>
+:nmap <leader>s :GStatus<cr>
+:nmap <leader>b :Merginal<cr>
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
 nmap <leader>n <Plug>(ale_next_wrap)
@@ -177,17 +180,18 @@ nnore <esc><esc> :let @/ = ""<cr>
 
 " Ctrl-p settings
 :nmap <silent> <leader>; :CtrlPMRUFile<cr>
-:nmap ; :CtrlPBuffer<cr>
+let g:ctrlp_extensions = ['smarttabs']
+:nmap ; :CtrlPSmartTabs<cr>
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_open_multiple_files = 'tj'
+let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 let g:ctrlp_switch_buffer = 'Et'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_working_path_mode = 2
-"let g:ctrlp_cmd = 'CtrlPMRUFile'
   let g:ctrlp_mruf_relative = 1
 
 
@@ -227,7 +231,7 @@ map <space> viw
 
 command! Fuck w !sudo tee % >/dev/null
 
-noremap <C-a> :call AckSearch()<CR>
+noremap <leader>A :call AckSearch()<CR>
 
 function! AckSearch()
   let a:top_level = split(expand("%"), "/")
@@ -295,12 +299,11 @@ endif
 
 
 " OS X-like space bar to scroll.
-nnoremap <Space> <C-F>
+nnoremap <Space> <C-d>
 
 
 "#nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>A :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
@@ -321,38 +324,20 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"let g:UltiSnipsExpandTrigger="<tab>"
 "
-nnoremap <silent> <Leader>d :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
-nnoremap <Leader>D :Dasht<Space>
-
-
-"noremap <C-p> :FZF<cr>
-"noremap <C-P> :FZF<cr>
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-
 " Fix parens match to look correctly.
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#5e5855 guifg=NONE
 
-" Highlight signatures correctly
-let perl_sub_signatures = 1
+" Perl syntax settings
+let perl_include_pod=1
+let perl_want_scope_in_variables=1
+let perl_extended_vars=1
+let perl_no_subprototype_error=1
+let perl_sub_signatures=1
 
 " Make mouse clicks a NOOP;
 nnoremap <LeftMouse> ma<LeftMouse>`
 tnoremap <Leader><Esc> <C-\><C-n>
 
 auto BufEnter * :set title
+set guioptions=

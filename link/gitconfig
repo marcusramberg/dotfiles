@@ -118,3 +118,5 @@
 	newHighlight = green bold 22
 [diff-so-fancy]
 	markEmptyLines = false
+[log]
+	follow = true

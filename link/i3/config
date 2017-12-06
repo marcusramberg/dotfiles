@@ -29,7 +29,7 @@ bindsym $mod+Return exec kitty -d $(xcwd)
 # kill focused window
 bindsym $mod+shift+q kill
 
-bindsym $mod+shift+x exec --no-startup-id "i3lock -c000000"
+bindsym $mod+shift+x exec --no-startup-id "i3lock ~/.dotfiles/wallpaper/wallpaper.png"
 bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
 
 # start dmenu (a program launcher)
@@ -45,7 +45,7 @@ bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
  bindsym $mod+space exec kupfer
 
  # --force-device-scale-factor=1.6"
-bindsym $mod+G exec --no-startup-id "google-chrome"
+bindsym $mod+G exec --no-startup-id "vivaldi-stable"
 
 bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
 bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"
@@ -220,6 +220,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh
 
 exec --no-startup-id ~/.dotfiles/bin/startup-x11
+exec --no-startup-id xset r rate 280 35
 
 
 # Make the currently focused window a scratchpad
@@ -246,6 +247,7 @@ for_window [window_role="task_dialog"] floating enable
 assign [class="^Slack$"] 3
 assign [class="Telegram"] 3
 assign [class="chrome"] 2
+assign [class="Vivaldi"] 2
 assign [title="^Inbox "] 4
 assign [class="Code"] 5
 
@@ -274,12 +276,12 @@ set $displayMode "Set display mode [w]ork [l]aptop [h]ome"
 bindsym $mod+z mode $displayMode
 mode $displayMode {
     bindsym w exec "\
-            feh -z --bg-fill ~/.dotfiles/wallpaper && \
+            feh --bg-fill ~/.dotfiles/wallpaper/wallpaper.png && \
                  ~/.screenlayout/work.sh && \
                  ~/.config/polybar/launch.sh"; \
                 mode "default"
     bindsym h exec "\
-            feh -z --bg-fill ~/.dotfiles/wallpaper && \
+            feh -z --bg-fill ~/.dotfiles/wallpaper/wallpaper.png && \
                  ~/.screenlayout/home.sh && \
                  ~/.config/polybar/launch.sh"; \
                 mode "default"
