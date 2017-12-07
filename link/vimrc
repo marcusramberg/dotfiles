@@ -258,8 +258,8 @@ let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
 function! SetRgOptions()
   let g:syntastic_enable_perl_checker = 1
-  setlocal tabstop=2 shiftwidth=2
-  let g:syntastic_perl_lib_path = [ "./lib", "./lib/auto", "/home/marcus/Source/_rg/libraries/lib" ]
+  setlocal tabstop=4 shiftwidth=4
+  let g:syntastic_perl_lib_path = [ "./lib", "./lib/auto", "/home/marcus/Source/_rg/libraries/lib", "/home/marcus/Source/_rg/core/lib" ]
   let g:syntastic_perl_args_after = '--quiet --nocolor --verbose "\%s:\%f:\%l:\%c:(\%s) \%m (\%e)\n" -p ~/Source/_rg/libraries/.perlcriticrc'
   let g:syntastic_perl_checkers = ['perl','perlcritic']
 endfunction
