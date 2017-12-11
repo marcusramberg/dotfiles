@@ -92,6 +92,6 @@ bind r:${hyper} relaunch
 bind 1:${hyper} focus 'iTerm2'
 bind 2:${hyper} focus ${browser}
 bind 3:${hyper} focus 'Slack'
-bind 4:${hyper} focus 'Finder'
+bind 4:${hyper} focus 'Telegram'
 
 bind tab:cmd switch

@@ -38,3 +38,5 @@ alias update-perl6='
     make;
     make test;
     make install'
+export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
+export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
