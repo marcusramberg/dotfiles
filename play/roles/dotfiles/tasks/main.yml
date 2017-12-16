@@ -1,6 +1,8 @@
 ---
 - include: debianish.yml
   when: ansible_pkg_mgr == 'apt'
+- include: archish.yml
+  when: ansible_pkg_mgr == 'pacman'
 - include: redhatish.yml
   when: ansible_pkg_mgr == 'yum'
 - include: osx.yml
@@ -14,7 +16,7 @@
 - name: remove existing files.
   stat: path=~/.{{ item|basename }}
   register: result
-  with_lines: ls ~/.dotfiles/link 
+  with_lines: ls ~/.dotfiles/link
 
 
 - shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/.{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
@@ -24,7 +26,7 @@
 - name: Copy files
   copy:  src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
   with_lines: ls ~/.dotfiles/copy
-    
+
 - name: Link files
   file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
   with_lines: ls ~/.dotfiles/link
@@ -35,10 +37,3 @@
     - ~/.dotfiles/link/ssh
     - ~/.dotfiles/link
     - ~/.dotfiles
-
-- name: Build YouCompleteMe
-  shell: ./install.sh
-  args:
-    chdir: ~/.dotfiles/link/vim/bundle/YouCompleteMe
-    creates: ~/.dotfiles/link/vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
-

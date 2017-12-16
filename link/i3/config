@@ -24,12 +24,13 @@ workspace_layout tabbed
 
 # start a terminal
 #bindsym $mod+Return exec termite -d $(xcwd)
-bindsym $mod+Return exec kitty -d $(xcwd)
+#bindsym $mod+Return exec kitty -d $(xcwd)
+bindsym $mod+Return exec xfce4-terminal --working-directory $(xcwd)
 
 # kill focused window
 bindsym $mod+shift+q kill
 
-bindsym $mod+shift+x exec --no-startup-id "i3lock ~/.dotfiles/wallpaper/wallpaper.png"
+bindsym $mod+shift+x exec --no-startup-id "~/.i3/lock.sh -l dim"
 bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
 
 # start dmenu (a program launcher)

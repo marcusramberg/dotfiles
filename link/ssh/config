@@ -522,4 +522,28 @@ Host gke-rg-default-pool-46c3be0d-xh08.europe-west1-c.rg-prod
     IdentitiesOnly=yes
     CheckHostIP=no
 
+Host gke-prime-default-pool-56f694e6-20c1.europe-west1-d.rg-prod
+    HostName 35.205.196.110
+    IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
+    UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
+    HostKeyAlias=compute.2653300896406427566
+    IdentitiesOnly=yes
+    CheckHostIP=no
+
+Host gke-prime-default-pool-56f694e6-c0ls.europe-west1-d.rg-prod
+    HostName 35.205.183.90
+    IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
+    UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
+    HostKeyAlias=compute.6215969426555525037
+    IdentitiesOnly=yes
+    CheckHostIP=no
+
+Host gke-prime-default-pool-56f694e6-k2cn.europe-west1-d.rg-prod
+    HostName 35.187.93.254
+    IdentityFile /home/marcus/.dotfiles/link/ssh/google_compute_engine
+    UserKnownHostsFile=/home/marcus/.dotfiles/link/ssh/google_compute_known_hosts
+    HostKeyAlias=compute.2495652781776951214
+    IdentitiesOnly=yes
+    CheckHostIP=no
+
 # End of Google Compute Engine Section

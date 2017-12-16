@@ -5,4 +5,4 @@ if [ $(echo "$cur < 0.1" | bc) -eq 1 ]
 then 
   cur=0.1
 fi
-xrandr --output eDP-1 --brightness $cur
+xrandr --output eDP --brightness $cur

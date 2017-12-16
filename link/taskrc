@@ -71,3 +71,4 @@ uda.githubnumber.label=Github Issue/PR #
 uda.githubuser.type=string
 uda.githubuser.label=Github User
 # END Bugwarrior UDAs
+context=work
