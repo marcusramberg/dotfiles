@@ -7,7 +7,7 @@ if [[ ! -n "$SSH_TTY" ]]; then
   alias vi='vim'
  type nvim &> /dev/null && alias vim=nvim
 else
-  export EDITOR=$(type vim vi nano pico 2>/dev/null | sed 's/ .*$//;q')
+  export EDITOR=$(type nvim vim vi nano pico 2>/dev/null | sed 's/ .*$//;q')
   alias q="$EDITOR -w -z"
 fi
 
