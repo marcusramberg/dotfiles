@@ -42,11 +42,11 @@
   local = yellow
   remote = green
 [color "diff"]
-	meta = 227
+	meta = white bold
 	frag = magenta bold
 	old = red bold
 	new = green bold
-	commit = 227 bold
+	commit = white bold
 	whitespace = red reverse
 [color "status"]
   added = yellow

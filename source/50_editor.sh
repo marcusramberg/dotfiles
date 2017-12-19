@@ -1,9 +1,9 @@
 # Editing
 
 if [[ ! -n "$SSH_TTY" ]]; then
-  export EDITOR='vim'
-  export LESSEDIT='vim %f'
-  alias q='vim'
+  export EDITOR='nvim'
+  export LESSEDIT='nvim %f'
+  alias q='nvim'
   alias vi='vim'
  type nvim &> /dev/null && alias vim=nvim
 else
