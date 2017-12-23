@@ -3,6 +3,9 @@ set nocompatible
 filetype off
 
 call plug#begin()
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
 Plug 'tbabej/taskwiki'
 Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-fugitive'
@@ -11,7 +14,7 @@ Plug 'int3/vim-extradite'
 Plug 'DavidEGx/ctrlp-smarttabs'
 Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'benmills/vimux'
@@ -22,7 +25,7 @@ Plug 'c9s/perlomni.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'csexton/jekyll.vim'
 Plug 'elzr/vim-json'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'fgsch/vim-varnish'
 Plug 'glench/Vim-Jinja2-Syntax'
 Plug 'gmarik/vundle'
@@ -135,7 +138,16 @@ let g:pymode_folding = 0
 
 let g:jekyll_path = "~/Source/blog"
 let g:deoplete#enable_at_startup = 1
-let g:SuperTabDefaultCompletionType = "context"
+
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
 let mojo_highlight_data = 1
 let g:ale_linters = { 'perl': ['perl'], 'javascript': ['eslint'] }
 let g:ale_sign_warning = '⊙'

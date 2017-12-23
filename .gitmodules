@@ -40,3 +40,6 @@
 [submodule "conf/zsh/themes/powerlevel9k"]
 	path = conf/zsh/themes/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
+[submodule "libs/zplug"]
+	path = libs/zplug
+	url = https://github.com/zplug/zplug

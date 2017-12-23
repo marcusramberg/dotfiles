@@ -1,62 +1,33 @@
+
+
+#
+# User configuration sourced by interactive shells
+#
 export PATH=~/.dotfiles/bin:~/.local/bin:$PATH
+
+export ZPLUG_HOME=/home/marcus/.dotfiles/libs/zplug
+
+source "${ZPLUG_HOME}/init.zsh"
+
+zplug "plugins/z", from:oh-my-zsh
+zplug "plugins/cpanm", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/git-extras", from:oh-my-zsh
+zplug "plugins/git-hub", from:oh-my-zsh
+zplug "plugins/postgres", from:oh-my-zsh
+zplug "plugins/ssh-agent", from:oh-my-zsh
+zplug "plugins/vundle", from:oh-my-zsh
+#zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/autoenv", from:oh-my-zsh
+zplug mafredri/zsh-async
+zplug sindresorhus/pure
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "b4b4r07/zsh-vimode-visual", defer:3
+zplug load
+
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/libs/oh-my-zsh
-ZSH_CUSTOM=$HOME/.dotfiles/conf/zsh
 
-# Set name of the theme to load.
-DEFAULT_USER='marcus'
-
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{8FBCBB}%F{white}"
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{67} \uf120%F{white} "
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{4}\u256D\u2500%F{white}"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{4}\u2570\uf460%F{white} "
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable_joined host)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time
-                                    vcs background_jobs_joined time_joined)
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="clear"
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="clear"
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="yellow"
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="yellow"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="04"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="blue"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="clear"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="red"
-POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="white"
-POWERLEVEL9K_STATUS_OK_BACKGROUND="clear"
-POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="clear"
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="2"
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="clear"
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="4"
-POWERLEVEL9K_IP_INTERFACE="wlp4s0"
-POWERLEVEL9K_TIME_BACKGROUND="clear"
-POWERLEVEL9K_TIME_FOREGROUND="cyan"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='clear'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='magenta'
-POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='clear'
-POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
-POWERLEVEL9K_HOST_LOCAL_BACKGROUND='clear'
-POWERLEVEL9K_HOST_LOCAL_FOREGROUND='2'
-POWERLEVEL9K_HOST_REMOTE_BACKGROUND='clear'
-POWERLEVEL9K_HOST_REMOTE_FOREGROUND='6'
-
-
+PURE_PROMPT_SYMBOL="$"
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
 
@@ -67,16 +38,15 @@ DISABLE_UPDATE_PROMPT="true"
 
 KEYTIMEOUT=1
 
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-autosuggestions z brew cpanm docker git git-extras git-hubflow github gem nvm osx postgres rake rbenv tmux ssh-agent tmuxinator vundle vi-mode autoenv)
 
-source $ZSH/oh-my-zsh.sh
-
-#fpath=( "$HOME/.dotfiles/libs/pure-zsh" $fpath )
-#autoload -U promptinit && promptinit
-#prompt pure
 
 # ssh agent config
 
@@ -102,10 +72,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey  "^[[A" up-line-or-beginning-search # Up
 bindkey  "^[[B" down-line-or-beginning-search # Down
-
-
-
-
 
 # Source all files in ~/.dotfiles/source/
 function src() {
