@@ -336,7 +336,9 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"
+filetype plugin indent on
+autocmd FileType yaml setl indentkeys-=<:>
+
 " Fix parens match to look correctly.
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#5e5855 guifg=NONE
 
@@ -353,3 +355,5 @@ tnoremap <Leader><Esc> <C-\><C-n>
 
 auto BufEnter * :set title
 set guioptions=
+"let g:multi_cursor_exit_from_visual_mode=0
+"let g:multi_cursor_exit_from_insert_mode=0

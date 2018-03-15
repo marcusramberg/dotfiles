@@ -121,3 +121,5 @@
 	markEmptyLines = false
 [log]
 	follow = true
+[merge]
+	conflictstyle = diff3

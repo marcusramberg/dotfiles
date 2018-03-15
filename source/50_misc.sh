@@ -42,3 +42,4 @@ function fuckup() {
     echo "┬─┬﻿ ︵ /(.□. \）"; echo
   fi
 }
+function tap() { task add project:"$@" }

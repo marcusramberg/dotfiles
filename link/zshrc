@@ -9,18 +9,10 @@ export ZPLUG_HOME=/home/marcus/.dotfiles/libs/zplug
 
 source "${ZPLUG_HOME}/init.zsh"
 
-zplug "plugins/z", from:oh-my-zsh
-zplug "plugins/cpanm", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/git-extras", from:oh-my-zsh
-zplug "plugins/git-hub", from:oh-my-zsh
-zplug "plugins/postgres", from:oh-my-zsh
-zplug "plugins/ssh-agent", from:oh-my-zsh
-zplug "plugins/vundle", from:oh-my-zsh
-#zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "plugins/autoenv", from:oh-my-zsh
+zplug bobsoppe/zsh-ssh-agent
 zplug mafredri/zsh-async
-zplug sindresorhus/pure
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug load
@@ -38,6 +30,8 @@ DISABLE_UPDATE_PROMPT="true"
 
 KEYTIMEOUT=1
 
+setopt inc_append_history
+setopt share_history
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
@@ -116,7 +110,7 @@ export TERM="xterm-256color"
 #source /usr/share/fzf/key-bindings.zsh
 #source /usr/share/fzf/completion.zsh
 #export FZF_DEFAULT_COMMAND="pt -g=."
-export DRONE_SERVER="https://drone.r12.no"
+#export DRONE_SERVER="https://drone.r12.no"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /Users/marcus/Downloads/google-cloud-sdk/path.zsh.inc ]; then
@@ -131,7 +125,12 @@ fi
 
 # And kubectl command completion.
 source <(kubectl completion zsh)
-source <(gopass completion zsh)
+#source <(gopass completion zsh)
+echo "moo"
 
 [[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose
 export PATH=/usr/share/perl6/vendor/bin/:$PATH
+source /usr/share/autoenv/activate.sh
+# Add these two lines to your shell startup script:
+export RG_HOME=/home/marcus/Source/_rg
+source $RG_HOME/core/dev/rg.sh
