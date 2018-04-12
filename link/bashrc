@@ -1,6 +1,7 @@
 # Add binaries into the path
 PATH=~/.dotfiles/bin:$PATH
 export PATH
+set -o vi
 
 # Source all files in ~/.dotfiles/source/
 function src() {

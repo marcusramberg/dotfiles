@@ -133,4 +133,4 @@ export PATH=/usr/share/perl6/vendor/bin/:$PATH
 source /usr/share/autoenv/activate.sh
 # Add these two lines to your shell startup script:
 export RG_HOME=$HOME/Source/_rg
-source $RG_HOME/core/dev/rg.sh
+#source $RG_HOME/core/dev/rg.sh

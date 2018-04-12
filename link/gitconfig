@@ -5,7 +5,7 @@
 # Also search in this file for FIXME- you'll want to well, fix them.
 
 [hub]
-  protocol = https
+	protocol = ssh
 [user]
   name = Marcus Ramberg
   email = marcus.ramberg@gmail.com
