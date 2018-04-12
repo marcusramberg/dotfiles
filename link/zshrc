@@ -5,7 +5,7 @@
 #
 export PATH=~/.dotfiles/bin:~/.local/bin:$PATH
 
-export ZPLUG_HOME=/home/marcus/.dotfiles/libs/zplug
+export ZPLUG_HOME=$HOME/.dotfiles/libs/zplug
 
 source "${ZPLUG_HOME}/init.zsh"
 
@@ -132,5 +132,5 @@ echo "moo"
 export PATH=/usr/share/perl6/vendor/bin/:$PATH
 source /usr/share/autoenv/activate.sh
 # Add these two lines to your shell startup script:
-export RG_HOME=/home/marcus/Source/_rg
+export RG_HOME=$HOME/Source/_rg
 source $RG_HOME/core/dev/rg.sh
