@@ -30,7 +30,8 @@ bindsym $mod+Return exec xfce4-terminal --working-directory $(xcwd)
 # kill focused window
 bindsym $mod+shift+q kill
 
-bindsym $mod+shift+x exec --no-startup-id "~/.i3/lock.sh -l dim"
+#bindsym $mod+shift+x exec --no-startup-id "~/.i3/lock.sh -l dim"
+bindsym $mod+shift+x exec --no-startup-id "i3lock -c 000000"
 bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
 
 # start dmenu (a program launcher)
@@ -46,7 +47,7 @@ bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
  bindsym $mod+space exec kupfer
 
  # --force-device-scale-factor=1.6"
-bindsym $mod+G exec --no-startup-id "vivaldi-stable"
+bindsym $mod+G exec --no-startup-id "google-chrome"
 
 bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
 bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"
@@ -177,7 +178,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # screenshot
-bindsym --release Print exec scrot $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
+bindsym --release $mod+. exec scrot $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
 bindsym --release Shift+Print exec scrot -s $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
 bindsym $mod+p exec gnome-screenshot -i
 
@@ -224,8 +225,11 @@ exec --no-startup-id zeal
 exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.dotfiles/bin/hotplug_monitor.sh
 
-exec --no-startup-id ~/.dotfiles/bin/startup-x11
+exec --no-startup-id /bin/bash -c ~/.dotfiles/bin/startup-x11
 exec --no-startup-id xset r rate 280 35
+
+#exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
+
 
 
 # Make the currently focused window a scratchpad
