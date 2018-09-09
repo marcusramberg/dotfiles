@@ -54,7 +54,7 @@
   untracked = cyan
 [core]
   whitespace = trailing-space,space-before-tab
-  excludesfile = /home/marcus/.gitignore_global
+  excludesfile = /Users/marcus/.gitignore_global
 	pager = diff-so-fancy | less --tabs=2 -RFX
 [apply]
   whitespace = nowarn
@@ -69,7 +69,7 @@
 [help]
   autocorrect = 5
 [push]
-  default = simple
+	default = current
 [rerere]
   enabled = true
 [url "git@git.nordaaker.com:"]
@@ -103,8 +103,9 @@
 [ghi]
 	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
 [pull]
 	rebase = true

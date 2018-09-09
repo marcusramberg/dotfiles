@@ -126,11 +126,17 @@ fi
 # And kubectl command completion.
 source <(kubectl completion zsh)
 #source <(gopass completion zsh)
-echo "moo"
 
 [[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose
 export PATH=/usr/share/perl6/vendor/bin/:$PATH
-source /usr/share/autoenv/activate.sh
+[[ -f /usr/share/autoenv/activate.sh ]] && /usr/share/autoenv/activate.sh
+[[ -f /usr/local/Cellar/autoenv/0.2.1/activate.sh ]] && source /usr/local/Cellar/autoenv/0.2.1/activate.sh
 # Add these two lines to your shell startup script:
 export RG_HOME=$HOME/Source/_rg
 #source $RG_HOME/core/dev/rg.sh
+
+export GITHUB_USERNAME=marcusramberg
+# start in normal mode
+#
+export GPG_TTY=$(tty)
+

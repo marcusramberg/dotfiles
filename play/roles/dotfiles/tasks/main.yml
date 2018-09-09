@@ -14,7 +14,7 @@
     - init/*
 
 - name: remove existing files.
-  stat: path=~/.{{ item|basename }}
+  stat: path="~/.{{ item|basename }}"
   register: result
   with_lines: ls ~/.dotfiles/link
 

@@ -101,5 +101,5 @@ export RG_CHECKOUT=~/Source/_rg
 alias ts="prove --state=slow,save -j3 -r"
 alias tf="prove --state=failed,save -v -r"
 alias sa="sudo ansible-playbook"
-alias ag='rg --column --no-heading'
+alias ag='rg -S --column --no-heading -M 400'
 alias gpa="ls | xargs -P10 -I{} git -C {} pull"

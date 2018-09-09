@@ -20,7 +20,7 @@ data.location=~/.task
 #include /usr/share/doc/task/rc/dark-256.theme
 #include /usr/share/doc/task/rc/dark-red-256.theme
 #include /usr/share/doc/task/rc/dark-green-256.theme
-include /usr/share/doc/task/rc/dark-blue-256.theme
+include /usr/local/share/doc/task/rc/dark-blue-256.theme
 #include /usr/share/doc/task/rc/dark-violets-256.theme
 #include /usr/share/doc/task/rc/dark-yellow-green.theme
 #include /usr/share/doc/task/rc/dark-gray-256.theme
@@ -29,9 +29,9 @@ include /usr/share/doc/task/rc/dark-blue-256.theme
 #include /usr/share/doc/task/rc/solarized-light-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
-taskd.certificate=/home/marcus/.taskwarrior/private.certificate.pem
-taskd.key=/home/marcus/.taskwarrior/private.key.pem
-taskd.ca=/home/marcus/.taskwarrior/ca.cert.pem
+taskd.certificate=/Users/marcus/.taskwarrior/private.certificate.pem
+taskd.key=/Users/marcus/.taskwarrior/private.key.pem
+taskd.ca=/Users/marcus/.taskwarrior/ca.cert.pem
 taskd.server=taskwarrior.inthe.am:53589
 taskd.credentials=inthe_am/marcus.ramberg/7db850d1-dfd6-4d30-b6f8-5628f543f1ad
 taskd.trust=ignore hostname
@@ -71,4 +71,4 @@ uda.githubnumber.label=Github Issue/PR #
 uda.githubuser.type=string
 uda.githubuser.label=Github User
 # END Bugwarrior UDAs
-context=work
+context=home

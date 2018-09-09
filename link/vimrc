@@ -6,6 +6,7 @@ call plug#begin()
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
+Plug 'adelarsq/vim-matchit'
 Plug 'tbabej/taskwiki'
 Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-fugitive'
@@ -71,6 +72,9 @@ Plug 'w0rp/ale'
 Plug 'yko/mojo.vim'
 Plug 'zah/nimrod.vim'
 
+:let mapleader = "\<Space>"
+
+
 call plug#end()
 
 let g:nord_italic_comments = 1
@@ -103,6 +107,7 @@ set clipboard=unnamed
 set mousehide
 set number
 set pastetoggle=<leader>v
+
 " These cause extreme slowness
 "set relativenumber
 "set cursorline
@@ -355,5 +360,4 @@ tnoremap <Leader><Esc> <C-\><C-n>
 
 auto BufEnter * :set title
 set guioptions=
-"let g:multi_cursor_exit_from_visual_mode=0
-"let g:multi_cursor_exit_from_insert_mode=0
+
