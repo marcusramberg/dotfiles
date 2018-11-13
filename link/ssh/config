@@ -10,6 +10,12 @@ Host tv
   HostName gw.means.no
   User tv
 
+Host zigbee
+  ForwardX11 yes
+  User pi
+  Hostname zigbee.lan
+
+
 Host mhome
   ForwardAgent yes
   Hostname mhome.local

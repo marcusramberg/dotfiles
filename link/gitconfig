@@ -10,6 +10,7 @@
   name = Marcus Ramberg
   email = marcus.ramberg@gmail.com
 [alias]
+  patch = --no-pager diff --no-color
   promote = !$ZSH/bin/git-promote
   wtf     = !$ZSH/bin/git-wtf
   rank-contributers = !$ZSH/bin/git-rank-contributers
@@ -103,10 +104,10 @@
 [ghi]
 	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
 [filter "lfs"]
+	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-	required = true
 [pull]
 	rebase = true
 [credential]
