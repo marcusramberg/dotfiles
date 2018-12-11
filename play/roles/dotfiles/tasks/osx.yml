@@ -1,15 +1,14 @@
 ---
 - command: xcode-select -print-path
   register: xcode_path
-  always_run: true
+  check_mode: no
   changed_when: false
 #  - command: xcode-select -switch /Applications/XCode.app/Contents/Developer
 #   when: changed_when.stdout
 
 - name: Check for existing files
   stat: path="~/Library/Preferences/{{item|basename }}"
-  changed_when: false
-  always_run: true
+  check_mode: no
   register: result
   with_lines: ls ~/.dotfiles/prefs
 

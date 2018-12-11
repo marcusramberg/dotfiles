@@ -1,11 +1,11 @@
 # Editing
 
+alias q='nvim'
+alias vi='vim'
+type nvim &> /dev/null && alias vim=nvim
 if [[ ! -n "$SSH_TTY" ]]; then
   export EDITOR='nvim'
   export LESSEDIT='nvim %f'
-  alias q='nvim'
-  alias vi='vim'
- type nvim &> /dev/null && alias vim=nvim
 else
   export EDITOR=$(type nvim vim vi nano pico 2>/dev/null | sed 's/ .*$//;q')
   alias q="$EDITOR -w -z"

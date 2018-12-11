@@ -129,7 +129,7 @@ source <(kubectl completion zsh)
 
 [[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose
 export PATH=/usr/share/perl6/vendor/bin/:$PATH
-[[ -f /usr/share/autoenv/activate.sh ]] && /usr/share/autoenv/activate.sh
+[[ -f /usr/share/autoenv/activate.sh ]] && source /usr/share/autoenv/activate.sh
 [[ -f /usr/local/Cellar/autoenv/0.2.1/activate.sh ]] && source /usr/local/Cellar/autoenv/0.2.1/activate.sh
 # Add these two lines to your shell startup script:
 export RG_HOME=$HOME/Source/_rg

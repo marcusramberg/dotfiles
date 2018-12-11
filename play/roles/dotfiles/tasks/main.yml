@@ -1,11 +1,11 @@
 ---
-- include: debianish.yml
+- include_tasks: debianish.yml
   when: ansible_pkg_mgr == 'apt'
-- include: archish.yml
+- include_tasks: archish.yml
   when: ansible_pkg_mgr == 'pacman'
-- include: redhatish.yml
+- include_tasks: redhatish.yml
   when: ansible_pkg_mgr == 'yum'
-- include: osx.yml
+- include_tasks: osx.yml
   when: ansible_os_family == 'Darwin'
 
 - name: Setup dev scripts
@@ -20,7 +20,7 @@
 
 
 - shell: "mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/.{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/"
-  when: item.stat.exists is defined and item.stat.exists ==true and item.stat.islnk is not defined or item.stat.islnk==false
+  when: "item.stat.islnk is defined and item.stat.islnk==false"
   with_items: "{{result.results}}"
 
 - name: Copy files
@@ -39,4 +39,5 @@
     - ~/.dotfiles
 
 - shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  creates: ~/.vim/autoload/plug.vim
+  args:
+    creates: ~/.vim/autoload/plug.vim
