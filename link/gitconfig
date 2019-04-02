@@ -7,8 +7,8 @@
 [hub]
 	protocol = ssh
 [user]
-  name = Marcus Ramberg
-  email = marcus.ramberg@gmail.com
+	name = Marcus Ramberg
+	email = marcus.ramberg@gmail.com
 [alias]
   patch = --no-pager diff --no-color
   promote = !$ZSH/bin/git-promote

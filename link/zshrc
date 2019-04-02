@@ -140,3 +140,7 @@ export GITHUB_USERNAME=marcusramberg
 #
 export GPG_TTY=$(tty)
 
+[[ -f ~/.nix-profile/etc/profile.d/nix.sh ]] && . ~/.nix-profile/etc/profile.d/nix.sh
+autoload -U zmv
+alias mmv="noglob zmv -W"
+export TABLE_TERM_SIZE=150
