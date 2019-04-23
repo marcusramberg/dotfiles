@@ -41,3 +41,5 @@ alias update-perl6='
     make install'
 export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
 export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
+
+complete -C /usr/local/bin/terraform terraform

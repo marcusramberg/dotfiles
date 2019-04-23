@@ -144,3 +144,6 @@ export GPG_TTY=$(tty)
 autoload -U zmv
 alias mmv="noglob zmv -W"
 export TABLE_TERM_SIZE=150
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
