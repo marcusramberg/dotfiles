@@ -9,9 +9,14 @@ export ZPLUG_HOME=$HOME/.dotfiles/libs/zplug
 
 source "${ZPLUG_HOME}/init.zsh"
 
+# Pure power
+source ~/.purepower
+[[ $TERM == xterm* ]] || : ${PURE_POWER_MODE:=portable}
+
 zplug bobsoppe/zsh-ssh-agent
 zplug mafredri/zsh-async
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+#zplug "romkatv/powerlevel10k.git" use:, from:github, as:theme
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "b4b4r07/zsh-vimode-visual", defer:3

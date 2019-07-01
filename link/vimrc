@@ -6,28 +6,55 @@ call plug#begin()
 " (Optional) Multi-entry selection UI.
 "Plug 'junegunn/fzf'
 
-"Plug 'adelarsq/vim-matchit'
+" Syntax
+Plug 'sheerun/vim-polyglot'
+Plug 'burner/vim-svelte'
+Plug 'elzr/vim-json'
+Plug 'w0rp/ale'
+"Plug 'klen/python-mode'
+"Plug 'glench/Vim-Jinja2-Syntax'
+
+" Search/replace
+Plug 'Olical/vim-enmasse'
+Plug 'jremmen/vim-ripgrep'
+
+" Extend editing
+Plug 'adelarsq/vim-matchit'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+
+" Apps
 "Plug 'tbabej/taskwiki'
-"Plug 'idanarye/vim-merginal'
+
+" Version Control
 "Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-rhubarb'
+"Plug 'idanarye/vim-merginal'
 "Plug 'int3/vim-extradite'
+"Plug 'tpope/vim-rhubarb'
+
+" Navigation
+Plug 'kien/ctrlp.vim'
 Plug 'DavidEGx/ctrlp-smarttabs'
 Plug 'JazzCore/ctrlp-cmatcher'
-"Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'bogado/file-line'
+
+
+"Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+Plug 'c9s/perlomni.vim'
 
-Plug 'airblade/vim-gitgutter'
-Plug 'arcticicestudio/nord-vim'
+" Styling
+Plug 'airblade/vim-gitgutter'"
+Plug 'Lokaltog/vim-monotone'
 Plug 'bling/vim-airline'
-"Plug 'bogado/file-line'
+Plug 'majutsushi/tagbar'
+Plug 'arcticicestudio/nord-vim'
+
+"Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'bronson/vim-trailing-whitespace'
-"Plug 'c9s/perlomni.vim'
 "Plug 'christoomey/vim-tmux-navigator'
-"Plug 'elzr/vim-json'
 "Plug 'ervandew/supertab'
-"Plug 'glench/Vim-Jinja2-Syntax'
 "Plug 'gmarik/vundle'
 "Plug 'godlygeek/tabular'
 "Plug 'hokaccha/vim-prove'
@@ -36,35 +63,26 @@ Plug 'bling/vim-airline'
 "Plug 'janko-m/vim-test'
 "Plug 'joshukraine/yankmatches'
 "Plug 'junegunn/goyo.vim'
-Plug 'kien/ctrlp.vim'
-"Plug 'klen/python-mode'
 "Plug 'lambdalisue/gina.vim'
 "Plug 'madzak/vim-proselint'
-Plug 'majutsushi/tagbar'
 "Plug 'marcusramberg/codi.vim'
 "Plug 'mattn/gist-vim'
 "Plug 'mattn/webapi-vim'
 "Plug 'mileszs/ack.vim'
 "Plug 'othree/eregex.vim'
 "Plug 'rizzatti/funcoo.vim'
-"Plug 'sheerun/vim-polyglot'
 "Plug 'sirVer/ultisnips'
 "Plug 'sunaku/vim-dasht'
-"Plug 'terryma/vim-multiple-cursors'
-"Plug 'tmhedberg/matchit'
 "Plug 'tomtom/tlib_vim'
 "Plug 'tomtom/vimtlib'
 "Plug 'tonchis/vim-to-github'
 "Plug 'tpope/vim-commentary'
 "Plug 'tpope/vim-dispatch'
 "Plug 'tpope/vim-endwise'
-"Plug 'tpope/vim-markdown'
 "Plug 'tpope/vim-rake'
 "Plug 'tpope/vim-repeat'
 "Plug 'tpope/vim-speeddating'
-"Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
-Plug 'w0rp/ale'
 "Plug 'yko/mojo.vim'
 "Plug 'zah/nimrod.vim'
 
@@ -75,7 +93,9 @@ call plug#end()
 
 let g:nord_italic_comments = 1
 
-colorscheme nord
+let g:monotone_color = [200, 25, 90] " Sets theme color to kind of blue
+let g:monotone_secondary_hue_offset = 70 " Offset secondary colors by some degrees
+colorscheme monotone
 
 
 filetype plugin indent on
@@ -182,7 +202,7 @@ if has("autocmd")
 endif
 
 
-:nmap <leader>a :Ack
+:nmap <leader>a :Ack 
 :nmap <leader>c :GCommit<cr>
 :nmap <leader>s :GStatus<cr>
 :nmap <leader>b :Merginal<cr>
@@ -244,7 +264,7 @@ map <space> viw
 
 command! Fuck w !sudo tee % >/dev/null
 
-noremap <leader>A :call AckSearch()<CR>
+noremap <Leader>A :Ack <cword><cr>
 
 function! AckSearch()
   let a:top_level = split(expand("%"), "/")
@@ -355,4 +375,44 @@ tnoremap <Leader><Esc> <C-\><C-n>
 
 auto BufEnter * :set title
 set guioptions=
+
+let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
+let g:tagbar_type_rust = {
+  \ 'ctagsbin' : '~/.nix-profile/bin/ctags',
+  \ 'ctagstype' : 'rust',
+  \ 'kinds' : [
+      \ 'n:modules',
+      \ 's:structures:1',
+      \ 'i:interfaces',
+      \ 'c:implementations',
+      \ 'f:functions:1',
+      \ 'g:enumerations:1',
+      \ 't:type aliases:1:0',
+      \ 'v:constants:1:0',
+      \ 'M:macros:1',
+      \ 'm:fields:1:0',
+      \ 'e:enumariants:1:0',
+      \ 'P:methods:1',
+  \ ],
+  \ 'sro': '::',
+  \ 'kind2scope' : {
+      \ 'n': 'module',
+      \ 's': 'struct',
+      \ 'i': 'interface',
+      \ 'c': 'implementation',
+      \ 'f': 'function',
+      \ 'g': 'enum',
+      \ 't': 'typedef',
+      \ 'v': 'variable',
+      \ 'M': 'macro',
+      \ 'm': 'field',
+      \ 'e': 'enumerator',
+      \ 'P': 'method',
+  \ },
+  \ }
+
+set list          " Display unprintable characters f12 - switches
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
+
+hi Normal guibg=NONE ctermbg=NONE
 
