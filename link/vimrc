@@ -27,10 +27,10 @@ Plug 'tpope/vim-surround'
 "Plug 'tbabej/taskwiki'
 
 " Version Control
-"Plug 'tpope/vim-fugitive'
-"Plug 'idanarye/vim-merginal'
+Plug 'tpope/vim-fugitive'
+Plug 'idanarye/vim-merginal'
 "Plug 'int3/vim-extradite'
-"Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rhubarb'
 
 " Navigation
 Plug 'kien/ctrlp.vim'
@@ -43,6 +43,15 @@ Plug 'bogado/file-line'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'c9s/perlomni.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'natebosch/vim-lsc'
+" Or build from source code
+" Install yarn from https://yarnpkg.com
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+let g:lsc_server_commands = {'java': '/Users/marcus/Source/java-language-server/dist/mac/bin/launcher --quiet'}
+
+
 
 " Styling
 Plug 'airblade/vim-gitgutter'"
@@ -106,6 +115,7 @@ set autoindent
 set autoread
 set background=dark
 set clipboard=unnamed
+set cmdheight=2
 set directory=/tmp
 set expandtab
 set noshowmode
@@ -118,10 +128,12 @@ set incsearch
 set infercase
 set magic
 set mouse=a
-set clipboard=unnamed
 set mousehide
+set nobackup
 set number
 set pastetoggle=<leader>v
+set nowritebackup
+set nowritebackup
 
 " These cause extreme slowness
 "set relativenumber
@@ -129,9 +141,11 @@ set pastetoggle=<leader>v
 set synmaxcol=250
 set shiftwidth=2
 "set showmatch
+set signcolumn=yes
 set softtabstop=2
 "set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set tabstop=2
+set updatetime=300
 set wildmenu
 set wildmode=full
 
@@ -157,16 +171,21 @@ let g:tagbar_foldlevel = 2
 let g:pymode_folding = 0
 
 let g:jekyll_path = "~/Source/blog"
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" backspace
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 let mojo_highlight_data = 1
 let g:ale_linters = { 'perl': ['perl'], 'javascript': ['prettier'] }
@@ -202,7 +221,7 @@ if has("autocmd")
 endif
 
 
-:nmap <leader>a :Ack 
+:nmap <leader>a :Rg
 :nmap <leader>c :GCommit<cr>
 :nmap <leader>s :GStatus<cr>
 :nmap <leader>b :Merginal<cr>
@@ -223,7 +242,8 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 let g:ctrlp_switch_buffer = 'Et'
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 let g:ctrlp_working_path_mode = 2
   let g:ctrlp_mruf_relative = 1
 
@@ -264,26 +284,7 @@ map <space> viw
 
 command! Fuck w !sudo tee % >/dev/null
 
-noremap <Leader>A :Ack <cword><cr>
-
-function! AckSearch()
-  let a:top_level = split(expand("%"), "/")
-  let a:query = getline("'<")
-  let a:start = getpos("'<")[2]
-  let a:stop = getpos("'>")[2]
-
-  if a:start == a:stop
-    let a:query = expand("<cword>")
-  else
-    let a:query = a:query[a:start - 1: a:stop - 1]
-  endif
-
-  call ack#Ack("grep!", a:query . " " . a:top_level[0])
-endfunction
-
-if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading'
-endif
+noremap <Leader>A :Rg <cword><cr>
 
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
