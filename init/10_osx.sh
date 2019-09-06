@@ -15,7 +15,3 @@ if [[ ! -d "$('xcode-select' -print-path 2>/dev/null)" ]]; then
   sudo xcode-select -switch /usr/bin
 fi
 
-if [[ ! "$(type -P gcc-4.2)" ]]; then
-  e_header "Installing Homebrew dupe recipe: apple-gcc42"
-  brew install https://raw.github.com/Homebrew/homebrew-dupes/master/apple-gcc42.rb
-fi

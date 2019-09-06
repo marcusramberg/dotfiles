@@ -14,7 +14,7 @@
 
 - name: Remove found files
   shell:  mkdir -p ~/.dotfiles/backups/{{ ansible_date_time.date}} && mv ~/Library/Preferences/{{ item.item|basename }} ~/.dotfiles/backups/{{ ansible_date_time.date }}/
-  when: item.stat.exists is defined and item.stat.exists ==true and item.stat.islnk is not defined or item.stat.islnk==false
+  when: item.stat.exists is defined and item.stat.exists == true and item.stat.islnk is not defined and item.stat.islnk==false
   with_items: "{{result.results}}"
 
 - name: Link files

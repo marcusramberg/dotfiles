@@ -152,3 +152,8 @@ export TABLE_TERM_SIZE=150
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
+alias gproxy='sudo -E ssh -o ConnectTimeout=60 -f -nNT gitproxy'
+alias gproxy-off='sudo ssh -O exit gitproxy'
+alias gproxy-status='sudo ssh -O check gitproxy'
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
