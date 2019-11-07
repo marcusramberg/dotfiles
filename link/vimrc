@@ -104,7 +104,7 @@ let g:nord_italic_comments = 1
 
 let g:monotone_color = [200, 25, 90] " Sets theme color to kind of blue
 let g:monotone_secondary_hue_offset = 70 " Offset secondary colors by some degrees
-colorscheme monotone
+colorscheme nord
 
 
 filetype plugin indent on
