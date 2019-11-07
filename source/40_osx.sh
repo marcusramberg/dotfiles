@@ -10,7 +10,9 @@ export PATH
 export GOPATH=/Users/marcus/gocode
 export GOROOT=$(echo /usr/local/Cellar/go/*/libexec)
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export JAVA_HOME="$(/usr/libexec/java_home)"
+eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
+
 
 
 # Trim new lines and copy to clipboard

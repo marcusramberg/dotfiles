@@ -188,11 +188,12 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 let mojo_highlight_data = 1
-let g:ale_linters = { 'perl': ['perl'], 'javascript': ['prettier'] }
+let g:ale_linters = { 'perl': ['perl'], 'javascript': ['prettier'],  }
 let g:ale_lint_delay = 2000
 let g:ale_sign_warning = '⊙'
 let g:ale_sign_error = '⊘'
 let g:ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation: { indent-sequences: whatever}}}"'
+let g:ale_linter_aliases = {'yaml': ['cloudformation', 'yaml']}
 
 
 augroup autoSaveAndRead
@@ -288,14 +289,10 @@ noremap <Leader>A :Rg <cword><cr>
 
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
-:autocmd BufRead,BufNewFile /home/marcus/Source/_rg/* call SetRgOptions()
+:autocmd BufRead,BufNewFile /Users/marcus/Source/DNB/* call SetDnbOptions()
 
-function! SetRgOptions()
-  let g:syntastic_enable_perl_checker = 1
+function! SetDnbOptions()
   setlocal tabstop=4 shiftwidth=4
-  let g:syntastic_perl_lib_path = [ "./lib", "./lib/auto", "/home/marcus/Source/_rg/libraries/lib", "/home/marcus/Source/_rg/core/lib" ]
-  let g:syntastic_perl_args_after = '--quiet --nocolor --verbose "\%s:\%f:\%l:\%c:(\%s) \%m (\%e)\n" -p ~/Source/_rg/libraries/.perlcriticrc'
-  let g:syntastic_perl_checkers = ['perl','perlcritic']
 endfunction
 
 "define :Tidy command to run perltidy on visual selection || entire buffer"

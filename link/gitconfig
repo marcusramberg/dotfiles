@@ -8,7 +8,7 @@
 	protocol = ssh
 [user]
 	name = Marcus Ramberg
-	email = marcus.ramberg@gmail.com
+	email = Marcus.Ramberg@dnb.no
 [alias]
   patch = --no-pager diff --no-color
   promote = !$ZSH/bin/git-promote
@@ -55,7 +55,7 @@
   untracked = cyan
 [core]
   whitespace = trailing-space,space-before-tab
-  excludesfile = /Users/marcus/.gitignore_global
+	excludesfile = /Users/marcus/.gitignore_global
 	pager = diff-so-fancy | less --tabs=2 -RFX
 [apply]
   whitespace = nowarn
@@ -80,11 +80,11 @@
 #[credential]
 #  helper =  crossplatform
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [heroku]
   account = nordaaker
 [github]
@@ -125,3 +125,7 @@
 	follow = true
 [merge]
 	conflictstyle = diff3
+[includeIf "gitdir:/Users/marcus/Source/DNB/"]
+  path = .gitconfig-dnb
+[commit]
+	template = /Users/marcus/.stCommitMsg
