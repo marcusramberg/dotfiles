@@ -29,15 +29,14 @@ hs.hotkey.bind(hyper, "f", function()
 end)
 hints.style = "vimperator"
 
-hs.hotkey.bind(hyper,"1", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(1)'") end)
-hs.hotkey.bind(hyper,"2", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(2)'") end)
-hs.hotkey.bind(hyper,"3", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(3)'") end)
-hs.hotkey.bind(hyper,"4", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(4)'") end)
-hs.hotkey.bind(hyper,"5", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(5)'") end)
-hs.hotkey.bind(hyper,"6", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(6)'") end)
-hs.hotkey.bind(hyper,"7", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(7)'") end)
-hs.hotkey.bind(hyper,"8", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(8)'") end)
-hs.hotkey.bind(hyper,"9", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(9)'") end)
+hs.hotkey.bind(hyper,"1", function() MoveWindowToSpace(1) end)
+hs.hotkey.bind(hyper,"2", function() MoveWindowToSpace(2) end)
+hs.hotkey.bind(hyper,"3", function() MoveWindowToSpace(3) end)
+hs.hotkey.bind(hyper,"4", function() MoveWindowToSpace(4) end)
+hs.hotkey.bind(hyper,"5", function() MoveWindowToSpace(5) end)
+hs.hotkey.bind(hyper,"6", function() MoveWindowToSpace(6) end)
+hs.hotkey.bind(hyper,"7", function() MoveWindowToSpace(7) end)
+hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
 
 -- Callback function for application events
 function applicationWatcher(appName, eventType, appObject)
@@ -120,6 +119,14 @@ function ssidChangedCallback()
   if ssid then
     hs.alert.show("Network connected: " .. ssid)
   end
+end
+
+function MoveWindowToSpace(sp)
+    local win = hs.window.focusedWindow()      -- current window
+    local uuid = win:screen():spacesUUID()     -- uuid for current screen
+    local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
+    spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
+    spaces.changeToSpace(spaceID)              -- follow window to new space
 end
 
 

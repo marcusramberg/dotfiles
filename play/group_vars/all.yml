@@ -5,10 +5,8 @@ rbenv:
   ruby_version: 2.1.2
 homebrew_installed_packages:
   - ack
-  - android-sdk
   - ant
   - antiword
-  - apple-gcc42
   - aspell
   - atk
   - autobench
@@ -19,7 +17,6 @@ homebrew_installed_packages:
   - bcrypt
   - beanstalk
   - boost
-  - boot2docker
   - bwm-ng
   - cairo
   - cloc
@@ -30,8 +27,6 @@ homebrew_installed_packages:
   - ctags
   - dialog
   - direnv
-  - dirmngr
-  - docker
   - e2fsprogs
   - ec2-api-tools
   - elasticsearch
@@ -68,7 +63,6 @@ homebrew_installed_packages:
   - go
   - goaccess
   - gobject-introspection
-  - gpg-agent
   - graphicsmagick
   - grc
   - gsl
@@ -88,7 +82,6 @@ homebrew_installed_packages:
   - jpeg
   - jsonpp
   - juju
-  - juju-quickstart
   - lame
   - languagetool
   - legit
@@ -226,7 +219,7 @@ homebrew_installed_packages:
   - v8
   - varnish
   - vifm
-  - vim
+  - neovim
   - watch
   - webkit2png
   - webp
@@ -246,14 +239,11 @@ homebrew_installed_packages:
   - zeromq
   - zsh-lovers
 homebrew_args:
-  macvim: '--overwrite-system-vi'
-  imagemagick: '--with-little-cms'
 
 homebrew_taps:
-    - homebrew/games
-    - homebrew/binary
-    - caskroom/cask
-    - homebrew/dupes
+    - homebrew/cask
+    - homebrew/cask-fonts
+    - adoptopenjdk/openjdk
 homebrew_cask_packages_packages:
   - xquartz
   - alfred
@@ -271,7 +261,6 @@ homebrew_cask_packages_packages:
   - iterm2
   - java
   - karabiner
-  - macvim
   - osxfuse
   - plex-media-server
   - qlcolorcode
