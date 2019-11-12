@@ -15,7 +15,7 @@ local spaces = require("hs._asm.undocumented.spaces")
 hs.hotkey.bind(hyper, "w", function() tiling.cycleLayout()  end)
 hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
 hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
-hs.hotkey.bind(hyper, 'y', hs.toggleConsole)
+hs.hotkey.bind(hyper, 'c', hs.toggleConsole)
 hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.getenv("HOME")}):start() end)
 
 hs.hotkey.bind(hyper, "space", function() tiling.promote() end)
@@ -25,9 +25,9 @@ hs.hotkey.bind(hyper, "right", function() hs.screen:next() end)
 hs.hotkey.bind(hyper, "left", function() hs.screen:next() end)
 hs.hotkey.bind(hyper, "return", function() hs.application.launchOrFocus("iTerm 2") end)
 hs.hotkey.bind(hyper, "f", function()
-      hs.hints.windowHints()
-    end)
- hints.style = "vimperator"
+  hs.hints.windowHints()
+end)
+hints.style = "vimperator"
 
 hs.hotkey.bind(hyper,"1", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(1)'") end)
 hs.hotkey.bind(hyper,"2", function() os.execute("ruby -rtotalspaces2 -e'TotalSpaces2.move_to_space(2)'") end)
@@ -41,12 +41,12 @@ hs.hotkey.bind(hyper,"9", function() os.execute("ruby -rtotalspaces2 -e'TotalSpa
 
 -- Callback function for application events
 function applicationWatcher(appName, eventType, appObject)
-    if (eventType == hs.application.watcher.activated) then
-        if (appName == "Finder") then
-            -- Bring all Finder windows forward when one gets activated
-            appObject:selectMenuItem({"Window", "Bring All to Front"})
-				end
+  if (eventType == hs.application.watcher.activated) then
+    if (appName == "Finder") then
+      -- Bring all Finder windows forward when one gets activated
+      appObject:selectMenuItem({"Window", "Bring All to Front"})
     end
+  end
 end
 appWatcher = hs.application.watcher.new(applicationWatcher):start()
 
@@ -59,13 +59,13 @@ local function newChromeWindow()
   visibleWindows[2]:focus()
 end
 
-hs.hotkey.bind(hyper, "c", newChromeWindow)
+hs.hotkey.bind(hyper, "b", newChromeWindow)
 
 
 hs.notify.new({
-      title='Hammerspoon',
-        informativeText='Config loaded'
-    }):send()
+    title='Hammerspoon',
+    informativeText='Config loaded'
+  }):send()
 
 
 -- Spaces
@@ -97,7 +97,7 @@ local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, functi
   -- left arrow
   if keyCode == 123 then
     nextSpace = currentSpace ~= 1 and currentSpace - 1 or spacesCount
-   -- right arrow
+    -- right arrow
   elseif keyCode == 124 then
     nextSpace = currentSpace ~= spacesCount and currentSpace + 1 or 1
   end
@@ -116,9 +116,27 @@ end)
 
 -- Wifi
 function ssidChangedCallback()
-    local ssid = hs.wifi.currentNetwork()
-    if ssid then
-      hs.alert.show("Network connected: " .. ssid)
-    end
+  local ssid = hs.wifi.currentNetwork()
+  if ssid then
+    hs.alert.show("Network connected: " .. ssid)
+  end
 end
 
+
+hs.hotkey.bind(hyper, 'y', function ()
+  -- Get the focused window, its window frame dimensions, its screen frame dimensions,
+  -- and the next screen's frame dimensions.
+  local focusedWindow = hs.window.focusedWindow()
+  local focusedScreenFrame = focusedWindow:screen():frame()
+  local nextScreenFrame = focusedWindow:screen():next():frame()
+  local windowFrame = focusedWindow:frame()
+
+  -- Calculate the coordinates of the window frame in the next screen and retain aspect ratio
+  windowFrame.x = ((((windowFrame.x - focusedScreenFrame.x) / focusedScreenFrame.w) * nextScreenFrame.w) + nextScreenFrame.x)
+  windowFrame.y = ((((windowFrame.y - focusedScreenFrame.y) / focusedScreenFrame.h) * nextScreenFrame.h) + nextScreenFrame.y)
+  windowFrame.h = ((windowFrame.h / focusedScreenFrame.h) * nextScreenFrame.h)
+  windowFrame.w = ((windowFrame.w / focusedScreenFrame.w) * nextScreenFrame.w)
+
+  -- Set the focused window's new frame dimensions
+  focusedWindow:setFrame(windowFrame)
+end)
