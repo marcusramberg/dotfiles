@@ -1,6 +1,8 @@
+
+hs.window.animationDuration = 0
+
 -- hyper = {"cmd","alt","ctrl"}
 hyper = {"cmd","alt","ctrl","shift"}
-
 
 local ipc = require("hs.ipc")
 local tiling = require "hs.tiling"
@@ -10,8 +12,8 @@ local hints = require "hs.hints"
 local spaces = require("hs._asm.undocumented.spaces")
 
 
-
-
+hs.hotkey.bind(hyper, "[", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
+hs.hotkey.bind(hyper, "]", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
 hs.hotkey.bind(hyper, "w", function() tiling.cycleLayout()  end)
 hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
 hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
@@ -19,7 +21,7 @@ hs.hotkey.bind(hyper, 'c', hs.toggleConsole)
 hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.getenv("HOME")}):start() end)
 
 hs.hotkey.bind(hyper, "space", function() tiling.promote() end)
-hs.hotkey.bind(hyper, "m", function() tiling.goToLayout("fullscreen") end)
+hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 hs.hotkey.bind(hyper, "r", function() hs.reload() end)
 hs.hotkey.bind(hyper, "right", function() hs.screen:next() end)
 hs.hotkey.bind(hyper, "left", function() hs.screen:next() end)
@@ -27,7 +29,6 @@ hs.hotkey.bind(hyper, "return", function() hs.application.launchOrFocus("iTerm 2
 hs.hotkey.bind(hyper, "f", function()
   hs.hints.windowHints()
 end)
-hints.style = "vimperator"
 
 hs.hotkey.bind(hyper,"1", function() MoveWindowToSpace(1) end)
 hs.hotkey.bind(hyper,"2", function() MoveWindowToSpace(2) end)
@@ -147,3 +148,19 @@ hs.hotkey.bind(hyper, 'y', function ()
   -- Set the focused window's new frame dimensions
   focusedWindow:setFrame(windowFrame)
 end)
+
+
+-- This is a function that fetches the current URL from Safari and types it
+hs.hotkey.bind(hyper, 'v', function ()
+    script = [[
+    tell application "Safari"
+        set currentURL to URL of document 1
+    end tell
+    return currentURL
+    ]]
+    ok, result = hs.applescript(script)
+    if (ok) then
+        hs.eventtap.keyStrokes(result)
+    end
+  end)
+
