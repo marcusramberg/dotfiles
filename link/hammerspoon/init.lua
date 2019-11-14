@@ -39,7 +39,34 @@ hs.hotkey.bind(hyper,"6", function() MoveWindowToSpace(6) end)
 hs.hotkey.bind(hyper,"7", function() MoveWindowToSpace(7) end)
 hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
 
+
+
+
+hs.hotkey.bind(hyper, "u", function()
+    local image = hs.pasteboard.readImage()
+
+    if image then
+      local tempfile = "/tmp/tmp.png"
+      image:saveToFile(tempfile)
+      local b64 = hs.execute("base64 -i "..tempfile)
+      b64 = hs.http.encodeForQuery(string.gsub(b64, "\n", ""))
+
+      local url = "https://api.imgur.com/3/upload.json"
+      local headers = {Authorization = "Client-ID ".. hs.settings.get("imgurKey")} -- hs.settings.get("imgurKey")}
+      local payload = "type='base64'&image="..b64
+
+      hs.http.asyncPost(url, payload, headers, function(status, body, headers)
+          print(status, headers, body)
+          if status == 200 then
+            local response = hs.json.decode(body)
+            local imageURL = response.data.link
+            hs.urlevent.openURLWithBundle(imageURL, hs.urlevent.getDefaultHandler("http"))
+          end
+        end)
+    end
+  end)
 -- Callback function for application events
+--
 function applicationWatcher(appName, eventType, appObject)
   if (eventType == hs.application.watcher.activated) then
     if (appName == "Finder") then
@@ -128,6 +155,11 @@ function MoveWindowToSpace(sp)
     local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
     spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
     spaces.changeToSpace(spaceID)              -- follow window to new space
+    hs.notify.new({
+        title='Spaces',
+        informativeText='Window moved to Space #' .. sp
+      }):send()
+
 end
 
 
