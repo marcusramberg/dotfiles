@@ -20,7 +20,7 @@ hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
 hs.hotkey.bind(hyper, 'c', hs.toggleConsole)
 hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.getenv("HOME")}):start() end)
 
-hs.hotkey.bind(hyper, "space", function() tiling.promote() end)
+hs.hotkey.bind(hyper, "\\", function() tiling.promote() end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 hs.hotkey.bind(hyper, "r", function() hs.reload() end)
 hs.hotkey.bind(hyper, "right", function() hs.screen:next() end)
