@@ -1,8 +1,13 @@
-
-hs.window.animationDuration = 0
+require "pomodoor"
+require "usb"
+require "utils"
+require "wifi"
 
 -- hyper = {"cmd","alt","ctrl"}
 hyper = {"cmd","alt","ctrl","shift"}
+
+hs.window.animationDuration = 0
+
 
 local ipc = require("hs.ipc")
 local tiling = require "hs.tiling"
@@ -41,31 +46,12 @@ hs.hotkey.bind(hyper,"7", function() MoveWindowToSpace(7) end)
 hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
 
 
+switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
+-- bind to hotkeys; WARNING: at least one modifier key is required!
+hs.hotkey.bind('alt','tab','Next window',function()switcher_space:next()end)
+hs.hotkey.bind('alt-shift','tab','Prev window',function()switcher_space:previous()end)
 
 
-hs.hotkey.bind(hyper, "u", function()
-    local image = hs.pasteboard.readImage()
-
-    if image then
-      local tempfile = "/tmp/tmp.png"
-      image:saveToFile(tempfile)
-      local b64 = hs.execute("base64 -i "..tempfile)
-      b64 = hs.http.encodeForQuery(string.gsub(b64, "\n", ""))
-
-      local url = "https://api.imgur.com/3/upload.json"
-      local headers = {Authorization = "Client-ID ".. hs.settings.get("imgurKey")} -- hs.settings.get("imgurKey")}
-      local payload = "type='base64'&image="..b64
-
-      hs.http.asyncPost(url, payload, headers, function(status, body, headers)
-          print(status, headers, body)
-          if status == 200 then
-            local response = hs.json.decode(body)
-            local imageURL = response.data.link
-            hs.urlevent.openURLWithBundle(imageURL, hs.urlevent.getDefaultHandler("http"))
-          end
-        end)
-    end
-  end)
 -- Callback function for application events
 --
 function applicationWatcher(appName, eventType, appObject)
@@ -88,12 +74,6 @@ local function newChromeWindow()
 end
 
 -- hs.hotkey.bind(hyper, "b", newChromeWindow)
-
-
-hs.notify.new({
-    title='Hammerspoon',
-    informativeText='Config loaded'
-  }):send()
 
 
 -- Spaces
@@ -142,14 +122,6 @@ hs.hotkey.bind(hyper, "e", function()
   hs.alert.show("Fast space switching enabled: " .. tostring(spacesEventtap:isEnabled()))
 end)
 
--- Wifi
-function ssidChangedCallback()
-  local ssid = hs.wifi.currentNetwork()
-  if ssid then
-    hs.alert.show("Network connected: " .. ssid)
-  end
-end
-
 function MoveWindowToSpace(sp)
     local win = hs.window.focusedWindow()      -- current window
     local uuid = win:screen():spacesUUID()     -- uuid for current screen
@@ -182,20 +154,11 @@ hs.hotkey.bind(hyper, 'y', function ()
   focusedWindow:setFrame(windowFrame)
 end)
 
-
--- This is a function that fetches the current URL from Safari and types it
-hs.hotkey.bind(hyper, 'v', function ()
-    script = [[
-    tell application "Safari"
-        set currentURL to URL of document 1
-    end tell
-    return currentURL
-    ]]
-    ok, result = hs.applescript(script)
-    if (ok) then
-        hs.eventtap.keyStrokes(result)
-    end
-  end)
+-- EOF
+hs.notify.new({
+    title='Hammerspoon',
+    informativeText='Config loaded'
+  }):send()
 
 local anycomplete = require "anycomplete/anycomplete"
 anycomplete.registerDefaultBindings({"cmd", "ctrl", "alt", "shift"}, "G")
