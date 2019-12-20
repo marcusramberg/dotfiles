@@ -23,9 +23,10 @@ hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.gete
 hs.hotkey.bind(hyper, "\\", function() tiling.promote() end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 hs.hotkey.bind(hyper, "r", function() hs.reload() end)
-hs.hotkey.bind(hyper, "right", function() hs.screen:next() end)
-hs.hotkey.bind(hyper, "left", function() hs.screen:next() end)
-hs.hotkey.bind(hyper, "return", function() hs.application.launchOrFocus("iTerm 2") end)
+hs.hotkey.bind(hyper, "h", function() hs.screen:next() end)
+hs.hotkey.bind(hyper, "l", function() hs.screen:next() end)
+hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("iTerm") end)
+hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Vivaldi") end)
 hs.hotkey.bind(hyper, "f", function()
   hs.hints.windowHints()
 end)
@@ -86,7 +87,7 @@ local function newChromeWindow()
   visibleWindows[2]:focus()
 end
 
-hs.hotkey.bind(hyper, "b", newChromeWindow)
+-- hs.hotkey.bind(hyper, "b", newChromeWindow)
 
 
 hs.notify.new({
@@ -196,3 +197,5 @@ hs.hotkey.bind(hyper, 'v', function ()
     end
   end)
 
+local anycomplete = require "anycomplete/anycomplete"
+anycomplete.registerDefaultBindings({"cmd", "ctrl", "alt", "shift"}, "G")
