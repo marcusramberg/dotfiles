@@ -11,7 +11,6 @@ hs.window.animationDuration = 0
 
 
 local ipc = require("hs.ipc")
-local tiling = require "hs.tiling"
 local hotkey = require "hs.hotkey"
 
 

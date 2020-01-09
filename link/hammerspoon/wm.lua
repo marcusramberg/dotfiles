@@ -1,15 +1,17 @@
 hyper = {"cmd","alt","ctrl","shift"}
 local spaces = require("hs._asm.undocumented.spaces")
 local hints = require "hs.hints"
+local tiling = require "hs.tiling"
 
 hs.hotkey.bind(hyper, "[", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
 hs.hotkey.bind(hyper, "]", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
+hs.hotkey.bind(hyper, "'", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left70) end)
+hs.hotkey.bind(hyper, "\\", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 
 hs.hotkey.bind(hyper, "w", function() tiling.cycleLayout()  end)
 hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
 hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
-hs.hotkey.bind(hyper, "\\", function() tiling.promote() end)
 
 hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
 
@@ -20,8 +22,8 @@ hs.hotkey.bind(hyper,"4", function() MoveWindowToSpace(4) end)
 hs.hotkey.bind(hyper,"5", function() MoveWindowToSpace(5) end)
 hs.hotkey.bind(hyper,"6", function() MoveWindowToSpace(6) end)
 hs.hotkey.bind(hyper,"7", function() MoveWindowToSpace(7) end)
-
 hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
+
 hs.hotkey.bind(hyper, "h", function() hs.screen:next() end)
 hs.hotkey.bind(hyper, "l", function() hs.screen:next() end)
 
