@@ -54,7 +54,7 @@ let g:lsc_server_commands = {'java': '/Users/marcus/Source/java-language-server/
 
 
 " Styling
-Plug 'airblade/vim-gitgutter'"
+Plug 'airblade/vim-gitgutter'
 Plug 'Lokaltog/vim-monotone'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
@@ -193,7 +193,6 @@ let g:ale_lint_delay = 2000
 let g:ale_sign_warning = '⊙'
 let g:ale_sign_error = '⊘'
 let g:ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation: { indent-sequences: whatever}}}"'
-let g:ale_linter_aliases = {'yaml': ['cloudformation', 'yaml']}
 
 
 augroup autoSaveAndRead
@@ -290,9 +289,14 @@ noremap <Leader>A :Rg <cword><cr>
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
 :autocmd BufRead,BufNewFile /Users/marcus/Source/DNB/* call SetDnbOptions()
+:autocmd BufRead,BufNewFile /Users/marcus/Source/DNB/infra-templates/* call SetDNBInfraOptions()
 
 function! SetDnbOptions()
   setlocal tabstop=4 shiftwidth=4
+endfunction
+
+function! SetDnbInfraOptions()
+  let g:ale_linter_aliases = {'yaml': ['cloudformation', 'yaml']}
 endfunction
 
 "define :Tidy command to run perltidy on visual selection || entire buffer"

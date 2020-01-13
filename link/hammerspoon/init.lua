@@ -1,19 +1,14 @@
-require "pomodoor"
+require "pomodoro"
 require "usb"
 require "utils"
 require "wifi"
 require "wm"
 
--- hyper = {"cmd","alt","ctrl"}
 hyper = {"cmd","alt","ctrl","shift"}
-
 hs.window.animationDuration = 0
-
 
 local ipc = require("hs.ipc")
 local hotkey = require "hs.hotkey"
-
-
 
 hs.hotkey.bind(hyper, 'c', hs.toggleConsole)
 

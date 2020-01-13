@@ -9,7 +9,7 @@ hs.hotkey.bind(hyper, "'", function() local win = hs.window.focusedWindow(); win
 hs.hotkey.bind(hyper, "\\", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 
-hs.hotkey.bind(hyper, "w", function() tiling.cycleLayout()  end)
+hs.hotkey.bind(hyper, "l", function() tiling.cycleLayout()  end)
 hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
 hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
 
@@ -24,13 +24,13 @@ hs.hotkey.bind(hyper,"6", function() MoveWindowToSpace(6) end)
 hs.hotkey.bind(hyper,"7", function() MoveWindowToSpace(7) end)
 hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
 
-hs.hotkey.bind(hyper, "h", function() hs.screen:next() end)
-hs.hotkey.bind(hyper, "l", function() hs.screen:next() end)
 
+
+hs.window.switcher.ui.fontName = 'Verdana'
 switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
 -- bind to hotkeys; WARNING: at least one modifier key is required!
-hs.hotkey.bind('alt','tab','Next window',function()switcher_space:next()end)
-hs.hotkey.bind('alt-shift','tab','Prev window',function()switcher_space:previous()end)
+hs.hotkey.bind('alt','tab', function()switcher_space:next()end)
+hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
 
 -- Spaces
 local spacesCount = spaces.count()
@@ -108,3 +108,57 @@ hs.hotkey.bind(hyper, 'y', function ()
   -- Set the focused window's new frame dimensions
   focusedWindow:setFrame(windowFrame)
 end)
+
+function setOnSpace(application, sp, layout) 
+  layout = layout or hs.layout.maximized
+  print("Mooving",application, sp, layout)
+  local app = hs.application.open(application, 1, true)
+  if not app then
+    print("Failed to focus", application)
+    return
+  end
+  local win = hs.window.focusedWindow()      -- current window
+  local uuid = win:screen():spacesUUID()     -- uuid for current screen
+  local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
+  spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
+  win:moveToUnit(layout)
+end
+
+hs.application.enableSpotlightForNameSearches(true)
+hs.hotkey.bind(hyper, "w", function() 
+  setOnSpace("Guacamole", 1)
+  setOnSpace("iTerm", 1)
+  setOnSpace("Vivaldi", 2, hs.layout.left70)
+  setOnSpace("Google Chrome", 2, hs.layout.left70)
+  setOnSpace("Workflowy", 2, hs.layout.right30)
+  setOnSpace("IntelliJ IDEA", 3)
+  setOnSpace("Slack", 4, hs.layout.left70)
+  setOnSpace("Telegram", 4, hs.layout.left70)
+  setOnSpace("Microsoft Outlook", 4, hs.layout.left70)
+  setOnSpace("Convos", 4, hs.layout.right30)
+  setOnSpace("Night Owl", 4, hs.layout.right30)
+  setOnSpace("YT Music", 5, hs.layout.right50)
+  hs.notify.new({
+      title='Work',
+      informativeText='Windows Configured'
+    }):send()
+end)
+
+hs.hotkey.bind(hyper, "h", function() 
+  setOnSpace("iTerm", 1)
+  setOnSpace("Vivaldi", 2, hs.layout.left70)
+  setOnSpace("Google Chrome", 2, hs.layout.left70)
+  setOnSpace("Workflowy", 2, hs.layout.right30)
+  setOnSpace("IntelliJ IDEA", 3)
+  setOnSpace("Slack", 4, hs.layout.left70)
+  setOnSpace("Telegram", 4, hs.layout.left70)
+  setOnSpace("Microsoft Outlook", 4, hs.layout.left70)
+  setOnSpace("Convos", 4, hs.layout.right30)
+  setOnSpace("YT Music", 5, hs.layout.right50)
+  setOnSpace("Guacamole", 6)
+  hs.notify.new({
+      title='Home',
+      informativeText='Windows Configured'
+    }):send()
+end)
+
