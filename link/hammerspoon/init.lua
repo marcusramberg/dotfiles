@@ -4,8 +4,15 @@ require "utils"
 require "wifi"
 require "wm"
 
+-- Settings
+--
+
 hyper = {"cmd","alt","ctrl","shift"}
 hs.window.animationDuration = 0
+hs.alert.defaultStyle.strokeColor =  {white = 1, alpha = 0}
+hs.alert.defaultStyle.fillColor =  {white = 0.05, alpha = 0.75}
+hs.alert.defaultStyle.radius =  10
+
 
 local ipc = require("hs.ipc")
 local hotkey = require "hs.hotkey"
@@ -17,7 +24,7 @@ hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.gete
 hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("iTerm") end)
 hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Vivaldi") end)
 
-hs.window.animationDuration = 0.1
+
 
 hs.ipc.cliInstall()
 

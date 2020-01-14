@@ -124,8 +124,8 @@ function pom_enable()
     return
   elseif pom_timer == nil then
     hs.notify.new({
-        title='Pomodoro',
-        informativeText='Pomodoro enabled.'
+        title='Pomodoro started',
+        informativeText='How much can you do in 25 minutes?.'
       }):send()
     pom_create_menu()
     pom_timer = hs.timer.new(1, pom_update_menu)
