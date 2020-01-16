@@ -10,6 +10,3 @@ function path_remove() {
   # output the new array
   echo "${t[*]}"
 }
-
-# Load Ansible from git.
-. ~/.dotfiles/libs/ansible/hacking/env-setup -q

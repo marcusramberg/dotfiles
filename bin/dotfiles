@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo 'Dotfiles - marcusramberg-flavored'
 echo  'Originally based on work by "Cowboy" Ben Alman - http://benalman.com/'
@@ -29,34 +29,16 @@ if [[ ! "$(type -P gcc)" && "$OSTYPE" =~ ^darwin ]]; then
   exit 1
 fi
 
-# It's easiest to get Git via Homebrew, so get that first.
-if [[ "$(type -P brew)" ]]; then
-  if [[ ! "$(type -P brew)" ]]; then
-    e_header "Installing Homebrew"
-    true | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  fi
+
+#  Bootstrap nix, can be used it all my envs
+if [[ ! "$(type -P nix-env)" ]]; then
+  e_header "Installing nix"
+  curl https://nixos.org/nix/install | sh
 fi
+
 # If Git is not installed...
 if [[ ! "$(type -P git)" ]]; then
-  # OSX
-  if [[ "$OSTYPE" =~ ^darwin ]]; then
-    # If Homebrew was installed, install Git.
-    if [[ "$(type -P brew)" ]]; then
-      e_header "Updating Homebrew"
-      brew update
-      e_header "Installing Git"
-      brew install git
-    fi
-  # Ubuntu.
-  elif [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu || "$(cat /etc/issue 2> /dev/null)" =~ Debian ]]; then
-    # Git is fairly easy.
-    e_header "Installing Git"
-    sudo apt-get -qq install git-core
-  # redhat
-  elif [[ -f /etc/redhat-release ]]; then
-    e_header "Installing Git"
-    sudo yum -q -y install git
-  fi
+      nix-env -iA nixpkgs.git
 fi
 
 # If Git isn't installed by now, something exploded. We gots to quit!
@@ -64,12 +46,6 @@ if [[ ! "$(type -P git)" ]]; then
   e_error "Git should be installed. It isn't. Aborting."
   exit 1
 fi
-
-# Ansible is going to need some modules
-if [[ ! "$(type -P pip)" ]]; then
-  sudo easy_install pip
-fi
-sudo pip install -q paramiko PyYAML jinja2 httplib2
 
 
 # Update existing sudo time stamp if set, otherwise do nothing.
@@ -104,6 +80,11 @@ shopt -s nullglob
 # Create caches directory, if it doesn't already exist.
 mkdir -p "$HOME/.dotfiles/caches"
 
+
+# If Git is not installed...
+if [[ ! "$(type -P ansible-playbook)" ]]; then
+      nix-env -iA nixpkgs.ansible
+fi
 
 ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
 

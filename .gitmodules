@@ -22,18 +22,12 @@
 [submodule "link/pentadactyl/plugins/firebug-pentadactyl"]
 	path = link/pentadactyl/plugins/firebug-pentadactyl
   url = https://github.com/maksimr/firebug-pentadactyl.git
-[submodule "libs/ansible"]
-	path = libs/ansible
-	url = https://github.com/ansible/ansible.git
 [submodule "libs/pure"]
 	path = libs/pure
 	url = https://github.com/sindresorhus/pure
 [submodule "link/plenv"]
 	path = link/plenv
 	url = git://github.com/marcusramberg/plenv.git
-[submodule "libs/ansible-venv"]
-	path = libs/ansible-venv
-	url = https://github.com/configuresystems/ansible-venv-bootstrapper.git
 [submodule "conf/zsh/plugins/zsh-autosuggestions"]
 	path = conf/zsh/plugins/zsh-autosuggestions
 	url = git://github.com/zsh-users/zsh-autosuggestions
