@@ -47,7 +47,7 @@ bindsym $mod+ctrl+v exec --no-startup-id "xfce4-popup-clipman"
  bindsym $mod+space exec kupfer
 
  # --force-device-scale-factor=1.6"
-bindsym $mod+G exec --no-startup-id "google-chrome"
+bindsym $mod+G exec --no-startup-id "chromium"
 
 bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/bin/linux/brightness-down"
 bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/bin/linux/brightness-up"

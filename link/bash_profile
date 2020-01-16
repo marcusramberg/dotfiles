@@ -11,3 +11,4 @@ export SDKMAN_DIR="/home/marcus/.sdkman"
 export PATH="$HOME/.cargo/bin:$PATH"
 if [ -e /Users/marcus/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/marcus/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PATH=$PATH:~/.kube/plugins/jordanwilson230
+if [ -e /home/marcus/.nix-profile/etc/profile.d/nix.sh ]; then . /home/marcus/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
