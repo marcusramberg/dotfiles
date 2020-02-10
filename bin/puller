@@ -1,0 +1,56 @@
+#!/bin/bash
+
+current_dir=`pwd`/
+dir=$current_dir
+usage="Usage : `basename $0` [-d dir] [-h] args\nWhere args are directories that you don't whant to pull"
+
+while getopts hd: opt; do
+	case $opt in
+		d)
+			if [ ! -d "$OPTARG" ] ; then
+				echo "$OPTARG is not a directory" >&2
+				exit 1
+			fi
+			dir="$OPTARG"
+			;;
+		h)
+			echo -e $usage
+			exit 0
+			;;
+		\?)
+			echo -e $usage >&2
+			exit 1
+			;;
+	esac
+done
+
+shift `expr $OPTIND - 1`
+
+for PARAM;
+do
+	if [ ! -d "$dir$PARAM/" ] ; then
+		echo "$dir$PARAM/ is not a directory" >&2
+		exit 1
+	fi
+done
+
+for f in `ls $dir`
+do
+	real_f=$dir$f/
+	if [ -d "$real_f" ] ; then
+		count=0
+		for PARAM;
+		do
+			if [ "$real_f" = "$dir$PARAM/" ] ; then
+				count=1
+				break
+			fi
+		done
+		if [ $count -eq 0 -a -e "$real_f/.git/" ] ; then
+			cd $real_f
+			echo -e "Pulling $real_f\n`git pull`"
+			cd $current_dir
+		fi
+	fi
+done
+cd $current_dir
