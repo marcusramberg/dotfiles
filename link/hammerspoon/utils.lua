@@ -28,12 +28,15 @@ end)
 -- This is a function that fetches the current URL from Safari and types it
 hs.hotkey.bind(hyper, 'v', function ()
   script = [[
-    tell application "Safari"
-        set currentURL to URL of document 1
+    tell application "Vivaldi"
+        set currentURL to get URL of active tab of first window
     end tell
     return currentURL
     ]]
+
   ok, result = hs.applescript(script)
+  print(result)
+
   if (ok) then
     hs.eventtap.keyStrokes(result)
   end

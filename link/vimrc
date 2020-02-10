@@ -155,8 +155,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'nord'
 let g:airline#extensions#tagbar#enabled = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
 let g:airline#extensions#tabline#show_buffers = 0
 
 
@@ -289,7 +287,7 @@ noremap <Leader>A :Rg <cword><cr>
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
 :autocmd BufRead,BufNewFile /Users/marcus/Source/DNB/* call SetDnbOptions()
-:autocmd BufRead,BufNewFile /Users/marcus/Source/DNB/infra-templates/* call SetDNBInfraOptions()
+:autocmd BufRead,BufNewFile /Users/marcus/Source/DNB/infra-templates/* call SetDnbInfraOptions()
 
 function! SetDnbOptions()
   setlocal tabstop=4 shiftwidth=4

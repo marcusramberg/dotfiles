@@ -131,7 +131,6 @@ homebrew_installed_packages:
   - mitmproxy
   - mobile-shell
   - mogenerator
-  - mongodb
   - monit
   - mpfr
   - mpssh

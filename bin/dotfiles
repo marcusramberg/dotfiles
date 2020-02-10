@@ -34,6 +34,7 @@ fi
 if [[ ! "$(type -P nix-env)" ]]; then
   e_header "Installing nix"
   curl https://nixos.org/nix/install | sh
+  . /Users/marcus/.nix-profile/etc/profile.d/nix.sh
 fi
 
 # If Git is not installed...
@@ -81,7 +82,7 @@ shopt -s nullglob
 mkdir -p "$HOME/.dotfiles/caches"
 
 
-# If Git is not installed...
+# IfansibleGit is not installed...
 if [[ ! "$(type -P ansible-playbook)" ]]; then
       nix-env -iA nixpkgs.ansible
 fi

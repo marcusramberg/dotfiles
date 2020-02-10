@@ -23,10 +23,11 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- Bundle ID for default URL handler. (Defaults to `"com.apple.Safari"`)
 obj.default_handler = "com.apple.Safari"
 
---- URLDispatcher.decode_slack_redir_urls
+--- URLDispatcher.decode_redir_urls
 --- Variable
---- If true, handle Slack-redir URLs to apply the rule on the destination URL. Defaults to `true`
-obj.decode_slack_redir_urls = true
+--- If true, handle known redir URLs to apply the rule on the destination URL. Defaults to `true`
+--  Currently supports slack and outlook.
+obj.decode_redir_urls = true
 
 --- URLDispatcher.url_patterns
 --- Variable
@@ -60,11 +61,13 @@ end
 function obj:dispatchURL(scheme, host, params, fullUrl)
    local url = fullUrl
    self.logger.df("Dispatching URL '%s'", url)
-   if self.decode_slack_redir_urls then
-      local newUrl = string.match(url, 'https://slack.redir.net/.*url=(.*)')
+   if self.decode_redir_urls then
+     -- https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fbitbucket.tech.dnb.no%2Fprojects%2FSSL%2Frepos%2Fsystemapi-clients%2Fpull-requests%2F162&data=02%7C01%7CMarcus.Ramberg%40dnb.no%7C0cf7fb45000e48e1cdf308d79e659baa%7C4cbfea0ab87247f0b51c1c64953c3f0b%7C0%7C0%7C637152031549587828&sdata=ZkbWCRZYo5Dff2BMvUJbgagzn205n1G1sMpGDDVKKMA%3D&reserved=0
+      local newUrl = string.match(url, 'https://slack.redir.net/.+url=(.+)') or string.match(url, 'https://eur01.safelinks.protection.outlook.com/.+url=(.+)\\%7C')
       if newUrl then
          url = unescape(newUrl)
       end
+      print(url)
    end
    for i,pair in ipairs(self.url_patterns) do
       local p = pair[1]
