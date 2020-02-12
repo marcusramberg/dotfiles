@@ -4,7 +4,7 @@ filetype off
 
 call plug#begin()
 " (Optional) Multi-entry selection UI.
-"Plug 'junegunn/fzf'
+Plug 'junegunn/fzf'
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
@@ -33,9 +33,9 @@ Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-rhubarb'
 
 " Navigation
-Plug 'kien/ctrlp.vim'
-Plug 'DavidEGx/ctrlp-smarttabs'
-Plug 'JazzCore/ctrlp-cmatcher'
+"Plug 'kien/ctrlp.vim'
+"Plug 'DavidEGx/ctrlp-smarttabs'
+"Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'bogado/file-line'
 
 
@@ -230,20 +230,20 @@ nnore <esc><esc> :let @/ = ""<cr>
 
 " Ctrl-p settings
 :nmap <silent> <leader>; :CtrlPMRUFile<cr>
-let g:ctrlp_extensions = ['smarttabs']
-:nmap ; :CtrlPSmartTabs<cr>
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
-let g:ctrlp_open_multiple_files = 'tj'
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
-let g:ctrlp_switch_buffer = 'Et'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"let g:ctrlp_extensions = ['smarttabs']
+":nmap ; :CtrlPSmartTabs<cr>
+"let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
+"let g:ctrlp_open_multiple_files = 'tj'
+"let g:ctrlp_follow_symlinks = 1
+"let g:ctrlp_prompt_mappings = {
+"    \ 'AcceptSelection("e")': ['<c-t>'],
+"    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+"    \ }
+"let g:ctrlp_switch_buffer = 'Et'
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-let g:ctrlp_working_path_mode = 2
-  let g:ctrlp_mruf_relative = 1
+"let g:ctrlp_working_path_mode = 2
+"  let g:ctrlp_mruf_relative = 1
 
 
 
@@ -416,3 +416,4 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars map
 
 hi Normal guibg=NONE ctermbg=NONE
 
+nnoremap <C-p> :FZF<Cr>
