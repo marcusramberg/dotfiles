@@ -11,6 +11,7 @@ link/vim/bundle/
 link/vim/plugged/
 link/vim-mini/bundle/
 link/vim/.netrwhist
+link/config/hub
 *LOCAL*
 *.py[cod]
 *.bak
