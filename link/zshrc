@@ -15,10 +15,6 @@ export ZPLUG_HOME=$HOME/.dotfiles/libs/zplug
 
 source "${ZPLUG_HOME}/init.zsh"
 
-# Pure power
-source ~/.purepower
-[[ $TERM == xterm* ]] || : ${PURE_POWER_MODE:=portable}
-
 zplug bobsoppe/zsh-ssh-agent
 zplug mafredri/zsh-async
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
@@ -28,9 +24,7 @@ zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug "rupa/z", use:z.sh
 zplug load
 
-# Path to your oh-my-zsh configuration.
 
-PURE_PROMPT_SYMBOL="$"
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
 
@@ -48,14 +42,7 @@ export HISTSIZE=100000
 export SAVEHIST=100000
 
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-
-
 # ssh agent config
-
-zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 bindkey -v
 bindkey -M vicmd "/" history-incremental-search-backward
@@ -69,7 +56,6 @@ bindkey '^k' kill-line
 bindkey -a u undo
 bindkey -a '^R' redo
 bindkey '^G' what-cursor-position
-
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -96,10 +82,6 @@ function dotfiles() {
 
 src
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-#export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-
 if [ "$TERM_PROGRAM" = "iTerm" ]; then
   test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 fi
@@ -107,46 +89,22 @@ fi
 if [ "$0" = "/usr/sbin/lightdm-session" -a "$DESKTOP_SESSION" = "i3" ]; then
     export $(gnome-keyring-daemon -s)
 fi
-#keychain id_rsa id_dsa
-#. ~/.keychain/`uname -n`-sh
 
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/marcus/.sdkman"
-[[ -s "/home/marcus/.sdkman/bin/sdkman-init.sh" ]] && source "/home/marcus/.sdkman/bin/sdkman-init.sh"
-
-export TERM="xterm-256color"
-
-#source /usr/share/fzf/key-bindings.zsh
-#source /usr/share/fzf/completion.zsh
-#export FZF_DEFAULT_COMMAND="pt -g=."
-#export DRONE_SERVER="https://drone.r12.no"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /Users/marcus/Downloads/google-cloud-sdk/path.zsh.inc ]; then
-  source '/Users/marcus/Downloads/google-cloud-sdk/completion.zsh.inc'
-  source '/Users/marcus/Downloads/google-cloud-sdk/path.zsh.inc'
-fi
 
 # And kubectl command completion.
 source <(kubectl completion zsh)
-#source <(gopass completion zsh)
 
 [[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose
 export PATH=/usr/share/perl6/vendor/bin/:$PATH
+
 [[ -f /usr/share/autoenv/activate.sh ]] && source /usr/share/autoenv/activate.sh
-#[[ -f /usr/local/Cellar/autoenv/0.2.1/activate.sh ]] && source /usr/local/Cellar/autoenv/0.2.1/activate.sh
-# Add these two lines to your shell startup script:
-export RG_HOME=$HOME/Source/_rg
-#source $RG_HOME/core/dev/rg.sh
 
 export GITHUB_USERNAME=marcusramberg
 # start in normal mode
 #
-export GPG_TTY=$(tty)
 
 [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]] && . ~/.nix-profile/etc/profile.d/nix.sh
+
 autoload -U zmv
 alias mmv="noglob zmv -W"
 export TABLE_TERM_SIZE=150
@@ -162,3 +120,4 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
