@@ -27,7 +27,7 @@ hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
 
 
 hs.window.switcher.ui.fontName = 'Verdana'
-switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
+switcher_space = hs.window.switcher.new(hs.window.filter.new{override={fullscreen=false}}:setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
 -- bind to hotkeys; WARNING: at least one modifier key is required!
 hs.hotkey.bind('alt','tab', function()switcher_space:next()end)
 hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
