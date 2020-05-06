@@ -32,9 +32,11 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(javascript
      (auto-completion :variables
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-complete-with-key-sequence "jk"
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
-     better-defaults
      emacs-lisp
      emoji
      fzf
@@ -42,13 +44,21 @@ This function should only modify configuration layer settings."
      github
      groovy
      helm
+     html
      java
+     lsp
      markdown
      multiple-cursors
      neotree
-     org
+     (org :variables
+          org-enable-bootstrap-support t
+          org-enable-github-support t
+          org-enable-reveal-js-support t
+          )
+     perl5
      python
      ranger
+     rust
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -68,7 +78,6 @@ This function should only modify configuration layer settings."
      company-terraform
      nord-theme
      super-save
-     org-jira
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -414,7 +423,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-zone-out-when-idle nil
 
 
-   dotspacemacs-mode-line-theme 'vim-powerline
+   dotspacemacs-mode-line-theme 'spacemacs
 
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
@@ -451,21 +460,22 @@ This function should only modify configuration layer settings."
 ;; This is the place where most of your configurations should be done. Unless it is
 ;; explicitly specified that a variable should be set before a package is loaded,
 ;; you should place your code here."
-  (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-  (load-theme 'nord t)
-  (setq vc-follow-symlinks t)
-  ;; Org mode
-  (setq exec-path-from-shell-check-startup-files nil)
 
+
+  ;; don't ask about following symlinks
+  (setq vc-follow-symlinks t)
+  ;; Don't warn about env
+  ;; (setq exec-path-from-shell-check-startup-files nil)
+  ;; Org mode
   (setq org-agenda-files (list "~/org/inbox.org"
                                "~/org/work.org"
-                               "~/org/journal.org"
                                "~/org/home.org"))
   (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
+        '(("t" "Todo" entry (f
+ile+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
           ("j" "Journal" entry (file+datetree "~/org/journal.org") "* %?\nEntered on %U\n %i\n %a"))
         )
-  (org-reload)
+  ;;(org-reload)
 
   ;; Allow multiple paste
   (defun evil-paste-after-from-0 ()
@@ -475,28 +485,28 @@ This function should only modify configuration layer settings."
 
   (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
 
+  ;; Configure completion
+  (global-company-mode)
+
   ;; Terraform autocomplete
   (require 'company-terraform)
   (company-terraform-init)
   (company-quickhelp-mode)
-  (global-company-mode)
   (add-to-list 'company-backends #'company-terraform)
-  ;; Java autocomplete
-
-  (setq eclim-executable "/Applications/Eclipse\ Java.app/Contents/Eclipse/eclimd")
 
   ;; Magit
   (defun dotspacemacs/user-init ()
     (setq-default git-magit-status-fullscreen t))
   ;; Supersave
   (super-save-mode +1)
-  ;; org-jira
-  (setq jiralib-url "https://jira.tech.dnb.no/secure/")
-  (defconst jiralib-token
-    '("Cookie" . "AWSALB=DJNp9dxY9w5y8A9vhfa3BbF07f4kCwrRnLS3KwfOINYwPfy+4HTFZIxJQpr0iqk/p3Zuh50nYTgyrYD7pS3eAQijeyZhPKDI2A8mNsod2P3c4pDf9doCHYToFl1z; AWSALBCORS=DJNp9dxY9w5y8A9vhfa3BbF07f4kCwrRnLS3KwfOINYwPfy+4HTFZIxJQpr0iqk/p3Zuh50nYTgyrYD7pS3eAQijeyZhPKDI2A8mNsod2P3c4pDf9doCHYToFl1z; AzureAppProxyAccessCookie_75163816-9672-49bc-aaf3-4ee9bf257217_1.3=3|RzREgySaFoooF/w1LUVa50mRruNZE9NUxGYY0IHZf9cwpTeGWW5iTPNCzGpwHRutskW9D6vayceI3mzaxVnY6O+SiiMxW6gBFQhILr61eniDQOkKmYkehEpCS1NXXjqzY9La2uLSZnOL1iQZ88uTlhyos+xn1R/vGHn1dSb1GKgfpFP1AWH3oE5HEPYdgnDSj0ckkGNW5sLN0nfqbXhcK8SNes17AKIurPqnepuoX7zpvZZnYHVimukZWKmATmqEBSKwSmBzf5UG24eg22rgw49tSmohLTdsgCTWA2cuifG+ikW0HiB9MaS+7dszQxrEyAdyRen6Ruopk5cge+LjhMZCdeHqNnA74cbTH8cDLjI50HzVwEK/+aLZsmx6GFRJNNDQeGuyKkcz//astbnAdBxQhrS7w83em9Ad6qNSiPAFAFvm3lM6694EGxFyTChlnPkHSpg+6Hj9/50Ga9VUDg==; atlassian.xsrf.token=BMFU-0IKR-EI3F-13HT_934b717d8033ae1c3659053e2006935c3cee0887_lin; JSESSIONID=67C2C2365340E2E12351AAB1DE233354; JiraSDSamlssoLoginV2=_36112035-c25d-4db4-990d-6f48af5a5900%23%23%23AB86899%23%23%23https%3A%2F%2Fsts.windows.net%2F4cbfea0a-b872-47f0-b51c-1c64953c3f0b%2F%23%23%23UJVHN; AzureAppProxyAnalyticCookie_75163816-9672-49bc-aaf3-4ee9bf257217_1.3=3|qHn0kNXyw4ghRjaTQOEZ76if1WI8yfW7IgAM9/NNUXs1st4Gc84a1dUqnjWUcXm53Q67pLw0RvFFD0ZoKjcLTPBB1RfaALblSqUc5AMSexqEbx7Hth6m4T43e5Cny4VJz+wmwkOjYTpNff2EPgik0Q==; AzureAppProxyUserSessionCookie_46353435-4342-4231-3741-304442383036_1.3=3|6h4hFwCV+YP2Kl+NJ63GtiM4iGEYlEx6Y6OK2LehZsQ0DgcWEb12sIfb64b6Njvunc5XXcylN1r8ojn0+u87A7ObKWJoABeTxBAbauTRtvZ3YRJ+aIUKrMzJrx5D1cTKCOe+XBTX7NSpQG4ZJW1klaFSib2ToTiDRKCiJ1iM/rDlpFyBdOU/tRzLFyblfNg6YHcFXJfAl0+XLThCbIIhyk8aFlVcUEdIiVkrM7RFs8XGK90BzshkZRK9QWfnVPxE6Bd+/V5R8h1BRj2tYqDy08g4txpkqEBFB0gRgZXVjSgIyEVMCBppfE8URb1k4JKwVXEC4dhJRK6vO/B7Lhf92eenAOU7Bg6BFuJ1JR5s0q0="))
+  (setq super-save-auto-save-when-idle t)
+  (setq auto-save-default nil)
 
-
-  )
+  ;;
+  ;; (setq jiralib-url "https://jira.tech.dnb.no/secure/")
+  ;; (defconst jiralib-token
+    ;; '("Cookie" . ""))
+)
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -535,7 +545,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (json-navigator hierarchy json-mode json-snatcher json-reformat magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus company-emoji ranger helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line helm helm-core company-quickhelp company-tabnine unicode-escape names super-save company-terraform yaml-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-emacs-eclim eclim company-anaconda anaconda-mode pythonic xterm-color shell-pop multi-term flyspell-correct-ivy flyspell-correct eshell-z eshell-prompt-extras esh-help auto-dictionary nordless-theme fzf nord-theme unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
+    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus company-emoji ranger helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line helm helm-core company-quickhelp company-tabnine unicode-escape names super-save company-terraform yaml-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-emacs-eclim eclim company-anaconda anaconda-mode pythonic xterm-color shell-pop multi-term flyspell-correct-ivy flyspell-correct eshell-z eshell-prompt-extras esh-help auto-dictionary nordless-theme fzf nord-theme unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
