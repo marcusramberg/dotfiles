@@ -37,6 +37,7 @@ This function should only modify configuration layer settings."
                       auto-completion-complete-with-key-sequence "jk"
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
+     confluence
      emacs-lisp
      emoji
      fzf
@@ -46,6 +47,7 @@ This function should only modify configuration layer settings."
      helm
      html
      java
+     javascript
      lsp
      markdown
      multiple-cursors
@@ -53,6 +55,8 @@ This function should only modify configuration layer settings."
      (org :variables
           org-enable-bootstrap-support t
           org-enable-github-support t
+          org-projectile-file "~/org/projects.org"
+          org-want-todo-bindings t
           org-enable-reveal-js-support t
           )
      perl5
@@ -60,11 +64,12 @@ This function should only modify configuration layer settings."
      ranger
      rust
      (shell :variables
+            shell-default-shell 'eshell
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     terraform
+     (terraform :variables terraform-auto-format-on-save t)
      version-control
      yaml
      )
@@ -78,11 +83,12 @@ This function should only modify configuration layer settings."
      company-terraform
      nord-theme
      super-save
+     git-auto-commit-mode
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(company-tern)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -467,14 +473,18 @@ This function should only modify configuration layer settings."
   ;; Don't warn about env
   ;; (setq exec-path-from-shell-check-startup-files nil)
   ;; Org mode
+
   (setq org-agenda-files (list "~/org/inbox.org"
                                "~/org/work.org"
+                               "~/org/projects.org"
                                "~/org/home.org"))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+
   (setq org-capture-templates
-        '(("t" "Todo" entry (f
-ile+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
+        '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
           ("j" "Journal" entry (file+datetree "~/org/journal.org") "* %?\nEntered on %U\n %i\n %a"))
         )
+
   ;;(org-reload)
 
   ;; Allow multiple paste
@@ -496,12 +506,16 @@ ile+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
 
   ;; Magit
   (defun dotspacemacs/user-init ()
-    (setq-default git-magit-status-fullscreen t))
+  (setq-default git-magit-status-fullscreen t))
+
   ;; Supersave
   (super-save-mode +1)
   (setq super-save-auto-save-when-idle t)
   (setq auto-save-default nil)
 
+
+  ;; Layouts
+  (setq dotspacemacs-auto-resume-layouts t)
   ;;
   ;; (setq jiralib-url "https://jira.tech.dnb.no/secure/")
   ;; (defconst jiralib-token
@@ -545,7 +559,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus company-emoji ranger helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line helm helm-core company-quickhelp company-tabnine unicode-escape names super-save company-terraform yaml-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-emacs-eclim eclim company-anaconda anaconda-mode pythonic xterm-color shell-pop multi-term flyspell-correct-ivy flyspell-correct eshell-z eshell-prompt-extras esh-help auto-dictionary nordless-theme fzf nord-theme unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
+    (confluence xml-rpc magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus company-emoji ranger helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line helm helm-core company-quickhelp company-tabnine unicode-escape names super-save company-terraform yaml-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-emacs-eclim eclim company-anaconda anaconda-mode pythonic xterm-color shell-pop multi-term flyspell-correct-ivy flyspell-correct eshell-z eshell-prompt-extras esh-help auto-dictionary nordless-theme fzf nord-theme unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
