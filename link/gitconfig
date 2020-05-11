@@ -56,7 +56,11 @@
 [core]
   whitespace = trailing-space,space-before-tab
 	excludesfile = /Users/marcus/.gitignore_global
-	pager = diff-so-fancy | less --tabs=2 -RFX
+  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Nord'
+
+[interactive]
+  diffFilter = delta --color-only
+
 [apply]
   whitespace = nowarn
 [advice]
