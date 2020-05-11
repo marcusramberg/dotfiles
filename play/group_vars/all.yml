@@ -14,6 +14,7 @@ homebrew_installed_packages:
   - automake
   - autossh
   - bash-completion
+  - bat
   - bcrypt
   - beanstalk
   - boost
@@ -25,6 +26,7 @@ homebrew_installed_packages:
   - coreutils
   - cscope
   - ctags
+  - delta
   - dialog
   - direnv
   - e2fsprogs

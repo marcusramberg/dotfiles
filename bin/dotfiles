@@ -30,22 +30,39 @@ if [[ ! "$(type -P gcc)" && "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 
-#  Bootstrap nix, can be used it all my envs
-if [[ ! "$(type -P nix-env)" ]]; then
-  e_header "Installing nix"
-  curl https://nixos.org/nix/install | sh
-  . /Users/marcus/.nix-profile/etc/profile.d/nix.sh
-fi
+#  Bootstrap nix, except on osx
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  if [[ ! "$(type -P git)" ]]; then
+    e_error "git must be installed first."
+    exit 1
+  fi
+else
+  if [[ ! "$(type -P nix-env)"  ]]; then
+    e_header "Installing nix"
+    curl https://nixos.org/nix/install | sh
+    . /Users/marcus/.nix-profile/etc/profile.d/nix.sh
+  fi
 
-# If Git is not installed...
-if [[ ! "$(type -P git)" ]]; then
-      nix-env -iA nixpkgs.git
+  # If Git is not installed...
+  if [[ ! "$(type -P git)" ]]; then
+        nix-env -iA nixpkgs.git
+  fi
+
+  # IfansibleGit is not installed...
+  if [[ ! "$(type -P ansible-playbook)" ]]; then
+      brew install ansible
+  fi
 fi
 
 # If Git isn't installed by now, something exploded. We gots to quit!
 if [[ ! "$(type -P git)" ]]; then
   e_error "Git should be installed. It isn't. Aborting."
   exit 1
+
+  # IfansibleGit is not installed...
+  if [[ ! "$(type -P ansible-playbook)" ]]; then
+      nix-env -iA nixpkgs.ansible
+  fi
 fi
 
 
@@ -82,10 +99,6 @@ shopt -s nullglob
 mkdir -p "$HOME/.dotfiles/caches"
 
 
-# IfansibleGit is not installed...
-if [[ ! "$(type -P ansible-playbook)" ]]; then
-      nix-env -iA nixpkgs.ansible
-fi
 
 ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
 
