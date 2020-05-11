@@ -9,8 +9,6 @@ fi
 #
 # User configuration sourced by interactive shells
 #
-export LC_ALL=C
-
 export ZPLUG_HOME=$HOME/.dotfiles/libs/zplug
 
 source "${ZPLUG_HOME}/init.zsh"

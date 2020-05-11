@@ -6,7 +6,6 @@
     dest: "{{ homebrew_install_path }}"
     update: yes
     accept_hostkey: true
-  sudo: no
 
 - name: Check if homebrew binary is already in place.
   stat: path=/usr/local/bin/brew

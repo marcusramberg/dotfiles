@@ -26,7 +26,6 @@ homebrew_installed_packages:
   - coreutils
   - cscope
   - ctags
-  - delta
   - dialog
   - direnv
   - e2fsprogs
@@ -53,6 +52,7 @@ homebrew_installed_packages:
   - giflib
   - gist
   - git
+  - git-delta
   - git-extras
   - git-flow
   - glib
@@ -69,6 +69,8 @@ homebrew_installed_packages:
   - grc
   - gsl
   - gtk+
+  - hadolint
+  - harfbuzz
   - harfbuzz
   - htop-osx
   - httperf
@@ -78,7 +80,6 @@ homebrew_installed_packages:
   - id3tool
   - imagemagick 
   - ios-webkit-debug-proxy
-  - irssi
   - isl
   - jasper
   - jpeg
@@ -142,6 +143,7 @@ homebrew_installed_packages:
   - mysql
   - neo4j
   - neon
+  - neovim
   - netcat
   - nethack
   - nettle
@@ -175,8 +177,8 @@ homebrew_installed_packages:
   - pwgen
   - python
   - python3
-  - rainbarf
   - ragel
+  - rainbarf
   - rbenv
   - readline
   - reattach-to-user-namespace
@@ -220,7 +222,6 @@ homebrew_installed_packages:
   - v8
   - varnish
   - vifm
-  - neovim
   - watch
   - webkit2png
   - webp
