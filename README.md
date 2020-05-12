@@ -1,4 +1,4 @@
-# Dotfiles
+# Dot Files
 
 My OS X / Ubuntu / Debian dotfiles.
 
