@@ -131,7 +131,5 @@
 	conflictstyle = diff3
 [includeIf "gitdir:/Users/marcus/Source/DNB/"]
   path = .gitconfig-dnb
-[commit]
-	template = /Users/marcus/.stCommitMsg
 [url "ssh://git@git.tech-01.net/"]
   insteadOf = https://bitbucket.tech.dnb.no/scm/
