@@ -160,9 +160,12 @@ hs.hotkey.bind(hyper, "h", function()
       title='Home',
       informativeText='Windows Configured'
     }):send()
-  function emacsclientWatcher(appName, eventType, appObject)
+
+end)
+
+function emacsclientWatcher(appName, eventType, appObject)
   if (eventType == hs.application.watcher.activated) then
-    if (appName == "Emacsclient") then
+    if (appName == "EmacsClient") then
       -- Bring Emacs to Front
       hs.osascript.applescript('tell application "Emacs" to activate')
     end
@@ -170,5 +173,3 @@ hs.hotkey.bind(hyper, "h", function()
 end
 appWatcher = hs.application.watcher.new(emacsclientWatcher)
 appWatcher:start()
-end)
-

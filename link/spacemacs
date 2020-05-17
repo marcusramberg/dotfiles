@@ -30,7 +30,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(lua
      (auto-completion :variables
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete
@@ -61,6 +61,7 @@ This function should only modify configuration layer settings."
           org-projectile-file "~/org/projects.org"
           org-want-todo-bindings t
           org-enable-reveal-js-support t
+          org-enable-verb-support t
           )
      perl5
      python
@@ -87,10 +88,12 @@ This function should only modify configuration layer settings."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     centaur-tabs
      company-terraform
      git-auto-commit-mode
      nord-theme
-     org-chef
+     (org-chef :location local)
+     org-roam
      super-save
      )
    ;; A list of packages that cannot be updated.
@@ -453,7 +456,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-zone-out-when-idle nil
 
 
-   dotspacemacs-mode-line-theme '(spacemacs :separator contour)
+   dotspacemacs-mode-line-theme '(spacemacs :separator arrow)
 
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
@@ -474,6 +477,8 @@ See the header of this file for more information."
 ;; configuration.
 ;; It is mostly for variables that should be set before packages are loaded.
 ;; If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (when (string= system-type "darwin")
+    (setq dired-use-ls-dired nil))
   (server-start)
   )
 
@@ -493,6 +498,9 @@ See the header of this file for more information."
 ;; you should place your code here."
 
   ;; Modify vim behaviour
+
+  ;; Theme config
+  (setq nord-uniform-mode-lines t)
 
   ;; Include _ in words.
   (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -521,11 +529,14 @@ See the header of this file for more information."
     (setq org-capture-templates
           '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
             ("j" "Journal" entry (file+olp+datetree "~/org/journal.org") "* %?\nEntered on %U\n %i\n %a")
-            ("p" "Protocol" entry (file+headline ,(concat org-directory "~/org/inbox.org") "Web")
-             "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-            ("L" "Protocol Link" entry (file+headline ,(concat org-directory "~/org/inbox.org") "Web")
-             "* %? [[%:link][%:description]] %(progn (setq kk/delete-frame-after-capture 2) \"\")\nCaptured On: %U"
+            ("p" "Protocol" entry (file+headline "~/org/inbox.org" "Bookmarks")
+            "* %? [[%:link][%:description]]\n#+begin_quote\n%i\n:+end_quote\nCaptured On: %U"
+            :empty-lines 1)
+            ("L" "Protocol Link" entry (file+headline "~/org/inbox.org" "Bookmarks")
+             "* %? [[%:link][%:description]]\nCaptured On: %U"
              :empty-lines 1)
+            ("K" "Cliplink capture task" entry (file "")
+             "* TODO %(org-cliplink-capture) \n  SCHEDULED: %t\n" :empty-lines 1)
             ("c" "Cookbook" entry (file+headline "~/org/cooking.org" "Inbox")
              "%(org-chef-get-recipe-from-url)"
              :empty-lines 1)
@@ -536,6 +547,17 @@ See the header of this file for more information."
 
     (setq org-todo-keywords
           '((sequence "TODO" "INPROGRESS" "WAITING" "|" "DONE" "OBSOLETE")))
+    (use-package org-roam
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/org")
+      :bind (:map org-roam-mode-map
+                  (("C-c n l" . org-roam)
+                   ("C-c n f" . org-roam-find-file)
+                   ("C-c n g" . org-roam-show-graph))
+                  :map org-mode-map
+                  (("C-c n i" . org-roam-insert))))
     )
 
 
@@ -603,6 +625,29 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
     (add-to-list 'flycheck-checkers 'cfn-lint)
     (add-hook 'cfn-mode-hook 'flycheck-mode)))
+
+;; Tabs
+  (use-package centaur-tabs
+    :demand
+    :config
+    (setq centaur-tabs-style "bar")
+    (setq centaur-tabs-height 32)
+    (setq centaur-tabs-set-icons t)
+    (setq centaur-tabs-set-bar 'over)
+    (setq centaur-tabs-set-modified-marker t)
+    (setq centaur-tabs-cycle-scope 'tabs)
+   ;; (setq centaur-tabs-modified-marker "M")
+    ;; (setq centaur-tabs-cycle-scope 'tabs)
+    (centaur-tabs-group-by-projectile-project)
+    (centaur-tabs-mode t)
+    :hook
+    (dired-mode . centaur-tabs-local-mode)
+    :bind (("C-<prior>" . centaur-tabs-backward)
+           ("C-<next>" . centaur-tabs-forward)
+           (:map evil-normal-state-map
+                 ("g t" . centaur-tabs-forward)
+                 ("g T" . centaur-tabs-backward))       ("C-c t" . centaur-tabs-counsel-switch-group))
+    )
 )
 
 
