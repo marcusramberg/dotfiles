@@ -20,13 +20,13 @@ This function should only modify configuration layer settings."
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
    ;; (default 'unused)
-   dotspacemacs-enable-lazy-installation 'unused
+   dotspacemacs-enable-lazy-installation 'all
    ;; If non-nil then Spacemacs will ask for confirmation before installing
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation nil
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+   ;; Paths mutst have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -92,7 +92,7 @@ This function should only modify configuration layer settings."
      company-terraform
      git-auto-commit-mode
      nord-theme
-     (org-chef :location local)
+     org-chef
      org-roam
      super-save
      )
@@ -324,12 +324,12 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
 
    ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
    ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
    ;; borderless fullscreen. (default nil)
-   dotspacemacs-undecorated-at-startup nil
+   dotspacemacs-undecorated-at-startup t
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
@@ -472,6 +472,7 @@ See the header of this file for more information."
   (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
+
 ;;   "Initialization for user code:
 ;; This function is called immediately after `dotspacemacs/init', before layer
 ;; configuration.
@@ -480,7 +481,8 @@ See the header of this file for more information."
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired nil))
   (server-start)
-  )
+  ;; (setq-default git-magit-status-fullscreen t)
+)
 
 (defun dotspacemacs/user-load ()
 ;;   "Library to load while dumping.
@@ -518,12 +520,12 @@ See the header of this file for more information."
   (with-eval-after-load 'org
 
     (require 'org-chef)
-    (require 'org-protocol)
     (setq org-agenda-files (list "~/org/inbox.org"
                                  "~/org/work.org"
                                  "~/org/projects.org"
                                  "~/org/home.org"))
     (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+    (require 'org-protocol)
     (setq org-modules (quote (org-protocol)))
 
     (setq org-capture-templates
@@ -570,9 +572,6 @@ See the header of this file for more information."
   (company-quickhelp-mode)
   (add-to-list 'company-backends #'company-terraform)
 
-  ;; Magit
-  (defun dotspacemacs/user-init ()
-  (setq-default git-magit-status-fullscreen t))
 
   ;; Supersave
   (super-save-mode +1)
@@ -602,7 +601,7 @@ See the header of this file for more information."
   (define-derived-mode cfn-mode yaml-mode
     "Cloudformation"
     "Cloudformation template mode.")
-  
+
   (add-to-list 'magic-mode-alist
                '("\\(---\n\\)?AWSTemplateFormatVersion:" . cfn-mode))
 
@@ -630,21 +629,68 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
   (use-package centaur-tabs
     :demand
     :config
-    (setq centaur-tabs-style "bar")
-    (setq centaur-tabs-height 32)
-    (setq centaur-tabs-set-icons t)
-    (setq centaur-tabs-set-bar 'over)
-    (setq centaur-tabs-set-modified-marker t)
-    (setq centaur-tabs-cycle-scope 'tabs)
-   ;; (setq centaur-tabs-modified-marker "M")
-    ;; (setq centaur-tabs-cycle-scope 'tabs)
-    (centaur-tabs-group-by-projectile-project)
+    (setq centaur-tabs-style "bar"
+          centaur-tabs-height 32
+          centaur-tabs-set-icons t
+          centaur-tabs-set-bar 'over
+          centaur-tabs-set-modified-marker t
+          centaur-tabs-cycle-scope 'tabs
+          centaur-tabs-modified-marker "M")
+    (centaur-tabs-headline-match)
+
+     (defun centaur-tabs-buffer-groups ()
+     "`centaur-tabs-buffer-groups' control buffers' group rules.
+
+ Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+ All buffer name start with * will group to \"Emacs\".
+ Other buffer group by `centaur-tabs-get-group-name' with project name."
+     (list
+      (cond
+	;; ((not (eq (file-remote-p (buffer-file-name)) nil))
+	;; "Remote")
+	((or (string-equal "*" (substring (buffer-name) 0 1))
+	     (memq major-mode '(magit-process-mode
+				magit-status-mode
+				magit-diff-mode
+				magit-log-mode
+				magit-file-mode
+				magit-blob-mode
+				magit-blame-mode
+				)))
+	 "Emacs")
+	((derived-mode-p 'prog-mode)
+	 "Editing")
+	((derived-mode-p 'dired-mode)
+	 "Dired")
+	((memq major-mode '(helpful-mode
+			    help-mode))
+	 "Help")
+	((memq major-mode '(org-mode
+			    org-agenda-clockreport-mode
+			    org-src-mode
+			    org-agenda-mode
+			    org-beamer-mode
+			    org-indent-mode
+			    org-bullets-mode
+			    org-cdlatex-mode
+			    org-agenda-log-mode
+			    diary-mode))
+	 "OrgMode")
+  (t
+	 (centaur-tabs-get-group-name (current-buffer))))))
+  ;;  (centaur-tabs-group-by-projectile-project)
     (centaur-tabs-mode t)
     :hook
-    (dired-mode . centaur-tabs-local-mode)
+    (dashboard-mode . centaur-tabs-local-mode)
+    (term-mode . centaur-tabs-local-mode)
+    (calendar-mode . centaur-tabs-local-mode)
+    (org-agenda-mode . centaur-tabs-local-mode)
+    (helpful-mode . centaur-tabs-local-mode)
     :bind (("C-<prior>" . centaur-tabs-backward)
            ("C-<next>" . centaur-tabs-forward)
+
            (:map evil-normal-state-map
+                 ("SPC ." . centaur-tabs-counsel-switch-group)
                  ("g t" . centaur-tabs-forward)
                  ("g T" . centaur-tabs-backward))       ("C-c t" . centaur-tabs-counsel-switch-group))
     )
@@ -692,7 +738,8 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (tern magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus company-emoji ranger helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line helm helm-core company-quickhelp company-tabnine unicode-escape names super-save company-terraform yaml-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-emacs-eclim eclim company-anaconda anaconda-mode pythonic xterm-color shell-pop multi-term flyspell-correct-ivy flyspell-correct eshell-z eshell-prompt-extras esh-help auto-dictionary nordless-theme fzf nord-theme unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
+    (tide typescript-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus company-emoji ranger helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line helm helm-core company-quickhelp company-tabnine unicode-escape names super-save company-terraform yaml-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-emacs-eclim eclim company-anaconda anaconda-mode pythonic xterm-color shell-pop multi-term flyspell-correct-ivy flyspell-correct eshell-z eshell-prompt-extras esh-help auto-dictionary nordless-theme fzf nord-theme unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
+ '(safe-local-variable-values (quote ((dockerfile-image-name . "api-router")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
