@@ -101,7 +101,7 @@
           ))
 
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "INPROGRESS(i!)"  "|" "DONE(d!)")
+        '((sequence "TODO(t!)" "WAITING(w!)" "INPROGRESS(p!)"  "|" "DONE(d!) OBSOLETE(o!)")
 
           (sequence "IDEA(i!)" "MAYBE(y!)" "STAGED(s!)" "WORKING(k!)" "|" "USED(u!/@)")
           ))
@@ -141,3 +141,9 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
       (add-to-list 'flycheck-checkers 'cfn-lint)
       (add-hook 'cfn-mode-hook 'flycheck-mode)))
   )
+
+(auto-save-visited-mode +1)
+
+
+(setq jsonnet-enable-debug-print t)
+(setq jsonnet-library-search-directories "grafonnet-lib")

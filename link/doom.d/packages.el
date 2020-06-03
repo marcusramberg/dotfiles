@@ -51,3 +51,7 @@
 
 (package! org-chef
   :recipe (:host github :repo "Chobbes/org-chef"))
+
+
+(package! terraform-doc)
+(package! jsonnet-mode)

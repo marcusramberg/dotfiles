@@ -7,6 +7,8 @@ require "wm"
 -- Settings
 --
 
+hs.logger.defaultLogLevel='debug'
+
 hyper = {"cmd","alt","ctrl","shift"}
 hs.window.animationDuration = 0
 hs.alert.defaultStyle.strokeColor =  {white = 1, alpha = 0}
@@ -40,10 +42,11 @@ Install:andUse("URLDispatcher",
   {
     config = {
       url_patterns = {
-        { "https?://.*.redhat.com", "org.mozilla.firefox" },
-        { "https?://microsoft.com/devicelogin", "com.google.Chrome" },
+        { "https?://.*.tech-01.net", "com.vivaldi.Vivaldi" },
+        { "https?://microsoft.com/devicelogin", "com.vivaldi.Vivaldi" },
       },
-      default_handler = "com.browserosaurus"
+      default_handler = "org.browserosaurus"
+      --default_handler = "org.mozilla.firefoxdeveloperedition"
     },
     start = true
   }
