@@ -55,3 +55,7 @@
 
 (package! terraform-doc)
 (package! jsonnet-mode)
+(package! jsonnet-mode)
+
+(package! jenkinsfile-mode
+  :recipe (:host github :repo "john2x/jenkinsfile-mode"))

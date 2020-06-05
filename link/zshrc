@@ -98,6 +98,7 @@ source <(kubectl completion zsh)
 [[ -f /usr/share/autoenv/activate.sh ]] && source /usr/share/autoenv/activate.sh
 
 export GITHUB_USERNAME=marcusramberg
+export JSONNET_PATH=~/Source/DNB/grafana-jsonnet-config/grafonnet-lib
 # start in normal mode
 #
 

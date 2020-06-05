@@ -93,8 +93,9 @@ input {
 .sk_theme {
   background: var(--bg-dark);
 }
-.sk_theme  li:nth-child(2n+1) {
-  background: var(--bg-dark) !important;
+.sk_theme li,
+ {
+  background: var(--bg-dark);
 }
 .sk_theme .title {
   color: var(--accent-fg);
@@ -114,7 +115,13 @@ input {
 .sk_theme .omnibar_visitcount {
   color: var(--accent-fg);
 }
+.sk_theme #sk_omnibarSearchResult > ul > li:nth-child(2n+1){
+  background: var(--bg-dark) !important;
+}
 .sk_theme #sk_omnibarSearchResult > ul > li {
+  background: var(--bg-dark) !important;
+}
+.sk_theme  #omnibarSearchResult>ul>li:nth-child(odd) {
   background: var(--bg-dark) !important;
 }
 .sk_theme #sk_omnibarSearchResult ul li.focused {

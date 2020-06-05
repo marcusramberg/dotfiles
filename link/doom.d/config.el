@@ -147,3 +147,8 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
 (setq jsonnet-enable-debug-print t)
 (setq jsonnet-library-search-directories "grafonnet-lib")
+
+"(eval-after-load 'auth-source
+  '(when (member window-system '(mac ns))
+     (add-to-list 'auth-sources 'macos-keychain-internet)
+     (add-to-list 'auth-sources 'macos-keychain-generic)))"
