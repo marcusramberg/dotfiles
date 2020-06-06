@@ -21,6 +21,8 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font "JetbrainsMono Nerd Font-16")
+
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -55,8 +57,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
-
-(setq doom-font "JetbrainsMono Nerd Font")
 
 (setq deft-directory org-directory)
 
@@ -142,13 +142,18 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
       (add-hook 'cfn-mode-hook 'flycheck-mode)))
   )
 
+;; Enable auto save
 (auto-save-visited-mode +1)
 
 
+;; Configure jsonnet to use grafonnet
 (setq jsonnet-enable-debug-print t)
 (setq jsonnet-library-search-directories "grafonnet-lib")
 
-"(eval-after-load 'auth-source
-  '(when (member window-system '(mac ns))
-     (add-to-list 'auth-sources 'macos-keychain-internet)
-     (add-to-list 'auth-sources 'macos-keychain-generic)))"
+
+(setq HUGO_BASE_DIR "~/Source/blog")
+
+;;(eval-after-load 'auth-source
+;;  '(when (member window-system '(mac ns))
+;;     (add-to-list 'auth-sources 'macos-keychain-internet)
+;;     (add-to-list 'auth-sources 'macos-keychain-generic)))
