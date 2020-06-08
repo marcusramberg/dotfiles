@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<monodroid>
+  <android-sdk path="/Users/marcus/Library/Developer/Xamarin/android-sdk-macosx" />
+  <java-sdk path="/Users/marcus/Library/Developer/Xamarin/jdk/microsoft_dist_openjdk_1.8.0.25" />
+</monodroid>

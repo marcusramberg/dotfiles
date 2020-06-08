@@ -157,3 +157,60 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;  '(when (member window-system '(mac ns))
 ;;     (add-to-list 'auth-sources 'macos-keychain-internet)
 ;;     (add-to-list 'auth-sources 'macos-keychain-generic)))
+;;     ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
+;;
+
+(with-eval-after-load 'org-capture
+  (defun org-hugo-new-subtree-post-capture-template ()
+    "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+           (fname (org-hugo-slug title)))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* TODO " title)
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ":END:"
+                   "%?\n")          ;Place the cursor here finally
+                 "\n")))
+
+  (add-to-list 'org-capture-templates
+               '("h"                ;`org-capture' binding + h
+                 "Hugo post"
+                 entry
+                 (file+olp "blog.org" "Posts")
+                 (function org-hugo-new-subtree-post-capture-template)))
+
+  (defun org-hugo-new-subtree-link-capture-template ()
+    "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+           (link (read-from-minibuffer "Post Link: ")) ;Prompt to enter the post link
+           (fname (org-hugo-slug title))
+           )
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* TODO "  title)
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :externalUrl " link)
+                   ":END:"
+                   "%?\n")          ;Place the cursor here finally
+                 "\n")))
+
+  (add-to-list 'org-capture-templates
+               '("H"                ;`org-capture' binding + H
+                 "Hugo link"
+                 entry
+                 (file+olp "blog.org" "Links")
+                 (function org-hugo-new-subtree-link-capture-template))))
+
+;; Limit the length of visual mode.
+(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+(setq visual-fill-column-width 100)
+
+;;(setq mac-option-key-is-meta nil
+;;      mac-command-key-is-meta t
+;;      mac-command-modifier 'meta
+;;      mac-option-modifier 'none)

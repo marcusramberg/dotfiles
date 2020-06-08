@@ -1,0 +1,48 @@
+2019-11-09 09:34:22,312 DEBUG    root            Loaded Command Group: [u'gcloud', u'config']
+2019-11-09 09:34:22,317 DEBUG    root            Loaded Command Group: [u'gcloud', u'config', u'config_helper']
+2019-11-09 09:34:22,320 DEBUG    root            Running [gcloud.config.config-helper] with arguments: [--format: "json"]
+2019-11-09 09:34:22,355 DEBUG    root            (gcloud.config.config-helper) You do not currently have an active account selected.
+Please run:
+
+  $ gcloud auth login
+
+to obtain new credentials, or if you have already logged in with a
+different account:
+
+  $ gcloud config set account ACCOUNT
+
+to select an already authenticated account to use.
+Traceback (most recent call last):
+  File "/Users/marcus/Downloads/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 983, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "/Users/marcus/Downloads/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 784, in Run
+    resources = command_instance.Run(args)
+  File "/Users/marcus/Downloads/google-cloud-sdk/lib/surface/config/config_helper.py", line 101, in Run
+    cred = store.Load()
+  File "/Users/marcus/Downloads/google-cloud-sdk/lib/googlecloudsdk/core/credentials/store.py", line 363, in Load
+    cred = _Load(account, scopes, prevent_refresh)
+  File "/Users/marcus/Downloads/google-cloud-sdk/lib/googlecloudsdk/core/credentials/store.py", line 416, in _Load
+    raise NoActiveAccountException()
+NoActiveAccountException: You do not currently have an active account selected.
+Please run:
+
+  $ gcloud auth login
+
+to obtain new credentials, or if you have already logged in with a
+different account:
+
+  $ gcloud config set account ACCOUNT
+
+to select an already authenticated account to use.
+2019-11-09 09:34:22,358 ERROR    root            (gcloud.config.config-helper) You do not currently have an active account selected.
+Please run:
+
+  $ gcloud auth login
+
+to obtain new credentials, or if you have already logged in with a
+different account:
+
+  $ gcloud config set account ACCOUNT
+
+to select an already authenticated account to use.
+2019-11-09 09:34:22,383 DEBUG    root            Metrics reporting process started...
