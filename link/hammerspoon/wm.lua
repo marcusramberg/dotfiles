@@ -34,7 +34,7 @@ hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
 
 -- Spaces
 local spacesCount = spaces.count()
-local spacesModifiers = {"fn", spacesModifier}
+local spacesModifiers = {"ctrl" }
 
 -- infinitely cycle through spaces using ctrl+left/right to trigger ctrl+[1..n]
 local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(o)
@@ -75,7 +75,8 @@ end):start()
 hs.hotkey.bind(hyper, "e", function()
   -- this is to bind the spacesEventtap variable to a long-lived function in
   -- order to prevent GC from doing their evil business
-  hs.alert.show("Fast space switching enabled: " .. tostring(spacesEventtap:isEnabled()))
+  hs.application.find("Emacs"):activate()
+  print("Fast space switching enabled: " .. tostring(spacesEventtap:isEnabled()))
 end)
 
 function MoveWindowToSpace(sp)
@@ -112,7 +113,7 @@ end)
 function setOnSpace(application, sp, layout) 
   layout = layout or hs.layout.maximized
   print("Mooving",application, sp, layout)
-  local app = hs.application.open(application, 1, true)
+  local app = hs.application.open(application, 5, true)
   if not app then
     print("Failed to focus", application)
     return
@@ -125,31 +126,11 @@ function setOnSpace(application, sp, layout)
 end
 
 hs.application.enableSpotlightForNameSearches(true)
-hs.hotkey.bind(hyper, "w", function() 
-  setOnSpace("Guacamole", 1)
-  setOnSpace("iTerm", 1)
-  setOnSpace("Vivaldi", 2, hs.layout.left70)
-  setOnSpace("Google Chrome", 2, hs.layout.left70)
-  setOnSpace("Workflowy", 2, hs.layout.right30)
-  setOnSpace("IntelliJ IDEA", 3)
-  setOnSpace("Slack", 4, hs.layout.left70)
-  setOnSpace("Telegram", 4, hs.layout.left70)
-  setOnSpace("Microsoft Outlook", 4, hs.layout.left70)
-  setOnSpace("Convos", 4, hs.layout.right30)
-  setOnSpace("Night Owl", 4, hs.layout.right30)
-  setOnSpace("YT Music", 5, hs.layout.right50)
-  hs.notify.new({
-      title='Work',
-      informativeText='Windows Configured'
-    }):send()
-end)
 
 hs.hotkey.bind(hyper, "h", function() 
   setOnSpace("iTerm", 1)
-  setOnSpace("Vivaldi", 2, hs.layout.left70)
-  setOnSpace("Google Chrome", 2, hs.layout.left70)
-  setOnSpace("Workflowy", 2, hs.layout.right30)
-  setOnSpace("IntelliJ IDEA", 3)
+  setOnSpace("Firefox Developer Edition", 2, hs.layout.left70)
+  setOnSpace("Emacs", 3)
   setOnSpace("Slack", 4, hs.layout.left70)
   setOnSpace("Telegram", 4, hs.layout.left70)
   setOnSpace("Microsoft Outlook", 4, hs.layout.left70)

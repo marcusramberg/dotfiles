@@ -214,3 +214,20 @@ See `org-capture-templates' for more information."
 ;;      mac-command-key-is-meta t
 ;;      mac-command-modifier 'meta
 ;;      mac-option-modifier 'none)
+
+(setq mac-option-key-is-meta t)
+(setq mac-right-option-modifier nil)
+
+(after! lsp
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("/Users/marcus/Downloads/terraform-ls" "serve"))
+                    :major-modes '(terraform-mode)
+                    :server-id 'terraform-ls))
+  (add-hook 'terraform-mode-hook #'lsp))
+
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+;; Switch to the new window after splitting
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)
