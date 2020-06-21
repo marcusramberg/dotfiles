@@ -160,17 +160,18 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;     ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
 ;;
 
-(with-eval-after-load 'org-capture
+(after! org
   (defun org-hugo-new-subtree-post-capture-template ()
     "Returns `org-capture' template string for new Hugo post.
 See `org-capture-templates' for more information."
     (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
-           (fname (org-hugo-slug title)))
+           (fname (org-hugo-slug title))
+           (slug (concat (format-time-string "%Y-%m-%d") "-" fname)))
       (mapconcat #'identity
                  `(
                    ,(concat "* TODO " title)
                    ":PROPERTIES:"
-                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ,(concat ":EXPORT_FILE_NAME: " slug)
                    ":END:"
                    "%?\n")          ;Place the cursor here finally
                  "\n")))
@@ -188,12 +189,12 @@ See `org-capture-templates' for more information."
     (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
            (link (read-from-minibuffer "Post Link: ")) ;Prompt to enter the post link
            (fname (org-hugo-slug title))
-           )
+           (slug (concat (format-time-string "%Y-%m-%d") "-" fname)))
       (mapconcat #'identity
                  `(
                    ,(concat "* TODO "  title)
                    ":PROPERTIES:"
-                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ,(concat ":EXPORT_FILE_NAME: " slug)
                    ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :externalUrl " link)
                    ":END:"
                    "%?\n")          ;Place the cursor here finally
