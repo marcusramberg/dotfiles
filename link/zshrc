@@ -15,17 +15,6 @@ fi
 #
 export ZPLUG_HOME=$HOME/.dotfiles/libs/zplug
 
-source "${ZPLUG_HOME}/init.zsh"
-zplug bobsoppe/zsh-ssh-agent
-zplug mafredri/zsh-async
-zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "b4b4r07/zsh-vimode-visual", defer:3
-zplug "rupa/z", use:z.sh
-zplug "zsh-users/zsh-completions"
-zplug load
-
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -123,5 +112,21 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+
+
+source "${ZPLUG_HOME}/init.zsh"
+zplug bobsoppe/zsh-ssh-agent
+zplug mafredri/zsh-async
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+zplug "zsh-users/zsh-autosuggestions", defer:3
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+#zplug "marlonrichert/zsh-autocomplete"
+zplug "b4b4r07/zsh-vimode-visual", defer:3
+zplug "rupa/z", use:z.sh
+zplug "zsh-users/zsh-completions"
+zplug load
+
+zstyle ':autocomplete:tab:*' completion insert
+zstyle ':autocomplete:list-choices:*' min-input 3
 
 complete -o nospace -C /usr/local/bin/terraform terraform

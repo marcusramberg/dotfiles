@@ -232,3 +232,24 @@ See `org-capture-templates' for more information."
 ;; Switch to the new window after splitting
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(cheat-sh jenkins-watch elscreen jenkins)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(setq jenkins-api-token "115493c2b5b4f3cf6e6d0b7cb405737edc"
+      jenkins-url "https://jenkins.tech.dnb.no/jenkinsssl/"
+      jenkins-username "marcus.ramberg"
+      jenkins-viewname "Favorites") ;; if you're not using views skip this line
+
+(setq magit-save-repository-buffers nil
+      ;; Don't restore the wconf after quitting magit, it's jarring
+      magit-inhibit-save-previous-winconf t)

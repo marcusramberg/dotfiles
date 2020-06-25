@@ -55,9 +55,11 @@
 
 (package! terraform-doc)
 (package! jsonnet-mode)
-(package! jsonnet-mode)
 
 (package! jenkinsfile-mode
-  :recipe (:host github :repo "john2x/jenkinsfile-mode"))
+  :recipe (:host github :repo "john2x/jenkinsfile-mode"
+           :files ("jenkinsfile-mode.el")))
 
 (package! visual-fill-column)
+(package! jenkins)
+(package! cheat-sh)
