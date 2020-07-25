@@ -22,7 +22,7 @@
        (company +childframe +tng)      ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +fuzzy +icons)        ; a search engine for love and life
+       (ivy +fuzzy)        ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -83,7 +83,7 @@
 
        :tools
        ;;ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
@@ -102,12 +102,12 @@
        ;;taskrunner        ; taskrunner for all your projects
        terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       upload            ; map local to remote projects via ssh/ftp
+       ;;upload            ; map local to remote projects via ssh/ftp
 
        :lang
        ;;agda              ; types of types of types of types...
        ;;cc                ; C/C++/Obj-C madness
-       clojure           ; java with a lisp
+       (clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -126,7 +126,7 @@
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
-       json              ; At least it ain't XML
+       (json +lsp)              ; At least it ain't XML
        (java +lsp) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
@@ -136,7 +136,7 @@
        ;;factor
        ledger            ; an accounting system in Emacs
        lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       (markdown +grip)         ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel

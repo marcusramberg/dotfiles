@@ -72,15 +72,44 @@
     (call-interactively 'evil-paste-after)))
 (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
 
+(setq-hook! org-mode
+  calendar-week-start-day 1
+  org-agenda-block-separator (string-to-char "")
+  org-agenda-breadcrumbs-separator " ❱ "
+  org-agenda-compact-blocks t
+  org-agenda-files (list "~/org/inbox.org"
+                         "~/org/work.org"
+                         "~/org/projects.org"
+                       "~/org/home.org")
+  ;; org-caldav-calendar-id "ovuticv96133cisuc0pm8f7d6g@group.calendar.google.com"
+  ;; org-caldav-files '("~/Notes/appointments.org")
+  ;; org-caldav-inbox "~/Notes/calendar-inbox.org"
+  ;; org-caldav-oauth2-client-id "279358326453-ar2bfnerndjnnie90e59i9otuif9ut84.apps.googleusercontent.com"
+  ;; org-caldav-oauth2-client-secret "SECRET"
+  ;; org-caldav-url 'google
+  org-clock-into-drawer t
+  org-clock-persist t
+  org-columns-default-format "%60ITEM(Task) %20TODO %10Effort(Effort){:} %10CLOCKSUM"
+  org-confirm-babel-evaluate nil
+  org-duration-format '((special . h:mm))
+  org-ellipsis "…"
+  org-fontify-done-headline t
+  org-fontify-quote-and-verse-blocks t
+  org-fontify-whole-heading-line t
+  org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
+                                ("STYLE_ALL" . "habit")))
+  org-hide-emphasis-markers t
+  org-icalendar-timezone "Europe/Oslo"
+  org-image-actual-width '(700)
+  org-log-done t
+  org-modules (quote (org-protocol))
+  org-refile-targets '((org-agenda-files :maxlevel . 2))
+  org-time-clocksum-format (quote (:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+  org-todo-keywords '((sequence "TODO(t!)" "WAITING(w!)" "INPROGRESS(p!)"  "|" "DONE(d!) OBSOLETE(o!)") (sequence "IDEA(i!)" "MAYBE(y!)" "STAGED(s!)" "WORKING(k!)" "|" "USED(u!/@)"))
+  )
+
 ;; Org mode
 (after! org
-  (setq org-agenda-files (list "~/org/inbox.org"
-                               "~/org/work.org"
-                               "~/org/projects.org"
-                               "~/org/home.org")
-        org-refile-targets '((org-agenda-files :maxlevel . 2))
-        org-modules (quote (org-protocol))
-        calendar-week-start-day 1)
 
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
@@ -100,11 +129,72 @@
            "* %^{Recipe title: }\n  :PROPERTIES:\n  :source-url:\n  :servings:\n  :prep-time:\n  :cook-time:\n  :ready-in:\n  :END:\n** Ingredients\n   %?\n** Directions\n\n")
           ))
 
-  (setq org-todo-keywords
-        '((sequence "TODO(t!)" "WAITING(w!)" "INPROGRESS(p!)"  "|" "DONE(d!) OBSOLETE(o!)")
+  (customize-set-value
+    'org-agenda-category-icon-alist
+    `(
+      ("work" ,(list (all-the-icons-material "work" :height 1.2)) nil nil :ascent center)
+      ("chore" ,(list (all-the-icons-material "repeat" :height 1.2)) nil nil :ascent center)
+      ("events" ,(list (all-the-icons-faicon "calendar" :height 1.2)) nil nil :ascent center)
+      ("inbox" ,(list (all-the-icons-material "check_box" :height 1.2)) nil nil :ascent center)
+      ("blog" ,(list (all-the-icons-material "rss_feed" :height 1.2)) nil nil :ascent center)
+      ("home" ,(list (all-the-icons-material "home" :height 1.2)) nil nil :ascent center)
+      ("cooking" ,(list (all-the-icons-material "kitchen" :height 1.2)) nil nil :ascent center)
+     ))
+  (setq org-agenda-format-date 'my-org-agenda-format-date-aligned)
+  (defun my-org-agenda-format-date-aligned (date)
+  "Format a DATE string for display in the daily/weekly agenda, or timeline.
+This function makes sure that dates are aligned for easy reading."
+  (require 'cal-iso)
+  (let* ((dayname (calendar-day-name date 1 nil))
+         (day (cadr date))
+         (day-of-week (calendar-day-of-week date))
+         (month (car date))
+         (monthname (calendar-month-name month 1))
+         (year (nth 2 date))
+         (iso-week (org-days-to-iso-week
+                    (calendar-absolute-from-gregorian date)))
+         (weekyear (cond ((and (= month 1) (>= iso-week 52))
+                          (1- year))
+                         ((and (= month 12) (<= iso-week 1))
+                          (1+ year))
+                         (t year)))
+         (weekstring (if (= day-of-week 1)
+                         (format " W%02d" iso-week)
+                       "")))
+         (format "%-2s. %2d %s"
+            dayname day monthname)))
 
-          (sequence "IDEA(i!)" "MAYBE(y!)" "STAGED(s!)" "WORKING(k!)" "|" "USED(u!/@)")
-          ))
+(setq org-agenda-custom-commands
+      '(("o" "My Agenda"
+         ((todo "TODO" (
+                      (org-agenda-overriding-header "\n⚡ Do Today:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+                      (org-agenda-remove-tags t)
+                      (org-agenda-prefix-format " %-2i %-15b")
+                      (org-agenda-todo-keyword-format "")
+                       ))
+          (agenda "" (
+                      (org-agenda-start-day "+0d")
+                      (org-agenda-span 5)
+                      (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+                      (org-agenda-repeating-timestamp-show-all nil)
+                      (org-agenda-remove-tags t)
+                      (org-agenda-prefix-format   "  %-3i  %-15b %t%s")
+                      (org-agenda-todo-keyword-format " ☐ ")
+                      (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
+                      (org-agenda-scheduled-leaders '("" ""))
+                      (org-agenda-time-grid (quote ((daily today remove-match)
+                                                    (0900 1200 1500 1800 2100)
+                                                    "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))
+                       ))
+          ))))
+
+  (add-hook 'org-agenda-finalize-hook #'set-window-clean)
+  (defun set-window-clean ()
+    (interactive)
+    (setq mode-line-format nil)
+    (set-frame-parameter nil 'font "JetbrainsMono Nerd Font-16")
+    (set-window-margins (frame-selected-window) 4))
+
   )
 
 
@@ -245,7 +335,7 @@ See `org-capture-templates' for more information."
  ;; If there is more than one, they won't work right.
  )
 
-(setq jenkins-api-token "115493c2b5b4f3cf6e6d0b7cb405737edc"
+(setq jenkins-api-token "invalid"
       jenkins-url "https://jenkins.tech.dnb.no/jenkinsssl/"
       jenkins-username "marcus.ramberg"
       jenkins-viewname "Favorites") ;; if you're not using views skip this line
@@ -253,3 +343,6 @@ See `org-capture-templates' for more information."
 (setq magit-save-repository-buffers nil
       ;; Don't restore the wconf after quitting magit, it's jarring
       magit-inhibit-save-previous-winconf t)
+
+;; Perl
+(defal
