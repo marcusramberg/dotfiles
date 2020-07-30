@@ -63,3 +63,8 @@
 (package! visual-fill-column)
 (package! jenkins)
 (package! cheat-sh)
+
+
+;; Screencasts
+(package! keycast)
+(package! gif-screencast)

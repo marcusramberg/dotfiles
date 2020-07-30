@@ -19,7 +19,7 @@
        ;;japanese
 
        :completion
-       (company +childframe +tng)      ; the ultimate code completion backend
+       (company +tng)      ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy +fuzzy)        ; a search engine for love and life
@@ -84,7 +84,7 @@
        :tools
        ;;ansible
        (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
-       ;;direnv
+        ;;direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
@@ -128,7 +128,7 @@
        ;;idris             ;
        (json +lsp)              ; At least it ain't XML
        (java +lsp) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)       ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
