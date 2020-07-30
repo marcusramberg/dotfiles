@@ -64,7 +64,18 @@
 (package! jenkins)
 (package! cheat-sh)
 
-
 ;; Screencasts
 (package! keycast)
 (package! gif-screencast)
+
+;; Perl setup
+(package! helm-perldoc)
+(package! perltidy
+  :recipe (:host github :repo "zakame/perltidy.el"))
+;; REPL
+(package! reply
+  :recipe (:host github :repo "syohex/emacs-reply"))
+
+;;Completion
+(package! company-ctags
+  :recipe (:host github :repo "redguardtoo/company-ctags"))

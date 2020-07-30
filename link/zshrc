@@ -130,3 +130,5 @@ zstyle ':autocomplete:tab:*' completion insert
 zstyle ':autocomplete:list-choices:*' min-input 3
 
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+export LC_ALL=en_US.UTF-8

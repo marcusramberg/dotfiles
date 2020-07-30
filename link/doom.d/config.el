@@ -345,4 +345,40 @@ See `org-capture-templates' for more information."
       magit-inhibit-save-previous-winconf t)
 
 ;; Perl
-(defal
+(defalias 'perl-mode 'cperl-mode)
+(setq flycheck-perlcritic-theme "freenode"
+      cperl-electric-keywords t)
+
+(defun zakame/reply-sentinel (process event)
+  (if (memq (process-status process) '(signal exit))
+      (let ((buffer (process-buffer process)))
+        (kill-buffer buffer))))
+(defadvice run-reply (around reply-set-process-sentinel activate)
+  ad-do-it
+  (set-process-sentinel (get-process "reply") 'zakame/reply-sentinel))
+(ad-activate 'run-reply)
+(defun reply-other-window ()
+  "Run `reply' on other window."
+  (interactive)
+  (switch-to-buffer-other-window (get-buffer-create "*reply*"))
+  (run-reply "reply"))
+(after! helm-perldoc
+  (helm-perldoc:setup))
+
+  (map! (:localleader  ; Use local leader
+         (:map (cperl-mode-map)
+          (:prefix ("r" . "repl")
+          "r" #'run-reply ; Add which-key description
+          "s" #'reply-send-region
+          "o" #'reply-other-window)
+          (:prefix ("t" . "tidy")
+          "r" #'perltidy-region
+          "b" #'perltidy-buffer
+          "s" #'perltidy-subroutine
+          "t" #'perltidy-dwim-safe)
+          "p" #'helm-perldoc
+        )))
+
+(after! company-ctags
+  (add-to-list 'company-backends 'company-ctags)
+  (add-hook 'cperl-mode-hook 'company-mode))
