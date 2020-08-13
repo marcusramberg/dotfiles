@@ -81,6 +81,7 @@
                          "~/org/work.org"
                          "~/org/projects.org"
                          "~/org/chores.org"
+                         "~/org/notes.org"
                          "~/org/home.org")
   ;; org-caldav-calendar-id "ovuticv96133cisuc0pm8f7d6g@group.calendar.google.com"
   ;; org-caldav-files '("~/Notes/appointments.org")
@@ -166,8 +167,8 @@ This function makes sure that dates are aligned for easy reading."
 
 (setq org-agenda-custom-commands
       '(("o" "My Agenda"
-         ((todo "TODO" (
-                      (org-agenda-overriding-header "\n⚡ Do Today:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+         ((todo "INPROGRESS" (
+                      (org-agenda-overriding-header "\n⚡ in progress:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                       (org-agenda-remove-tags t)
                       (org-agenda-prefix-format " %-2i %-15b")
                       (org-agenda-todo-keyword-format "")
@@ -314,6 +315,9 @@ See `org-capture-templates' for more information."
    (make-lsp-client :new-connection (lsp-stdio-connection '("/Users/marcus/Downloads/terraform-ls" "serve"))
                     :major-modes '(terraform-mode)
                     :server-id 'terraform-ls))
+  (make-lsp-client :new-connection (lsp-stdio-connection '("perl" "-M Perl::LanguageServer"))
+                    :major-modes '(cperl-mode)
+                    :server-id 'perl-ls)
   (add-hook 'terraform-mode-hook #'lsp))
 
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -327,7 +331,8 @@ See `org-capture-templates' for more information."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(cheat-sh jenkins-watch elscreen jenkins)))
+ '(package-selected-packages
+   '(org-plus-contrib lsp-origami cheat-sh jenkins-watch elscreen jenkins)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -382,3 +387,47 @@ See `org-capture-templates' for more information."
 (after! company-ctags
   (add-to-list 'company-backends 'company-ctags)
   (add-hook 'cperl-mode-hook 'company-mode))
+
+(set-email-account! "marcus.ramberg"
+  '((mu4e-sent-folder       . "/Lissner.net/Sent Mail")
+    (mu4e-drafts-folder     . "/Lissner.net/Drafts")
+    (mu4e-trash-folder      . "/Lissner.net/Trash")
+    (mu4e-refile-folder     . "/Lissner.net/All Mail")
+    (smtpmail-smtp-user     . "henrik@lissner.net")
+    (user-mail-address      . "henrik@lissner.net")    ;; only needed for mu < 1.4
+    (mu4e-compose-signature . "---\nHenrik Lissner"))
+  t)
+
+
+(after! slack
+  (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
+  (setq slack-prefer-current-team t)
+  (slack-register-team
+        :name "dnb"
+        :token (auth-source-pick-first-password
+                :host "dnb-it.slack.com"
+                :user "marcus.ramberg@dnb.no")
+        :subscribed-channels '((apitribe apitribe-private)))
+  (evil-define-key 'normal slack-info-mode-map
+    ",u" 'slack-room-update-messages)
+  (evil-define-key 'normal slack-mode-map
+    ",c" 'slack-buffer-kill
+    ",ra" 'slack-message-add-reaction
+    ",rr" 'slack-message-remove-reaction
+    ",rs" 'slack-message-show-reaction-users
+    ",pl" 'slack-room-pins-list
+    ",pa" 'slack-message-pins-add
+    ",pr" 'slack-message-pins-remove
+    ",mm" 'slack-message-write-another-buffer
+    ",me" 'slack-message-edit
+    ",md" 'slack-message-delete
+    ",u" 'slack-room-update-messages
+    ",2" 'slack-message-embed-mention
+    ",3" 'slack-message-embed-channel
+    "\C-n" 'slack-buffer-goto-next-message
+    "\C-p" 'slack-buffer-goto-prev-message)
+   (evil-define-key 'normal slack-edit-message-mode-map
+    ",k" 'slack-message-cancel-edit
+    ",s" 'slack-message-send-from-buffer
+    ",2" 'slack-message-embed-mention
+    ",3" 'slack-message-embed-channel))

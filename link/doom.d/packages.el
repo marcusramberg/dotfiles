@@ -79,3 +79,6 @@
 ;;Completion
 (package! company-ctags
   :recipe (:host github :repo "redguardtoo/company-ctags"))
+
+
+(package! slack)
