@@ -39,7 +39,7 @@
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       pretty-code       ; ligatures or substitute text with pretty symbols
+       ligatures         ; ligatures or substitute text with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
@@ -81,6 +81,8 @@
        ;;spell              ; tasing you for misspelling mispelling
        ;;grammar            ; tasing grammar mistake every you make
 
+       :os
+       macos               ; MacOS-specific commands
        :tools
        ;;ansible
        (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
@@ -92,7 +94,6 @@
        gist                ; interacting with github gists
        (lookup +docsets +dictionary) ; navigate your code and its documentation
        (lsp +peek)
-       macos               ; MacOS-specific commands
        (magit +forge)      ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -134,17 +135,17 @@
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
-       ledger            ; an accounting system in Emacs
-       lua               ; one-based indices? one-based indices
-       (markdown +grip)         ; writing docs for people to ignore
+       ledger              ; an accounting system in Emacs
+       lua                 ; one-based indices? one-based indices
+       (markdown +grip)    ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       nix               ; I hereby declare "nix geht mehr!"
+       nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org  +hugo +dragndrop +pomodoro +roam +journal +present)              ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python +lsp)       ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;raku              ; The artist formerly known as Perl6
        ;;racket            ; a DSL for DSLs

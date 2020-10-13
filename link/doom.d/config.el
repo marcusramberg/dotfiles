@@ -63,15 +63,44 @@
 
 (setq projectile-project-search-path '("~/Source" "~/Source/DNB"))
 
-;; Include _ in words.
-(add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
+;; more evil
+(after! evil
+  (require 'evil-textobj-anyblock)
+  (evil-define-text-object my-evil-textobj-anyblock-inner-quote
+    (count &optional beg end type)
+    "Select the closest outer quote."
+    (let ((evil-textobj-anyblock-blocks
+           '(("'" . "'")
+             ("\"" . "\"")
+             ("`" . "`")
+             ("“" . "”"))))
+      (evil-textobj-anyblock--make-textobj beg end type count nil)))
+
+  (evil-define-text-object my-evil-textobj-anyblock-a-quote
+    (count &optional beg end type)
+    "Select the closest outer quote."
+    (let ((evil-textobj-anyblock-blocks
+           '(("'" . "'")
+             ("\"" . "\"")
+             ("`" . "`")
+             ("“" . "”"))))
+      (evil-textobj-anyblock--make-textobj beg end type count t)))
 ;; Allow multiple paste
 (defun evil-paste-after-from-0 ()
   (interactive)
   (let ((evil-this-register ?0))
     (call-interactively 'evil-paste-after)))
 (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+
+  (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
+  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote)
+  ;; Include _ in words.
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+;; Limit the length of visual mode.
+(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+(setq visual-fill-column-width 100)
+)
 
 (setq-hook! org-mode
   calendar-week-start-day 1
@@ -201,38 +230,30 @@ This function makes sure that dates are aligned for easy reading."
 
 
 ;; Cloudformation
-(after! yaml
-  (when (featurep 'yaml-mode)
+(define-derived-mode cfn-mode yaml-mode
+  "Cloudformation"
+  "Cloudformation template mode.")
 
-    (define-derived-mode cfn-mode yaml-mode
-      "Cloudformation"
-      "Cloudformation template mode.")
+(add-to-list 'auto-mode-alist '("service\.yml\\'" . cfn-mode))
+(after! flycheck
+  (flycheck-define-checker cfn-lint
+    "A Cloudformation linter using cfn-python-lint.
 
-    (add-to-list 'magic-mode-alist
-                 '("\\(---\n\\)?AWSTemplateFormatVersion:" . cfn-mode))
-
-    (when (featurep 'flycheck)
-      (flycheck-define-checker cfn-lint
-        "AWS CloudFormation linter using cfn-lint.
-
-
-
-Install cfn-lint first: pip install cfn-lint
-
-See `https://github.com/aws-cloudformation/cfn-python-lint'."
-
-        :command ("cfn-lint" "-f" "parseable" source)
-        :error-patterns ((warning line-start (file-name) ":" line ":" column
-                                  ":" (one-or-more digit) ":" (one-or-more digit) ":"
-                                  (id "W" (one-or-more digit)) ":" (message) line-end)
-                         (error line-start (file-name) ":" line ":" column
-                                ":" (one-or-more digit) ":" (one-or-more digit) ":"
-                                (id "E" (one-or-more digit)) ":" (message) line-end))
-        :modes (cfn-mode))
-
-      (add-to-list 'flycheck-checkers 'cfn-lint)
-      (add-hook 'cfn-mode-hook 'flycheck-mode)))
+See URL 'https://github.com/awslabs/cfn-python-lint'."
+    :command ("cfn-lint" "-f" "parseable" source)
+    :error-patterns (
+                     (warning line-start (file-name) ":" line ":" column
+                              ":" (one-or-more digit) ":" (one-or-more digit) ":"
+                              (id "W" (one-or-more digit)) ":" (message) line-end)
+                     (error line-start (file-name) ":" line ":" column
+                            ":" (one-or-more digit) ":" (one-or-more digit) ":"
+                            (id "E" (one-or-more digit)) ":" (message) line-end)
+                     )
+    :modes (cfn-mode)
+    )
+    (add-to-list 'flycheck-checkers 'cfn-lint)
   )
+
 
 ;; Enable auto save
 (auto-save-visited-mode +1)
@@ -299,9 +320,6 @@ See `org-capture-templates' for more information."
                  (file+olp "blog.org" "Links")
                  (function org-hugo-new-subtree-link-capture-template))))
 
-;; Limit the length of visual mode.
-(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
-(setq visual-fill-column-width 100)
 
 ;;(setq mac-option-key-is-meta nil
 ;;      mac-command-key-is-meta t
@@ -324,9 +342,7 @@ See `org-capture-templates' for more information."
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-;; Switch to the new window after splitting
-(setq evil-split-window-below t
-      evil-vsplit-window-right t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -346,9 +362,13 @@ See `org-capture-templates' for more information."
       jenkins-username "marcus.ramberg"
       jenkins-viewname "Favorites") ;; if you're not using views skip this line
 
-(setq magit-save-repository-buffers nil
+(after! magit
+        ;; Switch to the new window after splitting
+        (set-popup-rule! "^.*magit" :slot -1 :side 'right :size 80 :select t)
+        (setq magit-save-repository-buffers nil
       ;; Don't restore the wconf after quitting magit, it's jarring
-      magit-inhibit-save-previous-winconf t)
+              magit-inhibit-save-previous-winconf t)
+)
 
 ;; Perl
 (defalias 'perl-mode 'cperl-mode)

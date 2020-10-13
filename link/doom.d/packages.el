@@ -82,3 +82,9 @@
 
 
 (package! slack)
+
+(package! kubernetes)
+(package! kubernetes-evil)
+
+(package! jq-mode
+  :recipe (:host github :repo "ljos/jq-mode"))

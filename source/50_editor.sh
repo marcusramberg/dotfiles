@@ -4,11 +4,11 @@ export BAT_THEME="Nord"
 alias less="bat"
 alias cat="bat"
 alias q='nvim'
-alias vi='emacsclient -n'
+alias vi='emacs -nw'
 type nvim &> /dev/null && alias vim=nvim
 if [[ ! -n "$SSH_TTY" ]]; then
-  export EDITOR='emacsclient'
-  export LESSEDIT='nvim %f'
+  export EDITOR='emacs -nw'
+  export LESSEDIT='emacs -nw %f'
 else
   export EDITOR=$(type emacsclient nvim vim vi nano pico 2>/dev/null | sed 's/ .*$//;q')
   alias q="$EDITOR -w -z"
