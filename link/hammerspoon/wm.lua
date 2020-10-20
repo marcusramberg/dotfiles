@@ -3,15 +3,15 @@ local spaces = require("hs._asm.undocumented.spaces")
 local hints = require "hs.hints"
 local tiling = require "hs.tiling"
 
-hs.hotkey.bind(hyper, "[", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
-hs.hotkey.bind(hyper, "]", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
-hs.hotkey.bind(hyper, "'", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left70) end)
-hs.hotkey.bind(hyper, "\\", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
+hs.hotkey.bind(hyper, "o", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
+hs.hotkey.bind(hyper, "p", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
+hs.hotkey.bind(hyper, "k", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left70) end)
+hs.hotkey.bind(hyper, "l", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 
-hs.hotkey.bind(hyper, "l", function() tiling.cycleLayout()  end)
-hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
-hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
+--hs.hotkey.bind(hyper, "l", function() tiling.cycleLayout()  end)
+--hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
+--hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
 
 hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
 

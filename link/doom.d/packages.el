@@ -88,3 +88,7 @@
 
 (package! jq-mode
   :recipe (:host github :repo "ljos/jq-mode"))
+
+(package! rego-mode)
+
+(package! speed-type)

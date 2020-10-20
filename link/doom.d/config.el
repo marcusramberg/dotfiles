@@ -361,15 +361,7 @@ See `org-capture-templates' for more information."
       jenkins-url "https://jenkins.tech.dnb.no/jenkinsssl/"
       jenkins-username "marcus.ramberg"
       jenkins-viewname "Favorites") ;; if you're not using views skip this line
-
-(after! magit
-        ;; Switch to the new window after splitting
-        (set-popup-rule! "^.*magit" :slot -1 :side 'right :size 80 :select t)
-        (setq magit-save-repository-buffers nil
-      ;; Don't restore the wconf after quitting magit, it's jarring
-              magit-inhibit-save-previous-winconf t)
-)
-
+;;
 ;; Perl
 (defalias 'perl-mode 'cperl-mode)
 (setq flycheck-perlcritic-theme "freenode"
@@ -452,3 +444,5 @@ See `org-capture-templates' for more information."
     ",s" 'slack-message-send-from-buffer
     ",2" 'slack-message-embed-mention
     ",3" 'slack-message-embed-channel))
+;; Autoload jq.
+(add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
