@@ -15,3 +15,5 @@ if [[ ! -d "$('xcode-select' -print-path 2>/dev/null)" ]]; then
   sudo xcode-select -switch /usr/bin
 fi
 
+
+if [[ $(sudo scutil --get LocalHostName) != $(sudo scutil --get HostName) ]] ; then sudo scutil --set HostName $(sudo scutil --get LocalHostName) ; else echo "Hostnames match" ; fi

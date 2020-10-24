@@ -133,4 +133,3 @@ export JAVA_HOME=/Users/marcus/.jenv/versions/11.0
 complete -o nospace -C /usr/local/bin/terraform terraform
 
 export LC_ALL=en_US.UTF-8
-if [[ $(sudo scutil --get LocalHostName) != $(sudo scutil --get HostName) ]] ; then sudo scutil --set HostName $(sudo scutil --get LocalHostName) ; else echo "Hostnames match" ; fi
