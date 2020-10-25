@@ -100,6 +100,8 @@
 ;; Limit the length of visual mode.
 (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
 (setq visual-fill-column-width 100)
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)
 )
 
 (setq-hook! org-mode
