@@ -21,6 +21,10 @@ function flip() {
   perl -C3 -Mutf8 -lpe '$_=reverse;y/a-zA-Z.['\'',({?!\"<_;‿⁅∴\r/ɐqɔpǝɟƃɥıɾʞ|ɯuodbɹsʇnʌʍxʎzɐqɔpǝɟƃɥıɾʞ|ɯuodbɹsʇnʌʍxʎz˙],'\'')}¿¡,>‾؛⁀⁆∵\n/' <<< "$1"
 }
 
+function currentlog() {
+  journalctl _SYSTEMD_INVOCATION_ID=$(systemctl show --value -p InvocationID $1)
+}
+
 function fuckup() {
   CMD="pkill"
   which $CMD >/dev/null || CMD="killall"

@@ -404,13 +404,13 @@ See `org-capture-templates' for more information."
   (add-hook 'cperl-mode-hook 'company-mode))
 
 (set-email-account! "marcus.ramberg"
-  '((mu4e-sent-folder       . "/Lissner.net/Sent Mail")
-    (mu4e-drafts-folder     . "/Lissner.net/Drafts")
-    (mu4e-trash-folder      . "/Lissner.net/Trash")
-    (mu4e-refile-folder     . "/Lissner.net/All Mail")
-    (smtpmail-smtp-user     . "henrik@lissner.net")
-    (user-mail-address      . "henrik@lissner.net")    ;; only needed for mu < 1.4
-    (mu4e-compose-signature . "---\nHenrik Lissner"))
+  '((mu4e-sent-folder       . "/means.no/Sent Mail")
+    (mu4e-drafts-folder     . "/means.no/Drafts")
+    (mu4e-trash-folder      . "/means.no/Trash")
+    (mu4e-refile-folder     . "/means.no/All Mail")
+    (smtpmail-smtp-user     . "marcus@means.no")
+    (user-mail-address      . "marcus@means.no")    ;; only needed for mu < 1.4
+    (mu4e-compose-signature . "---\nMarcus Ramberg"))
   t)
 
 
