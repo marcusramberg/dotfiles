@@ -4,7 +4,6 @@ rbenv:
   version: v0.4.0
   ruby_version: 2.1.2
 homebrew_installed_packages:
-  - ack
   - ant
   - antiword
   - aspell
@@ -32,6 +31,7 @@ homebrew_installed_packages:
   - ec2-api-tools
   - elasticsearch
   - erlang
+  - elixir
   - etcd
   - faac
   - fasd
@@ -82,6 +82,7 @@ homebrew_installed_packages:
   - ios-webkit-debug-proxy
   - isl
   - jasper
+  - jenv
   - jpeg
   - jsonpp
   - juju
@@ -128,7 +129,6 @@ homebrew_installed_packages:
   - lynx
   - man2html
   - maven
-  - md5sha1sum
   - mercurial
   - midnight-commander
   - mitmproxy
@@ -176,14 +176,12 @@ homebrew_installed_packages:
   - pth
   - pwgen
   - python
-  - python3
   - ragel
   - rainbarf
   - rbenv
   - readline
   - reattach-to-user-namespace
   - redis
-  - riak
   - rlwrap
   - rtmpdump
   - rust
@@ -240,47 +238,39 @@ homebrew_installed_packages:
   - z
   - zeromq
   - zsh-lovers
-homebrew_args:
-
-homebrew_taps:
-    - homebrew/cask
-    - homebrew/cask-fonts
-    - adoptopenjdk/openjdk
-homebrew_cask_packages_packages:
   - xquartz
-  - alfred
-  - amethyst
-  - betterzipql
-  - bittorrent-sync
+  - alfred # brew apps start here
+  - bitwarden
+  - browserosaurus
   - calibre
-  - colorpicker-hex
   - dash
-  - dropbox
-  - firefox
-  - gitx
+  - eloston-chromium
+  - emacs-plus
+  - font-jetbrains-mono-nerd-font
+  - firefox-developer-edition
   - google-chrome
+  - google-backup-and-sync
+  - hammerspoon
   - inkscape
   - iterm2
-  - java
-  - karabiner
+  - adoptopenjdk15-openj9
+  - karabiner-elements
   - osxfuse
-  - plex-media-server
   - qlcolorcode
   - qlmarkdown
   - qlstephen
   - quicklook-csv
   - quicklook-json
-  - skitch
-  - techstoreclub-simple-comic
-  - slate
   - steam
+  - telegram
   - the-unarchiver
-  - totalspaces
   - transmission
-  - tuntap
   - vagrant
   - vlc
 
+homebrew_taps:
+    - d12frosted/emacs-plus
+    - adoptopenjdk/openjdk
 installed_debs:
   - zsh
   - cmake
