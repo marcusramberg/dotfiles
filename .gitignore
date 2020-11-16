@@ -16,3 +16,4 @@ link/config/hub
 *.py[cod]
 *.bak
 automatic_backups
+.DS_Store
