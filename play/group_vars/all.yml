@@ -19,6 +19,7 @@ homebrew_installed_packages:
   - boost
   - bwm-ng
   - cairo
+  - clang-format
   - cloc
   - cloog
   - cmake
@@ -29,6 +30,7 @@ homebrew_installed_packages:
   - direnv
   - e2fsprogs
   - ec2-api-tools
+  - editorconfig
   - elasticsearch
   - erlang
   - elixir
@@ -38,8 +40,6 @@ homebrew_installed_packages:
   - fdk-aac
   - ffmpeg
   - findutils
-  - flac
-  - fleetctl
   - fontconfig
   - freetype
   - frei0r
@@ -60,19 +60,19 @@ homebrew_installed_packages:
   - gnu-getopt
   - gnu-sed
   - gnupg
-  - gnupg2
   - gnutls
   - go
   - goaccess
   - gobject-introspection
   - graphicsmagick
+  - graphwiz
   - grc
   - gsl
   - gtk+
   - hadolint
   - harfbuzz
   - harfbuzz
-  - htop-osx
+  - htop
   - httperf
   - httpie
   - hub
@@ -83,6 +83,7 @@ homebrew_installed_packages:
   - isl
   - jasper
   - jenv
+  - jq
   - jpeg
   - jsonpp
   - juju
@@ -178,6 +179,7 @@ homebrew_installed_packages:
   - python
   - ragel
   - rainbarf
+  - ripgrep
   - rbenv
   - readline
   - reattach-to-user-namespace
@@ -191,6 +193,7 @@ homebrew_installed_packages:
   - schroedinger
   - scons
   - sdl
+  - shellcheck
   - siege
   - sl
   - sloccount
@@ -205,6 +208,7 @@ homebrew_installed_packages:
   - tbb
   - tcpflow
   - tcptrace
+  - terraform
   - texi2html
   - texinfo
   - the_silver_searcher
@@ -244,6 +248,7 @@ homebrew_installed_packages:
   - browserosaurus
   - calibre
   - dash
+  - docker
   - eloston-chromium
   - emacs-plus
   - font-jetbrains-mono-nerd-font
@@ -252,6 +257,7 @@ homebrew_installed_packages:
   - google-backup-and-sync
   - hammerspoon
   - inkscape
+  - intellij-idea-ce
   - iterm2
   - adoptopenjdk15-openj9
   - karabiner-elements
