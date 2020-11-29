@@ -29,7 +29,7 @@
   with_items: "{{homebrew_taps}}"
 
 - name: Get list of installed homebrew packages.
-  command: brew list
+  command: brew list --formula
   register: homebrew_list
   changed_when: false
 
