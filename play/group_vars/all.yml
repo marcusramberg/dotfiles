@@ -18,6 +18,7 @@ homebrew_installed_packages:
   - beanstalk
   - boost
   - bwm-ng
+  - caddy
   - cairo
   - clang-format
   - cloc
@@ -153,6 +154,7 @@ homebrew_installed_packages:
   - nmap
   - node
   - oniguruma
+  - opa
   - opencore-amr
   - openjpeg
   - openssl
@@ -243,11 +245,12 @@ homebrew_installed_packages:
   - zeromq
   - zsh-lovers
   - xquartz
-  - alfred # brew apps start here
+  - alfred 
   - bitwarden
   - browserosaurus
   - calibre
   - dash
+  - discord
   - docker
   - eloston-chromium
   - emacs-plus
@@ -255,6 +258,7 @@ homebrew_installed_packages:
   - firefox-developer-edition
   - google-chrome
   - google-backup-and-sync
+  - grand-perspective
   - hammerspoon
   - inkscape
   - intellij-idea-ce

@@ -50,16 +50,16 @@
        zen               ; distraction-free coding or writing
 
        :editor
-       (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
-       fold              ; (nigh) universal code folding
-       (format +onsave            ; automated prettiness
-      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-            sql-mode         ; sqlformat is currently broken
-            tex-mode         ; latexindent is broken
-            yaml-mode
-            cfn-mode
-            latex-mode))
+       (evil +everywhere) ; come to the dark side, we have cookies
+       file-templates     ; auto-snippets for empty files
+       fold               ; (nigh) universal code folding
+       format             ; automated prettiness
+                          ; elisp's mechanisms are good enough
+                          ; sqlformat is currently broken
+                          ; latexindent is broken
+
+
+
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once

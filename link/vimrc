@@ -58,7 +58,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Lokaltog/vim-monotone'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
-Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim'
 
 "Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'bronson/vim-trailing-whitespace'
@@ -100,11 +100,12 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-let g:nord_italic_comments = 1
+"let g:nord_italic_comments = 1
 
 let g:monotone_color = [200, 25, 90] " Sets theme color to kind of blue
 let g:monotone_secondary_hue_offset = 70 " Offset secondary colors by some degrees
-colorscheme nord
+
+colorscheme dracula
 
 
 filetype plugin indent on

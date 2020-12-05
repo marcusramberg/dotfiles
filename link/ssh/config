@@ -77,6 +77,7 @@ Host gitproxy
     ServerAliveInterval 10
     ServerAliveCountMax 3
     LocalForward 9000 git.tech-01.net:22
+    LocalForward 9009 gitlab.tech.dnb.no:22  
     LocalForward 443 sonar.tech.dnb.no:443
     ControlMaster auto
     ControlPath ~/.ssh/sockets/%r@%h:%p
@@ -87,6 +88,12 @@ Host git.tech-01.net
     StrictHostKeyChecking no
     Port 9000
 
+Host gitlab.tech.dnb.no
+        HostName localhost
+        StrictHostKeyChecking no
+        Port 9009
+
+
     # SSH over Session Manager
 host i-* mi-*
-    ProxyCommand sh -c "AWS_PROFILE=shasl-dev aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+
