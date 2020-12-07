@@ -63,6 +63,16 @@
 
 (setq projectile-project-search-path '("~/Source" "~/Source/DNB"))
 
+;; bindings
+(map!
+ (:leader
+  (:prefix "f"
+   :desc "Toggle Treemacs" "t" #'treemacs)
+  (:prefix "o"
+   :desc "Open kill ring" "k" #'+default/yank-pop)
+  (:prefix "c"
+   :desc "Accept Suggestion" "A" #'lsp-ui-sideline-apply-code-actions)
+ ))
 
 ;; more evil
 (after! evil
@@ -448,3 +458,4 @@ See `org-capture-templates' for more information."
     ",3" 'slack-message-embed-channel))
 ;; Autoload jq.
 (add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
+

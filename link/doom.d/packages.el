@@ -92,3 +92,6 @@
 (package! rego-mode)
 
 (package! speed-type)
+
+(package! github-browse-file)
+(package! github-review)
