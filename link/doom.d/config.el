@@ -27,7 +27,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-dracula)
 
 
 (setq doom-localleader-key "\\")
@@ -460,9 +460,11 @@ See `org-capture-templates' for more information."
 (add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
 
 
+;; Autosave before magit
 (after! magit (setq magit-save-repository-buffers 'dontask))
 
 
+;; Always show minibuffers.
 (defun display-workspaces-in-minibuffer ()
   (with-current-buffer " *Minibuf-0*"
     (erase-buffer)
