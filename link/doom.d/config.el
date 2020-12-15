@@ -459,3 +459,13 @@ See `org-capture-templates' for more information."
 ;; Autoload jq.
 (add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
 
+
+(after! magit (setq magit-save-repository-buffers 'dontask))
+
+
+(defun display-workspaces-in-minibuffer ()
+  (with-current-buffer " *Minibuf-0*"
+    (erase-buffer)
+    (insert (+workspace--tabline))))
+(run-with-idle-timer 1 t #'display-workspaces-in-minibuffer)
+(+workspace/display)
