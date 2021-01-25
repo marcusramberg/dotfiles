@@ -1,68 +1,19 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Marcus Ramberg"
       user-mail-address "marcus.ramberg@gmail.com")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font "JetbrainsMono Nerd Font-16")
+;; Look and feel
+(setq doom-font "JetbrainsMono Nerd Font-16"
+      doom-variable-pitch-font (font-spec :family "sans" :size 13)
+      doom-theme 'doom-dracula ;; Current favorite
+      display-line-numbers-type nil) ;; not worth the perf
 
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-dracula)
-
-
+;; Additional key mappings
 (setq doom-localleader-key "\\")
 (setq doom-localleader-alt-key "M-\\")
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
-
-
-;; Here are some additional functions/macros that could help you configure Doom:
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c g k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
-;; they are implemented.
-
-(setq deft-directory org-directory)
-
-(setq projectile-project-search-path '("~/Source" "~/Source/DNB"))
-
 ;; bindings
 (map!
  (:leader
@@ -74,7 +25,16 @@
    :desc "Accept Suggestion" "A" #'lsp-ui-sideline-apply-code-actions)
  ))
 
-;; more evil
+;; Various editor tweaks
+;; Limit the length of visual mode.
+  (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+  (setq visual-fill-column-width 100)
+;; Enable auto save
+(auto-save-visited-mode +1)
+
+(setq projectile-project-search-path '("~/Source" "~/Source/DNB"))
+
+;; be more evil
 (after! evil
   (require 'evil-textobj-anyblock)
   (evil-define-text-object my-evil-textobj-anyblock-inner-quote
@@ -97,23 +57,27 @@
              ("“" . "”"))))
       (evil-textobj-anyblock--make-textobj beg end type count t)))
 ;; Allow multiple paste
-(defun evil-paste-after-from-0 ()
-  (interactive)
-  (let ((evil-this-register ?0))
-    (call-interactively 'evil-paste-after)))
-(define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+  (defun evil-paste-after-from-0 ()
+    (interactive)
+    (let ((evil-this-register ?0))
+      (call-interactively 'evil-paste-after)))
+  (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
 
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote)
   ;; Include _ in words.
   (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-;; Limit the length of visual mode.
-(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
-(setq visual-fill-column-width 100)
-(setq evil-split-window-below t
-      evil-vsplit-window-right t)
+  ;; Make splits behave more as expected
+  (setq evil-split-window-below t
+        evil-vsplit-window-right t)
+  ;; Navigate our soft split lines.
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 )
 
+;; Org config
+(setq org-directory "~/org/")
+(setq deft-directory org-directory)
 (setq-hook! org-mode
   calendar-week-start-day 1
   org-agenda-block-separator (string-to-char "")
@@ -125,12 +89,6 @@
                          "~/org/chores.org"
                          "~/org/notes.org"
                          "~/org/home.org")
-  ;; org-caldav-calendar-id "ovuticv96133cisuc0pm8f7d6g@group.calendar.google.com"
-  ;; org-caldav-files '("~/Notes/appointments.org")
-  ;; org-caldav-inbox "~/Notes/calendar-inbox.org"
-  ;; org-caldav-oauth2-client-id "279358326453-ar2bfnerndjnnie90e59i9otuif9ut84.apps.googleusercontent.com"
-  ;; org-caldav-oauth2-client-secret "SECRET"
-  ;; org-caldav-url 'google
   org-clock-into-drawer t
   org-clock-persist t
   org-columns-default-format "%60ITEM(Task) %20TODO %10Effort(Effort){:} %10CLOCKSUM"
@@ -152,7 +110,7 @@
   org-todo-keywords '((sequence "TODO(t!)" "WAITING(w!)" "INPROGRESS(p!)"  "|" "DONE(d!) OBSOLETE(o!)") (sequence "IDEA(i!)" "MAYBE(y!)" "STAGED(s!)" "WORKING(k!)" "|" "USED(u!/@)"))
   )
 
-;; Org mode
+;; Capture
 (after! org
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %?\n %i\n %a")
@@ -172,6 +130,7 @@
            "* %^{Recipe title: }\n  :PROPERTIES:\n  :source-url:\n  :servings:\n  :prep-time:\n  :cook-time:\n  :ready-in:\n  :END:\n** Ingredients\n   %?\n** Directions\n\n")
           ))
 
+  ;; Icons
   (customize-set-value
     'org-agenda-category-icon-alist
     `(
@@ -263,12 +222,7 @@ See URL 'https://github.com/awslabs/cfn-python-lint'."
                      )
     :modes (cfn-mode)
     )
-    (add-to-list 'flycheck-checkers 'cfn-lint)
-  )
-
-
-;; Enable auto save
-(auto-save-visited-mode +1)
+  (add-to-list 'flycheck-checkers 'cfn-lint))
 
 
 ;; Configure jsonnet to use grafonnet
@@ -276,14 +230,8 @@ See URL 'https://github.com/awslabs/cfn-python-lint'."
 (setq jsonnet-library-search-directories "grafonnet-lib")
 
 
+;; Blogging config
 (setq HUGO_BASE_DIR "~/Source/blog")
-
-;;(eval-after-load 'auth-source
-;;  '(when (member window-system '(mac ns))
-;;     (add-to-list 'auth-sources 'macos-keychain-internet)
-;;     (add-to-list 'auth-sources 'macos-keychain-generic)))
-;;     ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
-;;
 
 (after! org
   (defun org-hugo-new-subtree-post-capture-template ()
@@ -333,14 +281,11 @@ See `org-capture-templates' for more information."
                  (function org-hugo-new-subtree-link-capture-template))))
 
 
-;;(setq mac-option-key-is-meta nil
-;;      mac-command-key-is-meta t
-;;      mac-command-modifier 'meta
-;;      mac-option-modifier 'none)
-
+;; Mac specfic config
 (setq mac-option-key-is-meta t)
 (setq mac-right-option-modifier nil)
 
+;; LSP
 (after! lsp
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection '("/Users/marcus/Downloads/terraform-ls" "serve"))
@@ -351,23 +296,7 @@ See `org-capture-templates' for more information."
                     :server-id 'perl-ls)
   (add-hook 'terraform-mode-hook #'lsp))
 
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(org-plus-contrib lsp-origami cheat-sh jenkins-watch elscreen jenkins)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (setq jenkins-api-token "invalid"
       jenkins-url "https://jenkins.tech.dnb.no/jenkinsssl/"
@@ -413,6 +342,7 @@ See `org-capture-templates' for more information."
   (add-to-list 'company-backends 'company-ctags)
   (add-hook 'cperl-mode-hook 'company-mode))
 
+mu4e
 (set-email-account! "marcus.ramberg"
   '((mu4e-sent-folder       . "/means.no/Sent Mail")
     (mu4e-drafts-folder     . "/means.no/Drafts")
@@ -424,6 +354,7 @@ See `org-capture-templates' for more information."
   t)
 
 
+;; Slack config
 (after! slack
   (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
   (setq slack-prefer-current-team t)
@@ -456,18 +387,27 @@ See `org-capture-templates' for more information."
     ",s" 'slack-message-send-from-buffer
     ",2" 'slack-message-embed-mention
     ",3" 'slack-message-embed-channel))
+
 ;; Autoload jq.
 (add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
-
 
 ;; Autosave before magit
 (after! magit (setq magit-save-repository-buffers 'dontask))
 
 
-;; Always show minibuffers.
-(defun display-workspaces-in-minibuffer ()
-  (with-current-buffer " *Minibuf-0*"
-    (erase-buffer)
-    (insert (+workspace--tabline))))
-(run-with-idle-timer 1 t #'display-workspaces-in-minibuffer)
-(+workspace/display)
+(add-hook! 'emacs-startup-hook
+  (menu-bar-mode -1))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(org-plus-contrib lsp-origami cheat-sh jenkins-watch elscreen jenkins)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
