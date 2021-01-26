@@ -342,7 +342,7 @@ See `org-capture-templates' for more information."
   (add-to-list 'company-backends 'company-ctags)
   (add-hook 'cperl-mode-hook 'company-mode))
 
-mu4e
+;;mu4e
 (set-email-account! "marcus.ramberg"
   '((mu4e-sent-folder       . "/means.no/Sent Mail")
     (mu4e-drafts-folder     . "/means.no/Drafts")
