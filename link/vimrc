@@ -5,14 +5,13 @@ filetype off
 call plug#begin()
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
 Plug 'burner/vim-svelte'
 Plug 'elzr/vim-json'
 Plug 'w0rp/ale'
-"Plug 'klen/python-mode'
-"Plug 'glench/Vim-Jinja2-Syntax'
 
 " Search/replace
 Plug 'Olical/vim-enmasse'
@@ -23,14 +22,10 @@ Plug 'adelarsq/vim-matchit'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 
-" Apps
-"Plug 'tbabej/taskwiki'
-
 " Version Control
-Plug 'tpope/vim-fugitive'
-Plug 'idanarye/vim-merginal'
-"Plug 'int3/vim-extradite'
-Plug 'tpope/vim-rhubarb'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'TimUntersberger/neogit'
+Plug 'sindrets/diffview.nvim'
 
 " Navigation
 "Plug 'kien/ctrlp.vim'
@@ -49,13 +44,14 @@ Plug 'natebosch/vim-lsc'
 " Install yarn from https://yarnpkg.com
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-let g:lsc_server_commands = {'java': '/Users/marcus/Source/java-language-server/dist/mac/bin/launcher --quiet'}
+"Plug 'laher/fuzzymenu.vim'
+Plug 'folke/which-key.nvim'
+"Plug 'glepnir/dashboard-nvim'
 
 
 
 " Styling
 Plug 'airblade/vim-gitgutter'
-Plug 'Lokaltog/vim-monotone'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'dracula/vim'
@@ -100,13 +96,7 @@ Plug 'dracula/vim'
 
 call plug#end()
 
-"let g:nord_italic_comments = 1
-
-let g:monotone_color = [200, 25, 90] " Sets theme color to kind of blue
-let g:monotone_secondary_hue_offset = 70 " Offset secondary colors by some degrees
-
 colorscheme dracula
-
 
 filetype plugin indent on
 
@@ -134,11 +124,7 @@ set nobackup
 set number
 set pastetoggle=<leader>v
 set nowritebackup
-set nowritebackup
 
-" These cause extreme slowness
-"set relativenumber
-"set cursorline
 set synmaxcol=250
 set shiftwidth=2
 "set showmatch
@@ -150,11 +136,10 @@ set updatetime=300
 set wildmenu
 set wildmode=full
 
-
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'nord'
+let g:airline_theme = 'dracula'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 0
 
@@ -220,17 +205,14 @@ if has("autocmd")
 endif
 
 
+:nmap <leader>gs :Neogit<cr>
 :nmap <leader>a :Rg
-:nmap <leader>c :GCommit<cr>
-:nmap <leader>s :GStatus<cr>
-:nmap <leader>b :Merginal<cr>
 :nmap <silent> <leader>d <Plug>DashGlobalSearch
 :nmap <silent> <leader>p :TagbarToggle<cr>
 nmap <leader>n <Plug>(ale_next_wrap)
 nnore <esc><esc> :let @/ = ""<cr>
 
 " Ctrl-p settings
-:nmap <silent> <leader>; :CtrlPMRUFile<cr>
 "let g:ctrlp_extensions = ['smarttabs']
 ":nmap ; :CtrlPSmartTabs<cr>
 "let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
@@ -278,7 +260,6 @@ nnoremap tk  :tablast<CR>
 nnoremap te  :tabedit<space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
-map <space> viw
 
 
 command! Fuck w !sudo tee % >/dev/null
@@ -334,13 +315,12 @@ endif
 
 
 " OS X-like space bar to scroll.
-nnoremap <Space> <C-d>
 
 
 "#nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+"nmap <silent> <leader>T :TestFile<CR>
+"nmap <silent> <leader>l :TestLast<CR>
+"nmap <silent> <leader>g :TestVisit<CR>
 
 "let test#strategy="neovim"
 
@@ -415,6 +395,7 @@ let g:tagbar_type_rust = {
 set list          " Display unprintable characters f12 - switches
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 
-hi Normal guibg=NONE ctermbg=NONE
 
 nnoremap <C-p> :FZF<Cr>
+
+lua require('space-menu')

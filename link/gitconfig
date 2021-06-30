@@ -8,7 +8,7 @@
 	protocol = ssh
 [user]
 	name = Marcus Ramberg
-	email = Marcus.Ramberg@dnb.no
+	email = marcus@means.no
 [alias]
   patch = --no-pager diff --no-color
   promote = !$ZSH/bin/git-promote

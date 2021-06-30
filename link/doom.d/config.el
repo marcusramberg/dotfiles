@@ -7,7 +7,7 @@
 
 ;; Look and feel
 (setq doom-font "JetbrainsMono Nerd Font-16"
-      doom-variable-pitch-font (font-spec :family "sans" :size 13)
+      doom-variable-pitch-font (font-spec :family "futura" :size 13)
       doom-theme 'doom-dracula ;; Current favorite
       display-line-numbers-type nil) ;; not worth the perf
 
@@ -104,6 +104,7 @@
   org-icalendar-timezone "Europe/Oslo"
   org-image-actual-width '(700)
   org-log-done t
+  org-log-into-drawer t
   org-modules (quote (org-protocol))
   org-refile-targets '((org-agenda-files :maxlevel . 2))
   org-time-clocksum-format (quote (:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
@@ -411,3 +412,4 @@ See `org-capture-templates' for more information."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(setq dash-docs-docsets '("NodeJS" "Javascript" "HTML"))

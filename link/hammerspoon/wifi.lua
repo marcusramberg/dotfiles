@@ -26,29 +26,11 @@ function home_arrived()
     -- Note: sudo commands will need to have been pre-configured in /etc/sudoers, for passwordless access, e.g.:
     -- cmsj ALL=(root) NOPASSWD: /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall *
     hs.task.new("/usr/bin/sudo", function() end, {"/usr/libexec/ApplicationFirewall/socketfilterfw", "--setblockall", "off"})
-
-    -- Mount my NAS
-    hs.applescript.applescript([[
-        tell application "Finder"
-            try
-                mount volume "smb://mhub.lan/Space"
-            end try
-        end tell
-    ]])
-    hs.notify.new({
-          title='Hammerspoon',
-            informativeText='Mounted volumes, disabled firewall'
-        }):send()
 end
 
 -- Perform tasks to configure the system for any WiFi network other than my home
 function home_departed()
     hs.task.new("/usr/bin/sudo", function() end, {"/usr/libexec/ApplicationFirewall/socketfilterfw", "--setblockall", "on"})
-    hs.applescript.applescript([[
-        tell application "Finder"
-            eject "Space"
-        end tell
-    ]])
 
     hs.notify.new({
           title='Hammerspoon',

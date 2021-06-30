@@ -1,7 +1,10 @@
 hyper = {"cmd","alt","ctrl","shift"}
+alt = {"alt"}
 local spaces = require("hs._asm.undocumented.spaces")
 local hints = require "hs.hints"
 local tiling = require "hs.tiling"
+local lastSpace = 1
+local logger = hs.logger.new("wm","info")
 
 hs.hotkey.bind(hyper, "o", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
 hs.hotkey.bind(hyper, "p", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
@@ -14,6 +17,15 @@ hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win
 --hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
 
 hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
+
+hs.hotkey.bind(alt,"1", function() SwitchToSpace(1) end)
+hs.hotkey.bind(alt,"2", function() SwitchToSpace(2) end)
+hs.hotkey.bind(alt,"3", function() SwitchToSpace(3) end)
+hs.hotkey.bind(alt,"4", function() SwitchToSpace(4) end)
+hs.hotkey.bind(alt,"5", function() SwitchToSpace(5) end)
+hs.hotkey.bind(alt,"6", function() SwitchToSpace(6) end)
+hs.hotkey.bind(alt,"7", function() SwitchToSpace(7) end)
+hs.hotkey.bind(alt,"8", function() SwitchToSpace(8) end)
 
 hs.hotkey.bind(hyper,"1", function() MoveWindowToSpace(1) end)
 hs.hotkey.bind(hyper,"2", function() MoveWindowToSpace(2) end)
@@ -78,6 +90,17 @@ hs.hotkey.bind(hyper, "e", function()
   hs.application.find("Emacs"):activate()
   print("Fast space switching enabled: " .. tostring(spacesEventtap:isEnabled()))
 end)
+
+function SwitchToSpace(sp)
+    logger.i(sp,lastSpace,spaces.activeSpace())
+    layout = spaces.layout()[spaces.mainScreenUUID()]
+    if (sp == spaces.activeSpace()) then
+      sp = lastSpace
+      lastSpace = spaces.activeSpace()
+    end
+    print("Changing to " .. sp .. " - " .. layout[sp] .. " - " .. lastSpace)
+    spaces.changeToSpace(layout[sp], true)
+end
 
 function MoveWindowToSpace(sp)
     local win = hs.window.focusedWindow()      -- current window

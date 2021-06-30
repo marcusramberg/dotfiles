@@ -79,6 +79,7 @@ Host gitproxy
     LocalForward 9000 git.tech-01.net:22
     LocalForward 9009 gitlab.tech.dnb.no:22  
     LocalForward 443 sonar.tech.dnb.no:443
+    LocalForward 18443 sonar.tech.dnb.no:18443
     ControlMaster auto
     ControlPath ~/.ssh/sockets/%r@%h:%p
     Port 443

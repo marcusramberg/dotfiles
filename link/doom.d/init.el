@@ -90,7 +90,7 @@
        :os
        macos               ; MacOS-specific commands
        :tools
-       ;;ansible
+       ansible
        (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
         ;;direnv
        docker
