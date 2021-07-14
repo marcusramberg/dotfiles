@@ -12,6 +12,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'burner/vim-svelte'
 Plug 'elzr/vim-json'
 Plug 'w0rp/ale'
+Plug 'kristijanhusak/orgmode.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 
 " Search/replace
 Plug 'Olical/vim-enmasse'
@@ -35,19 +38,19 @@ Plug 'bogado/file-line'
 
 
 "Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-Plug 'c9s/perlomni.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'natebosch/vim-lsc'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/popup.nvim'
+
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+"Plug 'c9s/perlomni.vim'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'natebosch/vim-lsc'
 " Or build from source code
 " Install yarn from https://yarnpkg.com
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-"Plug 'laher/fuzzymenu.vim'
-Plug 'folke/which-key.nvim'
-"Plug 'glepnir/dashboard-nvim'
-
 
 
 " Styling
@@ -55,41 +58,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'dracula/vim'
+Plug 'folke/which-key.nvim'
 
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'bronson/vim-trailing-whitespace'
-"Plug 'christoomey/vim-tmux-navigator'
-"Plug 'ervandew/supertab'
-"Plug 'gmarik/vundle'
-"Plug 'godlygeek/tabular'
-"Plug 'hokaccha/vim-prove'
-"Plug 'honza/vim-snippets'
-"Plug 'hotchpotch/perldoc-vim'
-"Plug 'janko-m/vim-test'
-"Plug 'joshukraine/yankmatches'
-"Plug 'junegunn/goyo.vim'
-"Plug 'lambdalisue/gina.vim'
-"Plug 'madzak/vim-proselint'
-"Plug 'marcusramberg/codi.vim'
-"Plug 'mattn/gist-vim'
-"Plug 'mattn/webapi-vim'
-"Plug 'mileszs/ack.vim'
-"Plug 'othree/eregex.vim'
-"Plug 'rizzatti/funcoo.vim'
-"Plug 'sirVer/ultisnips'
-"Plug 'sunaku/vim-dasht'
-"Plug 'tomtom/tlib_vim'
-"Plug 'tomtom/vimtlib'
-"Plug 'tonchis/vim-to-github'
-"Plug 'tpope/vim-commentary'
-"Plug 'tpope/vim-dispatch'
-"Plug 'tpope/vim-endwise'
-"Plug 'tpope/vim-rake'
-"Plug 'tpope/vim-repeat'
-"Plug 'tpope/vim-speeddating'
-"Plug 'tpope/vim-unimpaired'
-"Plug 'yko/mojo.vim'
-"Plug 'zah/nimrod.vim'
 
 :let mapleader = "\<Space>"
 
@@ -124,6 +94,7 @@ set nobackup
 set number
 set pastetoggle=<leader>v
 set nowritebackup
+set completeopt=menuone,noselect
 
 set synmaxcol=250
 set shiftwidth=2
@@ -157,18 +128,12 @@ let g:pymode_folding = 0
 let g:jekyll_path = "~/Source/blog"
 "let g:deoplete#enable_at_startup = 1
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " backspace
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 let mojo_highlight_data = 1
@@ -252,14 +217,6 @@ let g:UltiSnipsJumpBackwardTrigger="<Leader><s-Tab>"
 let g:lasttab = 1
 nnoremap tt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
-nnoremap tn :tabnew<CR>
-nnoremap tj  :tabfirst<CR>
-nnoremap tl  :tabnext<CR>
-nnoremap th  :tabprev<CR>
-nnoremap tk  :tablast<CR>
-nnoremap te  :tabedit<space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
 
 
 command! Fuck w !sudo tee % >/dev/null
@@ -399,3 +356,5 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars map
 nnoremap <C-p> :FZF<Cr>
 
 lua require('space-menu')
+lua require('lsp-config')
+

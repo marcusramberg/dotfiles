@@ -104,3 +104,4 @@ map <C-k> :action EditorSelectWord<CR>
 
 " uppercase last inserted word
 imap <C-l> <Esc>bgUawea
+set clipboard+=ideaput

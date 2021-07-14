@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -9,8 +10,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-#
 # User configuration sourced by interactive shells
 #
 export ZPLUG_HOME=$HOME/.dotfiles/libs/zplug
@@ -26,6 +25,7 @@ DISABLE_UPDATE_PROMPT="true"
 
 KEYTIMEOUT=1
 
+# History
 setopt inc_append_history
 setopt share_history
 export HISTFILE=~/.zsh_history
@@ -33,8 +33,7 @@ export HISTSIZE=100000
 export SAVEHIST=100000
 
 
-# ssh agent config
-
+# Vim Setup
 bindkey -v
 bindkey -M vicmd "/" history-incremental-search-backward
 bindkey '^R' history-incremental-search-backward
@@ -83,7 +82,7 @@ fi
 
 
 # And kubectl command completion.
-source <(kubectl completion zsh)
+#source <(kubectl completion zsh)
 
 [[ -x /usr/bin/fortune && -x /usr/bin/cowsay ]] && fortune /usr/share/fortune/vimtips | cowsay -f moose
 
@@ -100,7 +99,12 @@ autoload -U zmv
 alias mmv="noglob zmv -W"
 export TABLE_TERM_SIZE=150
 
-autoload -U +X bashcompinit && bashcompinit
+# Only do compinit once a day
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -118,19 +122,19 @@ source "${ZPLUG_HOME}/init.zsh"
 zplug bobsoppe/zsh-ssh-agent
 zplug mafredri/zsh-async
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
-zplug "zsh-users/zsh-autosuggestions", defer:3
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+#zplug "zsh-users/zsh-autosuggestions", defer:3
+#zplug "zsh-users/zsh-syntax-highlighting", defer:2
 #zplug "marlonrichert/zsh-autocomplete"
 zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug "zsh-users/zsh-completions"
-zplug "agkozak/zsh-z"
+#zplug "agkozak/zsh-z"
 zplug load
 
 zstyle ':autocomplete:tab:*' completion insert
 zstyle ':autocomplete:list-choices:*' min-input 3
 
 export JAVA_HOME=/Users/marcus/.jenv/versions/11.0
-complete -o nospace -C /usr/local/bin/terraform terraform
+#complete -o nospace -C /usr/local/bin/terraform terraform
 
 export LC_ALL=en_US.UTF-8
 source <(kubectl completion zsh)
@@ -138,8 +142,21 @@ source <(helm completion zsh)
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
-eval "$(shadowenv init zsh)"
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
+export NVM_DIR="$HOME/.nvm"
+
+#eval "$(shadowenv init zsh)"
+
+#zprof

@@ -9,7 +9,6 @@ function titlebar() {
 
 export LC_CTYPE=en_US.UTF-8
 
-
 # re-enable alt-. for last argument
 bindkey '\e.' insert-last-word
 # Allow aliases in sudo.
@@ -46,6 +45,7 @@ function fuckup() {
     echo "┬─┬﻿ ︵ /(.□. \）"; echo
   fi
 }
+
 function tap() { task add project:"$@" }
 
 
