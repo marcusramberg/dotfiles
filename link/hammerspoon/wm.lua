@@ -3,7 +3,7 @@ alt = {"alt"}
 local spaces = require("hs._asm.undocumented.spaces")
 local hints = require "hs.hints"
 local tiling = require "hs.tiling"
-local lastSpace = 1
+local lastSpace = nil
 local logger = hs.logger.new("wm","info")
 
 hs.hotkey.bind(hyper, "o", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
@@ -94,10 +94,10 @@ end)
 function SwitchToSpace(sp)
     logger.i(sp,lastSpace,spaces.activeSpace())
     layout = spaces.layout()[spaces.mainScreenUUID()]
-    if (sp == spaces.activeSpace()) then
-      sp = lastSpace
-      lastSpace = spaces.activeSpace()
+    if (layout[sp] == spaces.activeSpace() and lastSpace ~= nil) then
+       sp = lastSpace
     end
+    lastSpace = spaces.activeSpace()
     print("Changing to " .. sp .. " - " .. layout[sp] .. " - " .. lastSpace)
     spaces.changeToSpace(layout[sp], true)
 end
