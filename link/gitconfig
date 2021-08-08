@@ -60,7 +60,11 @@
 
 [interactive]
   diffFilter = delta --color-only
-
+[delta]
+    features = side-by-side line-numbers decorations
+    syntax-theme = Dracula
+    plus-style = syntax "#002008"
+    minus-style = syntax "#aa0000"
 [apply]
   whitespace = nowarn
 [advice]
@@ -133,3 +137,5 @@
   path = .gitconfig-dnb
 [url "ssh://git@git.tech-01.net/"]
   insteadOf = https://bitbucket.tech.dnb.no/scm/
+[diff]
+	algorithm = patience

@@ -4,7 +4,7 @@ My OS X / Ubuntu / Debian dotfiles.
 
 ## What's this?
 
-This is a fork of of (github.com/cowboy/dotfiles)[Cowboy's dotfiles], heavily
+This is a fork of (github.com/cowboy/dotfiles)[Cowboy's dotfiles], heavily
 changed to use ansible, zsh, and debianish/arch, as well as my config files.
 
 That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
@@ -14,21 +14,21 @@ That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
 
 ## What, exactly, does the "dotfiles" command do?
 
-It's really not very complicated. When [dotfiles][dotfiles] is run, it does a few things:
+It's really not complicated. When you run [dotfiles][dotfiles] , it does the following things:
 
-1. Git is installed if necessary, via APT or Homebrew (which is installed if necessary).
-2. This repo is cloned into the `~/.dotfiles` directory (or updated if it already exists).
-3. Files in `init` are executed (in alphanumeric order).
-4. Files in `copy` are copied into `~/`.
-5. Files in `link` are linked into `~/`.
+1. Installs Git if necessary, via APT or Homebrew (also installed if necessary).
+2. Clones this repo into the `~/.dotfiles` directory (or updated if it already exists).
+3. Executes files in `init` (in alphanumeric order).
+4. Copies in `copy` into `~/`.
+5. Links files and folders in `link` into `~/`.
 
 Note:
 
 - The `backups` folder only gets created when necessary. Any files in `~/` that would have been overwritten by `copy` or `link` get backed up there.
-- Files in `bin` are executable shell scripts ([~/.dotfiles/bin][bin] is added into the path).
-- Files in `source` get sourced whenever a new shell is opened (in alphanumeric order)..
+- Files in `bin` are executable shell scripts (includes [~/.dotfiles/bin][bin] into the path).
+- Files in `source` get sourced whenever you open a new shell (in alphanumeric order)..
 - Files in `conf` just sit there. If a config file doesn't _need_ to go in `~/`, put it in there.
-- Files in `caches` are cached files, only used by some scripts. This folder will only be created if necessary.
+- Files in `caches` are cache files, only used by some scripts. This folder is auto-created.
 
 ## Installation
 
@@ -48,7 +48,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/marcusramberg/dotfiles/m
 Notes:
 
 - You need to be an administrator (for `sudo`).
-- If APT hasn't been updated or upgraded recently, it will probably be a few minutes before you see anything.
+- If APT wasn't updated or upgraded recently, it will probably take some minutes before you see anything.
 
 ```sh
 sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl ansible && echo &&
@@ -101,9 +101,6 @@ These things will be installed, but _only_ if they aren't already.
   - interactive_editor
 - Perlbrew
 
-## oh-my-zsh
-
-All the zsh config is handled by oh-my-zsh, it's imported into libs/oh-my-zsh as a git submodule.
 
 ## The ~/ "copy" step
 
@@ -145,6 +142,7 @@ SVN repos display as **[rev1:rev2]** where rev1 and rev2 are:
 ## License
 
 Some parts Copyright (c) 2012 Marcus Ramberg
-Copyright (c) 2012 "Cowboy" Ben Alman  
+Copyright (c) 2012 "Cowboy" Ben Alman  
 Licensed under the MIT license.  
 <http://benalman.com/about/license/>
+  
