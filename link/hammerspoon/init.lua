@@ -26,6 +26,7 @@ hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.gete
 hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("iTerm") end)
 hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Firefox Developer Edition") end)
 
+hs.hotkey.bind(hyper, 'a', function() hs.task.new("/usr/local/bin/emacsclient", nil, {"--eval", "(emacs-everywhere)"}):start() end)
 
 
 hs.ipc.cliInstall()

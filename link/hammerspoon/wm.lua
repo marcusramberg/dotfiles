@@ -27,6 +27,7 @@ hs.hotkey.bind(alt,"6", function() SwitchToSpace(6) end)
 hs.hotkey.bind(alt,"7", function() SwitchToSpace(7) end)
 hs.hotkey.bind(alt,"8", function() SwitchToSpace(8) end)
 
+
 hs.hotkey.bind(hyper,"1", function() MoveWindowToSpace(1) end)
 hs.hotkey.bind(hyper,"2", function() MoveWindowToSpace(2) end)
 hs.hotkey.bind(hyper,"3", function() MoveWindowToSpace(3) end)
