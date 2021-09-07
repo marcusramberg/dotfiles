@@ -88,7 +88,7 @@
        grammar              ; tasing grammar mistake every you make
 
        :os
-       macos               ; MacOS-specific commands
+       (:if IS-MAC macos)  ; improve compatibility with macOS
        :tools
        ansible
        (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
