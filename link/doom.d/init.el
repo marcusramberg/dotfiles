@@ -22,17 +22,18 @@
        (company +childframe)      ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +fuzzy +prescient)        ; a search engine for love and life
+       ;;(ivy +fuzzy +prescient)        ; a search engine for love and life
+       vertico
 
        :ui
-       deft              ; notational velocity for Emacs
+       ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;;fill-column       ; a `fill-column' indicator
+       (emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       hydra
-       ;;indent-guides     ; highlighted indent columns
+       ;;hydra
+       indent-guides     ; highlighted indent columns
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
@@ -40,7 +41,7 @@
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ligatures         ; ligatures or substitute text with pretty symbols
-       ;;tabs              ; an tab bar for Emacs
+       tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -89,6 +90,8 @@
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
+       tty
+
        :tools
        ansible
        (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
@@ -108,28 +111,29 @@
        ;;rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        terraform         ; infrastructure as code
-       ;;tmux              ; an API for interacting with tmux
+       tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :lang
        ;;agda              ; types of types of types of types...
+       ;;beancount         ; mind the GAAP
        ;;cc                ; C/C++/Obj-C madness
        (clojure +lsp)           ; java with a lisp
+       (go +lsp)         ; the hipster dialect
+       ;;(dart +flutter)   ; paint ui and not much else
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        data                ; config/data formats
-       ;;(dart +flutter)   ; paint ui and not much else
+       emacs-lisp        ; drown in parentheses
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
-       emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
-       (go +lsp)         ; the hipster dialect
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
@@ -147,7 +151,7 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org  +hugo +dragndrop +pomodoro +roam +journal +present)              ; organize your plain life in plain text
+       (org  +hugo +dragndrop +pomodoro +journal +present)              ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -168,17 +172,18 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        web               ; the tubes
        (yaml +lsp)             ; JSON, but readable
+       ;;zig               ; C, but simpler
 
        :email
-       (mu4e +gmail)
+       ;;(mu4e +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 
        :app
-       calendar
+       ;;calendar
        everywhere
-       irc               ; how neckbeards socialize
-       rss          ; emacs as an RSS reader
+       ;;irc               ; how neckbeards socialize
+       ;;rss          ; emacs as an RSS reader
        twitter           ; twitter client https://twitter.com/vnought
 
        :config

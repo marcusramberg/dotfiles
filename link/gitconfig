@@ -54,6 +54,7 @@
   changed = green
   untracked = cyan
 [core]
+	sshCommand = "ssh -F ~/.ssh/gproxy.cfg"
   whitespace = trailing-space,space-before-tab
 	excludesfile = /Users/marcus/.gitignore_global
   pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Nord'

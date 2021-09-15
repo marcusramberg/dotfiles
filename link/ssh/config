@@ -36,40 +36,6 @@ Host dogfood.convos.by
 User root
 Hostname 178.62.240.239
 
-Host mct.mojoconf.com
-User root
-
-# UIO
-
-#Host *.int.redbridge.se
-#  ProxyJump test.reisegiganten.net
-
-Host ulrik
-User marcusr
-HostName ulrik.uio.no
-
-Host foobar
-User marcusr
-ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
-HostName foobar.uio.no
-
-Host foobar2
-User marcusr
-ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
-HostName foobar2.uio.no
-ForwardX11Trusted yes
-ForwardX11 yes
-ForwardAgent yes
-
-Host jamis
-User marcusr
-ProxyCommand ssh marcusr@usit-login.uio.no -W %h:%p
-HostName jamis.uio.no
-
-Host mct.mojoconf.com
-User root
-HostName 178.62.44.109
-
 
 Host gitproxy
     User git
@@ -87,12 +53,7 @@ Host gitproxy
 Host git.tech-01.net
     HostName localhost
     StrictHostKeyChecking no
-    Port 9000
-
-Host gitlab.tech.dnb.no
-        HostName localhost
-        StrictHostKeyChecking no
-        Port 9009
+    Port 9009
 
 
     # SSH over Session Manager

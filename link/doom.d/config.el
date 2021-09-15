@@ -360,11 +360,11 @@ See `org-capture-templates' for more information."
   (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
   (setq slack-prefer-current-team t)
   (slack-register-team
-        :name "dnb"
-        :token (auth-source-pick-first-password
-                :host "dnb-it.slack.com"
-                :user "marcus.ramberg@dnb.no")
-        :subscribed-channels '((apitribe apitribe-private)))
+        :name "dnb-it"
+        :token "censored" ;;(auth-source-pick-first-password
+            ;;    :name "dnb-it.slack.com"
+            ;;    :user "marcus.ramberg@dnb.no")
+        :subscribed-channels '(the-hideout inf-cshasl-private inf-eventhub-private))
   (evil-define-key 'normal slack-info-mode-map
     ",u" 'slack-room-update-messages)
   (evil-define-key 'normal slack-mode-map

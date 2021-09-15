@@ -1,4 +1,8 @@
 <LocationServerMappings>
   <ServerMapping location="https://app.vssps.visualstudio.com/" guid="a5ca35eb-148e-4ccd-bbb3-d31576d75958" owner="951917ac-a960-4999-8464-e3f0aa25b381" />
   <ServerMapping location="https://api.vstsusers.visualstudio.com/" guid="08f90efc-ccf7-a3c5-0963-672397c3314f" owner="00000038-0000-8888-8000-000000000000" />
+  <ServerMapping location="https://dev.azure.com/DNB-AzureCore/" guid="c95feb97-598c-4f40-b0cf-67d4ee8a8c03" owner="00025394-6065-48ca-87d9-7f5672854ef7" />
+  <ServerMapping location="https://spsprodweu4.vssps.visualstudio.com/Ac95feb97-598c-4f40-b0cf-67d4ee8a8c03/" guid="c95feb97-598c-4f40-b0cf-67d4ee8a8c03" owner="951917ac-a960-4999-8464-e3f0aa25b381" />
+  <ServerMapping location="https://pkgsprodsu3weu.pkgs.visualstudio.com/Ac95feb97-598c-4f40-b0cf-67d4ee8a8c03/" guid="c95feb97-598c-4f40-b0cf-67d4ee8a8c03" owner="00000030-0000-8888-8000-000000000000" />
+  <ServerMapping location="https://vsblobprodsu6weu.vsblob.visualstudio.com/Ac95feb97-598c-4f40-b0cf-67d4ee8a8c03/" guid="c95feb97-598c-4f40-b0cf-67d4ee8a8c03" owner="00000019-0000-8888-8000-000000000000" />
 </LocationServerMappings>

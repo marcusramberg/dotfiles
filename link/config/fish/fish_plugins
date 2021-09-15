@@ -3,3 +3,5 @@ dracula/fish
 danhper/fish-ssh-agent
 pure-fish/pure
 evanlucas/fish-kubectl-completions
+jethrokuan/z
+PatrickF1/fzf.fish

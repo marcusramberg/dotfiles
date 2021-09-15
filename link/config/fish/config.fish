@@ -8,16 +8,18 @@ if status is-interactive
     alias cat bat
     alias ag rg
     abbr l ls
+    thefuck --alias | source
     #git
     abbr gc git commit
     abbr gs git status
     abbr gp git pull
     abbr gd git diff
-    thefuck --alias | source
+    abbr gl git log
 end
 
 # Make it vim
 fish_vi_key_bindings
+set -gx EDITOR nvim
 
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
