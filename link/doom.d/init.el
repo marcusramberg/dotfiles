@@ -32,16 +32,32 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        (emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+<<<<<<< HEAD
        ;;hydra
        indent-guides     ; highlighted indent columns
+||||||| parent of 4d54537a (Update aliases, sway terminal, doom config)
+       hydra
+       ;;indent-guides     ; highlighted indent columns
+=======
+       hydra
+       ;;indent-guides     ; highlighted indent columns
+       ligatures         ; ligatures or substitute text with pretty symbols
+>>>>>>> 4d54537a (Update aliases, sway terminal, doom config)
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
+<<<<<<< HEAD
        ligatures         ; ligatures or substitute text with pretty symbols
        tabs              ; an tab bar for Emacs
+||||||| parent of 4d54537a (Update aliases, sway terminal, doom config)
+       ligatures         ; ligatures or substitute text with pretty symbols
+       ;;tabs              ; an tab bar for Emacs
+=======
+       ;;tabs              ; an tab bar for Emacs
+>>>>>>> 4d54537a (Update aliases, sway terminal, doom config)
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -58,9 +74,6 @@
                           ; elisp's mechanisms are good enough
                           ; sqlformat is currently broken
                           ; latexindent is broken
-
-
-
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -90,8 +103,14 @@
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
+<<<<<<< HEAD
        tty
 
+||||||| parent of 4d54537a (Update aliases, sway terminal, doom config)
+=======
+       tty
+       
+>>>>>>> 4d54537a (Update aliases, sway terminal, doom config)
        :tools
        ansible
        (debugger +lsp)         ; FIXME stepping through code, to help you add bugs
@@ -111,8 +130,16 @@
        ;;rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        terraform         ; infrastructure as code
+<<<<<<< HEAD
        tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+||||||| parent of 4d54537a (Update aliases, sway terminal, doom config)
+       ;;tmux              ; an API for interacting with tmux
+       ;;upload            ; map local to remote projects via ssh/ftp
+=======
+       tmux              ; an API for interacting with tmux
+       upload            ; map local to remote projects via ssh/ftp
+>>>>>>> 4d54537a (Update aliases, sway terminal, doom config)
 
        :lang
        ;;agda              ; types of types of types of types...

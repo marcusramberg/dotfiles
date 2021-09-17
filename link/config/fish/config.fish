@@ -7,6 +7,7 @@ if status is-interactive
     alias vi nvim
     alias cat bat
     alias ag rg
+    alias emacs "emacs -nw"
     abbr l ls
     thefuck --alias | source
     #git
