@@ -18,3 +18,7 @@ link/config/hub
 *.bak
 automatic_backups
 .DS_Store
+/link/config/Microsoft\\VisualStudio Services/
+/link/config/StardewValley/
+/link/config/coc/extensions/node_modules/
+/link/config/configstore/update-notifier-tsd.json
