@@ -46,7 +46,4 @@ function fuckup() {
   fi
 }
 
-function tap() { task add project:"$@" }
-
-
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

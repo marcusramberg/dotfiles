@@ -45,5 +45,7 @@
 
 (package! speed-type)
 
+(package! git-auto-commit-mode)
 (package! github-browse-file)
 (package! github-review)
+(package! svelte-mode)

@@ -22,3 +22,7 @@ automatic_backups
 /link/config/StardewValley/
 /link/config/coc/extensions/node_modules/
 /link/config/configstore/update-notifier-tsd.json
+link/config/fish/fish_history
+link/config/fish/fishd.*
+link/config/fish/fish_variables
+
