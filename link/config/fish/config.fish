@@ -25,4 +25,5 @@ set -gx EDITOR nvim
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
+status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 
