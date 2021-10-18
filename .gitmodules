@@ -28,3 +28,6 @@
 [submodule "libs/zplug"]
 	path = libs/zplug
 	url = https://github.com/zplug/zplug
+[submodule "link/emacs.d"]
+	path = link/emacs.d
+	url = https://github.com/plexus/chemacs2.git
