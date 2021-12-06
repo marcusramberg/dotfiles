@@ -1,10 +1,17 @@
 hyper = {"cmd","alt","ctrl","shift"}
 alt = {"alt"}
+cmd_shift = {"cmd","shift"}
+cmd_ctrl = {"cmd","ctrl"}
+cmd_alt = {"cmd","alt"}
+alt_shift = {"alt","shift"}
+
 local spaces = require("hs._asm.undocumented.spaces")
 local hints = require "hs.hints"
-local tiling = require "hs.tiling"
 local lastSpace = nil
 local logger = hs.logger.new("wm","info")
+
+
+
 
 hs.hotkey.bind(hyper, "o", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
 hs.hotkey.bind(hyper, "p", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
@@ -12,11 +19,7 @@ hs.hotkey.bind(hyper, "k", function() local win = hs.window.focusedWindow(); win
 hs.hotkey.bind(hyper, "l", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
 
---hs.hotkey.bind(hyper, "l", function() tiling.cycleLayout()  end)
---hs.hotkey.bind(hyper, "j", function() tiling.cycle(1)  end)
---hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
-
-hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
+--hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
 
 hs.hotkey.bind(alt,"1", function() SwitchToSpace(1) end)
 hs.hotkey.bind(alt,"2", function() SwitchToSpace(2) end)
@@ -28,15 +31,14 @@ hs.hotkey.bind(alt,"7", function() SwitchToSpace(7) end)
 hs.hotkey.bind(alt,"8", function() SwitchToSpace(8) end)
 
 
-hs.hotkey.bind(hyper,"1", function() MoveWindowToSpace(1) end)
-hs.hotkey.bind(hyper,"2", function() MoveWindowToSpace(2) end)
-hs.hotkey.bind(hyper,"3", function() MoveWindowToSpace(3) end)
-hs.hotkey.bind(hyper,"4", function() MoveWindowToSpace(4) end)
-hs.hotkey.bind(hyper,"5", function() MoveWindowToSpace(5) end)
-hs.hotkey.bind(hyper,"6", function() MoveWindowToSpace(6) end)
-hs.hotkey.bind(hyper,"7", function() MoveWindowToSpace(7) end)
-hs.hotkey.bind(hyper,"8", function() MoveWindowToSpace(8) end)
-
+hs.hotkey.bind(alt_shift,"1", function() MoveWindowToSpace(1) end)
+hs.hotkey.bind(alt_shift,"2", function() MoveWindowToSpace(2) end)
+hs.hotkey.bind(alt_shift,"3", function() MoveWindowToSpace(3) end)
+hs.hotkey.bind(alt_shift,"4", function() MoveWindowToSpace(4) end)
+hs.hotkey.bind(alt_shift,"5", function() MoveWindowToSpace(5) end)
+hs.hotkey.bind(alt_shift,"6", function() MoveWindowToSpace(6) end)
+hs.hotkey.bind(alt_shift,"7", function() MoveWindowToSpace(7) end)
+hs.hotkey.bind(alt_shift,"8", function() MoveWindowToSpace(8) end)
 
 
 hs.window.switcher.ui.fontName = 'Verdana'
@@ -48,6 +50,20 @@ hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
 -- Spaces
 local spacesCount = spaces.count()
 local spacesModifiers = {"ctrl" }
+
+
+
+-- Focus windows by direction (like tmux)
+local function focus(direction)
+  local fn = "focusWindow" .. (direction:gsub("^%l", string.upper))
+
+  return function()
+    local win = hs.window:focusedWindow()
+    if not win then return end
+
+    win[fn]()
+  end
+end
 
 -- infinitely cycle through spaces using ctrl+left/right to trigger ctrl+[1..n]
 local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(o)
@@ -92,6 +108,16 @@ hs.hotkey.bind(hyper, "e", function()
   print("Fast space switching enabled: " .. tostring(spacesEventtap:isEnabled()))
 end)
 
+-- function yabai(args)
+
+--   -- Runs in background very fast
+--   hs.task.new("/usr/local/bin/yabai",nil, function(ud, ...)
+--     print("stream", hs.inspect(table.pack(...)))
+--     return true
+--   end, args):start()
+
+-- end
+
 function SwitchToSpace(sp)
     logger.i(sp,lastSpace,spaces.activeSpace())
     layout = spaces.layout()[spaces.mainScreenUUID()]
@@ -134,7 +160,7 @@ hs.hotkey.bind(hyper, 'y', function ()
   focusedWindow:setFrame(windowFrame)
 end)
 
-function setOnSpace(application, sp, layout) 
+function setOnSpace(application, sp, layout)
   layout = layout or hs.layout.maximized
   print("Mooving",application, sp, layout)
   local app = hs.application.open(application, 5, true)
@@ -151,22 +177,22 @@ end
 
 hs.application.enableSpotlightForNameSearches(true)
 
-hs.hotkey.bind(hyper, "h", function() 
-  setOnSpace("iTerm", 1)
-  setOnSpace("Firefox Developer Edition", 2, hs.layout.left70)
-  setOnSpace("Emacs", 3)
-  setOnSpace("Slack", 4, hs.layout.left70)
-  setOnSpace("Telegram", 4, hs.layout.left70)
-  setOnSpace("Microsoft Outlook", 4, hs.layout.left70)
-  setOnSpace("Convos", 4, hs.layout.right30)
-  setOnSpace("YT Music", 5, hs.layout.right50)
-  setOnSpace("Guacamole", 6)
-  hs.notify.new({
-      title='Home',
-      informativeText='Windows Configured'
-    }):send()
+-- hs.hotkey.bind(hyper, "h", function()
+--   setOnSpace("iTerm", 1)
+--   setOnSpace("Firefox Developer Edition", 2, hs.layout.left70)
+--   setOnSpace("Emacs", 3)
+--   setOnSpace("Slack", 4, hs.layout.left70)
+--   setOnSpace("Telegram", 4, hs.layout.left70)
+--   setOnSpace("Microsoft Outlook", 4, hs.layout.left70)
+--   setOnSpace("Convos", 4, hs.layout.right30)
+--   setOnSpace("YT Music", 5, hs.layout.right50)
+--   setOnSpace("Guacamole", 6)
+--   hs.notify.new({
+--       title='Home',
+--       informativeText='Windows Configured'
+--     }):send()
 
-end)
+-- end)
 
 function emacsclientWatcher(appName, eventType, appObject)
   if (eventType == hs.application.watcher.activated) then

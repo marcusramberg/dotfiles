@@ -4,7 +4,6 @@ set -U fish_greeting
 set fish_theme dracula
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    alias vi nvim
     alias cat bat
     alias ag rg
     alias emacs "emacs -nw"
@@ -16,6 +15,7 @@ if status is-interactive
     abbr gp git pull
     abbr gd git diff
     abbr gl git log
+    abbr vi nvim
 end
 
 # Make it vim

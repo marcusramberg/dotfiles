@@ -4,7 +4,8 @@ My OS X / Ubuntu / Debian dotfiles.
 
 ## What's this?
 
-This is a fork of (github.com/cowboy/dotfiles)[Cowboy's dotfiles], heavily
+The dotfiles of (github.com/marcusramberg)[marcusramberg] - Initially system
+was based on (github.com/cowboy/dotfiles)[Cowboy's dotfiles]. They are heavily
 changed to use ansible, zsh, and debianish/arch, as well as my config files.
 
 That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
@@ -21,6 +22,7 @@ It's really not complicated. When you run [dotfiles][dotfiles] , it does the fol
 3. Executes files in `init` (in alphanumeric order).
 4. Copies in `copy` into `~/`.
 5. Links files and folders in `link` into `~/`.
+5. Sets up prefs as well as vim plugins.
 
 Note:
 
@@ -124,25 +126,24 @@ In addition to the aforementioned [dotfiles][dotfiles] script, there are a few o
 
 Git repos display as **[branch:flags]** where flags are:
 
-**?** untracked files  
-**!** changed (but unstaged) files  
+**?** untracked files
+**!** changed (but unstaged) files
 **+** staged files
 
 SVN repos display as **[rev1:rev2]** where rev1 and rev2 are:
 
-**rev1** last changed revision  
+**rev1** last changed revision
 **rev2** revision
 
 ## Inspiration
 
-<https://github.com/gf3/dotfiles>  
-<https://github.com/mathiasbynens/dotfiles>  
+<https://github.com/gf3/dotfiles>
+<https://github.com/mathiasbynens/dotfiles>
 (and 15+ years of accumulated crap)
 
 ## License
 
 Some parts Copyright (c) 2012 Marcus Ramberg
-Copyright (c) 2012 "Cowboy" Ben Alman  
-Licensed under the MIT license.  
+Copyright (c) 2012 "Cowboy" Ben Alman
+Licensed under the MIT license.
 <http://benalman.com/about/license/>
-  

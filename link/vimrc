@@ -24,6 +24,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'adelarsq/vim-matchit'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 " Version Control
 Plug 'nvim-lua/plenary.nvim'
