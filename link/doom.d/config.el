@@ -413,3 +413,5 @@ See `org-capture-templates' for more information."
  ;; If there is more than one, they won't work right.
  )
 (setq dash-docs-docsets '("NodeJS" "Javascript" "HTML"))
+
+(require 'git-auto-commit-mode)

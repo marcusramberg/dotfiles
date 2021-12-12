@@ -49,3 +49,5 @@
 (package! github-browse-file)
 (package! github-review)
 (package! svelte-mode)
+
+(package! git-auto-commit-mode :recipe (:host github :repo "ryuslash/git-auto-commit-mode"))
