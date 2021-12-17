@@ -100,6 +100,7 @@
   user = marcusramberg
 [init]
   templatedir = ~/.git_template
+	defaultBranch = main
 [filter "media"]
   required = true
 	clean = git media clean %f

@@ -290,10 +290,11 @@ exec clipit
 # exec_always sbxkb
 exec start_conky_maia
 # exec start_conky_green
-exec xautolock -time 10 -locker blurlock
+exec xautolock -time 360 -locker blurlock
 exec_always ff-theme-util
 exec_always fix_xcursor
 exec setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
+exec feh --bg-max ~/.dotfiles/wallpaper/ -z
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
