@@ -16,6 +16,7 @@ if status is-interactive
     abbr gd git diff
     abbr gl git log
     abbr vi nvim
+    abbr k kubectl 
 end
 
 # Make it vim
@@ -27,3 +28,4 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 
 status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 
+eval (kustomize completion fish)

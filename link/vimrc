@@ -99,10 +99,9 @@ set completeopt=menuone,noselect
 
 set synmaxcol=250
 set shiftwidth=2
-"set showmatch
+set showmatch
 set signcolumn=yes
 set softtabstop=2
-"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set tabstop=2
 set updatetime=300
 set wildmenu
@@ -126,8 +125,7 @@ let g:tagbar_foldlevel = 2
 
 let g:pymode_folding = 0
 
-let g:jekyll_path = "~/Source/blog"
-"let g:deoplete#enable_at_startup = 1
+let g:vim_markdown_fenced_languages = ['js=javascript']
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " backspace
