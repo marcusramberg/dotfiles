@@ -1,9 +1,10 @@
 hyper = {"cmd","alt","ctrl","shift"}
 alt = {"alt"}
+alt_shift = {"alt","shift"}
+cmd = {"cmd"}
 cmd_shift = {"cmd","shift"}
 cmd_ctrl = {"cmd","ctrl"}
 cmd_alt = {"cmd","alt"}
-alt_shift = {"alt","shift"}
 
 local spaces = require("hs._asm.undocumented.spaces")
 local hints = require "hs.hints"
@@ -21,24 +22,28 @@ hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win
 
 --hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
 
-hs.hotkey.bind(alt,"1", function() SwitchToSpace(1) end)
-hs.hotkey.bind(alt,"2", function() SwitchToSpace(2) end)
-hs.hotkey.bind(alt,"3", function() SwitchToSpace(3) end)
-hs.hotkey.bind(alt,"4", function() SwitchToSpace(4) end)
-hs.hotkey.bind(alt,"5", function() SwitchToSpace(5) end)
-hs.hotkey.bind(alt,"6", function() SwitchToSpace(6) end)
-hs.hotkey.bind(alt,"7", function() SwitchToSpace(7) end)
-hs.hotkey.bind(alt,"8", function() SwitchToSpace(8) end)
+hs.hotkey.bind(cmd,"1", function() SwitchToSpace(1) end)
+hs.hotkey.bind(cmd,"2", function() SwitchToSpace(2) end)
+hs.hotkey.bind(cmd,"3", function() SwitchToSpace(3) end)
+hs.hotkey.bind(cmd,"4", function() SwitchToSpace(4) end)
+hs.hotkey.bind(cmd,"5", function() SwitchToSpace(5) end)
+hs.hotkey.bind(cmd,"6", function() SwitchToSpace(6) end)
+hs.hotkey.bind(cmd,"7", function() SwitchToSpace(7) end)
+hs.hotkey.bind(cmd,"8", function() SwitchToSpace(8) end)
 
 
-hs.hotkey.bind(alt_shift,"1", function() MoveWindowToSpace(1) end)
-hs.hotkey.bind(alt_shift,"2", function() MoveWindowToSpace(2) end)
-hs.hotkey.bind(alt_shift,"3", function() MoveWindowToSpace(3) end)
-hs.hotkey.bind(alt_shift,"4", function() MoveWindowToSpace(4) end)
-hs.hotkey.bind(alt_shift,"5", function() MoveWindowToSpace(5) end)
-hs.hotkey.bind(alt_shift,"6", function() MoveWindowToSpace(6) end)
-hs.hotkey.bind(alt_shift,"7", function() MoveWindowToSpace(7) end)
-hs.hotkey.bind(alt_shift,"8", function() MoveWindowToSpace(8) end)
+hs.hotkey.bind(cmd_shift,"1", function() MoveWindowToSpace(1) end)
+hs.hotkey.bind(cmd_shift,"2", function() MoveWindowToSpace(2) end)
+hs.hotkey.bind(cmd_shift,"3", function() MoveWindowToSpace(3) end)
+hs.hotkey.bind(cmd_shift,"4", function() MoveWindowToSpace(4) end)
+hs.hotkey.bind(cmd_shift,"5", function() MoveWindowToSpace(5) end)
+hs.hotkey.bind(cmd_shift,"6", function() MoveWindowToSpace(6) end)
+hs.hotkey.bind(cmd_shift,"7", function() MoveWindowToSpace(7) end)
+hs.hotkey.bind(cmd_shift,"8", function() MoveWindowToSpace(8) end)
+
+local w = hs.window
+hs.hotkey.bind(cmd,"left", function() hs.window:focusWindowEast(nil, true, false)  end)
+hs.hotkey.bind(cmd,"right", function() hs.window:focusWindowWest(nil, true, false)  end)
 
 
 hs.window.switcher.ui.fontName = 'Verdana'
