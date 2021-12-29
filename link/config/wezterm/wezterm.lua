@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local keys = {
   {key="G", mods="SUPER", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
+  {key="V", mods="SUPER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
+  {key="S", mods="SUPER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
   {key="0", mods="CTRL", action=wezterm.action{ActivateTab=-1}},
 }
 for i = 1, 9 do
@@ -18,4 +20,8 @@ return {
   pane_focus_follows_mouse = true,
   window_decorations = "RESIZE",
   keys = keys,
+  inactive_pane_hsb = {
+    saturation = 0.8,
+    brightness = 0.6,
+  }
 }

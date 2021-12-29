@@ -41,9 +41,10 @@ hs.hotkey.bind(cmd_shift,"6", function() MoveWindowToSpace(6) end)
 hs.hotkey.bind(cmd_shift,"7", function() MoveWindowToSpace(7) end)
 hs.hotkey.bind(cmd_shift,"8", function() MoveWindowToSpace(8) end)
 
-local w = hs.window
-hs.hotkey.bind(cmd,"left", function() hs.window:focusWindowEast(nil, true, false)  end)
-hs.hotkey.bind(cmd,"right", function() hs.window:focusWindowWest(nil, true, false)  end)
+hs.hotkey.bind(cmd,"left", function()  hs.window.focusedWindow().focusWindowWest() end)
+hs.hotkey.bind(cmd,"right", function()  hs.window.focusedWindow().focusWindowEast() end)
+hs.hotkey.bind(cmd,"up", function()  hs.window.focusedWindow().focusWindowNorth() end)
+hs.hotkey.bind(cmd,"down", function()  hs.window.focusedWindow().focusWindowSouth() end)
 
 
 hs.window.switcher.ui.fontName = 'Verdana'
