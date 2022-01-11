@@ -21,3 +21,6 @@ include $config_dir/modes/*
 
 # include additional configs e.g. to autostart applications
 include $config_dir/config.d/*
+
+# Overrides
+bindsym --no-warn $mod+space exec $menu

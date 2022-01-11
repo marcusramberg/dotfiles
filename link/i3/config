@@ -8,7 +8,9 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 
-bindsym $mod+Tab exec i3-msg move workspace to output right
+exec ~/.screenlayout/default.sh
+
+bindsym $mod+y exec i3-msg move workspace to output right
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
 default_floating_border normal
@@ -17,9 +19,9 @@ default_floating_border normal
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
+#bindsym $mod+u border none
+#3bindsym $mod+y border pixel 1
+#bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -29,7 +31,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec wezterm start
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -37,6 +39,9 @@ bindsym $mod+Shift+q kill
 # start program launcher
 bindsym $mod+d exec dmenu_recency
 exec albert
+
+# Shots
+bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png
 
 # Clipboard manager
 exec copyq
@@ -280,7 +285,7 @@ bindsym $mod+9 exec blurlock
 
 # Autostart applications
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec nitrogen --restore; sleep 1; picom -b
+exec nitrogen --restore; sleep 1; picom -b
 #exec manjaro-hello
 exec nm-applet
 exec xfce4-power-manager

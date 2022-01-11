@@ -8,6 +8,7 @@ link/ssh/known_hosts
 link/ssh/environment*
 link/mutt/cache/
 link/config/gh/
+link/config/Bitwarden/
 link/vim/bundle/
 link/vim/plugged/
 link/vim-mini/bundle/

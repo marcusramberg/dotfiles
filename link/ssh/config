@@ -1,3 +1,8 @@
+Host mwork.lan
+    HostName mwork.lan
+    User marcus
+    ForwardAgent yes
+
 
 Host *
 
@@ -14,12 +19,12 @@ User tv
 Host zigbee
 ForwardX11 yes
 User pi
-Hostname zigbee.lan
+HostName zigbee.lan
 
 
 Host mhome
 ForwardAgent yes
-Hostname mhome.local
+HostName mhome.local
 ProxyJump gw.means.no
 ForwardX11 yes
 ForwardX11Trusted yes
@@ -34,16 +39,16 @@ User root
 
 Host dogfood.convos.by
 User root
-Hostname 178.62.240.239
+HostName 178.62.240.239
 
 
 Host gitproxy
     User git
-    Hostname gitproxy.ccoe.cloud
+    HostName gitproxy.ccoe.cloud
     ServerAliveInterval 10
     ServerAliveCountMax 3
     LocalForward 9000 git.tech-01.net:22
-    LocalForward 9009 gitlab.tech.dnb.no:22  
+    LocalForward 9009 gitlab.tech.dnb.no:22
     LocalForward 443 sonar.tech.dnb.no:443
     LocalForward 18443 sonar.tech.dnb.no:18443
     ControlMaster auto
@@ -57,5 +62,5 @@ Host git.tech-01.net
 
 
     # SSH over Session Manager
-host i-* mi-*
+Host i-* mi-*
 

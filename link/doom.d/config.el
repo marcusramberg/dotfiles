@@ -6,7 +6,7 @@
       user-mail-address "marcus.ramberg@gmail.com")
 
 ;; Look and feel
-(setq doom-font "JetbrainsMono Nerd Font-16"
+(setq doom-font "JetbrainsMono Nerd Font Mono-16"
       doom-variable-pitch-font (font-spec :family "futura" :size 13)
       doom-theme 'doom-dracula ;; Current favorite
       display-line-numbers-type nil) ;; not worth the perf
