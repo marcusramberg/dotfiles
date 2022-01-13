@@ -1,3 +1,6 @@
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach}
+local lsp = require "lspconfig"
+local coq = require "coq" -- add this
+lsp.pyright.setup(coq.lsp_ensure_capabilities())
+lsp.gopls.setup(coq.lsp_ensure_capabilities())
+lsp.terraformls.setup(coq.lsp_ensure_capabilities())
+lsp.tsserver.setup(coq.lsp_ensure_capabilities())

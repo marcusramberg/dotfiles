@@ -39,10 +39,16 @@ Plug 'bogado/file-line'
 
 
 "Autocomplete
+
+
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+"Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" 9000+ Snippets
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
@@ -126,6 +132,8 @@ let g:tagbar_foldlevel = 2
 let g:pymode_folding = 0
 
 let g:vim_markdown_fenced_languages = ['js=javascript']
+
+let g:coq_settings = { 'auto_start': 'shut-up' }
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " backspace
