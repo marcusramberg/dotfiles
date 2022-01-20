@@ -42,22 +42,13 @@ Plug 'bogado/file-line'
 
 
 Plug 'neovim/nvim-lspconfig'
-"Plug 'hrsh7th/nvim-compe'
+
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 " 9000+ Snippets
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-"Plug 'c9s/perlomni.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'natebosch/vim-lsc'
-" Or build from source code
-" Install yarn from https://yarnpkg.com
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 
 " Styling
