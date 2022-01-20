@@ -30,3 +30,5 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 
 eval (kustomize completion fish)
+
+fish_add_path ~/.dotfiles/bin /usr/local/ltex-ls/bin
