@@ -57,6 +57,7 @@ Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'dracula/vim'
 Plug 'folke/which-key.nvim'
+Plug 'b0o/mapx.nvim'
 
 
 :let mapleader = "\<Space>"

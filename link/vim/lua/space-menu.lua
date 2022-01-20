@@ -1,61 +1,52 @@
-local wk = require("which-key")
+local m = require'mapx'.setup{ global = true, whichkey = true }
 
 
-local which_key_map = {}
+nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<Cr>", "silent", "LSP: Goto declaration")
 
-which_key_map.b = {
-  ["name"] = "+file",
-  ["["] = { "<cmd>prev<cr>", "Next" },
-  ["]"] = { "<cmd>next:q<cr>", "Prev" },
-  ["b"] = { "<cmd>Buffers<cr>", "Buffers" },
-}
-which_key_map.c = {
-  ["a"] = { "<Cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
-  ["e"] = { "<Cmd>lua vim.diagnostic.open_float()<cr>", "Errors" },
-  ["]"] = { "<Cmd>lua vim.diagnostic.goto_prev()<cr>", "Next Error" },
-  ["["] = { "<Cmd>lua vim.diagnostic.goto.next()<cr>", "Buffers" },
-  ["f"] = { "<Cmd>lua vim.lsp.buf.formatting()<cr>", "Formatting" }
-}
-which_key_map.f = {
-  ["name"] = "+file",
-  ["f"] = { "<Cmd>Files<cr>", "Find File" },
-  ["b"] = { "<Cmd>Buffers<cr>", "Buffers" },
-}
-which_key_map.g = {
-  ["name"] = "git",
-  ["g"] = { "<cmd>Neogit<cr>", "Neogit"},
-  ["f"] = { "<cmd>GFiles<cr>", "Git Files"},
-}
+m.nname("<leader>b"," +file")
+nnoremap("<leader>b[",":prev<cr>", "Next")
+nnoremap("<leader>b]",":next:q<cr>", "Prev")
+nnoremap("<leader>bb",":Buffers<cr>", "Buffers")
 
-which_key_map.t = {
-  ["name"] = "tab/translate/tags",
-  ["n"] = {"<cmd>tabnew<cr>", "new tab"},
-  ["c"] = {"<cmd>tabclose<cr>", "close tab"},
-  ["o"] = {"<cmd>tabonly<cr>", "close other tabs"},
-  ["]"] = {"<cmd>tabnext<cr>", "next tab"},
-  ["["] = {"<cmd>tabprevious<cr>", "prev tab"},
-  ["f"] = {"<cmd>tabfirst<cr>", "first tab"},
-  ["l"] = {"<cmd>tablast<cr>", "last tab"},
-}
+m.nname("<leader>c"," +code")
+nnoremap("<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", "Action")
+nnoremap("<leader>ce", ":lua vim.diagnostic.open_float()<cr>", "Errors")
+nnoremap("<leader>c]", ":lua vim.diagnostic.goto_prev()<cr>", "Prev Error")
+nnoremap("<leader>c[", ":lua vim.diagnostic.goto.next()<cr>", "Next Error")
+nnoremap("<leader>cf", ":lua vim.lsp.buf.formatting()<cr>", "Format")
+nnoremap("<leader>cs",":lua print(vim.inspect(vim.lsp.buf_get_clients()))", "Status")
 
-which_key_map.w = {
-  ["name"] = "windows",
-  ["p"] = {"<C-W>p", "Previous"},
-  ["n"] = {"<Cmd>vnew<CR>", "New"},
-  ["c"] = {"<C-W>c", "Close"},
-  ["o"] = {"<C-W>o", "One"},
-  ["s"] = {"<C-W>s", "Split"},
-  ["v"] = {"<C-W>v", "Vertical Split"},
-  ["w"] = {"<C-W>w", "Next Window"},
-  ["h"] = {"<C-W>h", "Right"},
-  ["j"] = {"<C-W>j", "Down"},
-  ["l"] = {"<C-W>l", "Left"},
-  ["k"] = {"<C-W>k", "Up"},
-  ["["] = {"<C-W>5<", "Shrink"},
-  ["]"] = {"<C-W>5>", "Grow"},
-  ["="] = {"<Cmd>resize +5<CR>", "Grow"},
-  ["-"] = {"<Cmd>resize -5<CR>", "Shrink"},
-  ["/"] = {"<C-W>=", "Balance"},
-}
+m.nname("<leader>f", "+file")
+nnoremap("<leader>ff", ":Files<cr>", "Find File")
+nnoremap("<leader>fb", ":Buffers<cr>", "Buffers")
 
-wk.register(which_key_map, {prefix = "<Leader>"})
+m.nname("<leader>g", "+git")
+nnoremap("<leader>gs", ":Neogit<cr>", "Neogit")
+nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
+
+m.nname("<leader>t", "tab/translate/tags")
+nnoremap("<leader>tn",":tabnew<cr>", "New tab")
+nnoremap("<leader>tc",":tabclose<cr>", "Close tab")
+nnoremap("<leader>to",":tabonly<cr>", "Close other tabs")
+nnoremap("<leader>t]",":tabnext<cr>", "Next tab")
+nnoremap("<leader>t[",":tabprevious<cr>", "Prev tab")
+nnoremap("<leader>tf",":tabfirst<cr>", "First tab")
+nnoremap("<leader>tl",":tablast<cr>", "Last tab")
+
+m.nname("<leader>w", "windows")
+nnoremap("<leader>wp", "<C-W>p", "Previous")
+nnoremap("<leader>wn", ":vnew<CR>", "New")
+nnoremap("<leader>wc", "<C-W>c", "Close")
+nnoremap("<leader>wo", "<C-W>o", "One")
+nnoremap("<leader>ws", "<C-W>s", "Split")
+nnoremap("<leader>wv", "<C-W>v", "Vertical Split")
+nnoremap("<leader>ww", "<C-W>w", "Next Window")
+nnoremap("<leader>wh", "<C-W>h", "Right")
+nnoremap("<leader>wj", "<C-W>j", "Down")
+nnoremap("<leader>wl", "<C-W>l", "Left")
+nnoremap("<leader>wk", "<C-W>k", "Up")
+nnoremap("<leader>w[", "<C-W>5<", "Shrink")
+nnoremap("<leader>w]", "<C-W>5>", "Grow")
+nnoremap("<leader>w=", ":resize +5<CR>", "Grow")
+nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
+nnoremap("<leader>w/", "<C-W>=", "Balance")
