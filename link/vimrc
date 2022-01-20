@@ -154,7 +154,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd FileType go compiler go
-autocmd FileType go autocmd BufWritePre <buffer> GoFmt
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
 autocmd BufNewFile,BufRead *.tt setf tt2
 autocmd BufEnter,TabEnter,WinEnter * syn match ErrorMsg /[^\x00-\x7F]/
 autocmd BufEnter,TabEnter,WinEnter * syn match ErrorMsg /\s\+$/

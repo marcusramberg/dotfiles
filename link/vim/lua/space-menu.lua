@@ -5,14 +5,21 @@ local which_key_map = {}
 
 which_key_map.b = {
   ["name"] = "+file",
-  ["["] = { "<cmd>prev<cr>", "Find File" },
-  ["]"] = { "<cmd>next:q<cr>", "Find File" },
+  ["["] = { "<cmd>prev<cr>", "Next" },
+  ["]"] = { "<cmd>next:q<cr>", "Prev" },
   ["b"] = { "<cmd>Buffers<cr>", "Buffers" },
+}
+which_key_map.c = {
+  ["a"] = { "<Cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
+  ["e"] = { "<Cmd>lua vim.diagnostic.open_float()<cr>", "Errors" },
+  ["]"] = { "<Cmd>lua vim.diagnostic.goto_prev()<cr>", "Next Error" },
+  ["["] = { "<Cmd>lua vim.diagnostic.goto.next()<cr>", "Buffers" },
+  ["f"] = { "<Cmd>lua vim.lsp.buf.formatting()<cr>", "Formatting" }
 }
 which_key_map.f = {
   ["name"] = "+file",
-  ["f"] = { "<cmd>Files<cr>", "Find File" },
-  ["b"] = { "<cmd>Buffers<cr>", "Buffers" },
+  ["f"] = { "<Cmd>Files<cr>", "Find File" },
+  ["b"] = { "<Cmd>Buffers<cr>", "Buffers" },
 }
 which_key_map.g = {
   ["name"] = "git",
