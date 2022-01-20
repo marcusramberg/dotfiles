@@ -13,6 +13,7 @@ if status is-interactive
     abbr gc git commit
     abbr gs git status
     abbr gp git pull
+    abbr gb git branch
     abbr gd git diff
     abbr gl git log
     abbr vi nvim
