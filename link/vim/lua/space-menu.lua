@@ -1,10 +1,12 @@
 local m = require'mapx'.setup{ global = true, whichkey = true }
 
-
 nnoremap("gD", ":lua vim.lsp.buf.declaration()<Cr>", "silent", "LSP: Goto declaration")
 nnoremap("gd", ":lua vim.lsp.buf.definition()<Cr>", "silent", "LSP: Goto definition")
 
-m.nname("<leader>b"," +file")
+nnoremap("<leader> ", ":Buffers<cr>", "Buffers")
+
+
+m.nname("<leader>b"," +buffers")
 nnoremap("<leader>b[",":prev<cr>", "Next")
 nnoremap("<leader>b]",":next:q<cr>", "Prev")
 nnoremap("<leader>bb",":Buffers<cr>", "Buffers")
@@ -25,6 +27,11 @@ nnoremap("<leader>fb", ":Buffers<cr>", "Buffers")
 m.nname("<leader>g", "+git")
 nnoremap("<leader>gs", ":Neogit<cr>", "Neogit")
 nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
+
+m.nname("<leader>s", "+search")
+nnoremap("<leader>ss", ":Rg <cword><cr>", "Search Selection")
+nnoremap("<leader>sS", ":Rg ", "Search ")
+nnoremap("<leader>sm", ":EnMasse", "Replace in Hotfix")
 
 m.nname("<leader>t", "tab/translate/tags")
 nnoremap("<leader>tn",":tabnew<cr>", "New tab")
@@ -52,3 +59,4 @@ nnoremap("<leader>w]", "<C-W>5>", "Grow")
 nnoremap("<leader>w=", ":resize +5<CR>", "Grow")
 nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
+

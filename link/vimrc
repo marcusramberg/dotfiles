@@ -1,54 +1,4 @@
-call plug#begin()
-
-" <3 FZF
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-
-" Syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'burner/vim-svelte'
-Plug 'elzr/vim-json'
-Plug 'w0rp/ale'
-Plug 'kristijanhusak/orgmode.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" Search/replace
-Plug 'Olical/vim-enmasse'
-Plug 'jremmen/vim-ripgrep'
-
-" Extend editing
-Plug 'adelarsq/vim-matchit'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-
-" Version Control
-Plug 'nvim-lua/plenary.nvim'
-Plug 'TimUntersberger/neogit'
-Plug 'sindrets/diffview.nvim'
-
-" Navigation
-Plug 'bogado/file-line'
-
-"Autocomplete
-
-Plug 'neovim/nvim-lspconfig'
-
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" 9000+ Snippets
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-
-" Styling
-Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
-Plug 'dracula/vim'
-Plug 'folke/which-key.nvim'
-Plug 'b0o/mapx.nvim'
-
-call plug#end()
+lua require('plugins')
 
 :let mapleader = "\<Space>"
 colorscheme dracula
@@ -72,8 +22,6 @@ set infercase
 set mouse=a
 set number
 set pastetoggle=<leader>v
-" Let's try without 
-"set completeopt=menuone,noselect
 
 " Don't kill ourself on long lines
 set synmaxcol=250
@@ -149,9 +97,6 @@ if has("autocmd")
 endif
 
 
-":nmap <leader>gs :Neogit<cr>
-:nmap <leader>a :Rg
-":nmap <silent> <leader>d <Plug>DashGlobalSearch
 nmap <leader>n <Plug>(ale_next_wrap)
 nnore <esc><esc> :let @/ = ""<cr>
 
@@ -166,9 +111,6 @@ if $TERM_PROGRAM =~ "iTerm"
   endif
 endif
 
-" let g:UltiSnipsExpandTrigger ="<Leader><Tab>"
-" let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<Leader><s-Tab>"
 
 " Tab navigation
 let g:lasttab = 1
@@ -178,7 +120,6 @@ au TabLeave * let g:lasttab = tabpagenr()
 
 command! Fuck w !sudo tee % >/dev/null
 
-noremap <Leader>A :Rg <cword><cr>
 
 let g:ansible_extra_syntaxes = "sh.vim perl.vim"
 
@@ -206,37 +147,22 @@ endfun
 
 "shortcut for normal mode to run on entire buffer then return to current line"
 au Filetype perl nmap <Leader>t :call DoTidy()<CR>
-au Filetype rust nmap <Leader>t :call RustFmt()<CR>
-
 "shortcut for visual mode to run on the the current visual selection"
 au Filetype perl vmap <Leader>t :Tidy<CR>
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+" Perl syntax settings
+let perl_include_pod=1
+let perl_no_subprototype_error=1
+let perl_sub_signatures=1
+
+"Use 24-bit (true-color) mode 
 set termguicolors
-
-let g:rustfmt_autosave = 1
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 autocmd FileType yaml setl indentkeys-=<:>
 
 " Fix parens match to look correctly.
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#5e5855 guifg=NONE
 
-" Perl syntax settings
-let perl_include_pod=1
-let perl_no_subprototype_error=1
-let perl_sub_signatures=1
 
 " Make mouse clicks a NOOP;
 nnoremap <LeftMouse> ma<LeftMouse>`
@@ -249,6 +175,7 @@ set guioptions=
 set list          " Display unprintable characters f12 - switches
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 
+inoremap <C-p> <esc>:FZF<Cr>
 nnoremap <C-p> :FZF<Cr>
 
 lua require('space-menu')
