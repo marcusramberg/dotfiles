@@ -1,7 +1,8 @@
 local m = require'mapx'.setup{ global = true, whichkey = true }
 
 
-nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<Cr>", "silent", "LSP: Goto declaration")
+nnoremap("gD", ":lua vim.lsp.buf.declaration()<Cr>", "silent", "LSP: Goto declaration")
+nnoremap("gd", ":lua vim.lsp.buf.definition()<Cr>", "silent", "LSP: Goto definition")
 
 m.nname("<leader>b"," +file")
 nnoremap("<leader>b[",":prev<cr>", "Next")
@@ -14,6 +15,7 @@ nnoremap("<leader>ce", ":lua vim.diagnostic.open_float()<cr>", "Errors")
 nnoremap("<leader>c]", ":lua vim.diagnostic.goto_prev()<cr>", "Prev Error")
 nnoremap("<leader>c[", ":lua vim.diagnostic.goto.next()<cr>", "Next Error")
 nnoremap("<leader>cf", ":lua vim.lsp.buf.formatting()<cr>", "Format")
+nnoremap("<leader>cr", ":lua vim.lsp.buf.rename()<CR>", "Format")
 nnoremap("<leader>cs",":lua print(vim.inspect(vim.lsp.buf_get_clients()))", "Status")
 
 m.nname("<leader>f", "+file")

@@ -1,9 +1,6 @@
-set nocompatible
-
-filetype off
-
 call plug#begin()
-" (Optional) Multi-entry selection UI.
+
+" <3 FZF
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -14,7 +11,6 @@ Plug 'elzr/vim-json'
 Plug 'w0rp/ale'
 Plug 'kristijanhusak/orgmode.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 
 " Search/replace
 Plug 'Olical/vim-enmasse'
@@ -32,14 +28,9 @@ Plug 'TimUntersberger/neogit'
 Plug 'sindrets/diffview.nvim'
 
 " Navigation
-"Plug 'kien/ctrlp.vim'
-"Plug 'DavidEGx/ctrlp-smarttabs'
-"Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'bogado/file-line'
 
-
 "Autocomplete
-
 
 Plug 'neovim/nvim-lspconfig'
 
@@ -50,76 +41,59 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
-
 " Styling
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
-Plug 'majutsushi/tagbar'
 Plug 'dracula/vim'
 Plug 'folke/which-key.nvim'
 Plug 'b0o/mapx.nvim'
 
-
-:let mapleader = "\<Space>"
-
-
 call plug#end()
 
+:let mapleader = "\<Space>"
 colorscheme dracula
-
-filetype plugin indent on
 
 syntax on
 
-set autoindent
-set autoread
-set background=dark
-set clipboard=unnamed
+
+" Always use clipboard
+set clipboard+=unnamedplus
 set cmdheight=2
-set directory=/tmp
+" Nevertabs
 set expandtab
-set noshowmode
+" Smart casing
 set ignorecase
 set smartcase
+" Hide abbandoned buffers
 set hidden
 set history=1000
-set hlsearch
-set incsearch
+" Be smart about command casing
 set infercase
-set magic
 set mouse=a
-set mousehide
-set nobackup
 set number
 set pastetoggle=<leader>v
-set nowritebackup
-set completeopt=menuone,noselect
+" Let's try without 
+"set completeopt=menuone,noselect
 
+" Don't kill ourself on long lines
 set synmaxcol=250
 set shiftwidth=2
+" Matching brackets
 set showmatch
+" Always show
 set signcolumn=yes
 set softtabstop=2
 set tabstop=2
-set updatetime=300
-set wildmenu
-set wildmode=full
+"set updatetime=300
+"set wildmenu
+"set wildmode=full
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'dracula'
-let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 0
 
-
-let g:tagbar_left = 1
-let g:tagbar_sort = 0
-let g:tagbar_autoshowtag = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-let g:tagbar_width = 30
-let g:tagbar_foldlevel = 2
 
 let g:pymode_folding = 0
 
@@ -127,13 +101,13 @@ let g:vim_markdown_fenced_languages = ['js=javascript']
 
 let g:coq_settings = { 'auto_start': 'shut-up' }
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " backspace
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 let mojo_highlight_data = 1
 let g:ale_linters = { 'perl': ['perl'], 'javascript': ['prettier'],  }
@@ -149,10 +123,17 @@ augroup autoSaveAndRead
     autocmd CursorHold * silent! checktime
 augroup END
 
+filetype plugin indent on
+
+" Autobalance after window resize
 autocmd VimResized * wincmd =
+
+" Ruby
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+"Go
 autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd FileType go compiler go
 autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
@@ -163,37 +144,18 @@ au BufRead,BufNewFile *.md,*.markdown setlocal tw=79 fo+=tv
 
 
 
-
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 endif
 
 
-:nmap <leader>gs :Neogit<cr>
+":nmap <leader>gs :Neogit<cr>
 :nmap <leader>a :Rg
-:nmap <silent> <leader>d <Plug>DashGlobalSearch
-:nmap <silent> <leader>p :TagbarToggle<cr>
+":nmap <silent> <leader>d <Plug>DashGlobalSearch
 nmap <leader>n <Plug>(ale_next_wrap)
 nnore <esc><esc> :let @/ = ""<cr>
 
-" Ctrl-p settings
-"let g:ctrlp_extensions = ['smarttabs']
-":nmap ; :CtrlPSmartTabs<cr>
-"let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
-"let g:ctrlp_open_multiple_files = 'tj'
-"let g:ctrlp_follow_symlinks = 1
-"let g:ctrlp_prompt_mappings = {
-"    \ 'AcceptSelection("e")': ['<c-t>'],
-"    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-"    \ }
-"let g:ctrlp_switch_buffer = 'Et'
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-"let g:ctrlp_working_path_mode = 2
-"  let g:ctrlp_mruf_relative = 1
-
-
-
+" for tmux in iterm
 if $TERM_PROGRAM =~ "iTerm"
   if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -203,14 +165,10 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
   endif
 endif
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
 
-let g:UltiSnipsExpandTrigger ="<Leader><Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<Leader><s-Tab>"
+" let g:UltiSnipsExpandTrigger ="<Leader><Tab>"
+" let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<Leader><s-Tab>"
 
 " Tab navigation
 let g:lasttab = 1
@@ -256,32 +214,7 @@ au Filetype perl vmap <Leader>t :Tidy<CR>
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-
-" OS X-like space bar to scroll.
-
-
-"#nmap <silent> <leader>t :TestNearest<CR>
-"nmap <silent> <leader>T :TestFile<CR>
-"nmap <silent> <leader>l :TestLast<CR>
-"nmap <silent> <leader>g :TestVisit<CR>
-
-"let test#strategy="neovim"
-
-let g:acp_enableAtStartup = 0
-
+set termguicolors
 
 let g:rustfmt_autosave = 1
 au FileType rust nmap gd <Plug>(rust-def)
@@ -289,13 +222,12 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-filetype plugin indent on
 autocmd FileType yaml setl indentkeys-=<:>
 
 " Fix parens match to look correctly.
@@ -311,46 +243,11 @@ nnoremap <LeftMouse> ma<LeftMouse>`
 tnoremap <Leader><Esc> <C-\><C-n>
 
 auto BufEnter * :set title
+" Strip gui
 set guioptions=
-
-let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
-let g:tagbar_type_rust = {
-  \ 'ctagsbin' : '~/.nix-profile/bin/ctags',
-  \ 'ctagstype' : 'rust',
-  \ 'kinds' : [
-      \ 'n:modules',
-      \ 's:structures:1',
-      \ 'i:interfaces',
-      \ 'c:implementations',
-      \ 'f:functions:1',
-      \ 'g:enumerations:1',
-      \ 't:type aliases:1:0',
-      \ 'v:constants:1:0',
-      \ 'M:macros:1',
-      \ 'm:fields:1:0',
-      \ 'e:enumariants:1:0',
-      \ 'P:methods:1',
-  \ ],
-  \ 'sro': '::',
-  \ 'kind2scope' : {
-      \ 'n': 'module',
-      \ 's': 'struct',
-      \ 'i': 'interface',
-      \ 'c': 'implementation',
-      \ 'f': 'function',
-      \ 'g': 'enum',
-      \ 't': 'typedef',
-      \ 'v': 'variable',
-      \ 'M': 'macro',
-      \ 'm': 'field',
-      \ 'e': 'enumerator',
-      \ 'P': 'method',
-  \ },
-  \ }
 
 set list          " Display unprintable characters f12 - switches
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
-
 
 nnoremap <C-p> :FZF<Cr>
 
