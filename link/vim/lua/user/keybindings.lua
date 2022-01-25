@@ -1,9 +1,31 @@
-local m = require'mapx'.setup{ global = true, whichkey = true }
+local m = require'mapx'.setup{ whichkey = true }
+local nnoremap = m.nnoremap
+local au = require'au'
+local vimp = require'vimp'
+
+vim.o.pastetoggle="<leader>v"
+
+-- " Make mouse clicks a NOOP;
+nnoremap('<LeftMouse>', '<nop>')
+
 
 nnoremap("gD", ":lua vim.lsp.buf.declaration()<Cr>", "silent", "LSP: Goto declaration")
 nnoremap("gd", ":lua vim.lsp.buf.definition()<Cr>", "silent", "LSP: Goto definition")
 
 nnoremap("<leader> ", ":Buffers<cr>", "Buffers")
+nnoremap('<leader>r', function()
+  -- Remove all previously added vimpeccable maps
+  vimp.unmap_all()
+  -- Unload the lua namespace so that the next time require('config.X') is called
+  -- it will reload the file
+  require("config.util").unload_lua_namespace('config')
+  -- Make sure all open buffers are saved
+  vim.cmd('silent wa')
+  -- Execute our vimrc lua file again to add back our maps
+  dofile(vim.fn.stdpath('config') .. '/init.lua')
+
+  print("Reloaded vimrc!")
+end, "reload")
 
 
 m.nname("<leader>b"," +buffers")
@@ -60,3 +82,12 @@ nnoremap("<leader>w=", ":resize +5<CR>", "Grow")
 nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
 
+-- " Tab navigation
+local lasttab = 1
+nnoremap('<leader>tt', function() return ':tabn "'..lasttab..'<CR>' end, 'last tab')
+
+au.TabLeave  = function()
+  lasttab = vim.fn.tabpagenr()
+  print(lasttab)
+end
+nnoremap('<C-p>', ':FZF<Cr>')

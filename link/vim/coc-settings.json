@@ -1,9 +1,0 @@
-{
-  "languageserver": {
-    "perl": {
-      "command": "perl",
-      "args": ["-MPerl::LanguageServer", "-e Perl::LanguageServer::run"],
-      "filetypes": [ "perl" ]
-    }
-  }
-}
