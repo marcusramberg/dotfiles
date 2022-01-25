@@ -14,6 +14,7 @@ packer.init {
 packer.startup(function()
   use 'wbthomason/packer.nvim'
 
+  -- Not sure I actually need this?
   use 'svermeulen/vimpeccable'
 
   -- fzf <3
@@ -65,6 +66,7 @@ packer.startup(function()
   use 'nvim-lua/completion-nvim'
   use 'nvim-lua/popup.nvim'
   use { 'ms-jpq/coq_nvim', branch = 'coq' }
+
   -- 9000+ Snippets
   use {'ms-jpq/coq.artifacts', branch='artifacts'}
   use {'ms-jpq/coq.thirdparty', branch='3p'}
@@ -86,11 +88,11 @@ packer.startup(function()
             colorscheme = "dracula",
             styles = {
               comment = { style = 'italic' },
-              ["function"] = { style = 'italic' }, 
-              functionbuiltin = { style = 'italic' }, 
-              variable = { style = 'italic' }, 
-              variableBuiltIn = { style = 'italic' }, 
-              parameter  = { style = 'italic' }, 
+              ["function"] = { style = 'italic' },
+              functionbuiltin = { style = 'italic' },
+              variable = { style = 'italic' },
+              variableBuiltIn = { style = 'italic' },
+              parameter  = { style = 'italic' },
             },
           })
       end
