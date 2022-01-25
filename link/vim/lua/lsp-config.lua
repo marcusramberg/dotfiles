@@ -1,5 +1,6 @@
 local lsp = require "lspconfig"
 local coq = require "coq" -- add this
+
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -7,6 +8,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 -- Setup servers
 lsp.gopls.setup(coq.lsp_ensure_capabilities())
 lsp.groovyls.setup(coq.lsp_ensure_capabilities())
+lsp.jsonls.setup(coq.lsp_ensure_capabilities())
 lsp.ltex.setup(coq.lsp_ensure_capabilities())
 lsp.perlls.setup(coq.lsp_ensure_capabilities())
 lsp.pyright.setup(coq.lsp_ensure_capabilities())
@@ -38,3 +40,7 @@ lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
     },
   },
 }))
+lsp.yamlls.setup(coq.lsp_ensure_capabilities({settings = {
+    schemas = {
+     ["kubernetes"] = "~/Source/DNB/AZF-Integration/APIC-*/*/*.yaml"
+}}}))
