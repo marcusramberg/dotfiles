@@ -1,4 +1,4 @@
-local m = require'mapx'.setup{ } --whichkey = true, global= true }
+local m = require'mapx'.setup{ whichkey = true } --, global= true }
 local nnoremap = m.nnoremap
 local au = require 'au'
 local vimp = require'vimp'
@@ -50,6 +50,8 @@ nnoremap("<leader>fb", ":Buffers<cr>", "Buffers")
 m.nname("<leader>g", "+git")
 nnoremap("<leader>gs", ":Neogit<cr>", "Neogit")
 nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
+nnoremap("<leader>gi", ":Octo issue list<cr>", "issues")
+nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
 
 m.nname("<leader>s", "+search")
 nnoremap("<leader>ss", ":Rg <cword><cr>", "Search Selection")
@@ -84,11 +86,11 @@ nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
 
 -- " Tab navigation
--- local lasttab = 1
--- nnoremap('<leader>tt', function() return ':tabn "'..lasttab..'<CR>' end, 'last tab')
+local lasttab = 1
+nnoremap('<leader>tt', function() vim.api.fn.Tab(lasttab) end, 'last tab')
 
---  au.TabLeave  = function()
---   lasttab = vim.fn.tabpagenr()
---    print(lasttab)
---  end
--- nnoremap('<C-p>', ':FZF<Cr>')
+ au.TabLeave  = function()
+  lasttab = vim.fn.tabpagenr()
+   print(lasttab)
+ end
+nnoremap('<C-p>', ':FZF<Cr>')

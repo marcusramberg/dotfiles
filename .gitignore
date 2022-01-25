@@ -27,3 +27,4 @@ link/config/fish/fish_history
 link/config/fish/fishd.*
 link/config/fish/fish_variables
 link/config/hackmudlink/config/albert/core.db
+plugin
