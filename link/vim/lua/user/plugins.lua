@@ -15,7 +15,7 @@ packer.startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Not sure I actually need this?
-  use 'svermeulen/vimpeccable'
+  use 'folke/which-key.nvim'
 
   -- fzf <3
   use 'junegunn/fzf'
@@ -82,7 +82,6 @@ packer.startup(function()
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   require('lualine').setup()
   use 'dracula/vim'
-  use 'folke/which-key.nvim'
   use 'b0o/mapx.nvim'
   use({
       "themercorp/themer.lua",

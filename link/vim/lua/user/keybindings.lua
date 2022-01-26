@@ -1,7 +1,6 @@
-local m = require'mapx'.setup{ whichkem = true } --, global= true }
+local m = require'mapx'.setup{ whichkey = true } --, global= true }
 local nnoremap = m.nnoremap
 local au = require 'au'
-local vimp = require'vimp'
 
 vim.o.pastetoggle="<F2>"
 
@@ -16,20 +15,6 @@ nnoremap("]e", function() vim.diagnostic.goto_next() end, "silent", "Next Error"
 
 nnoremap("<leader> ", ":Buffers<cr>", "Buffers")
 
-nnoremap('<leader>r', function()
-  -- Remove all previously added vimpeccable maps
-  vimp.unmap_all()
-  -- Unload the lua namespace so that the next time require('config.X') is called
-  -- it will reload the file
-  require("config.util").unload_lua_namespace('config')
-  -- Make sure all open buffers are saved
-  vim.cmd('silent wa')
-  -- Execute our vimrc lua file again to add back our maps
-  dofile(vim.fn.stdpath('config') .. '/init.lua')
-
-  print("Reloaded vimrc!")
-end, "reload")
-
 
 m.nname("<leader>b"," +buffers")
 nnoremap("<leader>b[",":prev<cr>", "Next")
@@ -37,7 +22,8 @@ nnoremap("<leader>b]",":next:q<cr>", "Prev")
 nnoremap("<leader>bb",":Buffers<cr>", "Buffers")
 
 m.nname("<leader>c"," +code")
-nnoremap("<leader>ca", function() vim.lsp.buf.code_action() end, "silent", "Action")
+bam()
+nnoremap("<leader>ca", function() require('telescope.builtin').lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
 nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
 nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
@@ -48,7 +34,7 @@ nnoremap("<leader>ff", ":Files<cr>", "Find File")
 nnoremap("<leader>fb", ":Buffers<cr>", "Buffers")
 
 m.nname("<leader>g", "+git")
-nnoremap("<leader>gs", ":Neogit<cr>", "Neogit")
+nnoremap("<leader>gs", ":Neogit kind=vsplit<cr>", "Neogit")
 nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
 nnoremap("<leader>gi", ":Octo issue list<cr>", "issues")
 nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
