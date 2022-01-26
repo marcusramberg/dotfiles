@@ -53,6 +53,10 @@ nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
 nnoremap("<leader>gi", ":Octo issue list<cr>", "issues")
 nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
 
+m.nname("<leader>h", "+help")
+nnoremap("<leader>hh", ":Help<cr>", "help")
+
+
 m.nname("<leader>o", "+open")
 nnoremap("<leader>ot", ":ToggleTerm<cr>", "Terminal")
 

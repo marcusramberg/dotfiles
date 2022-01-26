@@ -29,6 +29,7 @@ packer.startup(function()
   use {'nvim-treesitter/nvim-treesitter', run='TSUpdate'}
   use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end }
   use 'akinsho/org-bullets.nvim'
+  use 'wsdjeg/luarefvim'
 
 
   -- Search/replace
@@ -66,6 +67,8 @@ packer.startup(function()
   use 'nvim-lua/completion-nvim'
   use 'nvim-lua/popup.nvim'
   use { 'ms-jpq/coq_nvim', branch = 'coq' }
+  use 'j-hui/fidget.nvim'
+  require"fidget".setup{}
 
   -- 9000+ Snippets
   use {'ms-jpq/coq.artifacts', branch='artifacts'}

@@ -1,5 +1,5 @@
-require 'user.plugins'
 require 'user.settings'
+require 'user.plugins'
 require 'user.globals'
 require 'user.keybindings'
 require 'user.autocmd'
