@@ -19,4 +19,5 @@ vim.g.ale_linters = { perl = {'perl'}, javascript = {'prettier'},  }
 vim.g.ale_lint_delay = 2000
 vim.g.ale_sign_warning = '⊙'
 vim.g.ale_sign_error = '⊘'
-vim.g.ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation: { indent-sequences: whatever}}}"'
+vim.g.ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation:' ..
+                                  '{ indent-sequences: whatever}}}"'

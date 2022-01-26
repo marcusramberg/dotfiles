@@ -1,26 +1,19 @@
-hyper = {"cmd","alt","ctrl","shift"}
-alt = {"alt"}
-alt_shift = {"alt","shift"}
-cmd = {"cmd"}
-cmd_shift = {"cmd","shift"}
-cmd_ctrl = {"cmd","ctrl"}
-cmd_alt = {"cmd","alt"}
+local hyper = {"cmd","alt","ctrl","shift"}
+local cmd = {"cmd"}
+local cmd_shift = {"cmd","shift"}
 
 local spaces = require("hs._asm.undocumented.spaces")
-local hints = require "hs.hints"
 local lastSpace = nil
 local logger = hs.logger.new("wm","info")
 
-
-
+hs.application.enableSpotlightForNameSearches(true)
+hs.window.switcher.ui.fontName = 'Verdana'
 
 hs.hotkey.bind(hyper, "o", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
 hs.hotkey.bind(hyper, "p", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
 hs.hotkey.bind(hyper, "k", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left70) end)
 hs.hotkey.bind(hyper, "l", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
 hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
-
---hs.hotkey.bind(hyper, "f", function() hs.hints.windowHints() end)
 
 hs.hotkey.bind(cmd,"1", function() SwitchToSpace(1) end)
 hs.hotkey.bind(cmd,"2", function() SwitchToSpace(2) end)
@@ -47,8 +40,7 @@ hs.hotkey.bind(cmd,"up", function()  hs.window.focusedWindow().focusWindowNorth(
 hs.hotkey.bind(cmd,"down", function()  hs.window.focusedWindow().focusWindowSouth() end)
 
 
-hs.window.switcher.ui.fontName = 'Verdana'
-switcher_space = hs.window.switcher.new(hs.window.filter.new{override={fullscreen=false}}:setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
+local switcher_space = hs.window.switcher.new(hs.window.filter.new{override={fullscreen=false}}:setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
 -- bind to hotkeys; WARNING: at least one modifier key is required!
 hs.hotkey.bind('alt','tab', function()switcher_space:next()end)
 hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
@@ -57,19 +49,6 @@ hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
 local spacesCount = spaces.count()
 local spacesModifiers = {"ctrl" }
 
-
-
--- Focus windows by direction (like tmux)
-local function focus(direction)
-  local fn = "focusWindow" .. (direction:gsub("^%l", string.upper))
-
-  return function()
-    local win = hs.window:focusedWindow()
-    if not win then return end
-
-    win[fn]()
-  end
-end
 
 -- infinitely cycle through spaces using ctrl+left/right to trigger ctrl+[1..n]
 local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(o)
@@ -80,7 +59,7 @@ local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, functi
 
   -- check if correct key code
   if keyCode ~= 123 and keyCode ~= 124 then return end
-  if not modifiers[spacesModifier] then return end
+  if not modifiers[spacesModifiers] then return end
 
   -- check if no other modifiers where pressed
   local passed = hs.fnutils.every(modifiers, function(_, modifier)
@@ -101,7 +80,7 @@ local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, functi
     nextSpace = currentSpace ~= spacesCount and currentSpace + 1 or 1
   end
 
-  hs.eventtap.keyStroke({spacesModifier}, string.format("%d", nextSpace))
+  hs.eventtap.keyStroke({spacesModifiers}, string.format("%d", nextSpace))
 
   -- stop propagation
   return true
@@ -126,7 +105,7 @@ end)
 
 function SwitchToSpace(sp)
     logger.i(sp,lastSpace,spaces.activeSpace())
-    layout = spaces.layout()[spaces.mainScreenUUID()]
+    local layout = spaces.layout()[spaces.mainScreenUUID()]
     if (layout[sp] == spaces.activeSpace() and lastSpace ~= nil) then
        sp = lastSpace
     end
@@ -166,22 +145,20 @@ hs.hotkey.bind(hyper, 'y', function ()
   focusedWindow:setFrame(windowFrame)
 end)
 
-function setOnSpace(application, sp, layout)
-  layout = layout or hs.layout.maximized
-  print("Mooving",application, sp, layout)
-  local app = hs.application.open(application, 5, true)
-  if not app then
-    print("Failed to focus", application)
-    return
-  end
-  local win = hs.window.focusedWindow()      -- current window
-  local uuid = win:screen():spacesUUID()     -- uuid for current screen
-  local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
-  spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
-  win:moveToUnit(layout)
-end
+-- function setOnSpace(application, sp, layout)
+--   layout = layout or hs.layout.maximized
+--   local app = hs.application.open(application, 5, true)
+--   if not app then
+--     print("Failed to focus", application)
+--     return
+--   end
+--   local win = hs.window.focusedWindow()      -- current window
+--   local uuid = win:screen():spacesUUID()     -- uuid for current screen
+--   local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
+--   spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
+--   win:moveToUnit(layout)
+-- end
 
-hs.application.enableSpotlightForNameSearches(true)
 
 -- hs.hotkey.bind(hyper, "h", function()
 --   setOnSpace("iTerm", 1)
@@ -200,13 +177,14 @@ hs.application.enableSpotlightForNameSearches(true)
 
 -- end)
 
-function emacsclientWatcher(appName, eventType, appObject)
-  if (eventType == hs.application.watcher.activated) then
-    if (appName == "EmacsClient") then
-      -- Bring Emacs to Front
-      hs.osascript.applescript('tell application "Emacs" to activate')
-    end
-  end
-end
-appWatcher = hs.application.watcher.new(emacsclientWatcher)
-appWatcher:start()
+-- function emacsclientWatcher(appName, eventType, appObject)
+--   if (eventType == hs.application.watcher.activated) then
+--     if (appName == "EmacsClient") then
+--       -- Bring Emacs to Front
+--       hs.osascript.applescript('tell application "Emacs" to activate')
+--     end
+--   end
+-- end
+--local appWatcher = hs.application.watcher.new(emacsclientWatcher)
+--
+--appWatcher:start()

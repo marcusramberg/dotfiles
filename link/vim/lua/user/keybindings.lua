@@ -1,29 +1,28 @@
+local au = require 'au'
 local m = require'mapx'.setup{ whichkey = true } --, global= true }
 local nnoremap = m.nnoremap
-local au = require 'au'
+local ts = require('telescope.builtin')
 
 vim.o.pastetoggle="<F2>"
 
 -- " Make mouse clicks a NOOP;
 nnoremap('<LeftMouse>', '<nop>')
 
-
 nnoremap("gD", function() vim.lsp.buf.declaration() end, "silent", "LSP: Goto declaration")
 nnoremap("gd", function() vim.lsp.buf.definition() end, "silent", "LSP: Goto definition")
 nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")
 nnoremap("]e", function() vim.diagnostic.goto_next() end, "silent", "Next Error")
 
-nnoremap("<leader> ", ":Buffers<cr>", "Buffers")
+nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
 
 
 m.nname("<leader>b"," +buffers")
 nnoremap("<leader>b[",":prev<cr>", "Next")
 nnoremap("<leader>b]",":next:q<cr>", "Prev")
-nnoremap("<leader>bb",":Buffers<cr>", "Buffers")
+nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 
 m.nname("<leader>c"," +code")
-bam()
-nnoremap("<leader>ca", function() require('telescope.builtin').lsp_code_actions() end, "silent", "Action")
+nnoremap("<leader>ca", function() ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
 nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
 nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
@@ -40,7 +39,7 @@ nnoremap("<leader>gi", ":Octo issue list<cr>", "issues")
 nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
 
 m.nname("<leader>h", "+help")
-nnoremap("<leader>hh", ":Help<cr>", "help")
+nnoremap("<leader>hh", function() ts.help_tags() end, "help")
 
 
 m.nname("<leader>o", "+open")
@@ -84,6 +83,6 @@ nnoremap('tt', function() vim.call('tabn',lasttab) end, 'last tab')
 
  au.TabLeave  = function()
   lasttab = vim.fn.tabpagenr()
-   print(lasttab)
  end
-nnoremap('<C-p>', ':FZF<Cr>')
+nnoremap('<C-p>', function()  ts.find_files() end)
+nnoremap('<C-r>', function()  ts.command_history() end)
