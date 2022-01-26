@@ -12,7 +12,7 @@ for i = 1, 9 do
       action=wezterm.action{ActivateTab=i-1},
     })
 end
-return {
+local config = {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
   color_scheme = "Dracula+",
@@ -39,3 +39,5 @@ return {
     brightness = 0.6,
   }
 }
+
+return config
