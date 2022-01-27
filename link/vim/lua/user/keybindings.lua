@@ -2,6 +2,7 @@ local au = require 'au'
 local m = require'mapx'.setup{ whichkey = true } --, global= true }
 local nnoremap = m.nnoremap
 local ts = require('telescope.builtin')
+local org = require('orgmode')
 
 vim.o.pastetoggle="<F2>"
 
@@ -47,6 +48,8 @@ nnoremap("<leader>hh", function() ts.help_tags() end, "help")
 
 m.nname("<leader>o", "+open")
 nnoremap("<leader>ot", ":ToggleTerm<cr>", "Terminal")
+nnoremap("<leader>oa", function() org.action("agenda.prompt") end, "Agenda")
+nnoremap("<leader>oc", function() org.action("capture.prompt") end, "Capture")
 
 m.nname("<leader>s", "+search")
 nnoremap("<leader>ss", ":Rg <cword><cr>", "Search Selection")
