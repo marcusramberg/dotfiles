@@ -7,13 +7,10 @@ end
 local packer = require 'packer'
 local use = packer.use
 
-packer.init {
-  max_jobs = tonumber(vim.fn.system 'nproc') or 8,
-}
+packer.init {max_jobs = tonumber(vim.fn.system 'nproc') or 8}
 
 packer.startup(function()
   use 'wbthomason/packer.nvim'
-
 
   -- fzf <3
   use 'junegunn/fzf'
@@ -24,11 +21,10 @@ packer.startup(function()
   use 'burner/vim-svelte'
   use 'elzr/vim-json'
   use 'w0rp/ale'
-  use {'nvim-treesitter/nvim-treesitter', run='TSUpdate'}
-  use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end }
+  use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
+  use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup {} end}
   use 'akinsho/org-bullets.nvim'
   use 'wsdjeg/luarefvim'
-
 
   -- Search/replace
   use 'Olical/vim-enmasse'
@@ -42,20 +38,16 @@ packer.startup(function()
   use 'Pocco81/AutoSave.nvim'
 
   -- Version Control
-  use 'nvim-lua/plenary.nvim'
-  use 'TimUntersberger/neogit'
-  use 'sindrets/diffview.nvim'
   use {
-  'pwntester/octo.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'kyazdani42/nvim-web-devicons',
-  },
-  config = function ()
-    require"octo".setup()
-  end
-}
+    'TimUntersberger/neogit',
+    config = function() require"neogit".setup {use_magit_keybindings = true} end,
+    requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'}
+  }
+  use {
+    'pwntester/octo.nvim',
+    requires = {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons'},
+    config = function() require"octo".setup() end
+  }
 
   -- open with line (from syntax output and such)
   use 'bogado/file-line'
@@ -65,41 +57,41 @@ packer.startup(function()
   -- LSP
   use 'neovim/nvim-lspconfig'
   -- Progress bar
-  use {'j-hui/fidget.nvim', config = function() require"fidget".setup{} end}
+  use {'j-hui/fidget.nvim', config = function() require"fidget".setup {} end}
   -- Autocomplete
   use 'nvim-lua/popup.nvim'
-  use { 'ms-jpq/coq_nvim', branch = 'coq' }
+  use {'ms-jpq/coq_nvim', branch = 'coq'}
 
   -- 9000+ Snippets
-  use {'ms-jpq/coq.artifacts', branch='artifacts'}
-  use {'ms-jpq/coq.thirdparty', branch='3p'}
+  use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
+  use {'ms-jpq/coq.thirdparty', branch = '3p'}
 
   -- Terminal
   use 'akinsho/toggleterm.nvim'
 
   -- Styling
   use 'airblade/vim-gitgutter'
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
   require('lualine').setup()
   use 'dracula/vim'
   use 'b0o/mapx.nvim'
   use({
-      "themercorp/themer.lua",
-      config = function()
-        require("themer").setup({
-            colorscheme = "dracula",
-            styles = {
-              comment = { style = 'italic' },
-              ["function"] = { style = 'italic' },
-              functionbuiltin = { style = 'italic' },
-              variable = { style = 'italic' },
-              variableBuiltIn = { style = 'italic' },
-              parameter  = { style = 'italic' },
-            },
-          })
-      end
-    })
-  end)
+    "themercorp/themer.lua",
+    config = function()
+      require("themer").setup({
+        colorscheme = "dracula",
+        styles = {
+          comment = {style = 'italic'},
+          ["function"] = {style = 'italic'},
+          functionbuiltin = {style = 'italic'},
+          variable = {style = 'italic'},
+          variableBuiltIn = {style = 'italic'},
+          parameter = {style = 'italic'}
+        }
+      })
+    end
+  })
+end)
 
 -- packer.use_rocks {
 --   'base64',
