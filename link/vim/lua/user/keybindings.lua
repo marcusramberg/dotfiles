@@ -10,6 +10,9 @@ nnoremap('<LeftMouse>', '<nop>')
 
 nnoremap("gD", function() vim.lsp.buf.declaration() end, "silent", "LSP: Goto declaration")
 nnoremap("gd", function() vim.lsp.buf.definition() end, "silent", "LSP: Goto definition")
+nnoremap("gr", function() vim.lsp.buf.references() end, "silent", "LSP: Goto references")
+nnoremap("gi", function() vim.lsp.buf.implementation() end, "silent", "LSP: Goto implementation")
+nnoremap("K", function() vim.lsp.buf.hover() end, "silent", "hover")
 nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")
 nnoremap("]e", function() vim.diagnostic.goto_next() end, "silent", "Next Error")
 

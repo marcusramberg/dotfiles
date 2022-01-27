@@ -14,8 +14,6 @@ packer.init {
 packer.startup(function()
   use 'wbthomason/packer.nvim'
 
-  -- Not sure I actually need this?
-  use 'folke/which-key.nvim'
 
   -- fzf <3
   use 'junegunn/fzf'
@@ -59,16 +57,18 @@ packer.startup(function()
   end
 }
 
-  -- Navigation
+  -- open with line (from syntax output and such)
   use 'bogado/file-line'
+  -- menus
+  use 'folke/which-key.nvim'
 
-  -- Autocomplete
+  -- LSP
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  -- Progress bar
+  use {'j-hui/fidget.nvim', config = function() require"fidget".setup{} end}
+  -- Autocomplete
   use 'nvim-lua/popup.nvim'
   use { 'ms-jpq/coq_nvim', branch = 'coq' }
-  use 'j-hui/fidget.nvim'
-  require"fidget".setup{}
 
   -- 9000+ Snippets
   use {'ms-jpq/coq.artifacts', branch='artifacts'}
