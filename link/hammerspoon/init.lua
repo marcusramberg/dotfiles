@@ -28,7 +28,7 @@ ipc.cliInstall()
 -- Load SpoonInstall, so we can easily load our other Spoons
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall.use_syncinstall = true
-local Install=spoon.SpoonInstall
+spoon.SpoonInstall:andUse("EmmyLua")
 
 hs.notify.new({
     title='Hammerspoon',

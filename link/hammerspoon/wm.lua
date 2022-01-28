@@ -1,70 +1,96 @@
-local hyper = {"cmd","alt","ctrl","shift"}
+local hyper = {"cmd", "alt", "ctrl", "shift"}
 local cmd = {"cmd"}
-local cmd_shift = {"cmd","shift"}
+local cmd_shift = {"cmd", "shift"}
 
 local spaces = require("hs._asm.undocumented.spaces")
 local lastSpace = nil
-local logger = hs.logger.new("wm","info")
+local logger = hs.logger.new("wm", "info")
 
 hs.application.enableSpotlightForNameSearches(true)
 hs.window.switcher.ui.fontName = 'Verdana'
 
-hs.hotkey.bind(hyper, "o", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left50) end)
-hs.hotkey.bind(hyper, "p", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right50) end)
-hs.hotkey.bind(hyper, "k", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.left70) end)
-hs.hotkey.bind(hyper, "l", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.right30) end)
-hs.hotkey.bind(hyper, "m", function() local win = hs.window.focusedWindow(); win:moveToUnit(hs.layout.maximized) end)
+hs.hotkey.bind(hyper, "o", function() hs.window.focusedWindow():moveToUnit(hs.layout.left50) end)
+hs.hotkey.bind(hyper, "p", function() hs.window.focusedWindow():moveToUnit(hs.layout.right50) end)
+hs.hotkey.bind(hyper, "k", function() hs.window.focusedWindow():moveToUnit(hs.layout.left70) end)
+hs.hotkey.bind(hyper, "l", function() hs.window.focusedWindow():moveToUnit(hs.layout.right30) end)
+hs.hotkey.bind(hyper, "m", function() hs.window.focusedWindow():moveToUnit(hs.layout.maximized) end)
 
-hs.hotkey.bind(cmd,"1", function() SwitchToSpace(1) end)
-hs.hotkey.bind(cmd,"2", function() SwitchToSpace(2) end)
-hs.hotkey.bind(cmd,"3", function() SwitchToSpace(3) end)
-hs.hotkey.bind(cmd,"4", function() SwitchToSpace(4) end)
-hs.hotkey.bind(cmd,"5", function() SwitchToSpace(5) end)
-hs.hotkey.bind(cmd,"6", function() SwitchToSpace(6) end)
-hs.hotkey.bind(cmd,"7", function() SwitchToSpace(7) end)
-hs.hotkey.bind(cmd,"8", function() SwitchToSpace(8) end)
+local table_invert = function(t)
+   local s={}
+   for k,v in pairs(t) do
+     s[v]=k
+   end
+   return s
+end
 
-
-hs.hotkey.bind(cmd_shift,"1", function() MoveWindowToSpace(1) end)
-hs.hotkey.bind(cmd_shift,"2", function() MoveWindowToSpace(2) end)
-hs.hotkey.bind(cmd_shift,"3", function() MoveWindowToSpace(3) end)
-hs.hotkey.bind(cmd_shift,"4", function() MoveWindowToSpace(4) end)
-hs.hotkey.bind(cmd_shift,"5", function() MoveWindowToSpace(5) end)
-hs.hotkey.bind(cmd_shift,"6", function() MoveWindowToSpace(6) end)
-hs.hotkey.bind(cmd_shift,"7", function() MoveWindowToSpace(7) end)
-hs.hotkey.bind(cmd_shift,"8", function() MoveWindowToSpace(8) end)
-
-hs.hotkey.bind(cmd,"left", function()  hs.window.focusedWindow().focusWindowWest() end)
-hs.hotkey.bind(cmd,"right", function()  hs.window.focusedWindow().focusWindowEast() end)
-hs.hotkey.bind(cmd,"up", function()  hs.window.focusedWindow().focusWindowNorth() end)
-hs.hotkey.bind(cmd,"down", function()  hs.window.focusedWindow().focusWindowSouth() end)
+local switchToSpace = function(sp)
+  local layout = spaces.layout()[spaces.mainScreenUUID()]
+  if (layout[sp] == spaces.activeSpace() and lastSpace ~= nil) then
+    sp = lastSpace
+  end
+  local invert_layout=table_invert(layout)
+  lastSpace = invert_layout[spaces.activeSpace()]
+  spaces.changeToSpace(layout[sp], true)
+end
 
 
-local switcher_space = hs.window.switcher.new(hs.window.filter.new{override={fullscreen=false}}:setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
+hs.hotkey.bind(cmd, "1", function() switchToSpace(1) end)
+hs.hotkey.bind(cmd, "2", function() switchToSpace(2) end)
+hs.hotkey.bind(cmd, "3", function() switchToSpace(3) end)
+hs.hotkey.bind(cmd, "4", function() switchToSpace(4) end)
+hs.hotkey.bind(cmd, "5", function() switchToSpace(5) end)
+hs.hotkey.bind(cmd, "6", function() switchToSpace(6) end)
+hs.hotkey.bind(cmd, "7", function() switchToSpace(7) end)
+hs.hotkey.bind(cmd, "8", function() switchToSpace(8) end)
+
+local moveWindowToSpace = function(sp)
+  local win = hs.window.focusedWindow() -- current window
+  local uuid = win:screen():spacesUUID() -- uuid for current screen
+  local spaceID = spaces.layout()[uuid][sp] -- internal index for sp
+  spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
+  spaces.changeToSpace(spaceID) -- follow window to new space
+  hs.notify.new({title = 'Spaces', informativeText = 'Window moved to Space #' .. sp}):send()
+
+end
+
+hs.hotkey.bind(cmd_shift, "1", function() moveWindowToSpace(1) end)
+hs.hotkey.bind(cmd_shift, "2", function() moveWindowToSpace(2) end)
+hs.hotkey.bind(cmd_shift, "3", function() moveWindowToSpace(3) end)
+hs.hotkey.bind(cmd_shift, "4", function() moveWindowToSpace(4) end)
+hs.hotkey.bind(cmd_shift, "5", function() moveWindowToSpace(5) end)
+hs.hotkey.bind(cmd_shift, "6", function() moveWindowToSpace(6) end)
+hs.hotkey.bind(cmd_shift, "7", function() moveWindowToSpace(7) end)
+hs.hotkey.bind(cmd_shift, "8", function() moveWindowToSpace(8) end)
+
+hs.hotkey.bind(cmd, "left", function() hs.window.focusedWindow().focusWindowWest() end)
+hs.hotkey.bind(cmd, "right", function() hs.window.focusedWindow().focusWindowEast() end)
+hs.hotkey.bind(cmd, "up", function() hs.window.focusedWindow().focusWindowNorth() end)
+hs.hotkey.bind(cmd, "down", function() hs.window.focusedWindow().focusWindowSouth() end)
+
+local switcher_space = hs.window.switcher.new(hs.window.filter.new {override = {fullscreen = false}}:setCurrentSpace(
+                                                true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
 -- bind to hotkeys; WARNING: at least one modifier key is required!
-hs.hotkey.bind('alt','tab', function()switcher_space:next()end)
-hs.hotkey.bind('alt-shift','tab', function()switcher_space:previous()end)
+hs.hotkey.bind('alt', 'tab', function() switcher_space:next() end)
+hs.hotkey.bind('alt-shift', 'tab', function() switcher_space:previous() end)
 
 -- Spaces
 local spacesCount = spaces.count()
-local spacesModifiers = {"ctrl" }
-
+local spacesModifiers = {"ctrl"}
 
 -- infinitely cycle through spaces using ctrl+left/right to trigger ctrl+[1..n]
 local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(o)
   local keyCode = o:getKeyCode()
   local modifiers = o:getFlags()
 
-  --logger.i(keyCode, hs.inspect(modifiers))
+  -- logger.i(keyCode, hs.inspect(modifiers))
 
   -- check if correct key code
   if keyCode ~= 123 and keyCode ~= 124 then return end
   if not modifiers[spacesModifiers] then return end
 
   -- check if no other modifiers where pressed
-  local passed = hs.fnutils.every(modifiers, function(_, modifier)
-    return hs.fnutils.contains(spacesModifiers, modifier)
-  end)
+  local passed = hs.fnutils.every(modifiers,
+                                  function(_, modifier) return hs.fnutils.contains(spacesModifiers, modifier) end)
 
   if not passed then return end
 
@@ -103,31 +129,7 @@ end)
 
 -- end
 
-function SwitchToSpace(sp)
-    logger.i(sp,lastSpace,spaces.activeSpace())
-    local layout = spaces.layout()[spaces.mainScreenUUID()]
-    if (layout[sp] == spaces.activeSpace() and lastSpace ~= nil) then
-       sp = lastSpace
-    end
-    lastSpace = spaces.activeSpace()
-    print("Changing to " .. sp .. " - " .. layout[sp] .. " - " .. lastSpace)
-    spaces.changeToSpace(layout[sp], true)
-end
-
-function MoveWindowToSpace(sp)
-    local win = hs.window.focusedWindow()      -- current window
-    local uuid = win:screen():spacesUUID()     -- uuid for current screen
-    local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
-    spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
-    spaces.changeToSpace(spaceID)              -- follow window to new space
-    hs.notify.new({
-        title='Spaces',
-        informativeText='Window moved to Space #' .. sp
-      }):send()
-
-end
-
-hs.hotkey.bind(hyper, 'y', function ()
+hs.hotkey.bind(hyper, 'y', function()
   -- Get the focused window, its window frame dimensions, its screen frame dimensions,
   -- and the next screen's frame dimensions.
   local focusedWindow = hs.window.focusedWindow()
@@ -136,8 +138,10 @@ hs.hotkey.bind(hyper, 'y', function ()
   local windowFrame = focusedWindow:frame()
 
   -- Calculate the coordinates of the window frame in the next screen and retain aspect ratio
-  windowFrame.x = ((((windowFrame.x - focusedScreenFrame.x) / focusedScreenFrame.w) * nextScreenFrame.w) + nextScreenFrame.x)
-  windowFrame.y = ((((windowFrame.y - focusedScreenFrame.y) / focusedScreenFrame.h) * nextScreenFrame.h) + nextScreenFrame.y)
+  windowFrame.x = ((((windowFrame.x - focusedScreenFrame.x) / focusedScreenFrame.w) * nextScreenFrame.w) +
+                    nextScreenFrame.x)
+  windowFrame.y = ((((windowFrame.y - focusedScreenFrame.y) / focusedScreenFrame.h) * nextScreenFrame.h) +
+                    nextScreenFrame.y)
   windowFrame.h = ((windowFrame.h / focusedScreenFrame.h) * nextScreenFrame.h)
   windowFrame.w = ((windowFrame.w / focusedScreenFrame.w) * nextScreenFrame.w)
 
@@ -145,46 +149,3 @@ hs.hotkey.bind(hyper, 'y', function ()
   focusedWindow:setFrame(windowFrame)
 end)
 
--- function setOnSpace(application, sp, layout)
---   layout = layout or hs.layout.maximized
---   local app = hs.application.open(application, 5, true)
---   if not app then
---     print("Failed to focus", application)
---     return
---   end
---   local win = hs.window.focusedWindow()      -- current window
---   local uuid = win:screen():spacesUUID()     -- uuid for current screen
---   local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
---   spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
---   win:moveToUnit(layout)
--- end
-
-
--- hs.hotkey.bind(hyper, "h", function()
---   setOnSpace("iTerm", 1)
---   setOnSpace("Firefox Developer Edition", 2, hs.layout.left70)
---   setOnSpace("Emacs", 3)
---   setOnSpace("Slack", 4, hs.layout.left70)
---   setOnSpace("Telegram", 4, hs.layout.left70)
---   setOnSpace("Microsoft Outlook", 4, hs.layout.left70)
---   setOnSpace("Convos", 4, hs.layout.right30)
---   setOnSpace("YT Music", 5, hs.layout.right50)
---   setOnSpace("Guacamole", 6)
---   hs.notify.new({
---       title='Home',
---       informativeText='Windows Configured'
---     }):send()
-
--- end)
-
--- function emacsclientWatcher(appName, eventType, appObject)
---   if (eventType == hs.application.watcher.activated) then
---     if (appName == "EmacsClient") then
---       -- Bring Emacs to Front
---       hs.osascript.applescript('tell application "Emacs" to activate')
---     end
---   end
--- end
---local appWatcher = hs.application.watcher.new(emacsclientWatcher)
---
---appWatcher:start()

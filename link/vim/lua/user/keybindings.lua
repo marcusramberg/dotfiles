@@ -64,6 +64,9 @@ nnoremap("t]",":tabnext<cr>", "Next tab")
 nnoremap("t[",":tabprevious<cr>", "Prev tab")
 nnoremap("tf",":tabfirst<cr>", "First tab")
 nnoremap("tl",":tablast<cr>", "Last tab")
+local prevtab = 1
+nnoremap('tt', function() vim.cmd(string.format("tabn %s",prevtab)) end, 'Prev tab')
+au.TabLeave  = function() prevtab = vim.fn.tabpagenr() end
 
 m.nname("<leader>w", "windows")
 nnoremap("<leader>wp", "<C-W>p", "Previous")
@@ -83,12 +86,5 @@ nnoremap("<leader>w=", ":resize +5<CR>", "Grow")
 nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
 
--- " Tab navigation
-local lasttab = 1
-nnoremap('tt', function() vim.call('tabn',lasttab) end, 'last tab')
-
- au.TabLeave  = function()
-  lasttab = vim.fn.tabpagenr()
- end
 nnoremap('<C-p>', function()  ts.find_files() end)
 nnoremap('<C-r>', function()  ts.command_history() end)

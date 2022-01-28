@@ -28,3 +28,4 @@ link/config/fish/fishd.*
 link/config/fish/fish_variables
 link/config/hackmudlink/config/albert/core.db
 plugin
+link/hammerspoon/Spoons/EmmyLua.spoon/annotations/
