@@ -1,5 +1,6 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
+-- Bootstrap
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
@@ -35,7 +36,7 @@ packer.startup(function()
   use 'terryma/vim-multiple-cursors'
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
-  use 'Pocco81/AutoSave.nvim'
+  use '907th/vim-auto-save'
 
   -- Version Control
   use {

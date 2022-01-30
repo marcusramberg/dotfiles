@@ -52,8 +52,8 @@ nnoremap("<leader>oa", function() org.action("agenda.prompt") end, "Agenda")
 nnoremap("<leader>oc", function() org.action("capture.prompt") end, "Capture")
 
 m.nname("<leader>s", "+search")
-nnoremap("<leader>ss", ":Rg <cword><cr>", "Search Selection")
-nnoremap("<leader>sS", ":Rg ", "Search ")
+nnoremap("<leader>sS", ":Rg <cword><cr>", "Search Selection")
+nnoremap("<leader>ss", ":Rg ", "Search ")
 nnoremap("<leader>sm", ":EnMasse", "Replace in Hotfix")
 
 m.nname("t", "tab")
@@ -87,4 +87,5 @@ nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
 
 nnoremap('<C-p>', function()  ts.find_files() end)
-nnoremap('<C-r>', function()  ts.command_history() end)
+-- Donut override undo :facepalm:
+-- nnoremap('<C-r>', function()  ts.command_history() end)

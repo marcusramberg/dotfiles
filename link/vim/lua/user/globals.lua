@@ -21,3 +21,6 @@ vim.g.ale_sign_warning = '⊙'
 vim.g.ale_sign_error = '⊘'
 vim.g.ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: disable, indentation:' ..
                                   '{ indent-sequences: whatever}}}"'
+
+-- Autosave
+vim.g.auto_save = 1 
