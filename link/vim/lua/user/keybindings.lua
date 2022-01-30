@@ -22,7 +22,7 @@ nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
 
 m.nname("<leader>b"," +buffers")
 nnoremap("<leader>b[",":prev<cr>", "Next")
-nnoremap("<leader>b]",":next:q<cr>", "Prev")
+nnoremap("<leader>b]",":next<cr>", "Prev")
 nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 
 m.nname("<leader>c"," +code")
