@@ -50,6 +50,10 @@ packer.startup(function()
     config = function() require"octo".setup() end
   }
 
+  -- Help
+
+  use {'RishabhRD/nvim-cheat.sh', requires = {'RishabhRD/popfix'}}
+
   -- open with line (from syntax output and such)
   use 'bogado/file-line'
   -- menus

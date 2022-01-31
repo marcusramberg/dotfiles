@@ -44,6 +44,8 @@ nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
 
 m.nname("<leader>h", "+help")
 nnoremap("<leader>hh", function() ts.help_tags() end, "help")
+nnoremap("<leader>hc", ":CheatList<cr>" , "help")
+nnoremap("<leader>hC", ":Cheat" , "help")
 
 
 m.nname("<leader>o", "+open")

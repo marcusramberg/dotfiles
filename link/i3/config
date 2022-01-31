@@ -1,6 +1,4 @@
 # i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -37,7 +35,7 @@ bindsym $mod+Return exec wezterm start
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec dmenu_recency
+bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -theme solarized -font 'hack 10' -show combi"
 exec albert
 
 # Shots
@@ -337,11 +335,11 @@ exec feh --bg-max ~/.dotfiles/wallpaper/ -z
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	#i3bar_command i3bar
-	status_command i3status
+	status_command i3status-rs
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
+	tray_output primary
 #	tray_output eDP1
 
 	bindsym button4 nop

@@ -24,3 +24,5 @@ vim.g.ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: d
 
 -- Autosave
 vim.g.auto_save = 1 
+-- vsplit for cheat
+vim.g.cheat_default_window_layout = 'vertical_split'

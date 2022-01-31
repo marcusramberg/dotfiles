@@ -12,6 +12,7 @@ if status is-interactive
     #git
     abbr gc git commit
     abbr gs git status
+    abbr gsu git status -uno
     abbr gp git pull
     abbr gb git branch
     abbr gd git diff
