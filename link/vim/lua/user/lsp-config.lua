@@ -16,7 +16,7 @@ lsp.efm.setup {
 lsp.jsonls.setup(coq.lsp_ensure_capabilities())
 lsp.ltex.setup(coq.lsp_ensure_capabilities())
 lsp.perlls.setup(coq.lsp_ensure_capabilities())
-lsp.pyright.setup(coq.lsp_ensure_capabilities())
+lsp.pylsp.setup(coq.lsp_ensure_capabilities())
 lsp.rls.setup(coq.lsp_ensure_capabilities())
 lsp.terraformls.setup(coq.lsp_ensure_capabilities())
 lsp.tsserver.setup(coq.lsp_ensure_capabilities())

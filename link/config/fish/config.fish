@@ -33,4 +33,4 @@ status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 eval (kustomize completion fish)
 
 fish_add_path ~/.dotfiles/bin /usr/local/ltex-ls/bin
-fish_add_path /usr/local/sbin
+fish_add_path /usr/local/sbin ~/.local/bin

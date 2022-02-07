@@ -80,23 +80,19 @@ packer.startup(function()
   require('lualine').setup()
   use 'dracula/vim'
   use 'b0o/mapx.nvim'
-  use({
-    "themercorp/themer.lua",
-    config = function()
-      require("themer").setup({
-        colorscheme = "dracula",
-        styles = {
-          comment = {style = 'italic'},
-          ["function"] = {style = 'italic'},
-          functionbuiltin = {style = 'italic'},
-          variable = {style = 'italic'},
-          variableBuiltIn = {style = 'italic'},
-          parameter = {style = 'italic'}
-        }
-      })
-    end
-  })
-end)
+  use {'folke/tokyonight.nvim', config = function()
+    -- Example config in Lua
+    vim.g.tokyonight_style = "night"
+    vim.g.tokyonight_italic_functions = true
+    vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+    -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+    vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+    -- Load the colorscheme
+    vim.cmd[[colorscheme tokyonight]]
+  end}
+ end)
 
 -- packer.use_rocks {
 --   'base64',
