@@ -193,7 +193,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-assign [class="Konsole"] $ws1
+assign [class="WezTerm"] $ws1
 assign [class="Firefox Developer Edition"] $ws2
 assign [class="Telegram"] $ws4
 
@@ -349,9 +349,9 @@ bar {
 	strip_workspace_numbers yes
 
   colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
+    background #1a1b26
+    statusline #a9b1d6
+    separator  #f7768e 
 
     focused_workspace  #44475A #44475A #F8F8F2
     active_workspace   #282A36 #44475A #F8F8F2
@@ -366,9 +366,9 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                 border  bground text    indicator child_border
-client.focused          #6272a4 #6272a4 #f8f8f2 #6272a4   #6272a4
-client.focused_inactive #44475a #44475a #f8f8f2 #44475a   #44475a
-client.unfocused        #282a36 #282a36 #bfbfbf #282a36   #282a36
+client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
+client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
+client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
 client.urgent           #44475a #ff5555 #f8f8f2 #ff5555   #ff5555
 client.placeholder      #282a36 #282a36 #f8f8f2 #282a36   #282a36
 
