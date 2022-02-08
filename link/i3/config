@@ -349,9 +349,9 @@ bar {
 	strip_workspace_numbers yes
 
   colors {
-    background #1a1b26
-    statusline #a9b1d6
-    separator  #f7768e 
+    background #06060f
+    statusline #F8F8F2
+    separator  #44475A
 
     focused_workspace  #44475A #44475A #F8F8F2
     active_workspace   #282A36 #44475A #F8F8F2
