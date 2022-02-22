@@ -57,7 +57,7 @@
 	sshCommand = "ssh -F ~/.ssh/gproxy.cfg"
   whitespace = trailing-space,space-before-tab
 	excludesfile = /Users/marcus/.gitignore_global
-  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Nord'
+  pager = delta 
 
 [interactive]
   diffFilter = delta --color-only
@@ -88,14 +88,6 @@
   insteadOf = gh:
 #[credential]
 #  helper =  crossplatform
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[heroku]
-  account = nordaaker
 [github]
   user = marcusramberg
 [init]
@@ -129,8 +121,6 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
-[diff-so-fancy]
-	markEmptyLines = false
 [log]
 	follow = true
 [merge]
@@ -141,3 +131,4 @@
   insteadOf = https://bitbucket.tech.dnb.no/scm/
 [diff]
 	algorithm = patience
+  colorMoved = default
