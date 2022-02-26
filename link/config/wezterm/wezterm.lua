@@ -15,7 +15,7 @@ end
 local config = {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
-  color_scheme = "tokyonight",
+  color_scheme = "nord",
   font = wezterm.font("JetBrainsMono Nerd Font"),
   pane_focus_follows_mouse = true,
   use_fancy_tab_bar = false,

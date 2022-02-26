@@ -1,4 +1,4 @@
-theme = "native"
+theme = "nord-dark"
 icons = "material-nf"
 
 [[block]]
