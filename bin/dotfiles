@@ -99,12 +99,9 @@ shopt -s nullglob
 mkdir -p "$HOME/.dotfiles/caches"
 
 
-
 ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
 
-if [[ ! -d ~/.dotfiles/link/vim/bundle/vundle ]]; then
-  ~/.dotfiles/bin/vundle.sh
-fi
+
 
 
 # All done!

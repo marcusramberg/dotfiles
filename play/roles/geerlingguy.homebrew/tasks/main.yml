@@ -11,13 +11,6 @@
   stat: path=/usr/local/bin/brew
   register: homebrew_binary
 
-- name: Symlink brew to /usr/local/bin/brew.
-  file:
-    src: "{{ homebrew_install_path }}/bin/brew"
-    dest: /usr/local/bin/brew
-    state: link
-  when: homebrew_binary.stat.exists == false
-
 - name: Get list of tapped homebrew taps.
   command: brew tap
   register: homebrew_tap_list
