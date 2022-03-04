@@ -9,6 +9,8 @@
 [user]
 	name = Marcus Ramberg
 	email = marcus@means.no
+[includeIf "gitdir:~/Source/reMarkable/"]
+  path = ~/.gitconfig.remarkable
 [alias]
   patch = --no-pager diff --no-color
   promote = !$ZSH/bin/git-promote
@@ -123,10 +125,6 @@
 	follow = true
 [merge]
 	conflictstyle = diff3
-[includeIf "gitdir:/Users/marcus/Source/DNB/"]
-  path = .gitconfig-dnb
-[url "ssh://git@git.tech-01.net/"]
-  insteadOf = https://bitbucket.tech.dnb.no/scm/
 [diff]
 	algorithm = patience
   colorMoved = default
