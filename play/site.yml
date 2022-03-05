@@ -8,5 +8,4 @@
         - "vars/default.yml"
   roles:
     - { role: dotfiles }
-    - { role: geerlingguy.homebrew, when: ansible_system == 'Darwin' }
       
