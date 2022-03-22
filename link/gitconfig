@@ -128,3 +128,7 @@
 [diff]
 	algorithm = patience
   colorMoved = default
+[bulkworkspaces]
+	rm = /Users/marcus/Source/reMarkable/
+[url "ssh://git@github.com/reMarkable"]
+	insteadOf = https://github.com/reMarkable

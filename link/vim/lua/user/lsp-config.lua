@@ -13,8 +13,9 @@ lsp.efm.setup {
   filetypes = {"lua"},
   settings = {rootMarkers = {".git/"}, languages = {lua = {{formatCommand = "lua-format -i", formatStdin = true}}}}
 }
+lsp.jedi_language_server.setup(coq.lsp_ensure_capabilities())
 lsp.jsonls.setup(coq.lsp_ensure_capabilities())
-lsp.ltex.setup(coq.lsp_ensure_capabilities())
+--lsp.ltex.setup(coq.lsp_ensure_capabilities())
 lsp.perlls.setup(coq.lsp_ensure_capabilities())
 lsp.pylsp.setup(coq.lsp_ensure_capabilities())
 lsp.rls.setup(coq.lsp_ensure_capabilities())

@@ -1,8 +1,10 @@
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 local cmd = {"cmd"}
+local ctrl = {"ctrl"}
 local cmd_shift = {"cmd", "shift"}
 
-local spaces = require("hs._asm.undocumented.spaces")
+local spaces = require("hs.spaces")
+
 local lastSpace = nil
 local logger = hs.logger.new("wm", "info")
 
@@ -24,43 +26,43 @@ local table_invert = function(t)
 end
 
 local switchToSpace = function(sp)
-  local layout = spaces.layout()[spaces.mainScreenUUID()]
-  if (layout[sp] == spaces.activeSpace() and lastSpace ~= nil) then
+  local layout = spaces.allSpaces()[hs.screen.mainScreen()]
+  if (layout[sp] == spaces.focusedSpace() and lastSpace ~= nil) then
     sp = lastSpace
   end
   local invert_layout=table_invert(layout)
   lastSpace = invert_layout[spaces.activeSpace()]
-  spaces.changeToSpace(layout[sp], true)
+  spaces.gotoToSpace(layout[sp], true)
 end
 
 
-hs.hotkey.bind(cmd, "1", function() switchToSpace(1) end)
-hs.hotkey.bind(cmd, "2", function() switchToSpace(2) end)
-hs.hotkey.bind(cmd, "3", function() switchToSpace(3) end)
-hs.hotkey.bind(cmd, "4", function() switchToSpace(4) end)
-hs.hotkey.bind(cmd, "5", function() switchToSpace(5) end)
-hs.hotkey.bind(cmd, "6", function() switchToSpace(6) end)
-hs.hotkey.bind(cmd, "7", function() switchToSpace(7) end)
-hs.hotkey.bind(cmd, "8", function() switchToSpace(8) end)
+hs.hotkey.bind(cmd_shift, "1", function() switchToSpace(1) end)
+hs.hotkey.bind(cmd_shift, "2", function() switchToSpace(2) end)
+hs.hotkey.bind(cmd_shift, "3", function() switchToSpace(3) end)
+hs.hotkey.bind(cmd_shift, "4", function() switchToSpace(4) end)
+hs.hotkey.bind(cmd_shift, "5", function() switchToSpace(5) end)
+hs.hotkey.bind(cmd_shift, "6", function() switchToSpace(6) end)
+hs.hotkey.bind(cmd_shift, "7", function() switchToSpace(7) end)
+hs.hotkey.bind(cmd_shift, "8", function() switchToSpace(8) end)
 
 local moveWindowToSpace = function(sp)
   local win = hs.window.focusedWindow() -- current window
-  local uuid = win:screen():spacesUUID() -- uuid for current screen
-  local spaceID = spaces.layout()[uuid][sp] -- internal index for sp
+  local uuid = hs.screen.mainScreen() -- uuid for current screen
+  local spaceID = spaces.allSpaces()[uuid][sp] -- internal index for sp
   spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
-  spaces.changeToSpace(spaceID) -- follow window to new space
+  spaces.gotoToSpace(spaceID) -- follow window to new space
   hs.notify.new({title = 'Spaces', informativeText = 'Window moved to Space #' .. sp}):send()
 
 end
 
-hs.hotkey.bind(cmd_shift, "1", function() moveWindowToSpace(1) end)
-hs.hotkey.bind(cmd_shift, "2", function() moveWindowToSpace(2) end)
-hs.hotkey.bind(cmd_shift, "3", function() moveWindowToSpace(3) end)
-hs.hotkey.bind(cmd_shift, "4", function() moveWindowToSpace(4) end)
-hs.hotkey.bind(cmd_shift, "5", function() moveWindowToSpace(5) end)
-hs.hotkey.bind(cmd_shift, "6", function() moveWindowToSpace(6) end)
-hs.hotkey.bind(cmd_shift, "7", function() moveWindowToSpace(7) end)
-hs.hotkey.bind(cmd_shift, "8", function() moveWindowToSpace(8) end)
+-- hs.hotkey.bind(cmd_shift, "1", function() moveWindowToSpace(1) end)
+-- hs.hotkey.bind(cmd_shift, "2", function() moveWindowToSpace(2) end)
+-- hs.hotkey.bind(cmd_shift, "3", function() moveWindowToSpace(3) end)
+-- hs.hotkey.bind(cmd_shift, "4", function() moveWindowToSpace(4) end)
+-- hs.hotkey.bind(cmd_shift, "5", function() moveWindowToSpace(5) end)
+-- hs.hotkey.bind(cmd_shift, "6", function() moveWindowToSpace(6) end)
+-- hs.hotkey.bind(cmd_shift, "7", function() moveWindowToSpace(7) end)
+-- hs.hotkey.bind(cmd_shift, "8", function() moveWindowToSpace(8) end)
 
 hs.hotkey.bind(cmd, "left", function() hs.window.focusedWindow().focusWindowWest() end)
 hs.hotkey.bind(cmd, "right", function() hs.window.focusedWindow().focusWindowEast() end)
@@ -74,8 +76,8 @@ hs.hotkey.bind('alt', 'tab', function() switcher_space:next() end)
 hs.hotkey.bind('alt-shift', 'tab', function() switcher_space:previous() end)
 
 -- Spaces
-local spacesCount = spaces.count()
-local spacesModifiers = {"ctrl"}
+--local allSpaces = spaces.allSpaces()[hs.screen.mainScreen()]
+--local spacesCount = #allSpaces
 
 -- infinitely cycle through spaces using ctrl+left/right to trigger ctrl+[1..n]
 local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(o)
@@ -86,27 +88,27 @@ local spacesEventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, functi
 
   -- check if correct key code
   if keyCode ~= 123 and keyCode ~= 124 then return end
-  if not modifiers[spacesModifiers] then return end
+  if not modifiers[ctrl] then return end
 
   -- check if no other modifiers where pressed
   local passed = hs.fnutils.every(modifiers,
-                                  function(_, modifier) return hs.fnutils.contains(spacesModifiers, modifier) end)
+                                  function(_, modifier) return hs.fnutils.contains(ctrl, modifier) end)
 
   if not passed then return end
 
   -- switch spaces
-  local currentSpace = spaces.currentSpace()
+  local currentSpace = spaces.focusedSpace()
   local nextSpace
 
   -- left arrow
   if keyCode == 123 then
-    nextSpace = currentSpace ~= 1 and currentSpace - 1 or spacesCount
+    nextSpace = currentSpace ~= 1 and currentSpace - 1 -- or spacesCount
     -- right arrow
   elseif keyCode == 124 then
     nextSpace = currentSpace ~= spacesCount and currentSpace + 1 or 1
   end
 
-  hs.eventtap.keyStroke({spacesModifiers}, string.format("%d", nextSpace))
+  hs.eventtap.keyStroke({ctrl}, string.format("%d", nextSpace))
 
   -- stop propagation
   return true

@@ -3,6 +3,7 @@ require "usb"
 require "utils"
 require "wifi"
 require "wm"
+require "dots"
 
 
 local ipc = require("hs.ipc")
@@ -20,8 +21,8 @@ local hyper = {"cmd","alt","ctrl","shift"}
 hs.hotkey.bind(hyper, 'c', hs.toggleConsole)
 hs.hotkey.bind(hyper, "r", function() hs.reload() end)
 hs.hotkey.bind(hyper, 'n', function() hs.task.new("/usr/bin/open", nil, {os.getenv("HOME")}):start() end)
-hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("iTerm") end)
-hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Firefox Developer Edition") end)
+hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("WezTerm") end)
+hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Safari") end)
 
 ipc.cliInstall()
 

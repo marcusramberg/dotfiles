@@ -8,7 +8,7 @@
 ;; Look and feel
 (setq doom-font "JetbrainsMono Nerd Font Mono-16"
       doom-variable-pitch-font (font-spec :family "futura" :size 13)
-      doom-theme 'doom-dracula ;; Current favorite
+      doom-theme 'doom-nord ;; Current favorite
       display-line-numbers-type nil) ;; not worth the perf
 
 ;; Additional key mappings
@@ -32,7 +32,7 @@
 ;; Enable auto save
 (auto-save-visited-mode +1)
 
-(setq projectile-project-search-path '("~/Source" "~/Source/DNB"))
+(setq projectile-project-search-path '("~/Source" "~/Source/reMarkable"))
 
 ;; be more evil
 (after! evil
