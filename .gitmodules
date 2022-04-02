@@ -1,33 +1,21 @@
 [submodule "libs/rbenv"]
   path = libs/rbenv
-  url = git://github.com/sstephenson/rbenv.git
+  url = https://github.com/sstephenson/rbenv.git
 [submodule "libs/ruby-build"]
   path = libs/ruby-build
-  url = git://github.com/sstephenson/ruby-build.git
+  url = https://github.com/sstephenson/ruby-build.git
 [submodule "libs/git-extras"]
   path = libs/git-extras
-  url = git://github.com/visionmedia/git-extras.git
-[submodule "libs/z"]
-  path = libs/z
-  url = git://github.com/rupa/z.git
+  url = https://github.com/visionmedia/git-extras.git
 [submodule "libs/nave"]
   path = libs/nave
-  url = git://github.com/isaacs/nave.git
+  url = https://github.com/isaacs/nave.git
 [submodule "link/pentadactyl/plugins/firebug-pentadactyl"]
   path = link/pentadactyl/plugins/firebug-pentadactyl
   url = https://github.com/maksimr/firebug-pentadactyl.git
-[submodule "libs/pure"]
-  path = libs/pure
-  url = https://github.com/sindresorhus/pure
 [submodule "link/plenv"]
   path = link/plenv
-  url = git://github.com/marcusramberg/plenv.git
-[submodule "conf/zsh/plugins/zsh-autosuggestions"]
-  path = conf/zsh/plugins/zsh-autosuggestions
-  url = git://github.com/zsh-users/zsh-autosuggestions
-[submodule "libs/zplug"]
-  path = libs/zplug
-  url = https://github.com/zplug/zplug
+  url = https://github.com/marcusramberg/plenv.git
 [submodule "link/emacs.d"]
   path = link/emacs.d
   url = https://github.com/plexus/chemacs2.git
