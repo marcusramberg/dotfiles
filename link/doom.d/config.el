@@ -198,32 +198,18 @@ This function makes sure that dates are aligned for easy reading."
     (set-frame-parameter nil 'font "JetbrainsMono Nerd Font-16")
     (set-window-margins (frame-selected-window) 4))
 
-  )
 
+  ;; Jira
+  (make-directory "~/.org-jira" 'ignore-if-exists)
+  (setq jiralib-url "https://getremarkable.atlassian.net")
+  (setq jiralib-update-issue-fields-exclude-list '(priority reporter))
+  (setq org-jira-keywords-to-jira-status-alist
+        '(("In Progress" . "INPROGRESS")
+          ("To Do" . "TODO")
+          ("Code Review" . "PR")))
 
-;; Cloudformation
-(define-derived-mode cfn-mode yaml-mode
-  "Cloudformation"
-  "Cloudformation template mode.")
+)
 
-(add-to-list 'auto-mode-alist '("service\.yml\\'" . cfn-mode))
-(after! flycheck
-  (flycheck-define-checker cfn-lint
-    "A Cloudformation linter using cfn-python-lint.
-
-See URL 'https://github.com/awslabs/cfn-python-lint'."
-    :command ("cfn-lint" "-f" "parseable" source)
-    :error-patterns (
-                     (warning line-start (file-name) ":" line ":" column
-                              ":" (one-or-more digit) ":" (one-or-more digit) ":"
-                              (id "W" (one-or-more digit)) ":" (message) line-end)
-                     (error line-start (file-name) ":" line ":" column
-                            ":" (one-or-more digit) ":" (one-or-more digit) ":"
-                            (id "E" (one-or-more digit)) ":" (message) line-end)
-                     )
-    :modes (cfn-mode)
-    )
-  (add-to-list 'flycheck-checkers 'cfn-lint))
 
 
 ;; Configure jsonnet to use grafonnet

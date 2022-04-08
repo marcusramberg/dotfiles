@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
 local keys = {
   {key="G", mods="SUPER", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
-  {key="V", mods="SUPER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
-  {key="S", mods="SUPER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
+  {key="V", mods="SUPER|ALT|CTRL|SHIFT", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
+  {key="S", mods="SUPER|ALT|CTRL|SHIFT", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
   {key="0", mods="CTRL", action=wezterm.action{ActivateTab=-1}},
 }
 for i = 1, 9 do

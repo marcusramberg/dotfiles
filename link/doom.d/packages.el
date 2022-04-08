@@ -5,6 +5,9 @@
 (package! org-chef
   :recipe (:host github :repo "Chobbes/org-chef"))
 
+;; org jira
+(package! org-jira)
+
 (package! terraform-doc)
 (package! jsonnet-mode)
 

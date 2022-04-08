@@ -9,13 +9,6 @@ vim.o.pastetoggle="<F2>"
 -- " Make mouse clicks a NOOP;
 nnoremap('<LeftMouse>', '<nop>')
 
-nnoremap("gD", function() vim.lsp.buf.declaration() end, "silent", "LSP: Goto declaration")
-nnoremap("gd", function() vim.lsp.buf.definition() end, "silent", "LSP: Goto definition")
-nnoremap("gr", function() vim.lsp.buf.references() end, "silent", "LSP: Goto references")
-nnoremap("gi", function() vim.lsp.buf.implementation() end, "silent", "LSP: Goto implementation")
-nnoremap("K", function() vim.lsp.buf.hover() end, "silent", "hover")
-nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")
-nnoremap("]e", function() vim.diagnostic.goto_next() end, "silent", "Next Error")
 
 nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
 
@@ -26,11 +19,6 @@ nnoremap("<leader>b]",":next<cr>", "Prev")
 nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 
 m.nname("<leader>c"," +code")
-nnoremap("<leader>ca", function() ts.lsp_code_actions() end, "silent", "Action")
-nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
-nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
-nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
-nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
 
 m.nname("<leader>f", "+file")
 nnoremap("<leader>ff", ":Files<cr>", "Find File")
@@ -38,6 +26,7 @@ nnoremap("<leader>fb", ":Buffers<cr>", "Buffers")
 
 m.nname("<leader>g", "+git")
 nnoremap("<leader>gs", ":Neogit kind=vsplit<cr>", "Neogit")
+nnoremap("<leader>gg", ":Neogit kind=vsplit<cr>", "Neogit")
 nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
 nnoremap("<leader>gi", ":Octo issue list<cr>", "issues")
 nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
@@ -89,5 +78,17 @@ nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
 
 nnoremap('<C-p>', function()  ts.find_files() end)
--- Donut override undo :facepalm:
--- nnoremap('<C-r>', function()  ts.command_history() end)
+
+nnoremap("gD", function() vim.lsp.buf.declaration() end, "silent", "LSP: Goto declaration")
+nnoremap("gd", function() vim.lsp.buf.definition() end, "silent", "LSP: Goto definition")
+nnoremap("gr", function() vim.lsp.buf.references() end, "silent", "LSP: Goto references")
+nnoremap("gi", function() vim.lsp.buf.implementation() end, "silent", "LSP: Goto implementation")
+nnoremap("K", function() vim.lsp.buf.hover() end, "silent", "hover")
+nnoremap("<leader>ca", function() require'lsp_menu'.codeaction.run{}  end, "silent", "Action") --ts.lsp_code_actions() end, "silent", "Action")
+nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
+nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
+nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
+nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
+nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
+nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")
+nnoremap("]e", function() vim.diagnostic.goto_next() end, "silent", "Next Error")

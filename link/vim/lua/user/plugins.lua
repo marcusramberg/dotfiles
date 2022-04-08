@@ -37,6 +37,7 @@ packer.startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
   use '907th/vim-auto-save'
+  use({ 'sQVe/sort.nvim', config = function() require("sort").setup({ }) end })
 
   -- Version Control
   use {
@@ -61,6 +62,7 @@ packer.startup(function()
 
   -- LSP
   use 'neovim/nvim-lspconfig'
+  use 'aspeddro/lsp_menu.nvim'
   -- Progress bar
   use {'j-hui/fidget.nvim', config = function() require"fidget".setup {} end}
   -- Autocomplete
