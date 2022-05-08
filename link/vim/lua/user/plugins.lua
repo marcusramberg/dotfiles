@@ -21,9 +21,29 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'burner/vim-svelte'
   use 'elzr/vim-json'
-  use 'w0rp/ale'
+--  use 'w0rp/ale'
+  use {'mfussenegger/nvim-lint', config = function() 
+    require('lint').linters_by_ft = {
+      go = {'golangcilint',},
+      markdown = {'vale',},
+    }
+  end
+  }
   use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
-  use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup {} end}
+  use {'nvim-orgmode/orgmode', config = function() 
+    require('orgmode').setup_ts_grammar()
+    require('orgmode').setup {} 
+    require'nvim-treesitter.configs'.setup {
+      -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
+      highlight = {
+        enable = true,
+        disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+        additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
+      },
+      ensure_installed = {'org'}, -- Or run :TSUpdate org
+    }
+
+  end}
   use 'akinsho/org-bullets.nvim'
   use 'wsdjeg/luarefvim'
 
@@ -37,7 +57,10 @@ packer.startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
   use '907th/vim-auto-save'
+  use 'karb94/neoscroll.nvim'
   use({ 'sQVe/sort.nvim', config = function() require("sort").setup({ }) end })
+  use 'christianrondeau/vim-base64'
+
 
   -- Version Control
   use {
@@ -66,12 +89,18 @@ packer.startup(function()
   -- Progress bar
   use {'j-hui/fidget.nvim', config = function() require"fidget".setup {} end}
   -- Autocomplete
-  use 'nvim-lua/popup.nvim'
-  use {'ms-jpq/coq_nvim', branch = 'coq'}
+  	use { 'hrsh7th/nvim-cmp',
+		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', },
+	}
+  use { 'nvim-lua/lsp-status.nvim'}
+
+
+--   use 'nvim-lua/popup.nvim'
+--  use {'ms-jpq/coq_nvim', branch = 'coq'}
 
   -- 9000+ Snippets
-  use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-  use {'ms-jpq/coq.thirdparty', branch = '3p'}
+  -- use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
+  -- use {'ms-jpq/coq.thirdparty', branch = '3p'}
 
   -- Terminal
   use 'akinsho/toggleterm.nvim'

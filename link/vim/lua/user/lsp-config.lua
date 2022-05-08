@@ -1,28 +1,75 @@
 local lsp = require "lspconfig"
-local coq = require "coq" -- add this
+--local coq = require "coq" -- add this
+--
+local function document_highlight()
+	vim.api.nvim_exec([[
+		hi LspReferenceRead  guibg=#121111 guifg=#FFFF00
+		hi LspReferenceText  guibg=#121111 guifg=#FFFF00
+		hi LspReferenceWrite guibg=#121111 guifg=#FFFF00
+		augroup lsp_document_highlight
+			autocmd!
+			autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+			autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+			autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+		augroup END
+	]], false)
+end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+	properties = {
+		'documentation',
+		'detail',
+		'additionalTextEdits',
+	}
+}
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 -- Setup servers
-lsp.gopls.setup(coq.lsp_ensure_capabilities())
-lsp.groovyls.setup(coq.lsp_ensure_capabilities())
-lsp.efm.setup {
+lsp.gopls.setup{on_attach = on_attach_vim, capabilities = capabilities, 	
+  cmd = {"gopls", "serve"},
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+			linksInHover = false,
+			codelens = {
+				generate = true,
+				gc_details = true,
+				regenerate_cgo = true,
+				tidy = true,
+				upgrade_depdendency = true,
+				vendor = true,
+			},
+			usePlaceholders = true,
+		}}}
+lsp.groovyls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.efm.setup {on_attach = on_attach_vim, capabilities = capabilities,
   init_options = {documentFormatting = true},
   filetypes = {"lua"},
   settings = {rootMarkers = {".git/"}, languages = {lua = {{formatCommand = "lua-format -i", formatStdin = true}}}}
 }
-lsp.jedi_language_server.setup(coq.lsp_ensure_capabilities())
-lsp.jsonls.setup(coq.lsp_ensure_capabilities())
---lsp.ltex.setup(coq.lsp_ensure_capabilities())
-lsp.perlls.setup(coq.lsp_ensure_capabilities())
-lsp.pylsp.setup(coq.lsp_ensure_capabilities())
-lsp.rls.setup(coq.lsp_ensure_capabilities())
-lsp.terraformls.setup(coq.lsp_ensure_capabilities())
-lsp.tsserver.setup(coq.lsp_ensure_capabilities())
-lsp.yamlls.setup(coq.lsp_ensure_capabilities())
-lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+lsp.jedi_language_server.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.jsonls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.perlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.pylsp.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.rls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.terraformls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.tsserver.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.sumneko_lua.setup{on_attach = on_attach_vim, capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -48,11 +95,7 @@ lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {enable = false}
     }
-  }
-}))
+  }}
 
-lsp.yamlls.setup(coq.lsp_ensure_capabilities({
-
-  settings = {schemas = {["kubernetes"] = "~/Source/DNB/AZF-Integration/APIC-*/*/*.yaml"}}
-
-}))
+lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities,
+  settings = {schemas = {["kubernetes"] = "~/Source/DNB/AZF-Integration/APIC-*/*/*.yaml"}}}
