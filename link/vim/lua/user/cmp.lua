@@ -29,6 +29,10 @@ local cmp_kinds = {
 	TypeParameter = ' ',
 }
 
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 cmp.setup {
 	completion = {
 		completeopt = 'menu,menuone,noinsert',
@@ -48,8 +52,8 @@ cmp.setup {
 	},
 
 	mapping = {
-		['<C-j>'] = cmp.mapping.select_prev_item(),
-		['<C-k>'] = cmp.mapping.select_next_item(),
+		['<C-k>'] = cmp.mapping.select_prev_item(),
+		['<C-j>'] = cmp.mapping.select_next_item(),
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
@@ -81,6 +85,8 @@ cmp.setup {
 	},
 
 	sources = {
+		{ name = 'copilot' },
+		{ name = 'vsnip'    },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'path'     },
@@ -95,6 +101,5 @@ cmp.setup {
 				end
 			}
 		},
-		{ name = 'vsnip'    },
 	},
 }

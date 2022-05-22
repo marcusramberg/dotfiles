@@ -39,3 +39,8 @@ fish_add_path /usr/local/sbin ~/.local/bin /opt/homebrew/bin ~/go/bin/
 if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
 
 set CLOUDSDK_PYTHON_SITEPACKAGES 1
+
+if status is-login
+    ssh-add --apple-use-keychain  ~/.ssh/id_rsa
+    ssh-add --apple-use-keychain  ~/.ssh/id_dsa
+end

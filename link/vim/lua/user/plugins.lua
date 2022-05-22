@@ -60,6 +60,7 @@ packer.startup(function()
   use 'karb94/neoscroll.nvim'
   use({ 'sQVe/sort.nvim', config = function() require("sort").setup({ }) end })
   use 'christianrondeau/vim-base64'
+  use 'szw/vim-g'
 
 
   -- Version Control
@@ -83,9 +84,56 @@ packer.startup(function()
   -- menus
   use 'folke/which-key.nvim'
 
+  -- Copilot
+  use 'github/copilot.vim' 
   -- LSP
-  use 'neovim/nvim-lspconfig'
+  use {
+    "williamboman/nvim-lsp-installer",
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("nvim-lsp-installer").setup {}
+        local lspconfig = require("lspconfig")
+        lspconfig.sumneko_lua.setup {}
+      end
+    }
+  }
   use 'aspeddro/lsp_menu.nvim'
+  use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
+    default_direction = "prefer_left",
+    close_on_select = true,
+
+  }) end }
+  -- yaml copmanion
+  use {
+  "someone-stole-my-name/yaml-companion.nvim",
+  requires = {
+    { "nvim-lua/plenary.nvim"},
+    { "nvim-telescope/telescope.nvim" },
+  },
+  config = function()
+    require("telescope").load_extension("yaml_schema")
+    local cfg = require("yaml-companion").setup({
+        schemas = {
+          result = {
+            {
+              name = "Kubernetes 1.22.4",
+              uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json",
+            },
+            {
+              name = "Taskfile",
+              uri = "https://gist.githubusercontent.com/KROSF/c5435acf590acd632f71bb720f685895/raw/6f11aa982ad09a341e20fa7f4beed1a1b2a8f40e/taskfile.schema.json",
+            },
+            {
+              name = "Helmfile", 
+              url = "https://raw.githubusercontent.com/hiberbee/yamlschema/master/src/schemas/helm/helmfile.yaml.json"
+            }
+          },
+        },
+      })
+    require("lspconfig")["yamlls"].setup(cfg)
+  end,
+}
   -- Progress bar
   use {'j-hui/fidget.nvim', config = function() require"fidget".setup {} end}
   -- Autocomplete
@@ -107,14 +155,28 @@ packer.startup(function()
 
   -- Styling
   use 'airblade/vim-gitgutter'
-  use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons' },
     config = function ()
-      require('lualine').setup{
+      -- local function lsp_line()
+      --   local schema = require("yaml-companion").get_buf_schema(0)
+      --   if schema then
+      --     return schema.result[1].name
+      --   end
+      --   return ""
+      -- end
+      require('lualine').setup {
         options = {
           theme = 'nord',
           section_separators = { left = '', right = '' },
-          component_separators = { left = '', right = '' }
-        }
+          component_separators = { left = '', right = '' },
+          globalstatus = true,
+        },
+        sections = { 
+          lualine_a = {
+          { 'mode', fmt = function(str) return str:sub(1,1) end } },
+        lualine_b = {'branch'} ,
+        lualine_x = { 'aerial', 'fileformat', 'filetype'},
+      }
       }
     end
   }

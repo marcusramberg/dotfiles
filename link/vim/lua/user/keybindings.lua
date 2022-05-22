@@ -11,6 +11,7 @@ nnoremap('<LeftMouse>', '<nop>')
 
 
 nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
+nnoremap("<leader>,", ":AerialToggle<cr>", "Navigate")
 
 
 m.nname("<leader>b"," +buffers")
@@ -19,6 +20,8 @@ nnoremap("<leader>b]",":next<cr>", "Prev")
 nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 
 m.nname("<leader>c"," +code")
+nnoremap("<leader>ff", ":Files<cr>", "Find File")
+nnoremap("<leader>cy", ":Telescope yaml_schema<cr>", "YAML Schema")
 
 m.nname("<leader>f", "+file")
 nnoremap("<leader>ff", ":Files<cr>", "Find File")
@@ -87,7 +90,6 @@ nnoremap("K", function() vim.lsp.buf.hover() end, "silent", "hover")
 nnoremap("<leader>ca", function() require'lsp_menu'.codeaction.run{}  end, "silent", "Action") --ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
-nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
 nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
 nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
 nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")

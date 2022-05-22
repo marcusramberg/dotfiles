@@ -1,6 +1,5 @@
 local lsp = require "lspconfig"
---local coq = require "coq" -- add this
---
+local m = require'mapx'.setup{ whichkey = true } --, global= true }
 local function document_highlight()
 	vim.api.nvim_exec([[
 		hi LspReferenceRead  guibg=#121111 guifg=#FFFF00
@@ -14,6 +13,32 @@ local function document_highlight()
 		augroup END
 	]], false)
 end
+
+
+local on_attach_vim = function(client)
+
+	
+	require("aerial").on_attach(client, bufnr)
+	require("lsp-status").on_attach(client)
+
+
+
+	if client.resolved_capabilities.document_formatting then
+		m.nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
+	end
+
+	if client.resolved_capabilities.document_highlight then
+		vim.cmd([[
+			augroup LSPDocumentHighlight
+					au!
+					autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+					autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+					autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+				augroup END
+			]])
+		end
+	end
+
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -45,7 +70,7 @@ lsp.gopls.setup{on_attach = on_attach_vim, capabilities = capabilities,
 			},
 			staticcheck = true,
 			linksInHover = false,
-			codelens = {
+			codelenses = {
 				generate = true,
 				gc_details = true,
 				regenerate_cgo = true,
