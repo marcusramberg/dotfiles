@@ -15,9 +15,11 @@ nnoremap("<leader>,", ":AerialToggle<cr>", "Navigate")
 
 
 m.nname("<leader>b"," +buffers")
-nnoremap("<leader>b[",":prev<cr>", "Next")
-nnoremap("<leader>b]",":next<cr>", "Prev")
+nnoremap("<leader>b[",":prev<cr>", "Prev")
+nnoremap("<leader>b]",":next<cr>", "Next")
 nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
+nnoremap("[b",":prev<cr>", "Prev Buffer")
+nnoremap("]b",":next<cr>", "Next Buffer")
 
 m.nname("<leader>c"," +code")
 nnoremap("<leader>ff", ":Files<cr>", "Find File")

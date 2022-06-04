@@ -76,7 +76,7 @@ bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec systemctl restart --user picom
 bindsym $mod+Ctrl+t exec systemctl stop --user picom
 bindsym $mod+Shift+d exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym F13 exec i3-scrot
+#bindsym $mod+Shift+p exec i3-scrot -sc &
 bindcode 179 --release exec i3-scrot -w
 bindcode 192 --release exec i3-scrot -s
 bindcode 193 exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
