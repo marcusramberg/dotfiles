@@ -132,3 +132,7 @@
 	rm = /Users/marcus/Source/reMarkable/
 [url "ssh://git@github.com/reMarkable"]
 	insteadOf = https://github.com/reMarkable
+
+[ghq "https://github.com/reMarkable/"]
+vcs = git
+root = ~/Source/reMarkable/

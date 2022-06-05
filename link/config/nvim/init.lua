@@ -4,7 +4,6 @@ require 'user.cmp'
 require 'user.globals'
 require 'user.keybindings'
 require 'user.autocmd'
-require 'user.lsp-config'
 
 vim.cmd('colorscheme dracula')
 

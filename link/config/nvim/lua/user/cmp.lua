@@ -29,6 +29,11 @@ local cmp_kinds = {
 	TypeParameter = ' ',
 }
 
+local has_words_before = function()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+end
+
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end

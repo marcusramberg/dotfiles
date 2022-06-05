@@ -21,18 +21,18 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'burner/vim-svelte'
   use 'elzr/vim-json'
---  use 'w0rp/ale'
-  use {'mfussenegger/nvim-lint', config = function() 
-    require('lint').linters_by_ft = {
-      go = {'golangcilint',},
-      markdown = {'vale',},
-    }
-  end
-  }
+  use 'w0rp/ale'
+  -- use {'mfussenegger/nvim-lint', config = function()
+  --   require('lint').linters_by_ft = {
+  --     go = {'golangcilint',},
+  --     markdown = {'vale',},
+  --   }
+  -- end
+  -- }
   use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
-  use {'nvim-orgmode/orgmode', config = function() 
+  use {'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
-    require('orgmode').setup {} 
+    require('orgmode').setup {}
     require'nvim-treesitter.configs'.setup {
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
       highlight = {
@@ -93,8 +93,7 @@ packer.startup(function()
       "neovim/nvim-lspconfig",
       config = function()
         require("nvim-lsp-installer").setup {}
-        local lspconfig = require("lspconfig")
-        lspconfig.sumneko_lua.setup {}
+        require 'user.lsp-config'
       end
     }
   }
@@ -141,6 +140,10 @@ packer.startup(function()
 		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', },
 	}
   use { 'nvim-lua/lsp-status.nvim'}
+  use({
+      'mrjones2014/dash.nvim',
+      run = 'make install',
+    })
 
 
 --   use 'nvim-lua/popup.nvim'
