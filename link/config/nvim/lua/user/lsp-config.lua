@@ -88,8 +88,15 @@ lsp.sumneko_lua.setup({on_attach = on_attach_vim, capabilities = capabilities, s
       preloadFileSize = 10000,
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {enable = false}
-    }
-  }})
+    },
+  },
+	root_dir = function(fname)
+		local root_pattern = lsp.util.root_pattern('.git', '*.rockspec')(fname)
+
+		if fname == vim.loop.os_homedir() then return nil end
+		return root_pattern or fname
+	end
+})
 
 lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities,
   settings = {schemas = {["kubernetes"] = "~/Source/DNB/AZF-Integration/APIC-*/*/*.yaml"}}}
