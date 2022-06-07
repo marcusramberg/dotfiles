@@ -19,17 +19,9 @@ packer.startup(function()
 
   -- Syntax
   use 'sheerun/vim-polyglot'
-  use 'burner/vim-svelte'
   use 'elzr/vim-json'
-  use 'w0rp/ale'
-  -- use {'mfussenegger/nvim-lint', config = function()
-  --   require('lint').linters_by_ft = {
-  --     go = {'golangcilint',},
-  --     markdown = {'vale',},
-  --   }
-  -- end
-  -- }
   use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
+  use {'nvim-treesitter/nvim-treesitter-context', config = function() require'treesitter-context'.setup{} end }
   use {'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
     require('orgmode').setup {}
@@ -42,13 +34,13 @@ packer.startup(function()
       },
       ensure_installed = {'org'}, -- Or run :TSUpdate org
     }
-
   end}
+
   use 'akinsho/org-bullets.nvim'
   use 'wsdjeg/luarefvim'
 
   -- Search/replace
-  use 'Olical/vim-enmasse'
+  -- use 'Olical/vim-enmasse'
   use 'jremmen/vim-ripgrep'
 
   -- Extend editing
@@ -85,8 +77,30 @@ packer.startup(function()
   use 'folke/which-key.nvim'
 
   -- Copilot
-  use 'github/copilot.vim' 
+  use 'github/copilot.vim'
   -- LSP
+  use({
+      "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+      local sources = {
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.diagnostics.cppcheck,
+        null_ls.builtins.diagnostics.gitlint,
+        null_ls.builtins.diagnostics.golangci_lint,
+        null_ls.builtins.diagnostics.jsonlint,
+        null_ls.builtins.diagnostics.tidy,
+        null_ls.builtins.diagnostics.write_good,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.terrafmt,
+      }
+      null_ls.setup(sources)
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+})
   use {
     "williamboman/nvim-lsp-installer",
     {
@@ -103,7 +117,7 @@ packer.startup(function()
     close_on_select = true,
 
   }) end }
-  -- yaml copmanion
+  -- yaml companion
   use {
   "someone-stole-my-name/yaml-companion.nvim",
   requires = {
@@ -124,7 +138,7 @@ packer.startup(function()
               uri = "https://gist.githubusercontent.com/KROSF/c5435acf590acd632f71bb720f685895/raw/6f11aa982ad09a341e20fa7f4beed1a1b2a8f40e/taskfile.schema.json",
             },
             {
-              name = "Helmfile", 
+              name = "Helmfile",
               url = "https://raw.githubusercontent.com/hiberbee/yamlschema/master/src/schemas/helm/helmfile.yaml.json"
             }
           },
@@ -133,13 +147,19 @@ packer.startup(function()
     require("lspconfig")["yamlls"].setup(cfg)
   end,
 }
-  -- Progress bar
-  use {'j-hui/fidget.nvim', config = function() require"fidget".setup {} end}
   -- Autocomplete
   	use { 'hrsh7th/nvim-cmp',
-		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', },
+		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'petertriho/cmp-git' },
 	}
-  use { 'nvim-lua/lsp-status.nvim'}
+
+use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup { }
+  end
+}
+
   if(jit.os == "OSX") then
     use({
         'mrjones2014/dash.nvim',
@@ -147,19 +167,16 @@ packer.startup(function()
       })
   end
 
-
---   use 'nvim-lua/popup.nvim'
---  use {'ms-jpq/coq_nvim', branch = 'coq'}
-
-  -- 9000+ Snippets
-  -- use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-  -- use {'ms-jpq/coq.thirdparty', branch = '3p'}
-
   -- Terminal
-  use 'akinsho/toggleterm.nvim'
+  use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+    require("toggleterm").setup()
+  end}
 
   -- Styling
-  use 'airblade/vim-gitgutter'
+  use { 'lewis6991/gitsigns.nvim', tag = 'release', config = function()
+    require('gitsigns').setup()
+  end}
+  use 'arkav/lualine-lsp-progress'
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons' },
     config = function ()
       -- local function lsp_line()
@@ -180,12 +197,12 @@ packer.startup(function()
           lualine_a = {
           { 'mode', fmt = function(str) return str:sub(1,1) end } },
         lualine_b = {'branch'} ,
-        lualine_x = { 'aerial', 'fileformat', 'filetype'},
+        lualine_c = {'filename', 'lsp_progress'} ,
+        lualine_x = { 'aerial', 'fileformat', 'filetypes'},
       }
       }
     end
   }
-  use 'dracula/vim'
   use 'b0o/mapx.nvim'
   use {'shaunsingh/nord.nvim', config = function ()
     vim.cmd[[colorscheme nord]]

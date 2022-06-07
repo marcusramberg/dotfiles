@@ -1,9 +1,20 @@
 local lsp = require "lspconfig"
 local m = require'mapx'.setup{ whichkey = true } --, global= true }
 
+local signs = {
+    Error = " ",
+    Warning = " ",
+    Hint = " ",
+    Information = " "
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end
 local on_attach_vim = function(client, bufnr)
 	require("aerial").on_attach(client, bufnr)
-	require("lsp-status").on_attach(client)
+	-- require("lsp-status").on_attach(client)
 
 	if client.resolved_capabilities.document_formatting then
 		m.nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
@@ -63,7 +74,7 @@ lsp.rls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.terraformls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.tflint.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.tsserver.setup{on_attach = on_attach_vim, capabilities = capabilities}
-lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+-- lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.sumneko_lua.setup({on_attach = on_attach_vim, capabilities = capabilities, settings = {
     Lua = {
       runtime = {
@@ -81,7 +92,7 @@ lsp.sumneko_lua.setup({on_attach = on_attach_vim, capabilities = capabilities, s
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-          ["/Users/marcus/.hammerspoon/Spoons/EmmyLua.spoon/annotations"] = (vim.fn.has("macunix") == 1),
+--          ["/Users/marcus/.hammerspoon/Spoons/EmmyLua.spoon/annotations"] = (vim.fn.has("macunix") == 1),
         }
       },
       maxPreload = 100000,
@@ -91,12 +102,10 @@ lsp.sumneko_lua.setup({on_attach = on_attach_vim, capabilities = capabilities, s
     },
   },
 	root_dir = function(fname)
-		local root_pattern = lsp.util.root_pattern('.git', '*.rockspec')(fname)
+		local root_pattern = lsp.util.root_pattern('.git', '*.rockspec', 'init.lua')(fname)
 
 		if fname == vim.loop.os_homedir() then return nil end
 		return root_pattern or fname
 	end
 })
 
-lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities,
-  settings = {schemas = {["kubernetes"] = "~/Source/DNB/AZF-Integration/APIC-*/*/*.yaml"}}}

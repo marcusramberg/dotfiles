@@ -5,8 +5,6 @@ require 'user.globals'
 require 'user.keybindings'
 require 'user.autocmd'
 
-vim.cmd('colorscheme dracula')
-
 vim.api.nvim_command('command! Fuck w !sudo tee % >/dev/null')
 
 vim.api.nvim_command([[

@@ -22,7 +22,11 @@ nnoremap("[b",":prev<cr>", "Prev Buffer")
 nnoremap("]b",":next<cr>", "Next Buffer")
 
 m.nname("<leader>c"," +code")
-nnoremap("<leader>ff", ":Files<cr>", "Find File")
+nnoremap("<leader>ca", function() require'lsp_menu'.codeaction.run{}  end, "silent", "Action") --ts.lsp_code_actions() end, "silent", "Action")
+nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
+nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
+nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
+nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
 nnoremap("<leader>cy", ":Telescope yaml_schema<cr>", "YAML Schema")
 
 m.nname("<leader>f", "+file")
@@ -38,6 +42,7 @@ nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
 
 m.nname("<leader>h", "+help")
 nnoremap("<leader>hh", function() ts.help_tags() end, "help")
+nnoremap("<leader>hd", ":DashWord<cr>" , "dash")
 nnoremap("<leader>hc", ":CheatList<cr>" , "help")
 nnoremap("<leader>hC", ":Cheat" , "help")
 
@@ -82,6 +87,14 @@ nnoremap("<leader>w=", ":resize +5<CR>", "Grow")
 nnoremap("<leader>w-", ":resize -5<CR>", "Shrink")
 nnoremap("<leader>w/", "<C-W>=", "Balance")
 
+m.nname("<leader>x", "trouble")
+nnoremap("<leader>xx", "<cmd>TroubleToggle<cr>","Toggle Trouble")
+nnoremap("<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>","Workspace Diag")
+nnoremap("<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>","Document Diag")
+nnoremap("<leader>xq", "<cmd>TroubleToggle quickfix<cr>","Quickfix")
+nnoremap("<leader>xl", "<cmd>TroubleToggle loclist<cr>","Loc List")
+nnoremap("gR", "<cmd>TroubleToggle lsp_references<cr>","LSP References")
+
 nnoremap('<C-p>', function()  ts.find_files() end)
 
 nnoremap("gD", function() vim.lsp.buf.declaration() end, "silent", "LSP: Goto declaration")
@@ -89,10 +102,6 @@ nnoremap("gd", function() vim.lsp.buf.definition() end, "silent", "LSP: Goto def
 nnoremap("gr", function() vim.lsp.buf.references() end, "silent", "LSP: Goto references")
 nnoremap("gi", function() vim.lsp.buf.implementation() end, "silent", "LSP: Goto implementation")
 nnoremap("K", function() vim.lsp.buf.hover() end, "silent", "hover")
-nnoremap("<leader>ca", function() require'lsp_menu'.codeaction.run{}  end, "silent", "Action") --ts.lsp_code_actions() end, "silent", "Action")
-nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
-nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
-nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
-nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
 nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")
 nnoremap("]e", function() vim.diagnostic.goto_next() end, "silent", "Next Error")
+

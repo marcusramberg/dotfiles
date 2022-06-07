@@ -111,8 +111,8 @@ function pom_enable()
     pom_create_menu()
     pom_timer = hs.timer.new(1, pom_update_menu)
   end
-  pom_is_active = true
   pom_timer:start()
+  pom_is_active = true
   local time_min = math.floor((pom_time_left / 60))
 
 end

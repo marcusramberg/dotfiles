@@ -258,7 +258,7 @@ function obj:_installSpoonFromZipURLgetCallback(urlparts, callback, status, body
          f:close()
 
          -- Check its contents - only one *.spoon directory should be in there
-         output = _x(string.format("/usr/bin/unzip -l %s '*.spoon/' | /usr/bin/awk '$NF ~ /\\.spoon\\/$/ { print $NF }' | /usr/bin/wc -l", outfile),
+         local output = _x(string.format("/usr/bin/unzip -l %s '*.spoon/' | /usr/bin/awk '$NF ~ /\\.spoon\\/$/ { print $NF }' | /usr/bin/wc -l", outfile),
                      "Error examining downloaded zip file %s, leaving it in place for your examination.", outfile)
          if output then
             if (tonumber(output) or 0) == 1 then
@@ -320,7 +320,7 @@ function obj:installSpoonFromZipURL(url)
    local urlparts = hs.http.urlParts(url)
    local dlfile = urlparts.lastPathComponent
    if dlfile and dlfile ~= "" and urlparts.pathExtension == "zip" then
-      a,b,c=hs.http.get(url)
+      local a,b,c=hs.http.get(url)
       return self:_installSpoonFromZipURLgetCallback(urlparts, nil, a, b, c)
    else
       self.logger.ef("Invalid URL %s, must point to a zip file", url)

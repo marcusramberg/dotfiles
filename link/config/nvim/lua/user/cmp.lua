@@ -1,6 +1,4 @@
-
 local cmp = require('cmp')
-
 local cmp_kinds = {
 	Text          = ' ',
 	Method        = ' ',
@@ -31,7 +29,7 @@ local cmp_kinds = {
 
 local has_words_before = function()
   local cursor = vim.api.nvim_win_get_cursor(0)
-  return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+  return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s')
 end
 
 local feedkey = function(key, mode)
@@ -90,7 +88,8 @@ cmp.setup {
 	},
 
 	sources = {
-		{ name = 'copilot' },
+		{ name = 'git'      },
+		{ name = 'copilot'  },
 		{ name = 'vsnip'    },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },
