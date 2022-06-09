@@ -19,6 +19,7 @@ packer.startup(function()
 
   -- Syntax
   use 'sheerun/vim-polyglot'
+  use 'golang/vscode-go'
   use 'elzr/vim-json'
   use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
   use {'nvim-treesitter/nvim-treesitter-context', config = function() require'treesitter-context'.setup{} end }
@@ -149,7 +150,11 @@ packer.startup(function()
 }
   -- Autocomplete
   	use { 'hrsh7th/nvim-cmp',
-		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'petertriho/cmp-git' },
+		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git' },
+    use {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua", "nvim-cmp" },
+    }
 	}
 
 use {

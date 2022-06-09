@@ -25,3 +25,4 @@ au Filetype perl nmap <Leader>t :call DoTidy()<CR>
 au Filetype perl vmap <Leader>t :Tidy<CR>
 ]])
 --vim.cmd("ruby load '~/.vim/scripts/yamlsort.rb'");
+
