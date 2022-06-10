@@ -41,6 +41,8 @@ if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/googl
 set CLOUDSDK_PYTHON_SITEPACKAGES 1
 
 if status is-login
-    ssh-add --apple-use-keychain  ~/.ssh/id_rsa
-    ssh-add --apple-use-keychain  ~/.ssh/id_dsa
+    if [ -f /Users/marcus/.ssh/id_rsa ]
+        ssh-add --apple-use-keychain  ~/.ssh/id_rsa
+        ssh-add --apple-use-keychain  ~/.ssh/id_dsa
+    end
 end
