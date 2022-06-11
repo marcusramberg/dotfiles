@@ -44,5 +44,6 @@ if status is-login
     if [ -f /Users/marcus/.ssh/id_rsa ]
         ssh-add --apple-use-keychain  ~/.ssh/id_rsa
         ssh-add --apple-use-keychain  ~/.ssh/id_dsa
+        ssh-add --apple-use-keychain  ~/.ssh/google_compute_engine
     end
 end
