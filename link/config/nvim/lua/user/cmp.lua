@@ -55,6 +55,8 @@ cmp.setup {
 	},
 
 	mapping = {
+		['<up>'] = cmp.mapping.select_prev_item(),
+		['<down>'] = cmp.mapping.select_next_item(),
 		['<C-k>'] = cmp.mapping.select_prev_item(),
 		['<C-j>'] = cmp.mapping.select_next_item(),
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),

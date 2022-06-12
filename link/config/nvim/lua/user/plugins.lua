@@ -55,6 +55,25 @@ packer.startup(function()
   use 'christianrondeau/vim-base64'
   use 'szw/vim-g'
 
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-project.nvim'} },
+    config = function()
+      local t=require"Telescope"
+      t.load_extension('project')
+      t.setup{
+        extensions = {
+          project = {
+            base_dirs = {
+              '~/Source',
+              '~/Source/reMarkable',
+              { path = "~/.dotfiles" },
+            }
+          }
+        }
+      }
+    end
+  }
 
   -- Version Control
   use {
@@ -67,7 +86,6 @@ packer.startup(function()
     requires = {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons'},
     config = function() require"octo".setup() end
   }
-  use 'ahmedkhalf/project.nvim'
 
   -- Help
 
@@ -154,7 +172,7 @@ packer.startup(function()
 		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git' },
     use {
       "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua", "nvim-cmp" },
+      after = { "nvim-cmp" },
     }
 	}
 
