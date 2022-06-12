@@ -8,21 +8,21 @@ local org = require('orgmode')
 vim.o.pastetoggle="<F2>"
 
 -- " Make mouse clicks a NOOP;
-nnoremap('<LeftMouse>', '<nop>')
-
+-- nnoremap('<LeftMouse>', '<nop>')
 
 nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
 nnoremap("<leader>,", ":AerialToggle<cr>", "Navigate")
+nnoremap("<leader>.", ":PackerSync<cr>", "Navigate")
 
 
-m.nname("<leader>b"," +buffers")
+m.nname("<leader>b","buffers")
 nnoremap("<leader>b[",":prev<cr>", "Prev")
 nnoremap("<leader>b]",":next<cr>", "Next")
 nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 nnoremap("[b",":prev<cr>", "Prev Buffer")
 nnoremap("]b",":next<cr>", "Next Buffer")
 
-m.nname("<leader>c"," +code")
+m.nname("<leader>c","code")
 nnoremap("<leader>ca", function() require'lsp_menu'.codeaction.run{}  end, "silent", "Action") --ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
@@ -30,35 +30,37 @@ nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
 nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
 nnoremap("<leader>cy", ":Telescope yaml_schema<cr>", "YAML Schema")
 
-m.nname("<leader>f", "+file")
-nnoremap("<leader>ff", ":Files<cr>", "Find File")
-nnoremap("<leader>fb", ":Buffers<cr>", "Buffers")
+m.nname("<leader>f", "file")
+nnoremap("<leader>fb", function() ts.buffers() end, "Buffers")
+nnoremap("<leader>ff", function() ts.find_files() end,  "Find File")
+nnoremap("<leader>fr", function() ts.oldfiles() end, "Buffers")
 
-m.nname("<leader>g", "+git")
+m.nname("<leader>g", "git")
 nnoremap("<leader>gs", ":Neogit kind=vsplit<cr>", "Neogit")
 nnoremap("<leader>gg", ":Neogit kind=vsplit<cr>", "Neogit")
 nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")
 nnoremap("<leader>gi", ":Octo issue list<cr>", "issues")
 nnoremap("<leader>gp", ":Octo pr list<cr>", "prs")
 
-m.nname("<leader>h", "+help")
+m.nname("<leader>h", "help")
 nnoremap("<leader>hh", function() ts.help_tags() end, "help")
 nnoremap("<leader>hd", ":DashWord<cr>" , "dash")
 nnoremap("<leader>hc", ":CheatList<cr>" , "help")
 nnoremap("<leader>hC", ":Cheat" , "help")
 
 
-m.nname("<leader>o", "+open")
+m.nname("<leader>o", "open")
 nnoremap("<leader>ot", ":ToggleTerm<cr>", "Terminal")
 nnoremap("<leader>oa", function() org.action("agenda.prompt") end, "Agenda")
 nnoremap("<leader>oc", function() org.action("capture.prompt") end, "Capture")
 
-m.nname("<leader>p", "+project")
-nnoremap("<leader>pp", function() tse.project.project{ display_type = "full" } end, "Switch")
+-- m.nname("<leader>p", "project")
+nnoremap("<leader>p", function() tse.project.project{ display_type = "full" } end, "Switch")
 
-m.nname("<leader>s", "+search")
+m.nname("<leader>s", "search")
 nnoremap("<leader>sS", ":Rg <cword><cr>", "Search Selection")
-nnoremap("<leader>ss", ":Rg ", "Search ")
+nnoremap("<leader>ss", ":Telescope live_grep<cr>", "Live")
+nnoremap("<leader>sw", ":Telescope grep_string<cr>", "Word")
 nnoremap("<leader>sm", ":EnMasse", "Replace in Hotfix")
 
 m.nname("t", "tab")
@@ -103,7 +105,7 @@ nnoremap('<C-p>', function()  ts.find_files() end)
 
 nnoremap("gD", function() vim.lsp.buf.declaration() end, "silent", "LSP: Goto declaration")
 nnoremap("gd", function() vim.lsp.buf.definition() end, "silent", "LSP: Goto definition")
-nnoremap("gr", function() vim.lsp.buf.references() end, "silent", "LSP: Goto references")
+nnoremap("gr", function() ts.lsp_references() end, "silent", "LSP: Goto references")
 nnoremap("gi", function() vim.lsp.buf.implementation() end, "silent", "LSP: Goto implementation")
 nnoremap("K", function() vim.lsp.buf.hover() end, "silent", "hover")
 nnoremap("[e", function() vim.diagnostic.goto_prev() end, "silent", "Prev Error")

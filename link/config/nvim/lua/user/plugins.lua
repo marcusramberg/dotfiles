@@ -40,9 +40,8 @@ packer.startup(function()
   use 'akinsho/org-bullets.nvim'
   use 'wsdjeg/luarefvim'
 
-  -- Search/replace
-  -- use 'Olical/vim-enmasse'
-  use 'jremmen/vim-ripgrep'
+  -- return where you came from
+  use 'farmergreg/vim-lastplace'
 
   -- Extend editing
   use 'adelarsq/vim-matchit'
@@ -55,23 +54,39 @@ packer.startup(function()
   use 'christianrondeau/vim-base64'
   use 'szw/vim-g'
 
+
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-project.nvim'} },
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-project.nvim'},
+      {'nvim-telescope/telescope-ui-select.nvim'},
+      {'olacin/telescope-gitmoji.nvim'},
+    },
     config = function()
       local t=require"Telescope"
-      t.load_extension('project')
       t.setup{
+        pickers = {
+          buffers       = {theme = 'ivy'},
+          find_files    = {theme = 'ivy'},
+          live_grep     = {theme = 'ivy'},
+          spell_suggest = {theme = 'ivy'},
+        },
         extensions = {
           project = {
+            theme = 'ivy',
             base_dirs = {
               '~/Source',
-              '~/Source/reMarkable',
-              { path = "~/.dotfiles" },
             }
+          },
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown { }
           }
-        }
-      }
+        },
+    }
+    t.load_extension('project')
+    t.load_extension('ui-select')
+    t.load_extension('gitmoji')
     end
   }
 
@@ -94,7 +109,25 @@ packer.startup(function()
   -- open with line (from syntax output and such)
   use 'bogado/file-line'
   -- menus
-  use 'folke/which-key.nvim'
+  use { 'folke/which-key.nvim', config = function()
+    require("which-key").setup {
+      plugins = {
+        spelling = {
+          enabled = true
+        }
+      },
+      icons = {
+        breadcrumb = "", -- symbol used in the command line area that shows your active key combo
+        separator = "", -- symbol used between a key and it's label
+        group = "…"
+      },
+      window = {
+        border = "single",
+      }
+
+    }
+    end
+  }
 
   -- Copilot
   use 'github/copilot.vim'
@@ -201,15 +234,12 @@ use {
     require('gitsigns').setup()
   end}
   use 'arkav/lualine-lsp-progress'
+  use {'shaunsingh/nord.nvim', config = function ()
+    vim.cmd[[colorscheme nord]]
+
+  end}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons' },
     config = function ()
-      -- local function lsp_line()
-      --   local schema = require("yaml-companion").get_buf_schema(0)
-      --   if schema then
-      --     return schema.result[1].name
-      --   end
-      --   return ""
-      -- end
       require('lualine').setup {
         options = {
           theme = 'nord',
@@ -228,11 +258,5 @@ use {
     end
   }
   use 'b0o/mapx.nvim'
-  use {'shaunsingh/nord.nvim', config = function ()
-    vim.cmd[[colorscheme nord]]
-  end}
  end)
 
--- packer.use_rocks {
---   'base64',
--- }

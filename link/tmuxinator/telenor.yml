@@ -1,6 +1,6 @@
 # ~/.tmuxinator/convos.yml
 
-name: telenor
+napreme: telenor
 root: ~/Source/clients/telenor_ansible
 
 # Optional tmux socket
