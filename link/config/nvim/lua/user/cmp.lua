@@ -91,7 +91,6 @@ cmp.setup {
 
 	sources = {
 		{ name = 'git'      },
-		{ name = 'copilot'  },
 		{ name = 'vsnip'    },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },

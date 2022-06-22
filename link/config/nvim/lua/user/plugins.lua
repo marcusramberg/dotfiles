@@ -129,8 +129,6 @@ packer.startup(function()
     end
   }
 
-  -- Copilot
-  use 'github/copilot.vim'
   -- LSP
   use({
       "jose-elias-alvarez/null-ls.nvim",
@@ -146,11 +144,12 @@ packer.startup(function()
         null_ls.builtins.diagnostics.jsonlint,
         null_ls.builtins.diagnostics.tidy,
         null_ls.builtins.diagnostics.write_good,
+        null_ls.builtins.diagnostics.vale,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.terrafmt,
       }
-      null_ls.setup(sources)
+      null_ls.setup({sources = sources, debug = true})
     end,
     requires = { "nvim-lua/plenary.nvim" },
 })
@@ -203,10 +202,6 @@ packer.startup(function()
   -- Autocomplete
   	use { 'hrsh7th/nvim-cmp',
 		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git' },
-    use {
-      "zbirenbaum/copilot-cmp",
-      after = { "nvim-cmp" },
-    }
 	}
 
 use {
