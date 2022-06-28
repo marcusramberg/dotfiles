@@ -90,6 +90,7 @@ cmp.setup {
 	},
 
 	sources = {
+		{ name = 'orgmode' },
 		{ name = 'git'      },
 		{ name = 'vsnip'    },
 		{ name = 'nvim_lsp' },

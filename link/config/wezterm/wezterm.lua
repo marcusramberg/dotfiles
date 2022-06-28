@@ -3,6 +3,10 @@ local keys = {
   {key="G", mods="SUPER", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
   {key="V", mods="SUPER|ALT|CTRL|SHIFT", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
   {key="S", mods="SUPER|ALT|CTRL|SHIFT", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
+  {key="H", mods="CTRL|SHIFT", action=wezterm.action{ActivatePaneDirection="Prev"}},
+  {key="J", mods="CTRL|SHIFT", action=wezterm.action{ActivatePaneDirection="Up"}},
+  {key="K", mods="CTRL|SHIFT", action=wezterm.action{ActivatePaneDirection="Down"}},
+  {key="L", mods="CTRL|SHIFT", action=wezterm.action{ActivatePaneDirection="Next"}},
   {key="0", mods="CTRL", action=wezterm.action{ActivateTab=-1}},
 }
 for i = 1, 9 do
@@ -17,7 +21,7 @@ local config = {
   audible_bell = "Disabled",
   color_scheme = "nord",
   font = wezterm.font("JetBrainsMono Nerd Font"),
-  pane_focus_follows_mouse = true,
+  pane_focus_follows_mouse = false,
   use_fancy_tab_bar = false,
   window_decorations = "RESIZE",
   keys = keys,

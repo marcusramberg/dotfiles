@@ -53,6 +53,7 @@ packer.startup(function()
   use({ 'sQVe/sort.nvim', config = function() require("sort").setup({ }) end })
   use 'christianrondeau/vim-base64'
   use 'szw/vim-g'
+  use 'rhysd/clever-f.vim'
 
 
   use {
@@ -222,6 +223,15 @@ use {
   -- Terminal
   use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
     require("toggleterm").setup()
+  end}
+
+  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons',
+  config = function ()
+    require("bufferline").setup{}
+  end}
+
+  use { "tiagovla/scope.nvim", config = function ()
+    require("scope").setup()
   end}
 
   -- Styling
