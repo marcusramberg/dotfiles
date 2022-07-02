@@ -65,7 +65,7 @@ packer.startup(function()
       {'olacin/telescope-gitmoji.nvim'},
     },
     config = function()
-      local t=require"Telescope"
+      local t=require"telescope"
       t.setup{
         pickers = {
           buffers       = {theme = 'ivy'},

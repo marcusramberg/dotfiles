@@ -82,6 +82,7 @@ lsp.efm.setup {on_attach = on_attach_vim, capabilities = capabilities,
 lsp.jedi_language_server.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.jsonls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.perlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.nimls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.pylsp.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.rls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.terraformls.setup{on_attach = on_attach_vim, capabilities = capabilities}
