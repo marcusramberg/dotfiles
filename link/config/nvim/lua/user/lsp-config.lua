@@ -99,7 +99,7 @@ lsp.sumneko_lua.setup({on_attach = on_attach_vim, capabilities = capabilities, s
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim', 'hs'}
+        globals = {'vim', 'hs', 'luakit'}
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
