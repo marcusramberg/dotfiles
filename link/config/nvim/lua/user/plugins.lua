@@ -13,10 +13,6 @@ packer.init {max_jobs = tonumber(vim.fn.system 'nproc') or 8}
 packer.startup(function()
   use 'wbthomason/packer.nvim'
 
-  -- fzf <3
-  use 'junegunn/fzf'
-  use 'junegunn/fzf.vim'
-
   -- Syntax
   use 'sheerun/vim-polyglot'
   use 'golang/vscode-go'
