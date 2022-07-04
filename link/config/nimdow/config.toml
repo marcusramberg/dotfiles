@@ -20,9 +20,14 @@ keys = [ "b" ]
 modifiers = [ "super" ]
 
 [[startProcess]]
-command = "bemenu-run"
+command = "rofi -show run"
 keys = [ "space" ]
 modifiers = [ "super" ]
+
+[[startProcess]]
+command = "rofi-rbw"
+keys = [ "p" ]
+modifiers = [ "super" "shift"]
 
 [[startProcess]]
 command = "wezterm start"
