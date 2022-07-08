@@ -1,4 +1,12 @@
 local wezterm = require 'wezterm'
+
+wezterm.on("update-right-status", function(window, pane)
+  -- "08:14"
+  local time = wezterm.strftime("%H:%M ");
+  window:set_right_status(wezterm.format({ {Text=wezterm.nerdfonts.mdi_clock .. " "..time},
+  }));
+end)
+
 local keys = {
   {key="G", mods="SUPER", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
   {key="V", mods="SUPER|ALT|CTRL|SHIFT", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
@@ -41,7 +49,16 @@ local config = {
   inactive_pane_hsb = {
     saturation = 0.8,
     brightness = 0.6,
+  },
+  window_background_opacity = 0.90,
+  colors = {
+    selection_bg = "rgba(50% 50% 50% 50%)",
   }
 }
+
+-- Reduce fontsize to fix dpi issue on mArch
+if wezterm.hostname() == "march" then
+  config.font_size = 8.0
+end
 
 return config

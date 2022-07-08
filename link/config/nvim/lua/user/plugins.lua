@@ -237,6 +237,8 @@ use {
   use 'arkav/lualine-lsp-progress'
   use {'shaunsingh/nord.nvim', config = function ()
     vim.cmd[[colorscheme nord]]
+    vim.g.nord_disable_background = true
+    vim.g.nord_borders = true
 
   end}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons' },

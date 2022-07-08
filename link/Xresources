@@ -39,7 +39,7 @@
 URxvt.urgentOnBell: True
 Xft.lcdfilter: lcddefault
 
-Xft.dpi: 120
+Xft.dpi: 162
 Xft.autohint: 0
 Xft.hintstyle:  hintfull
 Xft.hinting: 1
@@ -58,7 +58,7 @@ URxvt*termName        : screen-256color
 Xft*antialias         : true
 Xft.hinting           : true
 Xft.hintstyle         : hintslight
-Xft*dpi               : 96
+! Xft*dpi               : 96
 
 ! Xterm {{{1
 XTerm*renderFont      : true

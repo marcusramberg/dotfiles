@@ -8,14 +8,32 @@
 # tags = [ 1, 4, 7 ]
 # state = "floating" # normal, floating, and fullscreen are all valid.
 
+[[appRule]]
+ class = "org.wezfurlong.wezterm"
+ monitor = 1
+ tags = [ 1 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ class = "firefox"
+ monitor = 1
+ tags = [ 2 ]
+ state = "fullscreen" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ class = "TelegramDesktop"
+ monitor = 1
+ tags = [ 4 ]
+ state = "fullscreen" # normal, floating, and fullscreen are all valid.
+
 # Start external programs
 [[startProcess]]
 command = "pkill nimdow"
-keys = [ "q" ]
-modifiers = [ "control", "alt" ]
+keys = [ "e" ]
+modifiers = [ "super", "shift" ]
 
 [[startProcess]]
-command = "luakit"
+command = "firefox"
 keys = [ "b" ]
 modifiers = [ "super" ]
 
@@ -30,22 +48,35 @@ keys = [ "p" ]
 modifiers = [ "super" "shift"]
 
 [[startProcess]]
+command = "wezterm start bash -c \"xprop; sleep 100\""
+keys = [ "x" ]
+modifiers = [ "super" "shift"]
+
+
+[[startProcess]]
+command = "pavucontrol"
+clickRegion = 1
+
+[[startProcess]]
 command = "wezterm start"
 keys = [ "Return" ]
 modifiers = [ "super" ]
 
 # Example: Start process when region is clicked, see github wiki for what constitutes a region
-# [[startProcess]]
-# command = "notify-send \"Id: %1, rx: %2, cx: %4, w: %6\""
-# clickRegion = 0
+[[startProcess]]
+command = "notify-send \"Id: %1, rx: %2, cx: %4, w: %6\""
+clickRegion = 1
 
 [autostart]
 exec = [
   "xsetroot -cursor_name left_ptr",
   "spice-vdagent",
-  "xplanet",
+  "feh --bg-max ~/.dotfiles/wallpaper/ -z",
   "wezterm start",
+  "firefox",
+  "telegram-desktop",
   "copyq",
+  "picom --no-vsync",
 ]
 
 [settings]
@@ -55,7 +86,7 @@ exec = [
   borderColorFocused = "#8FBCBB"
   borderColorUrgent = "#D08770"
   # Bar settings
-  barHeight = 20
+  barHeight = 30
   windowTitlePosition = "center"
   barBackgroundColor = "#434C5E"
   barForegroundColor = "#ECEFF4"
@@ -139,7 +170,7 @@ exec = [
 
   [controls.toggleFloating]
   keys = [ "space" ]
-  modifiers = [ "super" ]
+  modifiers = [ "shift" "super" ]
 
   [controls.jumpToUrgentWindow]
   keys = [ "u" ]
