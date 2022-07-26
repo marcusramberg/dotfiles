@@ -15,6 +15,7 @@ packer.startup(function()
 
   -- Syntax
   use 'sheerun/vim-polyglot'
+  -- use 'zah/nim.vim'
   use 'golang/vscode-go'
   use 'elzr/vim-json'
   use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
@@ -150,16 +151,14 @@ packer.startup(function()
     end,
     requires = { "nvim-lua/plenary.nvim" },
 })
-  use {
-    "williamboman/nvim-lsp-installer",
-    {
-      "neovim/nvim-lspconfig",
+use "neovim/nvim-lspconfig"
+use { "williamboman/mason.nvim",
       config = function()
-        require("nvim-lsp-installer").setup {}
+        require("mason").setup()
         require 'user.lsp-config'
       end
-    }
-  }
+}
+
   use 'aspeddro/lsp_menu.nvim'
   use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
     default_direction = "prefer_left",
