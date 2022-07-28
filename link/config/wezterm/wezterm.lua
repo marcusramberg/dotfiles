@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local colors = require 'colors'
 
 wezterm.on("update-right-status", function(window, pane)
   -- "08:14"
@@ -27,7 +28,7 @@ end
 local config = {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
-  color_scheme = "nord",
+  -- color_scheme = "nord",
   font = wezterm.font("JetBrainsMono Nerd Font"),
   pane_focus_follows_mouse = false,
   use_fancy_tab_bar = false,
@@ -50,10 +51,8 @@ local config = {
     saturation = 0.8,
     brightness = 0.6,
   },
-  window_background_opacity = 0.90,
-  colors = {
-    selection_bg = "rgba(50% 50% 50% 50%)",
-  }
+  window_background_opacity = 0.95,
+  colors = colors
 }
 
 -- Reduce fontsize to fix dpi issue on mArch

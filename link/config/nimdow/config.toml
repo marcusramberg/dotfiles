@@ -134,7 +134,7 @@ exec = [
 
   [controls.destroySelectedWindow]
   keys = [ "d" ]
-  modifiers = [ "super", "shift" ]
+ modifiers = [ "super", "shift" ]
 
   [controls.goToPreviousTag]
   keys = [ "w" ]
