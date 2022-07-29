@@ -221,9 +221,14 @@ use {
   end}
 
   use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons',
-  config = function ()
-    require("bufferline").setup{}
-  end}
+    config = function ()
+      require("bufferline").setup{ options = {
+          separator_style = "thick",
+          diagnostics = "nvim_lsp",
+        }
+      }
+    end
+  }
 
   use { "tiagovla/scope.nvim", config = function ()
     require("scope").setup()
@@ -234,17 +239,25 @@ use {
     require('gitsigns').setup()
   end}
   use 'arkav/lualine-lsp-progress'
-  use {'shaunsingh/nord.nvim', config = function ()
-    vim.cmd[[colorscheme nord]]
-    vim.g.nord_disable_background = true
-    vim.g.nord_borders = true
+  use {'EdenEast/nightfox.nvim',config = function()
+    require('nightfox').setup({
+        options = {
+          -- Compiled file's destination location
+          compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+          compile_file_suffix = "_compiled", -- Compiled file suffix
+          transparent = true ,    -- Disable setting background
+          terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+          dim_inactive = true,
+        }
+      })
+    vim.cmd[[colorscheme nordfox]]
+    end
+  }
 
-  end}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons' },
     config = function ()
       require('lualine').setup {
         options = {
-          theme = 'nord',
           section_separators = { left = '', right = '' },
           component_separators = { left = '', right = '' },
           globalstatus = true,

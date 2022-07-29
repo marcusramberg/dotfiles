@@ -13,7 +13,7 @@ vim.o.pastetoggle="<F2>"
 nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
 nnoremap("<leader>,", ":AerialToggle<cr>", "Navigate")
 nnoremap("<leader>.", ":b#<cr>", "Last Buffer")
-nnoremap("<leader>z", ":PackerSync<cr>", "Navigate")
+nnoremap("<leader>z", ":w<CR>:so %<CR>:PackerSync<cr>", "Navigate")
 
 
 m.nname("<leader>b","buffers")

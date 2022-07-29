@@ -43,6 +43,11 @@ keys = [ "space" ]
 modifiers = [ "super" ]
 
 [[startProcess]]
+command = "rofi -show run"
+keys = [ "d" ]
+modifiers = [ "super" ]
+
+[[startProcess]]
 command = "rofi-rbw"
 keys = [ "p" ]
 modifiers = [ "super" "shift"]

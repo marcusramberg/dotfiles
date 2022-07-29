@@ -7,7 +7,8 @@ local colors = {
     -- The active tab is the one that has focus in the window
     active_tab = {
       -- The color of the background area for the tab
-      bg_color = '#434C5E',
+      bg_color = '#3b4252',
+
       -- The color of the text for the tab
       fg_color = '#E5E9F0',
 
@@ -83,7 +84,7 @@ local colors = {
     '#88c0d0',
     '#e5e9f0',
   },
-  background = '#434C5E',
+  background = '#3b4252',
   brights = {
     '#4c566a',
     '#bf616a',
