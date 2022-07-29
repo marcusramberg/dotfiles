@@ -15,20 +15,12 @@ local colors = {
       -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
       -- label shown for this tab.
       -- The default is "Normal"
-      intensity = 'Normal',
+      intensity = 'Bold',
 
       -- Specify whether you want "None", "Single" or "Double" underline for
       -- label shown for this tab.
       -- The default is "None"
       underline = 'None',
-
-      -- Specify whether you want the text to be italic (true) or not (false)
-      -- for this tab.  The default is false.
-      italic = true,
-
-      -- Specify whether you want the text to be rendered with strikethrough (true)
-      -- or not for this tab.  The default is false.
-      strikethrough = false,
     },
 
     -- Inactive tabs are the tabs that do not have focus
