@@ -57,8 +57,8 @@ nnoremap("<leader>ot", ":ToggleTerm<cr>", "Terminal")
 nnoremap("<leader>oa", function() org.action("agenda.prompt") end, "Agenda")
 nnoremap("<leader>oc", function() org.action("capture.prompt") end, "Capture")
 
--- m.nname("<leader>p", "project")
-nnoremap("<leader>p", function() tse.project.project{ display_type = "full" } end, "Switch")
+m.nname("<leader>p", "project")
+nnoremap("<leader>pp", function() tse.project.project{ display_type = "full" } end, "Switch")
 
 m.nname("<leader>s", "search")
 nnoremap("<leader>sS", ":Rg <cword><cr>", "Search Selection")

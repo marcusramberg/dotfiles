@@ -33,7 +33,7 @@ status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 eval (kustomize completion fish)
 
 fish_add_path ~/.dotfiles/bin /usr/local/ltex-ls/bin
-fish_add_path /usr/local/sbin ~/.local/bin /opt/homebrew/bin ~/go/bin/
+fish_add_path /usr/local/sbin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end

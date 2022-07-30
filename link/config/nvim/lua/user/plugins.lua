@@ -72,7 +72,7 @@ packer.startup(function()
         },
         extensions = {
           project = {
-            theme = 'ivy',
+            theme = 'dropdown',
             base_dirs = {
               '~/Source',
             }
