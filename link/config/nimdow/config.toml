@@ -80,7 +80,6 @@ exec = [
   "wezterm start",
   "firefox",
   "telegram-desktop",
-  "copyq",
   "picom --no-vsync",
 ]
 
@@ -95,7 +94,7 @@ exec = [
   windowTitlePosition = "center"
   barBackgroundColor = "#434C5E"
   barForegroundColor = "#ECEFF4"
-  barSelectionColor = "#EBCB8B"
+  barSelectionColor = "#88c0d0"
   barUrgentColor = "#BF616A"
   barFonts = [
     "JetBrainsMonoNerdFont:size=10:antialias=true",
