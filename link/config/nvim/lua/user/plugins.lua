@@ -6,11 +6,10 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 local packer = require 'packer'
-local use = packer.use
 
 packer.init {max_jobs = tonumber(vim.fn.system 'nproc') or 8}
 
-packer.startup(function()
+packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Syntax
@@ -126,12 +125,10 @@ packer.startup(function()
     }
     end
   }
-  require('packer').startup(function()
-    use {
-      'stevearc/overseer.nvim',
-      config = function() require('overseer').setup() end
-    }
-end)
+  use {
+    'stevearc/overseer.nvim',
+    config = function() require('overseer').setup() end
+  }
 
   -- LSP
   use 'ThePrimeagen/refactoring.nvim'

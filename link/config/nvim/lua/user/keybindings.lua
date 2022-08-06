@@ -26,7 +26,7 @@ nnoremap("]b",":bn<cr>", "Next Buffer")
 nnoremap("<leader>z",":PackerSync<cr>", "Sync Packer")
 
 m.nname("<leader>c","code")
-nnoremap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", "silent", "Action")
+nnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "silent", "Action")
 
 vim.keymap.set("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
 nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
