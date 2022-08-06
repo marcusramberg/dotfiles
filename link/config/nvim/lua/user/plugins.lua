@@ -152,19 +152,21 @@ packer.startup(function()
     requires = { "nvim-lua/plenary.nvim" },
 })
 use "neovim/nvim-lspconfig"
+use 'arkav/lualine-lsp-progress'
 use { "williamboman/mason.nvim",
       config = function()
         require("mason").setup()
         require 'user.lsp-config'
       end
 }
+use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
-  use 'aspeddro/lsp_menu.nvim'
-  use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
-    default_direction = "prefer_left",
-    close_on_select = true,
+use 'aspeddro/lsp_menu.nvim'
+use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
+        default_direction = "prefer_left",
+        close_on_select = true,
 
-  }) end }
+      }) end }
   -- yaml companion
   use {
   "someone-stole-my-name/yaml-companion.nvim",
@@ -238,7 +240,6 @@ use {
   use { 'lewis6991/gitsigns.nvim', tag = 'release', config = function()
     require('gitsigns').setup()
   end}
-  use 'arkav/lualine-lsp-progress'
   use {'EdenEast/nightfox.nvim',config = function()
     require('nightfox').setup({
         options = {

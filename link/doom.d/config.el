@@ -6,8 +6,8 @@
       user-mail-address "marcus.ramberg@gmail.com")
 
 ;; Look and feel
-(setq doom-font "JetbrainsMono Nerd Font Mono-16"
-      doom-variable-pitch-font (font-spec :family "futura" :size 13)
+(setq doom-font "JetbrainsMono Nerd Font Mono-10"
+      ; doom-variable-pitch-font (font-spec :family "futura" :size 13)
       doom-theme 'doom-nord ;; Current favorite
       display-line-numbers-type nil) ;; not worth the perf
 
@@ -400,4 +400,4 @@ See `org-capture-templates' for more information."
  )
 (setq dash-docs-docsets '("NodeJS" "Javascript" "HTML"))
 
-(require 'git-auto-commit-mode)
+;;(require 'git-auto-commit-mode)

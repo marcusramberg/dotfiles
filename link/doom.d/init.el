@@ -1,4 +1,4 @@
-;;; init.el -*- lexical-binding: t; -*-
+;evil-collection-vterm;; init.el -*- lexical-binding: t; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
@@ -15,15 +15,17 @@
 ;;      directory (for easy access to its source code).
 
 (doom! :input
+       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
        ;;japanese
+       ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
        (company +tng)      ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ;;(ivy +fuzzy +prescient)        ; a search engine for love and life
-       vertico
+       (ivy +fuzzy +prescient)        ; a search engine for love and life
+       ;;vertico
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -55,25 +57,22 @@
        (evil +everywhere) ; come to the dark side, we have cookies
        file-templates     ; auto-snippets for empty files
        fold               ; (nigh) universal code folding
-       format             ; automated prettiness
-                          ; elisp's mechanisms are good enough
-                          ; sqlformat is currently broken
-                          ; latexindent is broken
-       ;;god               ; run Emacs commands without modifier keys
-       ;;lispy             ; vim for lisp, for people who don't like vim
-       multiple-cursors  ; editing in many places at once
-       ;;objed             ; text object editing for the innocent
-       ;;parinfer          ; turn lisp into python, sort of
-       ;;rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
-       word-wrap         ; soft wrapping with language-aware indent
+       (format +onsave)   ; automated prettiness
+       ;;god              ; run Emacs commands without modifier keys
+       ;;lispy            ; vim for lisp, for people who don't like vim
+       multiple-cursors   ; editing in many places at once
+       ;;objed            ; text object editing for the innocent
+       ;;parinfer         ; turn lisp into python, sort of
+       ;;rotate-text      ; cycle region at point between text candidates
+       snippets           ; my elves. They type so I don't have to
+       word-wrap          ; soft wrapping with language-aware indent
 
        :emacs
-       (dired +ranger)             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
-       ibuffer         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
-       vc                ; version-control and Emacs, sitting in a tree
+       (dired +ranger)    ; making dired pretty [functional]
+       electric           ; smarter, keyword-based electric-indent
+       ibuffer            ; interactive buffer management
+       undo               ; persistent, smarter undo for your inevitable mistakes
+       vc                 ; version-control and Emacs, sitting in a tree
 
        :term
        eshell            ; the elisp shell that works everywhere
@@ -109,7 +108,7 @@
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
-       (:if IS-MAC macos)  ; improve compatibility with macOS
+;;       (:if IS-MAC macos)  ; improve compatibility with macOS
        tty
 
        :lang
@@ -146,7 +145,7 @@
        ;;ledger              ; an accounting system in Emacs
        lua                 ; one-based indices? one-based indices
        (markdown +grip)    ; writing docs for people to ignore
-       ;;nim               ; python + lisp at the speed of c
+       nim                 ; python + lisp at the speed of c
        nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org  +hugo +dragndrop +pomodoro +journal +present)              ; organize your plain life in plain text
