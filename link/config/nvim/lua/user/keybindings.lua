@@ -26,7 +26,9 @@ nnoremap("]b",":bn<cr>", "Next Buffer")
 nnoremap("<leader>z",":PackerSync<cr>", "Sync Packer")
 
 m.nname("<leader>c","code")
-nnoremap("<leader>ca", function() require'lsp_menu'.codeaction.run{}  end, "silent", "Action") --ts.lsp_code_actions() end, "silent", "Action")
+nnoremap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", "silent", "Action")
+
+vim.keymap.set("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
 nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
 nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
@@ -50,7 +52,6 @@ nnoremap("<leader>hh", function() ts.help_tags() end, "help")
 nnoremap("<leader>hd", ":DashWord<cr>" , "dash")
 nnoremap("<leader>hc", ":CheatList<cr>" , "help")
 nnoremap("<leader>hC", ":Cheat" , "help")
-
 
 m.nname("<leader>o", "open")
 nnoremap("<leader>ot", ":ToggleTerm<cr>", "Terminal")

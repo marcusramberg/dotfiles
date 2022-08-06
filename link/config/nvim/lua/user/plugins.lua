@@ -126,14 +126,20 @@ packer.startup(function()
     }
     end
   }
+  require('packer').startup(function()
+    use {
+      'stevearc/overseer.nvim',
+      config = function() require('overseer').setup() end
+    }
+end)
 
   -- LSP
+  use 'ThePrimeagen/refactoring.nvim'
   use({
       "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
       local sources = {
-        null_ls.builtins.code_actions.gitsigns,
         null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.diagnostics.cppcheck,
@@ -153,6 +159,18 @@ packer.startup(function()
 })
 use "neovim/nvim-lspconfig"
 use 'arkav/lualine-lsp-progress'
+use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        local saga = require("lspsaga")
+
+        saga.init_lsp_saga({
+            -- your configuration
+        })
+    end,
+})
+use "b0o/schemastore.nvim"
 use { "williamboman/mason.nvim",
       config = function()
         require("mason").setup()
@@ -190,6 +208,10 @@ use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
             {
               name = "Helmfile",
               url = "https://raw.githubusercontent.com/hiberbee/yamlschema/master/src/schemas/helm/helmfile.yaml.json"
+            },
+            {
+              name = "OpenAPI",
+              url = "https://github.com/OAI/OpenAPI-Specification/blob/main/schemas/v3.1/schema.yaml"
             }
           },
         },

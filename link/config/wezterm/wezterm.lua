@@ -58,6 +58,8 @@ local config = {
 -- Reduce fontsize to fix dpi issue on mArch
 if wezterm.hostname() == "march" then
   config.font_size = 8.0
+elseif wezterm.hostname() == "mbook" then
+  config.font_size = 16.0
 end
 
 return config
