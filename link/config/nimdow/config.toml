@@ -21,13 +21,19 @@
  state = "normal" # normal, floating, and fullscreen are all valid.
 
 [[appRule]]
- name = "orgmacs"
+ class = "firefoxdeveloperedition"
+ monitor = 1
+ tags = [ 2 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ title = "orgmacs"
  monitor = 1
  tags = [ 3 ]
  state = "normal" # normal, floating, and fullscreen are all valid.
 
 [[appRule]]
- name = "telega"
+ title = "telega"
  monitor = 1
  tags = [ 3 ]
  state = "normal" # normal, floating, and fullscreen are all valid.
