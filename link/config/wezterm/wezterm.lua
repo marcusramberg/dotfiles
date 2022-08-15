@@ -29,11 +29,15 @@ local config = {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
   -- color_scheme = "nord",
+  colors = colors,
   font = wezterm.font("JetBrainsMono Nerd Font"),
-  pane_focus_follows_mouse = false,
-  use_fancy_tab_bar = false,
-  window_decorations = "RESIZE",
+  hide_tab_bar_if_only_one_tab = true,
+  inactive_pane_hsb = {
+    saturation = 0.8,
+    brightness = 0.6,
+  },
   keys = keys,
+  pane_focus_follows_mouse = false,
   mouse_bindings = {
     {
       event={Down={streak=1, button="Right"}},
@@ -46,13 +50,16 @@ local config = {
       action="OpenLinkAtMouseCursor",
     },
   },
-  hide_tab_bar_if_only_one_tab = true,
-  inactive_pane_hsb = {
-    saturation = 0.8,
-    brightness = 0.6,
+  ssh_domains = {
+    {
+      name = 'mbook',
+      remote_address = 'mbook',
+      username = 'marcus',
+    },
   },
+  use_fancy_tab_bar = false,
   window_background_opacity = 0.95,
-  colors = colors
+  window_decorations = "RESIZE",
 }
 
 -- Reduce fontsize to fix dpi issue on mArch

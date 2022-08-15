@@ -216,6 +216,8 @@ use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
     require("lspconfig")["yamlls"].setup(cfg)
   end,
 }
+use 'windwp/nvim-spectre'
+
   -- Autocomplete
   	use { 'hrsh7th/nvim-cmp',
 		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git' },
@@ -268,6 +270,11 @@ use {
           transparent = true ,    -- Disable setting background
           terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
           dim_inactive = true,
+        },
+        palettes = {
+          nordfox = {
+                sel0 = "#3e4a5b", -- Popup bg, visual selection bg
+          }
         }
       })
     vim.cmd[[colorscheme nordfox]]
