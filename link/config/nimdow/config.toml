@@ -85,6 +85,11 @@ command = "wezterm start"
 keys = [ "Return" ]
 modifiers = [ "super" ]
 
+[[startProcess]]
+command = "wezterm"
+keys = [ "Return" ]
+modifiers = [ "super" "shift" ]
+
 # Example: Start process when region is clicked, see github wiki for what constitutes a region
 [[startProcess]]
 command = "notify-send \"Id: %1, rx: %2, cx: %4, w: %6\""
@@ -93,14 +98,15 @@ clickRegion = 1
 [autostart]
 exec = [
   "emacs --daemon",
-  "picom --no-vsync",
+  "picom --config /etc/xdg/picom.conf",
+  "~/.config/nimdow/status",
   "xsetroot -cursor_name left_ptr",
   "spice-vdagent",
-  "feh --bg-max ~/.dotfiles/wallpaper/ -z",
-  "wezterm start",
+  "feh --bg-fill ~/.dotfiles/wallpaper/ -z",
+  "wezterm",
+  "wezterm start ~/mount",
   "firefox",
   "telegram-desktop",
-  "/usr/local/bin/telega"
   "/usr/local/bin/bin/org"
 ]
 
@@ -118,8 +124,8 @@ exec = [
   barSelectionColor = "#88c0d0"
   barUrgentColor = "#BF616A"
   barFonts = [
-    "JetBrainsMonoNerdFont:size=10:antialias=true",
-    "NotoColorEmoji:size=10:antialias=true"
+    "Iosevka Nerd Font Mono:size=11:antialias=true",
+    "NotoColorEmoji:size=11:antialias=true"
   ]
   # Layout settings
   gapSize = 20 

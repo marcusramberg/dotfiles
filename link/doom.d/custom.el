@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-jira org-plus-contrib lsp-origami cheat-sh jenkins-watch elscreen jenkins)))
+   '(verb org-jira org-plus-contrib lsp-origami cheat-sh jenkins-watch elscreen jenkins)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

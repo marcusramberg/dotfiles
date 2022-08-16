@@ -1,12 +1,12 @@
 local wezterm = require 'wezterm'
 local colors = require 'colors'
 
-wezterm.on("update-right-status", function(window, pane)
-  -- "08:14"
-  local time = wezterm.strftime("%H:%M ");
-  window:set_right_status(wezterm.format({ {Text=wezterm.nerdfonts.mdi_clock .. " "..time},
-  }));
-end)
+-- wezterm.on("update-right-status", function(window, pane)
+--   -- "08:14"
+--   local time = wezterm.strftime("%H:%M ");
+--   window:set_right_status(wezterm.format({ {Text=wezterm.nerdfonts.mdi_clock .. " "..time},
+--   }));
+-- end)
 
 local keys = {
   {key="G", mods="SUPER", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
@@ -29,7 +29,9 @@ local config = {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
   -- color_scheme = "nord",
+  check_for_updates = false,
   colors = colors,
+  default_gui_startup_args = { 'connect', 'unix' },
   font = wezterm.font("JetBrainsMono Nerd Font"),
   hide_tab_bar_if_only_one_tab = true,
   inactive_pane_hsb = {
@@ -55,6 +57,11 @@ local config = {
       name = 'mbook',
       remote_address = 'mbook',
       username = 'marcus',
+    },
+  },
+  unix_domains = {
+    {
+      name = 'unix',
     },
   },
   use_fancy_tab_bar = false,
