@@ -31,7 +31,7 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 
 eval (kustomize completion fish)
-eval (opensearch-cli completion fish)
+#eval (opensearch-cli completion fish)
 
 fish_add_path ~/.dotfiles/bin ~/google-cloud-sdk/bin/
 fish_add_path /usr/local/sbin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin

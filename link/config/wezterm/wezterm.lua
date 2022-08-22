@@ -58,6 +58,11 @@ local config = {
       remote_address = 'mbook',
       username = 'marcus',
     },
+    {
+      name = 'march',
+      remote_address = 'march',
+      username = 'marcus',
+    },
   },
   unix_domains = {
     {
