@@ -69,8 +69,11 @@ cmp.setup {
 		},
 
 		["<Tab>"] = cmp.mapping(function(fallback)
+			local copilot_keys = vim.fn["copilot#Accept"]("")
 			if cmp.visible() then
 				cmp.select_next_item()
+			elseif copilot_keys ~= "" then
+				vim.api.nvim_feedkeys(copilot_keys, "i", false)
 			elseif vim.fn["vsnip#available"]() == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
 			elseif has_words_before() then
@@ -90,12 +93,12 @@ cmp.setup {
 	},
 
 	sources = {
+		{ name = 'path'     },
+		{ name = 'nvim_lsp' },
+		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'orgmode' },
 		{ name = 'git'      },
 		{ name = 'vsnip'    },
-		{ name = 'nvim_lsp' },
-		{ name = 'nvim_lsp_signature_help' },
-		{ name = 'path'     },
 		{ name = 'buffer',
 			option = {
 				get_bufnrs = function()

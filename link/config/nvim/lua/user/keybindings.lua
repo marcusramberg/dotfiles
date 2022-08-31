@@ -41,6 +41,7 @@ nnoremap("<leader>ff", function() ts.find_files() end,  "Find File")
 nnoremap("<leader>fr", function() ts.oldfiles() end, "Recent")
 
 m.nname("<leader>g", "git")
+nnoremap("<leader>gb", ":GitBlameToggle<cr>", "Neogit")
 nnoremap("<leader>gs", ":Neogit kind=vsplit<cr>", "Neogit")
 nnoremap("<leader>gg", ":Neogit kind=vsplit<cr>", "Neogit")
 nnoremap("<leader>gf", ":GFiles<cr>", "Git Files")

@@ -7,7 +7,7 @@ end
 
 local packer = require 'packer'
 
-packer.init {max_jobs = tonumber(vim.fn.system 'nproc') or 8}
+packer.init { max_jobs = tonumber(vim.fn.system 'nproc') or 8 }
 
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -17,21 +17,21 @@ packer.startup(function(use)
   -- use 'zah/nim.vim'
   use 'golang/vscode-go'
   use 'elzr/vim-json'
-  use {'nvim-treesitter/nvim-treesitter', run = 'TSUpdate'}
-  use {'nvim-treesitter/nvim-treesitter-context', config = function() require'treesitter-context'.setup{} end }
-  use {'nvim-orgmode/orgmode', config = function()
+  use { 'nvim-treesitter/nvim-treesitter', run = 'TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter-context', config = function() require 'treesitter-context'.setup {} end }
+  use { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
     require('orgmode').setup {}
-    require'nvim-treesitter.configs'.setup {
+    require 'nvim-treesitter.configs'.setup {
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
       highlight = {
         enable = true,
-        disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-        additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
+        disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+        additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
       },
-      ensure_installed = {'org'}, -- Or run :TSUpdate org
+      ensure_installed = { 'org' }, -- Or run :TSUpdate org
     }
-  end}
+  end }
 
   use 'akinsho/org-bullets.nvim'
   use 'wsdjeg/luarefvim'
@@ -46,7 +46,7 @@ packer.startup(function(use)
   use 'tpope/vim-commentary'
   use '907th/vim-auto-save'
   use 'karb94/neoscroll.nvim'
-  use({ 'sQVe/sort.nvim', config = function() require("sort").setup({ }) end })
+  use({ 'sQVe/sort.nvim', config = function() require("sort").setup({}) end })
   use 'christianrondeau/vim-base64'
   use 'szw/vim-g'
   use 'rhysd/clever-f.vim'
@@ -55,19 +55,19 @@ packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-project.nvim'},
-      {'nvim-telescope/telescope-ui-select.nvim'},
-      {'olacin/telescope-gitmoji.nvim'},
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-project.nvim' },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'olacin/telescope-gitmoji.nvim' },
     },
     config = function()
-      local t=require"telescope"
-      t.setup{
+      local t = require "telescope"
+      t.setup {
         pickers = {
-          buffers       = {theme = 'ivy'},
-          find_files    = {theme = 'ivy'},
-          live_grep     = {theme = 'ivy'},
-          spell_suggest = {theme = 'ivy'},
+          buffers       = { theme = 'ivy' },
+          find_files    = { theme = 'ivy' },
+          live_grep     = { theme = 'ivy' },
+          spell_suggest = { theme = 'ivy' },
         },
         extensions = {
           project = {
@@ -77,31 +77,32 @@ packer.startup(function(use)
             }
           },
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown { }
+            require("telescope.themes").get_dropdown {}
           }
         },
-    }
-    -- t.load_extension('project')
-    t.load_extension('ui-select')
-    t.load_extension('gitmoji')
+      }
+      -- t.load_extension('project')
+      t.load_extension('ui-select')
+      t.load_extension('gitmoji')
     end
   }
 
   -- Version Control
   use {
     'TimUntersberger/neogit',
-    config = function() require"neogit".setup {use_magit_keybindings = true} end,
-    requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'}
+    config = function() require "neogit".setup { use_magit_keybindings = true } end,
+    requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }
   }
+  use 'f-person/git-blame.nvim'
   use {
     'pwntester/octo.nvim',
-    requires = {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons'},
-    config = function() require"octo".setup() end
+    requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons' },
+    config = function() require "octo".setup() end
   }
 
   -- Help
 
-  use {'RishabhRD/nvim-cheat.sh', requires = {'RishabhRD/popfix'}}
+  use { 'RishabhRD/nvim-cheat.sh', requires = { 'RishabhRD/popfix' } }
 
   -- open with line (from syntax output and such)
   use 'bogado/file-line'
@@ -123,7 +124,7 @@ packer.startup(function(use)
       }
 
     }
-    end
+  end
   }
   use {
     'stevearc/overseer.nvim',
@@ -133,7 +134,7 @@ packer.startup(function(use)
   -- LSP
   use 'ThePrimeagen/refactoring.nvim'
   use({
-      "jose-elias-alvarez/null-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
       local sources = {
@@ -150,48 +151,50 @@ packer.startup(function(use)
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.terrafmt,
       }
-      null_ls.setup({sources = sources, debug = true})
+      null_ls.setup({ sources = sources, debug = true })
     end,
     requires = { "nvim-lua/plenary.nvim" },
-})
-use "neovim/nvim-lspconfig"
-use 'arkav/lualine-lsp-progress'
-use({
+  })
+  use "neovim/nvim-lspconfig"
+  use 'arkav/lualine-lsp-progress'
+  use({
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-        local saga = require("lspsaga")
+      local saga = require("lspsaga")
 
-        saga.init_lsp_saga({
-            -- your configuration
-        })
+      saga.init_lsp_saga({
+        -- your configuration
+        code_action_lightbulb = { virtual_text = false, }
+      })
     end,
-})
-use "b0o/schemastore.nvim"
-use { "williamboman/mason.nvim",
-      config = function()
-        require("mason").setup()
-        require 'user.lsp-config'
-      end
-}
-use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  })
+  use "b0o/schemastore.nvim"
+  use { "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+      require 'user.lsp-config'
+    end
+  }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
-use 'aspeddro/lsp_menu.nvim'
-use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
-        default_direction = "prefer_left",
-        close_on_select = true,
+  use 'aspeddro/lsp_menu.nvim'
+  use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
+      default_direction = "prefer_left",
+      close_on_select = true,
 
-      }) end }
+    })
+  end }
   -- yaml companion
   use {
-  "someone-stole-my-name/yaml-companion.nvim",
-  requires = {
-    { "nvim-lua/plenary.nvim"},
-    { "nvim-telescope/telescope.nvim" },
-  },
-  config = function()
-    require("telescope").load_extension("yaml_schema")
-    local cfg = require("yaml-companion").setup({
+    "someone-stole-my-name/yaml-companion.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    config = function()
+      require("telescope").load_extension("yaml_schema")
+      local cfg = require("yaml-companion").setup({
         schemas = {
           result = {
             {
@@ -213,78 +216,82 @@ use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
           },
         },
       })
-    require("lspconfig")["yamlls"].setup(cfg)
-  end,
-}
-use 'windwp/nvim-spectre'
+      require("lspconfig")["yamlls"].setup(cfg)
+    end,
+  }
+  use 'windwp/nvim-spectre'
 
   -- Autocomplete
-  	use { 'hrsh7th/nvim-cmp',
-		requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git' },
-	}
+  use 'github/copilot.vim'
+
+  use { 'hrsh7th/nvim-cmp',
+    requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ',
+      'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git'},
+  }
   use "rafamadriz/friendly-snippets"
 
 
-use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup { }
-  end
-}
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end
+  }
 
-  if(jit.os == "OSX") then
+  if (jit.os == "OSX") then
     use({
-        'mrjones2014/dash.nvim',
-        run = 'make install',
-      })
+      'mrjones2014/dash.nvim',
+      run = 'make install',
+    })
   end
 
   -- Terminal
-  use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+  use { "akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
     require("toggleterm").setup()
-  end}
+  end }
 
-  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons',
-    config = function ()
-      require("bufferline").setup{ options = {
-          separator_style = "thick",
-          diagnostics = "nvim_lsp",
-        }
+  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require("bufferline").setup { options = {
+        separator_style = "thick",
+        diagnostics = "nvim_lsp",
+      }
       }
     end
   }
 
-  use { "tiagovla/scope.nvim", config = function ()
+  use { "tiagovla/scope.nvim", config = function()
     require("scope").setup()
-  end}
+  end }
 
   -- Styling
   use { 'lewis6991/gitsigns.nvim', tag = 'release', config = function()
     require('gitsigns').setup()
-  end}
-  use {'EdenEast/nightfox.nvim',config = function()
+  end }
+  use { 'EdenEast/nightfox.nvim', config = function()
     require('nightfox').setup({
-        options = {
-          -- Compiled file's destination location
-          compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-          compile_file_suffix = "_compiled", -- Compiled file suffix
-          transparent = true ,    -- Disable setting background
-          terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-          dim_inactive = true,
-        },
-        palettes = {
-          nordfox = {
-                sel0 = "#3e4a5b", -- Popup bg, visual selection bg
-          }
+      options = {
+        -- Compiled file's destination location
+        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+        compile_file_suffix = "_compiled", -- Compiled file suffix
+        transparent = true, -- Disable setting background
+        terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+        dim_inactive = true,
+      },
+      palettes = {
+        nordfox = {
+          sel0 = "#3e4a5b", -- Popup bg, visual selection bg
         }
-      })
-    vim.cmd[[colorscheme nordfox]]
-    end
+      }
+    })
+    vim.cmd [[colorscheme nordfox]]
+  end
   }
 
-  use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons' },
-    config = function ()
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
       require('lualine').setup {
         options = {
           section_separators = { left = '', right = '' },
@@ -293,14 +300,14 @@ use {
         },
         sections = {
           lualine_a = {
-          { 'mode', fmt = function(str) return str:sub(1,1) end } },
-        lualine_b = {'branch'} ,
-        lualine_c = {'filename', 'lsp_progress'} ,
-        lualine_x = { 'aerial', 'fileformat', 'filetypes'},
-      }
+            { 'mode', fmt = function(str) return str:sub(1, 1) end }
+          },
+          lualine_b = { 'branch' },
+          lualine_c = { 'filename', 'lsp_progress' },
+          lualine_x = { 'aerial', 'fileformat', 'filetypes' },
+        }
       }
     end
   }
   use 'b0o/mapx.nvim'
- end)
-
+end)

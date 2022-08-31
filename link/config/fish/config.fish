@@ -32,6 +32,8 @@ status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 
 eval (kustomize completion fish)
 #eval (opensearch-cli completion fish)
+set --universal pure_color_mute 777
+set --universal pure_enable_single_line_prompt true
 
 fish_add_path ~/.dotfiles/bin ~/google-cloud-sdk/bin/
 fish_add_path /usr/local/sbin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin
