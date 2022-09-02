@@ -112,12 +112,12 @@ exec = [
 
 [settings]
   # Window settings
-  borderWidth = 1
+  borderWidth = 2
   borderColorUnfocused = "#4C566A"
   borderColorFocused = "#8FBCBB"
   borderColorUrgent = "#D08770"
   # Bar settings
-  barHeight = 30
+  barHeight = 32
   windowTitlePosition = "center"
   barBackgroundColor = "#434C5E"
   barForegroundColor = "#ECEFF4"
@@ -128,7 +128,8 @@ exec = [
     "NotoColorEmoji:size=11:antialias=true"
   ]
   # Layout settings
-  gapSize = 20 
+  outerGap = 8 
+  gapSize = 16 
   resizeStep = 100
   defaultMasterWidthPercentage = 60
   # Scratchpad settings
@@ -263,15 +264,15 @@ exec = [
 # Example monitor settings:
 [monitors]
   [monitors.default.tags]
-  1.displayString = ""
-  2.displayString = ""
-  3.displayString = ""
-  4.displayString = ""
-  5.displayString = ""
-  6.displayString = ""
-  7.displayString = ""
-  8.displayString = ""
-  9.displayString = ""
+  1.displayString = "1 "
+  2.displayString = "2 "
+  3.displayString = "3 "
+  4.displayString = "4 "
+  5.displayString = "5 "
+  6.displayString = "6 "
+  7.displayString = "7 "
+  8.displayString = "8 "
+  9.displayString = "9 "
   1.defaultMasterWidthPercentage = 65
   2.defaultMasterWidthPercentage = 75
 

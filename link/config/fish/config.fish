@@ -7,6 +7,7 @@ if status is-interactive
     alias cat bat
     alias ag rg
     alias emacs "emacs -nw"
+    alias imgcat "wezterm imgcat"
     abbr l ls
     thefuck --alias | source
     #git
