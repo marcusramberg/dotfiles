@@ -102,9 +102,8 @@ exec = [
   "~/.config/nimdow/status",
   "xsetroot -cursor_name left_ptr",
   "spice-vdagent",
-  "feh --bg-fill ~/.dotfiles/wallpaper/ -z",
+  "feh --bg-fill ~/.dotfiles/wallpaper/lofoten.jpg",
   "wezterm",
-  "wezterm start ~/mount",
   "firefox",
   "telegram-desktop",
   "/usr/local/bin/bin/org"

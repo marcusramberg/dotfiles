@@ -104,7 +104,8 @@ window {
 }
 mainbox {
     padding: 0;
-    border: 0;
+    border: 1px;
+    border-color: var(nord7);
 }
 message {
     margin: 0px 7px;
