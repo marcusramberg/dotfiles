@@ -94,11 +94,11 @@ cmp.setup {
 
 	sources = {
 		{ name = 'path'     },
+		{ name = 'vsnip'    },
+		{ name = 'orgmode' },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },
-		{ name = 'orgmode' },
 		{ name = 'git'      },
-		{ name = 'vsnip'    },
 		{ name = 'buffer',
 			option = {
 				get_bufnrs = function()

@@ -21,7 +21,13 @@ packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter-context', config = function() require 'treesitter-context'.setup {} end }
   use { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
-    require('orgmode').setup {}
+    require('orgmode').setup {
+      require("orgmode").setup({
+          org_agenda_files = "~/org/**",
+          org_default_notes_file = "~/org/inbox.org",
+          org_hide_leading_stars = true,
+        })
+    }
     require 'nvim-treesitter.configs'.setup {
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
       highlight = {

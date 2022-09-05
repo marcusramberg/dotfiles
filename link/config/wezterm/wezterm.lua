@@ -30,7 +30,8 @@ local config = {
   audible_bell = "Disabled",
   -- color_scheme = "nord",
   check_for_updates = false,
-  colors = colors,
+  -- colors = colors,
+  color_scheme = "nordfox",
   default_gui_startup_args = { 'connect', 'unix' },
   font = wezterm.font("JetBrainsMono Nerd Font"),
   hide_tab_bar_if_only_one_tab = true,
@@ -70,7 +71,7 @@ local config = {
     },
   },
   use_fancy_tab_bar = false,
-  window_background_opacity = 0.95,
+  window_background_opacity = 0.98,
   window_decorations = "RESIZE",
 }
 

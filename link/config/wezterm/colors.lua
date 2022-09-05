@@ -2,12 +2,12 @@ local colors = {
   tab_bar = {
     -- The color of the strip that goes along the top of the window
     -- (does not apply when fancy tab bar is in use)
-    background = '#3B4252',
+    background = '#2e3440',
 
     -- The active tab is the one that has focus in the window
     active_tab = {
       -- The color of the background area for the tab
-      bg_color = '#3b4252',
+      bg_color = '#2E3440',
 
       -- The color of the text for the tab
       fg_color = '#E5E9F0',
