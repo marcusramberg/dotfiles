@@ -33,3 +33,8 @@ link/hammerspoon/Spoons/EmmyLua.spoon/annotations/
 completions
 conf.d
 functions
+result
+direnv/
+asciinema/
+github-copilot/
+configstore/

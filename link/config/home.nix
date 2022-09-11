@@ -3,6 +3,7 @@
 {
   home.stateVersion = "22.05";
 
+
   # https://github.com/malob/nixpkgs/blob/master/home/default.nix
 
   # Direnv, load and unload environment variables depending on the current directory.
@@ -15,6 +16,10 @@
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = true;
+  programs.doom-emacs = {
+                enable = true;
+                doomPrivateDir = ../doom.d;
+              };
 
   home.packages = with pkgs; [
     # Some basics
@@ -41,18 +46,4 @@
     m-cli # useful macOS CLI commands
   ];
 
-  # Misc configuration files --------------------------------------------------------------------{{{
-
-  # # https://docs.haskellstack.org/en/stable/yaml_configuration/#non-project-specific-config
-  # home.file.".stack/config.yaml".text = lib.generators.toYAML {} {
-  #   templates = {
-  #     scm-init = "git";
-  #     params = {
-  #       author-name = "Marcus Ramberg"; # config.programs.git.userName;
-  #       author-email = "marcus.ramberg@remarkable.com"; # config.programs.git.userEmail;
-  #       github-username = "marcusramberg";
-  #     };
-  #   };
-    # nix.enable = true;
-  # };
 }

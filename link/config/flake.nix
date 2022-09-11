@@ -14,10 +14,12 @@
 
     # Other sources
     comma.url = github:nix-community/comma; 
-    
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
+
+
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, nix-doom-emacs, ... }@inputs:
   let 
 
     inherit (darwin.lib) darwinSystem;
@@ -51,10 +53,11 @@
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
+            imports = [ nix-doom-emacs.hmModule ];
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.marcus = import ./home.nix;            
+            home-manager.users.marcus = import ./home.nix;
           }
         ];
       };
