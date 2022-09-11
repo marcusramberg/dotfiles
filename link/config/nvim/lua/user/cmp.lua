@@ -93,6 +93,7 @@ cmp.setup {
 	},
 
 	sources = {
+    { name = "copilot", group_index = 2 },
 		{ name = 'path'     },
 		{ name = 'vsnip'    },
 		{ name = 'orgmode' },

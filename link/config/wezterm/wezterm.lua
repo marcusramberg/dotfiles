@@ -71,7 +71,7 @@ local config = {
     },
   },
   use_fancy_tab_bar = false,
-  window_background_opacity = 0.98,
+  window_background_opacity = 0.95,
   window_decorations = "RESIZE",
 }
 

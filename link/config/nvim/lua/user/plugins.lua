@@ -144,15 +144,18 @@ packer.startup(function(use)
     config = function()
       local null_ls = require("null-ls")
       local sources = {
-        null_ls.builtins.code_actions.refactoring,
+        -- null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.diagnostics.actionlint,
+        null_ls.builtins.diagnostics.codespell,
         null_ls.builtins.diagnostics.cppcheck,
+        null_ls.builtins.diagnostics.deadnix,
         null_ls.builtins.diagnostics.gitlint,
         null_ls.builtins.diagnostics.golangci_lint,
         null_ls.builtins.diagnostics.jsonlint,
         null_ls.builtins.diagnostics.tidy,
-        null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.diagnostics.vale,
+        null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.terrafmt,
@@ -229,6 +232,13 @@ packer.startup(function(use)
 
   -- Autocomplete
   use 'github/copilot.vim'
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot-cmp").setup()
+    end
+  }
 
   use { 'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help',
