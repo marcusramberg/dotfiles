@@ -36,7 +36,7 @@ eval (kustomize completion fish)
 set --universal pure_color_mute 777
 set --universal pure_enable_single_line_prompt true
 
-fish_add_path /run/current-system/sw/bin /.dotfiles/bin ~/google-cloud-sdk/bin/
+fish_add_path /.dotfiles/bin
 fish_add_path /usr/local/sbin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin
 
 # The next line updates PATH for the Google Cloud SDK.
