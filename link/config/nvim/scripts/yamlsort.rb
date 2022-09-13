@@ -46,7 +46,7 @@ class YCollection
 		ind = VIM::evaluate("indent(#{lnum})").to_i
 		start = fin = lnum
 		# Detect beginning of collection
-		ln = lnum - 1
+		ln = lnum - 1@
 		while ln>0
 			curr_ind = VIM::evaluate("indent(#{ln})").to_i
 			break if curr_ind<ind || (curr_ind==ind && @buffer[ln]!~/\s*-/)

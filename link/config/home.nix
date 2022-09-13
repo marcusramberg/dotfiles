@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 {
   home.stateVersion = "22.05";
 
@@ -16,10 +15,10 @@
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = true;
-  programs.doom-emacs = {
-                enable = true;
-                doomPrivateDir = ../doom.d;
-              };
+  # programs.doom-emacs = {
+  #               enable = true;
+  #               doomPrivateDir = ../doom.d;
+  #             };
 
   home.packages = with pkgs; [
     # Some basics
@@ -30,7 +29,7 @@
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
-    google-cloud-sdk
+    (google-cloud-sdk.withPackages (p: [ p.kubectl p.config-connector ]))
     jq
     nodePackages.typescript
     nodejs

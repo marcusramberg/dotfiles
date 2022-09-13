@@ -69,10 +69,10 @@ cmp.setup {
 		},
 
 		["<Tab>"] = cmp.mapping(function(fallback)
-			local copilot_keys = vim.fn["copilot#Accept"]("")
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif copilot_keys ~= "" then
+			-- local copilot_keys = vim.fn["copilot#Accept"]("")
+			-- if cmp.visible() then
+			-- 	cmp.select_next_item()
+			if copilot_keys ~= "" then
 				vim.api.nvim_feedkeys(copilot_keys, "i", false)
 			elseif vim.fn["vsnip#available"]() == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
@@ -93,7 +93,7 @@ cmp.setup {
 	},
 
 	sources = {
-    { name = "copilot", group_index = 2 },
+    { name = "copilot"}, -- group_index = 2 },
 		{ name = 'path'     },
 		{ name = 'vsnip'    },
 		{ name = 'orgmode' },
@@ -111,5 +111,6 @@ cmp.setup {
 				end
 			}
 		},
+		{ name = 'emoji' }
 	},
 }

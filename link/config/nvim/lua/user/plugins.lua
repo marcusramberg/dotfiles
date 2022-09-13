@@ -231,21 +231,15 @@ packer.startup(function(use)
   use 'windwp/nvim-spectre'
 
   -- Autocomplete
-  use 'github/copilot.vim'
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function ()
-      require("copilot-cmp").setup()
-    end
-  }
 
+  use 'github/copilot.vim'
   use { 'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ',
-      'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git'},
+      'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git', 'hrsh7th/cmp-copilot', 'hrsh7th/cmp-emoji', 'hrsh7th/cmp-nvim-lsp-signature-help'},
   }
   use "rafamadriz/friendly-snippets"
+
 
 
   use {

@@ -136,3 +136,5 @@
 [ghq "https://github.com/reMarkable/"]
 vcs = git
 root = ~/Source/reMarkable/
+[url "git@github.com:reMarkable/cloud"]
+	insteadOf = https://github.com/reMarkable/cloud

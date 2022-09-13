@@ -14,16 +14,15 @@
 
     # Other sources
     comma.url = github:nix-community/comma; 
-    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
 
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, nix-doom-emacs, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, nix-doom-emacs, ... } @inputs:
   let 
-
     inherit (darwin.lib) darwinSystem;
-    inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
+    inherit (inputs.nixpkgs-unstable.lib) attrValues mkMerge optionalAttrs singleton;
 
     # Configuration for `nixpkgs`
     nixpkgsConfig = {
@@ -53,7 +52,6 @@
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
-            imports = [ nix-doom-emacs.hmModule ];
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

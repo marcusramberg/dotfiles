@@ -13,6 +13,8 @@
   ];
   nix.configureBuildUsers = true;
 
+  nixpkgs.config.allowUnsupportedSystem = true;
+   
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
@@ -34,6 +36,8 @@
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
     wezterm 
+    karabiner-elements
+    goku
     terminal-notifier
   ];
 
@@ -56,5 +60,6 @@
 
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
+  time.timeZone = "Europe/Oslo";
 
 }
