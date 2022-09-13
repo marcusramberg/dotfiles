@@ -19,3 +19,5 @@
 [submodule "link/emacs.d"]
   path = link/emacs.d
   url = https://github.com/plexus/chemacs2.git
+[submodule "link/emacs"]
+	url = git@github.com:doomemacs/doomemacs.git
