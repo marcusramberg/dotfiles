@@ -88,16 +88,17 @@ lsp.jsonls.setup { on_attach = on_attach_vim, capabilities = capabilities, setti
     validate = { enable = true },
   }
 } }
-lsp.perlls.setup { on_attach = on_attach_vim, capabilities = capabilities }
+lsp.cssls.setup { on_attach = on_attach_vim, capabilities = capabilities }
+lsp.html.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.nimls.setup { on_attach = on_attach_vim, capabilities = capabilities }
+lsp.perlls.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.pylsp.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.rls.setup { on_attach = on_attach_vim, capabilities = capabilities }
+lsp.rnix.setup { on_attach = on_attach_vim, capabilities = capabilities }
+lsp.tailwindcss.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.terraformls.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tflint.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tsserver.setup { on_attach = on_attach_vim, capabilities = capabilities }
-lsp.tailwindcss.setup { on_attach = on_attach_vim, capabilities = capabilities }
-lsp.cssls.setup { on_attach = on_attach_vim, capabilities = capabilities }
-lsp.html.setup { on_attach = on_attach_vim, capabilities = capabilities }
 
 -- lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
 lsp.sumneko_lua.setup({ on_attach = on_attach_vim, capabilities = capabilities, settings = {

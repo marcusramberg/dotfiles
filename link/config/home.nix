@@ -24,15 +24,19 @@
     # Some basics
     coreutils
     curl
+    git
     deadnix
     wget
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
-    (google-cloud-sdk.withPackages (p: [ p.kubectl p.config-connector ]))
+    (google-cloud-sdk.withExtraComponents([ google-cloud-sdk.components.kubectl google-cloud-sdk.components.config-connector ]))
+    actionlint
+    git
     jq
+    yq
     nodePackages.typescript
-    nodejs
+    nodejs-16_x
 
     # Useful nix related tools
     cachix # adding/managing alternative binary caches hosted by Cachix
