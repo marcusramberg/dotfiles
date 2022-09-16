@@ -70,10 +70,10 @@ cmp.setup {
 
 		["<Tab>"] = cmp.mapping(function(fallback)
 			-- local copilot_keys = vim.fn["copilot#Accept"]("")
-			-- if cmp.visible() then
-			-- 	cmp.select_next_item()
-			if copilot_keys ~= "" then
-				vim.api.nvim_feedkeys(copilot_keys, "i", false)
+			if cmp.visible() then
+				cmp.select_next_item()
+			-- if copilot_keys ~= "" then
+			-- 	vim.api.nvim_feedkeys(copilot_keys, "i", false)
 			elseif vim.fn["vsnip#available"]() == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
 			elseif has_words_before() then
