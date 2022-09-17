@@ -101,6 +101,10 @@ lsp.tflint.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tsserver.setup { on_attach = on_attach_vim, capabilities = capabilities }
 
 -- lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+lsp.spectral.setup { on_attach = on_attach_vim, capabilities = capabilities,
+  filetypes = { "yaml" },
+  settings = { rootMarkers = { ".spectral.yaml", ".spectral.yml" } }
+}
 lsp.sumneko_lua.setup({ on_attach = on_attach_vim, capabilities = capabilities, settings = {
   Lua = {
     runtime = {
