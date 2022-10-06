@@ -30,7 +30,7 @@
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
-    (google-cloud-sdk.withExtraComponents([ google-cloud-sdk.components.kubectl google-cloud-sdk.components.config-connector ]))
+    # (google-cloud-sdk.withExtraComponents([ google-cloud-sdk.components.kubectl google-cloud-sdk.components.config-connector google-cloud-sdk.components.gke-gcloud-auth-plugin]))
     actionlint
     git
     jq

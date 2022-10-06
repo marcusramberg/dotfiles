@@ -3,7 +3,8 @@
 
   inputs = {
     # Package sets
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.05-darwin";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.05-darwin";
+    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
 
     # Environment/system management
@@ -33,8 +34,7 @@
           inherit (final.pkgs-x86)
             idris2
             nix-index
-            niv
-            fish;
+            niv;
         })
       );
     }; 

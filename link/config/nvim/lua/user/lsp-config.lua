@@ -29,11 +29,11 @@ local on_attach_vim = function(client, bufnr)
   require("aerial").on_attach(client, bufnr)
   -- require("lsp-status").on_attach(client)
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     m.nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
   end
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider  then
     vim.cmd([[
 			augroup LSPDocumentHighlight
 					au!
