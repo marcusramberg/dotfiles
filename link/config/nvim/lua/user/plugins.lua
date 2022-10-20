@@ -284,30 +284,31 @@ packer.startup(function(use)
   use { 'lewis6991/gitsigns.nvim', config = function()
     require('gitsigns').setup()
   end }
-  use  { 'shaunsingh/nord.nvim', config = function ()
-    vim.cmd[[ colorscheme nord ]]
-  end }
+  -- use  { 'shaunsingh/nord.nvim', config = function ()
+  --   vim.cmd[[ colorscheme nord ]]
+  -- end }
 
 
-  -- use { 'EdenEast/nightfox.nvim', config = function()
-  --   require('nightfox').setup({
-  --     options = {
-  --       -- Compiled file's destination location
-  --       compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-  --       compile_file_suffix = "_compiled", -- Compiled file suffix
-  --       transparent = true, -- Disable setting background
-  --       terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-  --       dim_inactive = true,
-  --     },
-  --     palettes = {
-  --       nordfox = {
-  --         sel0 = "#3e4a5b", -- Popup bg, visual selection bg
-  --       }
-  --     }
-  --   })
-  --   vim.cmd [[colorscheme nordfox]]
-  -- end
-  -- }
+  use { 'EdenEast/nightfox.nvim', config = function()
+    require('nightfox').setup({
+      options = {
+        -- Compiled file's destination location
+        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+        compile_file_suffix = "_compiled", -- Compiled file suffix
+        transparent = true, -- Disable setting background
+        terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+        dim_inactive = true,
+        styles = { comments = "italic" },
+      },
+      palettes = {
+        nordfox = {
+          sel0 = "#3e4a5b", -- Popup bg, visual selection bg
+        }
+      }
+    })
+    vim.cmd [[colorscheme nordfox]]
+  end
+  }
 
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()

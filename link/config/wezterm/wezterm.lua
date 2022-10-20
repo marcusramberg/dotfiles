@@ -28,11 +28,16 @@ end
 local config = {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
-  color_scheme = "nord",
+  -- color_scheme = "nord",
   check_for_updates = false,
   -- colors = colors,
-  -- color_scheme = "nordfox",
+  color_scheme = "nordfox",
   default_gui_startup_args = { 'connect', 'unix' },
+  font_rules= { {
+      italic = true,
+      font = wezterm.font("VictorMono Nerd Font",{italic=true})
+    }
+  },
   font = wezterm.font("JetBrainsMono Nerd Font"),
   hide_tab_bar_if_only_one_tab = true,
   inactive_pane_hsb = {

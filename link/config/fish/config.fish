@@ -19,6 +19,9 @@ if status is-interactive
     abbr gd git diff
     abbr gl git log
     abbr vi nvim
+    abbr .. cd ..
+    abbr ... cd ../..
+    abbr .... cd ../../..
     abbr k kubectl 
 end
 
@@ -52,3 +55,4 @@ if status is-login
         ssh-add --apple-use-keychain  ~/.ssh/google_compute_engine
     end
 end
+nvm use

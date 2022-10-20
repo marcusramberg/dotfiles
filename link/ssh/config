@@ -1,3 +1,5 @@
+Include /Users/marcus/.colima/ssh_config
+
 Host mwork.lan
     HostName mwork.lan
     User marcus
