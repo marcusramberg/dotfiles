@@ -2,10 +2,13 @@
 prSections:
   - title: My Pull Requests
     filters: is:open author:@me
+    layout: 
+      author:
+        hidden: true
   - title: Needs My Review
     filters: is:open review-requested:@me
   - title: Subscribed
-    filters: is:open -author:@me repo:reMarkable/cloud-shared-services repo:reMarkable/cloud-admin
+    filters: is:open -author:@me repo:reMarkable/cloud-shared-services repo:reMarkable/cloud-admin repo:reMarkable/github-admin
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
@@ -23,9 +26,24 @@ defaults:
 repoPaths:
   "reMarkable/*": ~/Source/reMarkable/*
   reMarkable/cloud-dns: ~/Source/reMarkable/cloud-dns
+theme:
+  colors:
+    text:
+      primary: "#ECEFF4"
+      secondary: "#E5E9F0"
+      inverted: "#4C566A"
+      faint: "#D8DEE9"
+      warning: "#D08770"
+      success: "#3DF294"
+    background:
+      selected: "#3B4252"
+    border:
+      primary: "#3B4252"
+      secondary: "#434C5E"
+      faint: "#4C566A"
 keybindings:
   prs:
-    - key: c
+    - key: C
       command: cd {{.RepoPath}}; gh pr checkout {{.PrNumber}}
-    - key: v
+    - key: D
       command: cd {{.RepoPath}}; gh pr checkout {{.PrNumber}} && nvim -c ":DiffviewOpen main...{{.HeadRefName}}"

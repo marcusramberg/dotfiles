@@ -15,12 +15,13 @@
 
     # Other sources
     comma.url = github:nix-community/comma; 
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    devenv.url = "github:cachix/devenv/v0.2";
+
 
 
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, nix-doom-emacs, ... } @inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, devenv, ... } @inputs:
   let 
     inherit (darwin.lib) darwinSystem;
     inherit (inputs.nixpkgs-unstable.lib) attrValues mkMerge optionalAttrs singleton;

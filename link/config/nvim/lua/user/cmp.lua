@@ -27,15 +27,15 @@ local cmp_kinds = {
 	TypeParameter = ' ',
 }
 
-local has_words_before = function()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s')
-end
-
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
 cmp.setup {
 	completion = {
 		completeopt = 'menu,menuone,noinsert',
@@ -57,6 +57,7 @@ cmp.setup {
 	mapping = {
 		['<up>'] = cmp.mapping.select_prev_item(),
 		['<down>'] = cmp.mapping.select_next_item(),
+		["<C-g>"] = cmp.mapping.complete(),
 		['<C-k>'] = cmp.mapping.select_prev_item(),
 		['<C-j>'] = cmp.mapping.select_next_item(),
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -68,12 +69,9 @@ cmp.setup {
 			select = true,
 		},
 
-		["<Tab>"] = cmp.mapping(function(fallback)
-			-- local copilot_keys = vim.fn["copilot#Accept"]("")
-			if cmp.visible() then
-				cmp.select_next_item()
-			-- if copilot_keys ~= "" then
-			-- 	vim.api.nvim_feedkeys(copilot_keys, "i", false)
+		["<Tab>"] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
 			elseif vim.fn["vsnip#available"]() == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
 			elseif has_words_before() then
@@ -93,7 +91,7 @@ cmp.setup {
 	},
 
 	sources = {
-    { name = "copilot"}, -- group_index = 2 },
+    { name = "copilot",  group_index = 2 },
 		{ name = 'path'     },
 		{ name = 'vsnip'    },
 		{ name = 'orgmode' },

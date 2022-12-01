@@ -26,11 +26,11 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 local on_attach_vim = function(client, bufnr)
-  require("aerial").on_attach(client, bufnr)
+  -- require("aerial").on_attach(client, bufnr)
   -- require("lsp-status").on_attach(client)
 
   if client.server_capabilities.documentFormattingProvider then
-    m.nnoremap("<leader>cf", function() vim.lsp.buf.formatting() end, "silent", "Format")
+    m.nnoremap("<leader>cf", function() vim.lsp.buf.format { async = true } end, "silent", "Format")
   end
 
   if client.server_capabilities.documentHighlightProvider  then
@@ -100,11 +100,11 @@ lsp.terraformls.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tflint.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tsserver.setup { on_attach = on_attach_vim, capabilities = capabilities }
 
--- lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
-lsp.spectral.setup { on_attach = on_attach_vim, capabilities = capabilities,
-  filetypes = { "yaml" },
-  settings = { rootMarkers = { ".spectral.yaml", ".spectral.yml" } }
-}
+lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}
+-- lsp.spectral.setup { on_attach = on_attach_vim, capabilities = capabilities,
+--   filetypes = { "yaml" },
+--   settings = { rootMarkers = { ".spectral.yaml", ".spectral.yml" } }
+-- }
 lsp.sumneko_lua.setup({ on_attach = on_attach_vim, capabilities = capabilities, settings = {
   Lua = {
     runtime = {

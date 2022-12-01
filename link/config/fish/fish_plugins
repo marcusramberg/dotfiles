@@ -1,9 +1,10 @@
 jorgebucaran/fisher
 evanlucas/fish-kubectl-completions
 danhper/fish-ssh-agent
-pure-fish/pure
 jethrokuan/z
 PatrickF1/fzf.fish
 edc/bass
 lewisacidic/fish-git-abbr
 jorgebucaran/nvm.fish
+aluxian/fish-kube-prompt
+ilancosman/tide@v5

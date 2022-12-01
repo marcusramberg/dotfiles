@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#
+# Usage:
+#
+# Lookup resource:
+#   $ tfdoc aws_iam_role
+#
+# Lookup data source:
+#   $ tfdoc -d aws_iam_role
+#
+
+set -e
+
+tftype="r"
+
+usage() {
+  local ec="$1"
+  cat <<EOF
+Lookup resource:
+$ tfdoc aws_iam_role
+
+Lookup data source:
+$ tfdoc -d aws_iam_role
+EOF
+  exit $ec
+}
+
+while getopts ':dh' opt; do
+  case $opt in
+    d) tftype='d';;
+    h) usage 0;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [[ -z $1 ]]; then
+  echo 'Please let me know the resource/data source!'
+  usage 1
+fi
+
+if [[ $(uname) == 'Darwin' ]]; then
+  open_cmd='open'
+else
+  open_cmd='xdg-open'
+fi
+
+provider="${1%%_*}"
+resource="${1#*_}"
+
+$open_cmd https://www.terraform.io/docs/providers/${provider}/${tftype}/${resource}

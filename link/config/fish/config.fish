@@ -6,6 +6,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     alias cat bat
     alias ag rg
+    alias r "cd (git root)"
+    function rd
+        fd $argv (git root)
+    end
     alias emacs "emacs -nw"
     alias imgcat "wezterm imgcat"
     abbr l ls
@@ -17,12 +21,17 @@ if status is-interactive
     abbr gp git pull
     abbr gb git branch
     abbr gd git diff
+    abbr gwa git  worktree add
+    abbr gwl git  worktree list
+    abbr gwr git  worktree remove
     abbr gl git log
     abbr vi nvim
+    abbr gfu "git fetch --all --prune && git rebase origin/main"
     abbr .. cd ..
     abbr ... cd ../..
     abbr .... cd ../../..
     abbr k kubectl 
+    abbr kx kubectx
 end
 
 # Make it vim
@@ -34,10 +43,12 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 
 status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
 
+# Completion
 eval (kustomize completion fish)
-#eval (opensearch-cli completion fish)
-set --universal pure_color_mute 777
-set --universal pure_enable_single_line_prompt true
+yq shell-completion fish | source
+
+# set --universal pure_color_mute 777
+# set --universal pure_enable_single_line_prompt true
 
 fish_add_path /.dotfiles/bin /usr/local/sbin 
 fish_add_path -a /run/current_system/sw/bin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin

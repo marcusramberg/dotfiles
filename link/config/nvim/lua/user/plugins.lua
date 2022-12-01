@@ -17,7 +17,17 @@ packer.startup(function(use)
   -- use 'zah/nim.vim'
   use 'golang/vscode-go'
   use 'elzr/vim-json'
-  use { 'nvim-treesitter/nvim-treesitter', run = 'TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter', run = 'TSUpdate', config = function()
+    local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+    parser_config.gotmpl = {
+      install_info = {
+        url = "https://github.com/ngalaiko/tree-sitter-go-template",
+        files = {"src/parser.c"}
+      },
+      filetype = "gotmpl",
+      used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
+    }
+  end }
   use { 'nvim-treesitter/nvim-treesitter-context', config = function() require 'treesitter-context'.setup {} end }
   use { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
@@ -56,6 +66,7 @@ packer.startup(function(use)
   use 'christianrondeau/vim-base64'
   use 'szw/vim-g'
   use 'rhysd/clever-f.vim'
+  use 'andymass/vim-matchup'
 
 
   use {
@@ -100,6 +111,7 @@ packer.startup(function(use)
     requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }
   }
   use 'f-person/git-blame.nvim'
+
   use {
     'pwntester/octo.nvim',
     requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons' },
@@ -111,7 +123,7 @@ packer.startup(function(use)
   use { 'RishabhRD/nvim-cheat.sh', requires = { 'RishabhRD/popfix' } }
 
   -- open with line (from syntax output and such)
-  use 'bogado/file-line'
+  use 'wsdjeg/vim-fetch'
   -- menus
   use { 'folke/which-key.nvim', config = function()
     require("which-key").setup {
@@ -164,6 +176,8 @@ packer.startup(function(use)
     end,
     requires = { "nvim-lua/plenary.nvim" },
   })
+  use 'vigoux/LanguageTool.nvim'
+
   use "neovim/nvim-lspconfig"
   use 'arkav/lualine-lsp-progress'
   use({
@@ -189,9 +203,10 @@ packer.startup(function(use)
 
   use 'aspeddro/lsp_menu.nvim'
   use { 'stevearc/aerial.nvim', config = function() require('aerial').setup({
-      default_direction = "prefer_left",
+      layout = {
+        default_direction = "prefer_left",
+      },
       close_on_select = true,
-
     })
   end }
   -- yaml companion
@@ -232,11 +247,30 @@ packer.startup(function(use)
 
   -- Autocomplete
 
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
+  use {
+  "zbirenbaum/copilot.lua",
+  event = "VimEnter",
+  config = function()
+    vim.defer_fn(function()
+      require("copilot").setup({
+          copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/nvm/v17.9.1/bin/node" -- Node version must be < 18
+        })
+    end, 100)
+  end,
+}
+
+  use {
+  "zbirenbaum/copilot-cmp",
+  after = { "copilot.lua" },
+  config = function ()
+    require("copilot_cmp").setup()
+  end
+}
   use { 'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ',
-      'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git', 'hrsh7th/cmp-copilot', 'hrsh7th/cmp-emoji', 'hrsh7th/cmp-nvim-lsp-signature-help'},
+      'prabirshrestha/vsnip-snippets', 'prabirshrestha/vsnip-snippets', 'petertriho/cmp-git', 'hrsh7th/cmp-emoji', 'hrsh7th/cmp-nvim-lsp-signature-help'},
   }
   use "rafamadriz/friendly-snippets"
 
