@@ -67,3 +67,4 @@ if status is-login
     end
 end
 nvm use
+source tide_config.fish
