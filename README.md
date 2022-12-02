@@ -42,7 +42,7 @@ Notes:
 - You need to have installed [XCode Command Line Tools](https://developer.apple.com/downloads/index.action?=command%20line%20tools), which are available as a separate, optional (and _much smaller_) download from XCode.
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/marcusramberg/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/marcusramberg/dotfiles/master/bin/dotfiles)" && source ~/.config/fish/config.fish
 ```
 
 ### Ubuntu
