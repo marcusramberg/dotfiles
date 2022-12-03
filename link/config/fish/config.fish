@@ -65,6 +65,6 @@ if status is-login
         ssh-add --apple-use-keychain  ~/.ssh/id_dsa
         ssh-add --apple-use-keychain  ~/.ssh/google_compute_engine
     end
+    source ~/.config/fish/tide_config.fish
 end
 nvm use
-source tide_config.fish

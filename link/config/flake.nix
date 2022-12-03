@@ -26,6 +26,7 @@
     inherit (darwin.lib) darwinSystem;
     inherit (inputs.nixpkgs-unstable.lib) attrValues mkMerge optionalAttrs singleton;
 
+
     # Configuration for `nixpkgs`
     nixpkgsConfig = {
       config = { allowUnfree = true; };
@@ -35,6 +36,7 @@
           inherit (final.pkgs-x86)
             idris2
             nix-index
+            devenv
             niv;
         })
       );
