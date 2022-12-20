@@ -13,7 +13,6 @@ vim.o.pastetoggle="<F2>"
 nnoremap("<leader> ", function() ts.buffers() end, "Buffers")
 nnoremap("<leader>,", ":AerialToggle<cr>", "Navigate")
 nnoremap("<leader>.", ":b#<cr>", "Last Buffer")
-nnoremap("<leader>z", ":w<CR>:so %<CR>:PackerSync<cr>", "Navigate")
 
 
 m.nname("<leader>b","buffers")
@@ -23,7 +22,7 @@ nnoremap("<leader>b]",":bn<cr>", "Next")
 nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 nnoremap("[b",":bp<cr>", "Prev Buffer")
 nnoremap("]b",":bn<cr>", "Next Buffer")
-nnoremap("<leader>z",":PackerSync<cr>", "Sync Packer")
+nnoremap("<leader>z",":Lazy<cr>", "Packages")
 
 m.nname("<leader>c","code")
 nnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "silent", "Action")
