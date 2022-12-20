@@ -6,7 +6,7 @@
       user-mail-address "marcus.ramberg@gmail.com")
 
 ;; Look and feel
-(setq doom-font "JetbrainsMono Nerd Font Mono-10"
+(setq doom-font "JetbrainsMono Nerd Font Mono-13"
       ; doom-variable-pitch-font (font-spec :family "futura" :size 13)
       doom-theme 'doom-nord ;; Current favorite
       display-line-numbers-type nil) ;; not worth the perf
@@ -400,4 +400,12 @@ See `org-capture-templates' for more information."
  )
 (setq dash-docs-docsets '("NodeJS" "Javascript" "HTML"))
 
-;;(require 'git-auto-commit-mode)
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+         ("C-<tab>" . 'copilot-accept-completion-by-word)
+         :map copilot-completion-map
+         ("<tab>" . 'copilot-accept-completion)
+         ("TAB" . 'copilot-accept-completion)))
