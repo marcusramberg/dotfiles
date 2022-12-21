@@ -113,7 +113,7 @@
 [pull]
 	rebase = true
 [credential]
-	helper = store
+	helper = cache --timeout=1209600
 [rebase]
 	autoStash = true
 [color "diff-highlight"]
@@ -138,11 +138,3 @@ vcs = git
 root = ~/Source/reMarkable/
 [url "git@github.com:reMarkable/cloud"]
 	insteadOf = https://github.com/reMarkable/cloud
-[url "https://user@hostname"]
-	insteadOf = ssh://git@hostname
-[url "https://x-access-token@github.com"]
-	insteadOf = ssh://git@github.com
-[url "https://x-access-token@127.0.0.1:54000"]
-	insteadOf = ssh://git@127.0.0.1:54000
-[url "https://x-access-token@some-host"]
-	insteadOf = ssh://git@some-host
