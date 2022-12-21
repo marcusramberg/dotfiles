@@ -33,19 +33,19 @@ if status is-interactive
     abbr k kubectl 
     abbr kx kubectx
 
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-test -x ~/.plenv/bin/plenv; and . (plenv init -|psub)
+    test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+    test -x ~/.plenv/bin/plenv; and . (plenv init -|psub)
 
-# Completion
-type -q kustomize; and eval (kustomize completion fish)
-type -q yq; and yq shell-completion fish | source
-type -q nvm; and nvm use
+    # Completion
+    type -q kustomize; and eval (kustomize completion fish)
+    type -q yq; and yq shell-completion fish | source
+    type -q nvm; and nvm use
+    source ~/.config/fish/tide_config.fish
 end
 
 # Make it vim
 fish_vi_key_bindings
 set -gx EDITOR nvim
-
 
 
 # set --universal pure_color_mute 777
@@ -66,5 +66,4 @@ if status is-login
         ssh-add --apple-use-keychain  ~/.ssh/id_dsa
         ssh-add --apple-use-keychain  ~/.ssh/google_compute_engine
     end
-    source ~/.config/fish/tide_config.fish
 end

@@ -13,7 +13,6 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 require("lazy").setup({
   -- Syntax
-  'sheerun/vim-polyglot',
   -- use 'zah/nim.vim'
   'golang/vscode-go',
   'elzr/vim-json',
@@ -67,7 +66,6 @@ require("lazy").setup({
    'karb94/neoscroll.nvim',
   { 'sQVe/sort.nvim', config = function() require("sort").setup({}) end },
   'christianrondeau/vim-base64',
-  'szw/vim-g',
   'rhysd/clever-f.vim',
   'andymass/vim-matchup',
 
@@ -280,17 +278,17 @@ require("lazy").setup({
       require("trouble").setup {}
     end
   },
-  {
-    'mrjones2014/dash.nvim',
-    enabled = (jit.os == "OSX"),
-  },
+  -- {
+  --   'mrjones2014/dash.nvim',
+  --   enabled = (jit.os == "OSX"),
+  -- },
   -- Terminal
-  {
-    's1n7ax/nvim-terminal',
-    config = function()
-        vim.o.hidden = true
-        require('nvim-terminal').setup()
-    end },
+  {"itmecho/neoterm.nvim",config = function()
+    require("neoterm").setup({
+      mode = "horizontal",
+      noinsert = true
+    })
+  end},
 
   { 'akinsho/bufferline.nvim', version = ">=3", dependencies = 'kyazdani42/nvim-web-devicons',
     config = function()
@@ -324,7 +322,7 @@ require("lazy").setup({
         }
       }
     })
-    vim.cmd([[colorscheme nordfox]])
+    vim.cmd([[colorscheme carbonfox]])
   end },
 
   { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' },

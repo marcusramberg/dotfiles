@@ -54,7 +54,7 @@ nnoremap("<leader>hc", ":CheatList<cr>" , "help")
 nnoremap("<leader>hC", ":Cheat" , "help")
 
 m.nname("<leader>o", "open")
-nnoremap("<leader>ot", ":ToggleTerm<cr>", "Terminal")
+nnoremap("<leader>ot", function() require('neoterm').toggle() end, "Terminal")
 nnoremap("<leader>oa", function() org.action("agenda.prompt") end, "Agenda")
 nnoremap("<leader>oc", function() org.action("capture.prompt") end, "Capture")
 
