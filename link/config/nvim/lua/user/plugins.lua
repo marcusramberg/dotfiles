@@ -12,7 +12,6 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
  vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
-  'wbthomason/packer.nvim',
   -- Syntax
   'sheerun/vim-polyglot',
   -- use 'zah/nim.vim'
@@ -281,14 +280,10 @@ require("lazy").setup({
       require("trouble").setup {}
     end
   },
-
-  -- if (jit.os == "OSX") then
-  --   use({
-  --     'mrjones2014/dash.nvim',
-  --     run = 'make install',
-  --   })
-  -- end
-
+  {
+    'mrjones2014/dash.nvim',
+    enabled = (jit.os == "OSX"),
+  },
   -- Terminal
   {
     's1n7ax/nvim-terminal',
