@@ -32,6 +32,14 @@ if status is-interactive
     abbr .... cd ../../..
     abbr k kubectl 
     abbr kx kubectx
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+test -x ~/.plenv/bin/plenv; and . (plenv init -|psub)
+
+# Completion
+type -q kustomize; and eval (kustomize completion fish)
+type -q yq; and yq shell-completion fish | source
+type -q nvm; and nvm use
 end
 
 # Make it vim
@@ -39,13 +47,6 @@ fish_vi_key_bindings
 set -gx EDITOR nvim
 
 
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-
-status --is-interactive; and . (~/.plenv/bin/plenv init -|psub)
-
-# Completion
-eval (kustomize completion fish)
-yq shell-completion fish | source
 
 # set --universal pure_color_mute 777
 # set --universal pure_enable_single_line_prompt true
@@ -67,4 +68,3 @@ if status is-login
     end
     source ~/.config/fish/tide_config.fish
 end
-nvm use
