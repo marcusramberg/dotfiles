@@ -100,9 +100,8 @@ mkdir -p "$HOME/.dotfiles/caches"
 
 
 ansible-playbook -i ~/.dotfiles/play/inventory ~/.dotfiles/play/site.yml
-
-
-
+status=$?
 
 # All done!
 e_header "All done!"
+exit $status

@@ -1,6 +1,5 @@
 ---
 - name: install our packages
-  become: yes
-  apt: name="{{item}}" state=installed
-  with_items: "{{installed_debs}}"
+  become: true
+  apt: name="{{installed_debs}}" state=latest update_cache=true
 
