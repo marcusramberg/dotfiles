@@ -13,7 +13,7 @@ if status is-interactive
     alias emacs "emacs -nw"
     alias imgcat "wezterm imgcat"
     abbr l ls
-    thefuck --alias | source
+    type -q thefuck; and thefuck --alias | source
     #git
     abbr gc git commit
     abbr gs git status
