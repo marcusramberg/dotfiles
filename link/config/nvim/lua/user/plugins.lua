@@ -59,11 +59,11 @@ require("lazy").setup({
 
   -- Extend editing
   'adelarsq/vim-matchit',
-  'terryma/vim-multiple-cursors',
+  'mg979/vim-visual-multi',
   'tpope/vim-surround',
   'tpope/vim-commentary',
-   '907th/vim-auto-save',
-   'karb94/neoscroll.nvim',
+  '907th/vim-auto-save',
+  'arb94/neoscroll.nvim',
   { 'sQVe/sort.nvim', config = function() require("sort").setup({}) end },
   'christianrondeau/vim-base64',
   'rhysd/clever-f.vim',
