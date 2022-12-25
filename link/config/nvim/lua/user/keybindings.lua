@@ -23,6 +23,7 @@ nnoremap("<leader>bb", function() ts.buffers() end, "Buffers")
 nnoremap("[b",":bp<cr>", "Prev Buffer")
 nnoremap("]b",":bn<cr>", "Next Buffer")
 nnoremap("<leader>z",":Lazy<cr>", "Packages")
+nnoremap("<leader>Z",":Mason<cr>", "LSP Packages")
 
 m.nname("<leader>c","code")
 nnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "silent", "Action")

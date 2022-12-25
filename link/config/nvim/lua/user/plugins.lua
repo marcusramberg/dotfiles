@@ -31,6 +31,7 @@ require("lazy").setup({
        }
      end },
   { 'nvim-treesitter/nvim-treesitter-context', config = function() require 'treesitter-context'.setup {} end },
+  "nathom/filetype.nvim",
   { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
     require('orgmode').setup {
@@ -109,6 +110,9 @@ require("lazy").setup({
     config = function() require "neogit".setup { use_magit_keybindings = true } end,
     dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }
   },
+  {'akinsho/git-conflict.nvim', tag = "*", config = function()
+    require('git-conflict').setup()
+  end},
   'f-person/git-blame.nvim',
 
   {
