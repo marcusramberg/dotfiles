@@ -24,11 +24,11 @@
   with_items: "{{result.results}}"
 
 - name: Copy files
-  copy:  src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
+  copy: src=~/.dotfiles/link/{{ item|basename }} dest=~/.{{ item|basename }} force=yes
   with_lines: ls ~/.dotfiles/copy
 
 - name: Link files
-  file:  src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
+  file: src=~/.dotfiles/link/{{ item|basename }} path=~/.{{ item|basename }} state=link force=yes
   with_lines: ls ~/.dotfiles/link
 
 - name: Set correct mode for ssh keys
@@ -37,7 +37,3 @@
     - ~/.dotfiles/link/ssh
     - ~/.dotfiles/link
     - ~/.dotfiles
-
-- shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  args:
-    creates: ~/.vim/autoload/plug.vim
