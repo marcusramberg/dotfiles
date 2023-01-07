@@ -58,7 +58,7 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.marcus = import ./home.nix;
+            home-manager.users.marcus = import ../../nix/home.nix;
           }
         ];
       };
