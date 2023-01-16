@@ -34,7 +34,7 @@ if status is-interactive
     abbr kx kubectx
 
     test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-    test -x ~/.plenv/bin/plenv; and . (plenv init -|psub)
+    test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
 
     # Completion
     type -q kustomize; and eval (kustomize completion fish)
