@@ -21,23 +21,18 @@
   #             };
 
   home.packages = with pkgs; [
-    # Some basics
+
+    actionlint
     coreutils
     curl
-    git
     deadnix
-    wget
-    tealdeer
-
-    # Dev stuff
-    # (agda.withPackages (p: [ p.standard-library ]))
-    # (google-cloud-sdk.withExtraComponents([ google-cloud-sdk.components.kubectl google-cloud-sdk.components.config-connector google-cloud-sdk.components.gke-gcloud-auth-plugin]))
-    actionlint
     git
     jq
-    yq
     nodePackages.typescript
     nodejs-16_x
+    tealdeer
+    wget
+    yq
 
     # Useful nix related tools
     cachix # adding/managing alternative binary caches hosted by Cachix

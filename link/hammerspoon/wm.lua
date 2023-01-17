@@ -1,7 +1,7 @@
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 local cmd = {"cmd"}
 local ctrl = {"ctrl"}
-local cmd_shift = {"cmd", "shift"}
+local ctrl_shift = {"cmd", "shift"}
 
 local spaces = require("hs.spaces")
 
@@ -36,14 +36,14 @@ local switchToSpace = function(sp)
 end
 
 
-hs.hotkey.bind(cmd_shift, "1", function() switchToSpace(1) end)
-hs.hotkey.bind(cmd_shift, "2", function() switchToSpace(2) end)
-hs.hotkey.bind(cmd_shift, "3", function() switchToSpace(3) end)
-hs.hotkey.bind(cmd_shift, "4", function() switchToSpace(4) end)
-hs.hotkey.bind(cmd_shift, "5", function() switchToSpace(5) end)
-hs.hotkey.bind(cmd_shift, "6", function() switchToSpace(6) end)
-hs.hotkey.bind(cmd_shift, "7", function() switchToSpace(7) end)
-hs.hotkey.bind(cmd_shift, "8", function() switchToSpace(8) end)
+hs.hotkey.bind(ctrl, "1", function() switchToSpace(1) end)
+hs.hotkey.bind(ctrl, "2", function() switchToSpace(2) end)
+hs.hotkey.bind(ctrl, "3", function() switchToSpace(3) end)
+hs.hotkey.bind(ctrl, "4", function() switchToSpace(4) end)
+hs.hotkey.bind(ctrl, "5", function() switchToSpace(5) end)
+hs.hotkey.bind(ctrl, "6", function() switchToSpace(6) end)
+hs.hotkey.bind(ctrl, "7", function() switchToSpace(7) end)
+hs.hotkey.bind(ctrl, "8", function() switchToSpace(8) end)
 
 local moveWindowToSpace = function(sp)
   local win = hs.window.focusedWindow() -- current window
@@ -55,19 +55,19 @@ local moveWindowToSpace = function(sp)
 
 end
 
--- hs.hotkey.bind(cmd_shift, "1", function() moveWindowToSpace(1) end)
--- hs.hotkey.bind(cmd_shift, "2", function() moveWindowToSpace(2) end)
--- hs.hotkey.bind(cmd_shift, "3", function() moveWindowToSpace(3) end)
--- hs.hotkey.bind(cmd_shift, "4", function() moveWindowToSpace(4) end)
--- hs.hotkey.bind(cmd_shift, "5", function() moveWindowToSpace(5) end)
--- hs.hotkey.bind(cmd_shift, "6", function() moveWindowToSpace(6) end)
--- hs.hotkey.bind(cmd_shift, "7", function() moveWindowToSpace(7) end)
--- hs.hotkey.bind(cmd_shift, "8", function() moveWindowToSpace(8) end)
+hs.hotkey.bind(ctrl_shift, "1", function() moveWindowToSpace(1) end)
+hs.hotkey.bind(ctrl_shift, "2", function() moveWindowToSpace(2) end)
+hs.hotkey.bind(ctrl_shift, "3", function() moveWindowToSpace(3) end)
+hs.hotkey.bind(ctrl_shift, "4", function() moveWindowToSpace(4) end)
+hs.hotkey.bind(ctrl_shift, "5", function() moveWindowToSpace(5) end)
+hs.hotkey.bind(ctrl_shift, "6", function() moveWindowToSpace(6) end)
+hs.hotkey.bind(ctrl_shift, "7", function() moveWindowToSpace(7) end)
+hs.hotkey.bind(ctrl_shift, "8", function() moveWindowToSpace(8) end)
 
-hs.hotkey.bind(cmd, "left", function() hs.window.focusedWindow().focusWindowWest() end)
-hs.hotkey.bind(cmd, "right", function() hs.window.focusedWindow().focusWindowEast() end)
-hs.hotkey.bind(cmd, "up", function() hs.window.focusedWindow().focusWindowNorth() end)
-hs.hotkey.bind(cmd, "down", function() hs.window.focusedWindow().focusWindowSouth() end)
+hs.hotkey.bind(cmd, "left", function() hs.window.focusedWindow():focusWindowWest() end)
+hs.hotkey.bind(cmd, "right", function() hs.window.focusedWindow():focusWindowEast() end)
+hs.hotkey.bind(cmd, "up", function() hs.window.focusedWindow():focusWindowNorth() end)
+hs.hotkey.bind(cmd, "down", function() hs.window.focusedWindow():focusWindowSouth() end)
 
 local switcher_space = hs.window.switcher.new(hs.window.filter.new {override = {fullscreen = false}}:setCurrentSpace(
                                                 true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only

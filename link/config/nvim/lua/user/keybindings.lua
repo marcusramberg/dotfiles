@@ -31,7 +31,7 @@ nnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "silent", "Action")
 vim.keymap.set("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
 nnoremap("<leader>cl", function() require'lsp_menu'.codelens.run{} end, "silent", "Lens") --ts.lsp_code_actions() end, "silent", "Action")
 nnoremap("<leader>ce", function() vim.diagnostic.open_float() end, "silent", "Errors")
-nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Format")
+nnoremap("<leader>cr", function() vim.lsp.buf.rename() end, "silent", "Rename")
 nnoremap("<leader>cs", function() print(vim.inspect(vim.lsp.buf_get_clients())) end, "silent", "Status")
 nnoremap("<leader>cy", ":Telescope yaml_schema<cr>", "YAML Schema")
 

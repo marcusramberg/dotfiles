@@ -14,6 +14,7 @@ vim.opt.runtimepath:prepend(lazypath)
 require('lazy').setup({
   -- Syntax
   -- use 'zah/nim.vim'
+  'sheerun/vim-polyglot',
   'golang/vscode-go',
   'elzr/vim-json',
   { 'nvim-treesitter/nvim-treesitter', build = function()
@@ -61,10 +62,8 @@ require('lazy').setup({
   -- Extend editing
   'adelarsq/vim-matchit',
   'mg979/vim-visual-multi',
-  'tpope/vim-surround',
-  'tpope/vim-commentary',
   '907th/vim-auto-save',
-  'arb94/neoscroll.nvim',
+  'karb94/neoscroll.nvim',
   { 'sQVe/sort.nvim', config = function() require('sort').setup({}) end },
   'christianrondeau/vim-base64',
   'rhysd/clever-f.vim',
@@ -148,7 +147,7 @@ require('lazy').setup({
   { 'stevearc/overseer.nvim', config = true, },
 
   -- LSP
-  'ThePrimeagen/refactoring.nvim',
+  -- 'ThePrimeagen/refactoring.nvim',
   {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
@@ -168,36 +167,43 @@ require('lazy').setup({
         null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.terrafmt,
       }
       null_ls.setup({ sources = sources, debug = true })
     end,
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
+  { 'chrisgrieser/nvim-recorder', config = true},
+  {'echasnovski/mini.nvim', config =function ()
+    require('mini.comment').setup()
+    require('mini.surround').setup()
+  end },
   'vigoux/LanguageTool.nvim',
 
   'neovim/nvim-lspconfig',
   -- 'arkav/lualine-lsp-progress',
   {
     'glepnir/lspsaga.nvim',
-    branch = 'main',
+    event = 'BufRead',
     config = function()
-      local saga = require('lspsaga')
-
-      saga.init_lsp_saga({
+      require('lspsaga').setup({
         -- your configuration
         code_action_lightbulb = { virtual_text = false, }
       })
     end,
   },
   'b0o/schemastore.nvim',
-  { 'williamboman/mason.nvim',
-    config = function()
-      require('mason').setup()
-      require 'user.lsp-config'
-    end
-  },
-  { 'williamboman/mason-lspconfig.nvim', config = true },
+  { 'williamboman/mason.nvim', config = true },
+  { 'williamboman/mason-lspconfig.nvim', config = function()
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        "gopls",
+        "terraformls",
+        "tflint",
+        "tsserver",
+      }
+    })
+    require 'user.lsp-config'
+  end },
   { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
 
   'aspeddro/lsp_menu.nvim',
@@ -322,13 +328,15 @@ require('lazy').setup({
       }
     end },
   'b0o/mapx.nvim',
-  { 'folke/noice.nvim', config = function ()
+  { 'folke/noice.nvim', config = function()
     require("noice").setup({
       lsp = {
         override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    }}})
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        }
+      }
+    })
   end, dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' } }
 })

@@ -41,10 +41,6 @@
     terminal-notifier
   ];
 
-  # https://github.com/nix-community/home-manager/issues/423
-  environment.variables = {
-    TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
-  };
   programs.nix-index.enable = true;
 
   # Fonts
@@ -54,9 +50,44 @@
      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
    ];
 
+   system.defaults.dock = {
+     show-recents = false;
+     showhidden = true;
+     static-only = true;
+     orientation = "right";
+     mru-spaces = false;
+     minimize-to-application = true;
+     mineffect = "scale";
+     autohide = false;
+   };
+  system.defaults.finder = {
+    AppleShowAllExtensions = true;
+    FXEnableExtensionChangeWarning = false;
+    FXPreferredViewStyle = "clmv";
+    QuitMenuItem = true;
+    ShowPathbar = true;
+    ShowStatusBar = true;
+    _FXShowPosixPathInTitle = true;
+  };
+  system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+
+  system.defaults.dock.wvous-br-corner=13;
+
   # Keyboard
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToEscape = true;
+
+  system.defaults.screencapture = {
+    type = "jpg";
+    disable-shadow = true;
+  };
+
+  # Trackpad
+  system.defaults.trackpad = {
+    ActuationStrength = 0;
+    Clicking = true;
+  };
+
 
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
