@@ -31,6 +31,7 @@
     exa
     deadnix
     git
+    git-crypt
     fd
     fzf
     fortune
