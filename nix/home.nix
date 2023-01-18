@@ -35,10 +35,14 @@
     fd
     fzf
     fortune
+    go
+    golangci-lint
+    gopls
     jq
     nodePackages.typescript
     nodejs-16_x
     neovim-unwrapped
+    ripgrep
     tealdeer
     wget
     yq-go

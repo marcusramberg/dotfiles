@@ -1,16 +1,4 @@
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/marcus/.sdkman"
-[[ -s "/home/marcus/.sdkman/bin/sdkman-init.sh" ]] && source "/home/marcus/.sdkman/bin/sdkman-init.sh"
-
-export PATH="$HOME/.cargo/bin:$PATH"
-if [ -e /Users/marcus/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/marcus/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-export PATH=$PATH:~/.kube/plugins/jordanwilson230
 if [ -e /home/marcus/.nix-profile/etc/profile.d/nix.sh ]; then . /home/marcus/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-export PATH="$HOME/.poetry/bin:$PATH"

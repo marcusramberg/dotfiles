@@ -38,3 +38,4 @@ direnv/
 asciinema/
 github-copilot/
 configstore/
+link/config/htop/htoprc
