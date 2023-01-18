@@ -23,21 +23,25 @@
   home.packages = with pkgs; [
 
     actionlint
+    bat
     coreutils
     curl
+    exa
     deadnix
     git
+    fd
     jq
     nodePackages.typescript
     nodejs-16_x
+    neovim-unwrapped
     tealdeer
     wget
-    yq
+    yq-go
 
     # Useful nix related tools
-    cachix # adding/managing alternative binary caches hosted by Cachix
-    comma # run software from without installing it
-    niv # easy dependency management for nix projects
+    cachix  # adding/managing alternative binary caches hosted by Cachix
+    comma   # run software from without installing it
+     niv    # easy dependency management for nix projects
     nodePackages.node2nix
 
   ] ++ lib.optionals stdenv.isDarwin [
