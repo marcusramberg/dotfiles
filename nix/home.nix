@@ -8,22 +8,24 @@
   # Direnv, load and unload environment variables depending on the current directory.
   # https://direnv.net
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   # Htop
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
-  programs.htop.enable = true;
-  programs.htop.settings.show_program_path = true;
-  # programs.doom-emacs = {
-  #               enable = true;
-  #               doomPrivateDir = ../doom.d;
-  #             };
+  programs.htop = {
+    enable = true;
+    settings.show_program_path = true;
+  };
+
 
   home.packages = with pkgs; [
 
     actionlint
     bat
+    cocogitto
     coreutils
     curl
     exa
