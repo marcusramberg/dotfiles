@@ -1,10 +1,14 @@
 # No welcome necessary
-set -U fish_greeting
+function fish_greeting
+    fortune art goedel wisdom tao literature songs-poems paradoxum
+    echo ""
+end
 # Dracula
-set fish_theme dracula
+set fish_theme  tokyo-night
 if status is-interactive
     # Commands to run in interactive sessions can go here
     alias cat bat
+    alias ls exa
     alias ag rg
     alias r "cd (git root)"
     function rd
@@ -39,7 +43,7 @@ if status is-interactive
     # Completion
     type -q kustomize; and eval (kustomize completion fish)
     type -q yq; and yq shell-completion fish | source
-    type -q nvm; and nvm use
+    type -q nvm; and nvm use -s
     source ~/.config/fish/tide_config.fish
 end
 
@@ -62,8 +66,8 @@ set CLOUDSDK_PYTHON_SITEPACKAGES 1
 
 if status is-login
     if [ -f /Users/marcus/.ssh/id_rsa ]
-        ssh-add --apple-use-keychain  ~/.ssh/id_rsa
-        ssh-add --apple-use-keychain  ~/.ssh/id_dsa
-        ssh-add --apple-use-keychain  ~/.ssh/google_compute_engine
+        ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
+        ssh-add -q --apple-use-keychain  ~/.ssh/id_dsa
+        ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
     end
 end

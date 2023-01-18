@@ -30,6 +30,7 @@
     deadnix
     git
     fd
+    fortune
     jq
     nodePackages.typescript
     nodejs-16_x
