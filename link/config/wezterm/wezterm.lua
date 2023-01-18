@@ -1,5 +1,4 @@
 local wezterm = require 'wezterm'
-local colors = require 'colors'
 
 -- wezterm.on("update-right-status", function(window, pane)
 --   -- "08:14"
@@ -30,7 +29,6 @@ local config = {
   audible_bell = "Disabled",
   -- color_scheme = "nord",
   check_for_updates = false,
-  -- colors = colors,
   color_scheme = "tokyonight",
   default_gui_startup_args = { 'connect', 'unix' },
   font_rules= { {
