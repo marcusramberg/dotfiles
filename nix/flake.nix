@@ -11,6 +11,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     # Other sources
     comma.url = github:nix-community/comma; 
@@ -20,7 +21,7 @@
 
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, devenv, ... } @inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, devenv, nix-doom-emacs, ... } @inputs:
   let 
     inherit (darwin.lib) darwinSystem;
     inherit (inputs.nixpkgs-unstable.lib) attrValues optionalAttrs singleton;
@@ -54,6 +55,7 @@
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
+            inherit nix-doom-emacs;
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

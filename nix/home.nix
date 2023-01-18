@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   home.stateVersion = "22.05";
+  imports = [ nix-doom-emacs.hmModule ];
 
 
   # https://github.com/malob/nixpkgs/blob/master/home/default.nix
@@ -20,6 +21,11 @@
     settings.show_program_path = true;
   };
 
+   programs.doom-emacs = {
+              enable = true;
+              doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
+                                         # and packages.el files
+            };
 
   home.packages = with pkgs; [
 
