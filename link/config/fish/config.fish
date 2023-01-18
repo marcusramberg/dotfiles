@@ -70,4 +70,6 @@ if status is-login
         ssh-add -q --apple-use-keychain  ~/.ssh/id_dsa
         ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
     end
+    set -x GPG_TTY (tty)
+    gpgconf --launch gpg-agent
 end
