@@ -32,6 +32,7 @@
     deadnix
     git
     fd
+    fzf
     fortune
     jq
     nodePackages.typescript

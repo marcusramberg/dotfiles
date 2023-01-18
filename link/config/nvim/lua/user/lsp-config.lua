@@ -96,8 +96,8 @@ lsp.pylsp.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.rls.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.rnix.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tailwindcss.setup { on_attach = on_attach_vim, capabilities = capabilities }
-lsp.terraformls.setup { filetypes = {'tf'}, on_attach = on_attach_vim, capabilities = capabilities }
-lsp.tflint.setup { filetypes = {'tf'}, on_attach = on_attach_vim, capabilities = capabilities }
+lsp.terraformls.setup { on_attach = on_attach_vim, capabilities = capabilities }
+lsp.tflint.setup { on_attach = on_attach_vim, capabilities = capabilities }
 lsp.tsserver.setup { on_attach = on_attach_vim, capabilities = capabilities }
 
 lsp.yamlls.setup{on_attach = on_attach_vim, capabilities = capabilities}

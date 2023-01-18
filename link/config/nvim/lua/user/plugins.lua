@@ -32,7 +32,17 @@ require('lazy').setup({
     }
   end },
   { 'nvim-treesitter/nvim-treesitter-context', config = function() require 'treesitter-context'.setup {} end },
-  'nathom/filetype.nvim',
+  {'nathom/filetype.nvim', config = function()
+      require('filetype').setup {
+        overrides = {
+          extensions = {
+            tf = "terraform",
+            tfvars = "terraform",
+            tfstate = "json",
+          },
+        },
+      }
+    end },
   { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup_ts_grammar()
     require('orgmode').setup {
@@ -155,6 +165,7 @@ require('lazy').setup({
       local sources = {
         -- null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.formatting.terraform_fmt,
         null_ls.builtins.diagnostics.actionlint,
         null_ls.builtins.diagnostics.codespell,
         null_ls.builtins.diagnostics.cppcheck,
