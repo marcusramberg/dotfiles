@@ -16,4 +16,6 @@ return {
   { "sQVe/sort.nvim", config = true },
   -- Extend % to support words
   "andymass/vim-matchup",
+  -- Simplify the macro syntax
+  { "chrisgrieser/nvim-recorder", config = true },
 }

@@ -21,11 +21,11 @@
     settings.show_program_path = true;
   };
 
-   programs.doom-emacs = {
-              enable = true;
-              doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-                                         # and packages.el files
-            };
+  programs.doom-emacs = {
+    enable = true;
+    doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
+    # and packages.el files
+  };
 
   home.packages = with pkgs; [
 
@@ -54,9 +54,9 @@
     yq-go
 
     # Useful nix related tools
-    cachix  # adding/managing alternative binary caches hosted by Cachix
-    comma   # run software from without installing it
-     niv    # easy dependency management for nix projects
+    cachix # adding/managing alternative binary caches hosted by Cachix
+    comma # run software from without installing it
+    niv # easy dependency management for nix projects
     nodePackages.node2nix
 
   ] ++ lib.optionals stdenv.isDarwin [

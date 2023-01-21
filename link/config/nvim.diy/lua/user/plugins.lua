@@ -91,8 +91,8 @@ require("lazy").setup({
 		end,
 	},
 	"christianrondeau/vim-base64",
-	"rhysd/clever-f.vim",
 	"andymass/vim-matchup",
+	"rhysd/clever-f.vim",
 
 	{
 		"nvim-telescope/telescope.nvim",

@@ -5,13 +5,16 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "stylua",
+        "flake8",
+        "gopls",
+        "perlnavigator",
+        "pyright",
+        "rnix-lsp",
+        "ruff-lsp",
         "shellcheck",
         "shfmt",
-        "flake8",
+        "stylua",
         "terraform-ls",
-        "gopls",
-        "pyright",
       },
     },
   },
@@ -23,9 +26,29 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
+        html = {},
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+          linksInHover = false,
+          codelenses = {
+            generate = true,
+            gc_details = true,
+            regenerate_cgo = true,
+            tidy = true,
+            upgrade_depdendency = true,
+            vendor = true,
+          },
+          usePlaceholders = true,
+        },
+        perlnavigator = {},
         pyright = {},
+        rnix = {},
         terraformls = {},
-        gopls = {},
+        tflint = {},
+        yamlls = {},
       },
     },
   },
