@@ -59,6 +59,13 @@ nnoremap("<leader>ot", function() require('neoterm').toggle() end, "Terminal")
 nnoremap("<leader>A", function() org.action("agenda.prompt") end, "Agenda")
 nnoremap("<leader>C", function() org.action("capture.prompt") end, "Capture")
 
+m.nname("<leader>P", "Pomodoro")
+nnoremap("<leader>Pw", function() require('pommodoro-clock').start("work") end, "Start work")
+nnoremap("<leader>Ps", function() require('pommodoro-clock').start("short_break") end, "Start short break")
+nnoremap("<leader>Pl", function() require('pommodoro-clock').start("long_break") end, "Start long break")
+nnoremap("<leader>Pp", function() require('pommodoro-clock').toggle_pause() end, "Toggle pause")
+nnoremap("<leader>Pc", function() require('pommodoro-clock').close() end, "Close")
+
 m.nname("<leader>p", "project")
 nnoremap("<leader>pp", function() tse.project.project{ display_type = "full" } end, "Switch")
 
