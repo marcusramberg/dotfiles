@@ -18,4 +18,13 @@ return {
   "andymass/vim-matchup",
   -- Simplify the macro syntax
   { "chrisgrieser/nvim-recorder", config = true },
+  -- Disable mini.pairs for now, it's drivin' me nuts
+  { "echasnovski/mini.pairs", enabled = false },
+  {
+    "ggandor/leap.nvim",
+    setup = function()
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
+    end,
+  },
 }

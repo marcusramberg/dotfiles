@@ -4,13 +4,13 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
-    event = "VimEnter",
     config = function()
-      vim.defer_fn(function()
-        require("copilot").setup({
-          -- copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/nvm/v17.9.1/bin/node", -- Node version must be < 18
-        })
-      end, 100)
+      event =
+        "VimEnter", vim.defer_fn(function()
+          require("copilot").setup({
+            -- copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/nvm/v17.9.1/bin/node", -- Node version must be < 18
+          })
+        end, 100)
     end,
   },
 
@@ -47,11 +47,11 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       ---@diagnostic disable-next-line: missing-parameter
-      print(vim.inspect(opts.sources))
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+      cmp.config.sources(vim.list_extend(opts.sources, {
         { name = "copilot", group_index = 2 },
         { name = "emoji" },
       }))
+      -- print(vim.inspect(opts.sources))
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
