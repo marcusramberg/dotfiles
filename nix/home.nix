@@ -27,7 +27,6 @@
   #    # and packages.el files
   #  };
   programs.fish = import ./home/fish.nix { inherit pkgs; };
-  programs.atuin.enable = true;
   programs.fzf.enable = true;
   programs.keychain.enable = true;
   programs.navi.enable = true;
