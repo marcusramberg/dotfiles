@@ -26,7 +26,7 @@
   #    doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
   #    # and packages.el files
   #  };
-  programs.fish = import ./home/fish.nix;
+  programs.fish = import ./home/fish.nix { inherit pkgs; };
   programs.atuin.enable = true;
   programs.fzf.enable = true;
   programs.keychain.enable = true;

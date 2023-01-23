@@ -88,9 +88,9 @@ set -gx tide_pwd_color_truncated_dirs E5E9F0
 set -gx tide_pwd_icon
 set -gx tide_pwd_icon_home
 set -gx tide_pwd_icon_unwritable 
-set -gx tide_pwd_markers '.bzr'  '.citc'  '.git'  '.hg'  '.node-version'  '.python-ve…
+set -gx tide_pwd_markers '.bzr'  '.citc'  '.git'  '.hg'  '.node-version'  '.python-venv'
 set -gx tide_right_prompt_frame_enabled false
-set -gx tide_right_prompt_items 'status'  'cmd_duration'  'context'  'jobs'  'node'  'virtua…
+set -gx tide_right_prompt_items 'status'  'cmd_duration'  'context'  'jobs'  'node'  'kubectl'
 set -gx tide_right_prompt_prefix ' '
 set -gx tide_right_prompt_separator_diff_color ' '
 set -gx tide_right_prompt_separator_same_color ' '

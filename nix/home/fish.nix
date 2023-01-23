@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   enable = true;
   functions = {
@@ -42,6 +43,7 @@
     fish_vi_key_bindings
     set fish_theme  tokyo-night
     set -gx EDITOR nvim
+    source ~/.config/fish/tide_config.fish
     type -q thefuck; and thefuck --alias | source
     test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
     if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
@@ -64,9 +66,9 @@
   '';
   plugins = [
     { name = "tide"; src = pkgs.fishPlugins.tide.src; }
-    { name = "grc"; src = pkg.fishPlugins.grc.src; }
-    { name = "forgit"; src = pkg.fishPlugins.forgit.src; }
-    { name = "bass"; src = pkg.fishPlugins.bass.src; }
-    { name = "fzf-fish"; src = pkg.fishPlugins.fzf-fish.src; }
+    { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+    { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+    { name = "bass"; src = pkgs.fishPlugins.bass.src; }
+    { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
   ];
 }
