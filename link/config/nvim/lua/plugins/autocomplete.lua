@@ -2,30 +2,13 @@ return {
   { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
 
-  {
-    "zbirenbaum/copilot.lua",
-    config = function()
-      event =
-        "VimEnter", vim.defer_fn(function()
-          require("copilot").setup({
-            -- copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/nvm/v17.9.1/bin/node", -- Node version must be < 18
-          })
-        end, 100)
-    end,
-  },
+  -- { "zbirenbaum/copilot.lua", lazy = false, config = true },
 
   {
     "L3MON4D3/LuaSnip",
     keys = function()
       return {}
     end,
-  },
-  -- then: setup supertab in cmp
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-    },
   },
   -- Setup autcomplete
   {
@@ -41,7 +24,13 @@ return {
       "petertriho/cmp-git",
       "prabirshrestha/vsnip-snippets",
       "prabirshrestha/vsnip-snippets",
-      "zbirenbaum/copilot-cmp",
+      {
+        "zbirenbaum/copilot-cmp",
+        config = true,
+        dependencies = {
+          { "zbirenbaum/copilot.lua", config = true },
+        },
+      },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)

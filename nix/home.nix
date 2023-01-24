@@ -47,6 +47,7 @@
     go
     golangci-lint
     gopls
+    gotestfmt
     jq
     nodePackages.typescript
     nodePackages.node2nix

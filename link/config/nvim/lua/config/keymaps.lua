@@ -7,3 +7,5 @@ vim.keymap.set("n", "<leader>pp", "<cmd>Telescope project<cr>", { desc = "Switch
 vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Neogit" })
 vim.keymap.set("n", "<leader>gG", "<cmd>Neogit cwd=.<cr>", { desc = "Neogit (cwd)" })
 -- I'm old and cranky, and leap stealing x in visual mode is driving me nuts.
+vim.keymap.del({ "x", "o" }, "x")
+vim.keymap.del({ "x", "o" }, "X")
