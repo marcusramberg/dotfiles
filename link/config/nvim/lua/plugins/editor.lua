@@ -20,4 +20,14 @@ return {
   { "chrisgrieser/nvim-recorder", config = true },
   -- Disable mini.pairs for now, it's drivin' me nuts
   { "echasnovski/mini.pairs", enabled = false },
+  -- I'm old and cranky, and leap stealing x in visual mode is driving me nuts.
+  {
+    "ggandor/leap.nvim",
+    config = function()
+      local leap = require("leap")
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
+    end,
+  },
 }
