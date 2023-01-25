@@ -8,7 +8,7 @@ wezterm.on("update-right-status", function(window, _)
 	local since = now - pomodoro
 	if since < 25 then
 		if since >= 20 then
-			text = "😴 " .. math.abs(5 - since) .. ":00"
+			text = "😴 " .. math.abs(25 - since) .. ":00"
 		else
 			text = "🍅 " .. math.abs(20 - since) .. ":00"
 		end
@@ -25,7 +25,7 @@ local keys = {
 	{
 		key = "P",
 		mods = "SUPER|ALT|CTRL|SHIFT",
-		action = wezterm.action_callback(function(win, _)
+		action = wezterm.action_callback(function(_, _)
 			wezterm.log_info("Pomodoro started")
 			pomodoro = math.floor(wezterm.strftime("%s") / 60)
 		end),
