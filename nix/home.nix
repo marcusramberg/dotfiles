@@ -62,6 +62,7 @@
 
   home.packages = with pkgs; [
     actionlint
+    asciinema
     bat
     cargo
     cocogitto
@@ -85,9 +86,11 @@
     nodePackages.node2nix
     nodejs-16_x
     neovim-unwrapped
+    pssh
     (import ./home/python.nix { inherit pkgs; })
     ripgrep
     tealdeer
+    thefuck
     wget
     yq-go
 
