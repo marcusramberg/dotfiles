@@ -1,7 +1,6 @@
 local self = {}
 local wezterm = require("wezterm")
 -- config
-local minute = 60
 local work_min = 20
 local break_min = 5
 
@@ -9,6 +8,7 @@ local break_min = 5
 local pomodoro = 0
 local resetWork = false
 local resetBreak = false
+local minute = 60
 
 wezterm.on("update-right-status", function(window, _)
 	local text = ""
