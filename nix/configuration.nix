@@ -2,7 +2,7 @@
 {
   # Nix configuration ------------------------------------------------------------------------------
 
-  nix.settings.substituters= [
+  nix.settings.substituters = [
     "https://cache.nixos.org/"
   ];
   nix.settings.trusted-public-keys = [
@@ -14,7 +14,7 @@
   nix.configureBuildUsers = true;
 
   nixpkgs.config.allowUnsupportedSystem = true;
-   
+
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
@@ -35,7 +35,7 @@
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
-    wezterm 
+    wezterm
     karabiner-elements
     goku
     terminal-notifier
@@ -46,20 +46,20 @@
   # Fonts
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
-     recursive
-     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-   ];
+    recursive
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
 
-   system.defaults.dock = {
-     show-recents = false;
-     showhidden = true;
-     static-only = true;
-     orientation = "right";
-     mru-spaces = false;
-     minimize-to-application = true;
-     mineffect = "scale";
-     autohide = false;
-   };
+  system.defaults.dock = {
+    show-recents = false;
+    showhidden = true;
+    static-only = true;
+    orientation = "right";
+    mru-spaces = false;
+    minimize-to-application = true;
+    mineffect = "scale";
+    autohide = false;
+  };
   system.defaults.finder = {
     AppleShowAllExtensions = true;
     FXEnableExtensionChangeWarning = false;
@@ -71,7 +71,7 @@
   };
   system.defaults.NSGlobalDomain._HIHideMenuBar = true;
 
-  system.defaults.dock.wvous-br-corner=13;
+  system.defaults.dock.wvous-br-corner = 13;
 
   # Keyboard
   system.keyboard.enableKeyMapping = true;

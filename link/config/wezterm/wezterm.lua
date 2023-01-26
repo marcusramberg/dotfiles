@@ -1,34 +1,12 @@
 local wezterm = require("wezterm")
-
-local pomodoro = 0
-
-wezterm.on("update-right-status", function(window, _)
-	local text = ""
-	local now = math.floor(wezterm.strftime("%s") / 60)
-	local since = now - pomodoro
-	if since < 25 then
-		if since >= 20 then
-			text = "😴 " .. math.abs(25 - since) .. ":00"
-		else
-			text = "🍅 " .. math.abs(20 - since) .. ":00"
-		end
-	end
-	-- Make it italic
-	window:set_right_status(wezterm.format({
-		{ Attribute = { Italic = true } },
-		{ Text = text },
-	}))
-end)
+local pomodoro = require("pomodoro")
 
 local keys = {
 	-- { key = "P", mods = "SUPER", action = wezterm.action.EmitEvent("start-pomodoro") },
 	{
 		key = "P",
 		mods = "SUPER|ALT|CTRL|SHIFT",
-		action = wezterm.action_callback(function(_, _)
-			wezterm.log_info("Pomodoro started")
-			pomodoro = math.floor(wezterm.strftime("%s") / 60)
-		end),
+		action = wezterm.action_callback(pomodoro.action_callback),
 	},
 	{ key = "G", mods = "SUPER", action = wezterm.action({ Search = { Regex = "[a-f0-9]{6,}" } }) },
 	{
@@ -59,9 +37,29 @@ end
 local config = {
 	adjust_window_size_when_changing_font_size = false,
 	audible_bell = "Disabled",
-	-- color_scheme = "nord",
 	check_for_updates = false,
 	color_scheme = "tokyonight",
+	tab_max_width = 20,
+	colors = {
+		tab_bar = {
+			background = "#16161e",
+			active_tab = {
+				bg_color = "#292e42",
+				fg_color = "#c0caf5",
+				intensity = "Bold",
+				underline = "None",
+			},
+			inactive_tab = {
+				bg_color = "#16161e",
+				fg_color = "#a9b1d6",
+			},
+			inactive_tab_hover = {
+				bg_color = "#1a1b26",
+				fg_color = "#ff9e64",
+				underline = "Single",
+			},
+		},
+	},
 	default_gui_startup_args = { "connect", "unix" },
 	font_rules = {
 		{
@@ -71,7 +69,7 @@ local config = {
 		},
 	},
 	font = wezterm.font("JetBrainsMono Nerd Font"),
-	hide_tab_bar_if_only_one_tab = true,
+	hide_tab_bar_if_only_one_tab = false,
 	inactive_pane_hsb = {
 		saturation = 0.7,
 		brightness = 0.7,
