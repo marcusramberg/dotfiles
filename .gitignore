@@ -40,3 +40,4 @@ github-copilot/
 configstore/
 link/config/htop/htoprc
 link/config/fish/config.fish
+tmux

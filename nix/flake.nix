@@ -30,58 +30,40 @@
       # Configuration for `nixpkgs`
       nixpkgsConfig = {
         config = { allowUnfree = true; };
-        overlays = attrValues self.overlays ++ singleton (
-          # Sub in x86 version of packages that don't build on Apple Silicon yet
-          final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-            inherit (final.pkgs-x86)
-              idris2
-              nix-index
-              devenv
-              niv;
-          })
-        );
+        /* overlays = attrValues self.overlays ++ singleton ( */
+        /*   # Sub in x86 version of packages that don't build on Apple Silicon yet */
+        /*   final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") { */
+        /*     inherit (final.pkgs-x86) */
+        /*       idris2 */
+        /*       nix-index */
+        /*       devenv */
+        /*       niv; */
+        /*   }) */
+        /* ); */
       };
     in
     {
       # My `nix-darwin` configs
 
-      darwinConfigurations = rec {
-        mbook = darwinSystem {
-          system = "aarch64-darwin";
-          modules = attrValues self.darwinModules ++ [
-            # Main `nix-darwin` config
-            ./configuration.nix
-            # `home-manager` module
-            home-manager.darwinModules.home-manager
-            {
-              nixpkgs = nixpkgsConfig;
-              # inherit nix-doom-emacs;
-              # `home-manager` config
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marcus = import ./home.nix;
-            }
-          ];
-        };
+      darwinConfigurations.mbook = darwinSystem {
+        system = "aarch64-darwin";
+        modules = attrValues self.darwinModules ++ [
+          # Main `nix-darwin` config
+          ./configuration.nix
+          # `home-manager` module
+          home-manager.darwinModules.home-manager
+          {
+            nixpkgs = nixpkgsConfig;
+            # inherit nix-doom-emacs;
+            # `home-manager` config
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.marcus = import ./home.nix;
+          }
+        ];
       };
 
-      # Overlays --------------------------------------------------------------- {{{
 
-      overlays = {
-
-        # Overlay useful on Macs with Apple Silicon
-        apple-silicon = final: prev: optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-          # Add access to x86 packages system is running Apple Silicon
-          pkgs-x86 = import inputs.nixpkgs-unstable {
-            system = "x86_64-darwin";
-            inherit (nixpkgsConfig) config;
-          };
-
-        };
-      };
-
-      # My `nix-darwin` modules that are pending upstream, or patched versions waiting on upstream
-      # fixes.
       darwinModules = {
         programs-nix-index =
           # Additional configuration for `nix-index` to enable `command-not-found` functionality with Fish.

@@ -18,11 +18,9 @@ return {
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
       "petertriho/cmp-git",
-      "prabirshrestha/vsnip-snippets",
       "prabirshrestha/vsnip-snippets",
       {
         "zbirenbaum/copilot-cmp",
@@ -36,11 +34,10 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       ---@diagnostic disable-next-line: missing-parameter
-      cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "copilot", group_index = 2 },
-        { name = "emoji" },
-      }))
-      -- print(vim.inspect(opts.sources))
+      -- cmp.config.sources(
+      table.insert(opts.sources, 1, { name = "copilot", group_index = 2 })
+      table.insert(opts.sources, { name = "emoji" })
+
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))

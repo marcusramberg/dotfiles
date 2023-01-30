@@ -19,7 +19,7 @@ return {
   -- Simplify the macro syntax
   { "chrisgrieser/nvim-recorder", config = true },
   -- Disable mini.pairs for now, it's drivin' me nuts
-  { "echasnovski/mini.pairs", enabled = false },
+  -- { "echasnovski/mini.pairs", enabled = false },
   -- I'm old and cranky, and leap stealing x in visual mode is driving me nuts.
   {
     "ggandor/leap.nvim",
