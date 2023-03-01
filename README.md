@@ -1,3 +1,7 @@
+# Archived
+
+This repo contained my dotfiles untill 2023, now they are all managed to my [nix-config](https://github.com/marcusramberg/nix-config). Check out the config/ folder for actual dot files like neovim/i3/wezterm config and such.
+
 # Dot Files
 
 My OS X / Ubuntu / Debian dotfiles.
